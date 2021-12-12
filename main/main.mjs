@@ -81,11 +81,11 @@ class LoggerObject {
     get bgWhiteBright   () { this.attributeBuffer.push("bgWhiteBright"  ); return this.proxyiedReturn }
 
     toString() {
-        return buffer.join("")
+        return this.stringBuffer.join("")
     }
     
-    log() {
-        console.log(this.stringBuffer.join("").replace("%", "%%"), ...others)
+    log(...others) {
+        console.log(this.toString().replace("%", "%%"), ...others)
         return this
     }
 }
