@@ -1,4 +1,5 @@
 import chalk from "../chalk-deno/source/index.js"
+const console = globalThis.console
 
 class LoggerObject {
     constructor() {
