@@ -766,7 +766,7 @@ class $355a0ba890fd58e7$var$LoggerObject {
             },
             get: (original, key, ...args)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return true;
-                console.debug(`key is:`, key);
+                $355a0ba890fd58e7$export$e896d9a1b4631fa1.debug(`key is:`, key);
                 return Reflect.get(this, key, ...args);
             },
             set: (original, key, ...args)=>{
@@ -959,11 +959,11 @@ class $355a0ba890fd58e7$var$LoggerObject {
         return this.stringBuffer.join("");
     }
     log(...others) {
-        console.log(this.toString().replace("%", "%%"), ...others);
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(this.toString().replace("%", "%%"), ...others);
         return this;
     }
 }
-const $355a0ba890fd58e7$export$efa9a398d6368992 = {
+const $355a0ba890fd58e7$export$9d69f5c452819e4 = {
     reset (...args) {
         return new $355a0ba890fd58e7$var$LoggerObject().reset(...args);
     },
@@ -1100,8 +1100,169 @@ const $355a0ba890fd58e7$export$efa9a398d6368992 = {
         return new $355a0ba890fd58e7$var$LoggerObject().bgWhiteBright(...args);
     }
 };
-var $355a0ba890fd58e7$export$2e2bcd8739ae039 = $355a0ba890fd58e7$export$efa9a398d6368992;
+const $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
+    reset (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().reset(...args).log();
+    },
+    bold (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bold(...args).log();
+    },
+    dim (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().dim(...args).log();
+    },
+    italic (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().italic(...args).log();
+    },
+    underline (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().underline(...args).log();
+    },
+    inverse (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().inverse(...args).log();
+    },
+    hidden (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().hidden(...args).log();
+    },
+    strikethrough (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().strikethrough(...args).log();
+    },
+    visible (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().visible(...args).log();
+    },
+    black (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().black(...args).log();
+    },
+    red (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().red(...args).log();
+    },
+    green (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().green(...args).log();
+    },
+    yellow (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().yellow(...args).log();
+    },
+    blue (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().blue(...args).log();
+    },
+    magenta (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().magenta(...args).log();
+    },
+    cyan (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().cyan(...args).log();
+    },
+    white (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().white(...args).log();
+    },
+    blackBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().blackBright(...args).log();
+    },
+    gray (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().gray(...args).log();
+    },
+    grey (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().grey(...args).log();
+    },
+    redBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().redBright(...args).log();
+    },
+    greenBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().greenBright(...args).log();
+    },
+    yellowBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().yellowBright(...args).log();
+    },
+    blueBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().blueBright(...args).log();
+    },
+    magentaBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().magentaBright(...args).log();
+    },
+    cyanBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().cyanBright(...args).log();
+    },
+    whiteBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().whiteBright(...args).log();
+    },
+    bgBlack (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgBlack(...args).log();
+    },
+    bgRed (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgRed(...args).log();
+    },
+    bgGreen (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgGreen(...args).log();
+    },
+    bgYellow (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgYellow(...args).log();
+    },
+    bgBlue (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgBlue(...args).log();
+    },
+    bgMagenta (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgMagenta(...args).log();
+    },
+    bgCyan (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgCyan(...args).log();
+    },
+    bgWhite (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgWhite(...args).log();
+    },
+    bgBlackBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgBlackBright(...args).log();
+    },
+    bgGray (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgGray(...args).log();
+    },
+    bgGrey (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgGrey(...args).log();
+    },
+    bgRedBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgRedBright(...args).log();
+    },
+    bgGreenBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgGreenBright(...args).log();
+    },
+    bgYellowBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgYellowBright(...args).log();
+    },
+    bgBlueBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgBlueBright(...args).log();
+    },
+    bgMagentaBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgMagentaBright(...args).log();
+    },
+    bgCyanBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgCyanBright(...args).log();
+    },
+    bgWhiteBright (...args) {
+        return new $355a0ba890fd58e7$var$LoggerObject().bgWhiteBright(...args).log();
+    },
+    log: $355a0ba890fd58e7$export$e896d9a1b4631fa1.log,
+    warn: $355a0ba890fd58e7$export$e896d9a1b4631fa1.warn,
+    dir: $355a0ba890fd58e7$export$e896d9a1b4631fa1.dir,
+    time: $355a0ba890fd58e7$export$e896d9a1b4631fa1.time,
+    timeEnd: $355a0ba890fd58e7$export$e896d9a1b4631fa1.timeEnd,
+    timeLog: $355a0ba890fd58e7$export$e896d9a1b4631fa1.timeLog,
+    trace: $355a0ba890fd58e7$export$e896d9a1b4631fa1.trace,
+    assert: $355a0ba890fd58e7$export$e896d9a1b4631fa1.assert,
+    clear: $355a0ba890fd58e7$export$e896d9a1b4631fa1.clear,
+    count: $355a0ba890fd58e7$export$e896d9a1b4631fa1.count,
+    countReset: $355a0ba890fd58e7$export$e896d9a1b4631fa1.countReset,
+    group: $355a0ba890fd58e7$export$e896d9a1b4631fa1.group,
+    groupEnd: $355a0ba890fd58e7$export$e896d9a1b4631fa1.groupEnd,
+    table: $355a0ba890fd58e7$export$e896d9a1b4631fa1.table,
+    debug: $355a0ba890fd58e7$export$e896d9a1b4631fa1.debug,
+    info: $355a0ba890fd58e7$export$e896d9a1b4631fa1.info,
+    dirxml: $355a0ba890fd58e7$export$e896d9a1b4631fa1.dirxml,
+    error: $355a0ba890fd58e7$export$e896d9a1b4631fa1.error,
+    groupCollapsed: $355a0ba890fd58e7$export$e896d9a1b4631fa1.groupCollapsed,
+    Console: $355a0ba890fd58e7$export$e896d9a1b4631fa1.Console,
+    profile: $355a0ba890fd58e7$export$e896d9a1b4631fa1.profile,
+    profileEnd: $355a0ba890fd58e7$export$e896d9a1b4631fa1.profileEnd,
+    timeStamp: $355a0ba890fd58e7$export$e896d9a1b4631fa1.timeStamp,
+    context: $355a0ba890fd58e7$export$e896d9a1b4631fa1.context
+};
+var $355a0ba890fd58e7$export$2e2bcd8739ae039 = $355a0ba890fd58e7$export$9d69f5c452819e4;
 
 
-export {$355a0ba890fd58e7$export$efa9a398d6368992 as Logger, $355a0ba890fd58e7$export$2e2bcd8739ae039 as default};
+export {$355a0ba890fd58e7$export$e896d9a1b4631fa1 as console, $355a0ba890fd58e7$export$9d69f5c452819e4 as vibrance, $355a0ba890fd58e7$export$2e2bcd8739ae039 as default};
 //# sourceMappingURL=module.js.map

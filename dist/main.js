@@ -7,7 +7,8 @@ function $parcel$export(e, n, v, s) {
 
 $parcel$defineInteropFlag(module.exports);
 
-$parcel$export(module.exports, "Logger", () => $2b36420fded722e7$export$efa9a398d6368992);
+$parcel$export(module.exports, "console", () => $2b36420fded722e7$export$e896d9a1b4631fa1);
+$parcel$export(module.exports, "vibrance", () => $2b36420fded722e7$export$9d69f5c452819e4);
 $parcel$export(module.exports, "default", () => $2b36420fded722e7$export$2e2bcd8739ae039);
 const $807e4283f2aec814$var$ANSI_BACKGROUND_OFFSET = 10;
 const $807e4283f2aec814$var$wrapAnsi16 = (offset = 0)=>(code)=>`\u001B[${code + offset}m`
@@ -777,7 +778,7 @@ class $2b36420fded722e7$var$LoggerObject {
             },
             get: (original, key, ...args)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return true;
-                console.debug(`key is:`, key);
+                $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`key is:`, key);
                 return Reflect.get(this, key, ...args);
             },
             set: (original, key, ...args)=>{
@@ -970,11 +971,11 @@ class $2b36420fded722e7$var$LoggerObject {
         return this.stringBuffer.join("");
     }
     log(...others) {
-        console.log(this.toString().replace("%", "%%"), ...others);
+        $2b36420fded722e7$export$e896d9a1b4631fa1.log(this.toString().replace("%", "%%"), ...others);
         return this;
     }
 }
-const $2b36420fded722e7$export$efa9a398d6368992 = {
+const $2b36420fded722e7$export$9d69f5c452819e4 = {
     reset (...args) {
         return new $2b36420fded722e7$var$LoggerObject().reset(...args);
     },
@@ -1111,7 +1112,168 @@ const $2b36420fded722e7$export$efa9a398d6368992 = {
         return new $2b36420fded722e7$var$LoggerObject().bgWhiteBright(...args);
     }
 };
-var $2b36420fded722e7$export$2e2bcd8739ae039 = $2b36420fded722e7$export$efa9a398d6368992;
+const $2b36420fded722e7$export$e896d9a1b4631fa1 = {
+    reset (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().reset(...args).log();
+    },
+    bold (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bold(...args).log();
+    },
+    dim (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().dim(...args).log();
+    },
+    italic (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().italic(...args).log();
+    },
+    underline (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().underline(...args).log();
+    },
+    inverse (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().inverse(...args).log();
+    },
+    hidden (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().hidden(...args).log();
+    },
+    strikethrough (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().strikethrough(...args).log();
+    },
+    visible (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().visible(...args).log();
+    },
+    black (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().black(...args).log();
+    },
+    red (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().red(...args).log();
+    },
+    green (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().green(...args).log();
+    },
+    yellow (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().yellow(...args).log();
+    },
+    blue (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().blue(...args).log();
+    },
+    magenta (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().magenta(...args).log();
+    },
+    cyan (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().cyan(...args).log();
+    },
+    white (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().white(...args).log();
+    },
+    blackBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().blackBright(...args).log();
+    },
+    gray (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().gray(...args).log();
+    },
+    grey (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().grey(...args).log();
+    },
+    redBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().redBright(...args).log();
+    },
+    greenBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().greenBright(...args).log();
+    },
+    yellowBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().yellowBright(...args).log();
+    },
+    blueBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().blueBright(...args).log();
+    },
+    magentaBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().magentaBright(...args).log();
+    },
+    cyanBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().cyanBright(...args).log();
+    },
+    whiteBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().whiteBright(...args).log();
+    },
+    bgBlack (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgBlack(...args).log();
+    },
+    bgRed (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgRed(...args).log();
+    },
+    bgGreen (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgGreen(...args).log();
+    },
+    bgYellow (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgYellow(...args).log();
+    },
+    bgBlue (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgBlue(...args).log();
+    },
+    bgMagenta (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgMagenta(...args).log();
+    },
+    bgCyan (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgCyan(...args).log();
+    },
+    bgWhite (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgWhite(...args).log();
+    },
+    bgBlackBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgBlackBright(...args).log();
+    },
+    bgGray (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgGray(...args).log();
+    },
+    bgGrey (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgGrey(...args).log();
+    },
+    bgRedBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgRedBright(...args).log();
+    },
+    bgGreenBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgGreenBright(...args).log();
+    },
+    bgYellowBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgYellowBright(...args).log();
+    },
+    bgBlueBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgBlueBright(...args).log();
+    },
+    bgMagentaBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgMagentaBright(...args).log();
+    },
+    bgCyanBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgCyanBright(...args).log();
+    },
+    bgWhiteBright (...args) {
+        return new $2b36420fded722e7$var$LoggerObject().bgWhiteBright(...args).log();
+    },
+    log: $2b36420fded722e7$export$e896d9a1b4631fa1.log,
+    warn: $2b36420fded722e7$export$e896d9a1b4631fa1.warn,
+    dir: $2b36420fded722e7$export$e896d9a1b4631fa1.dir,
+    time: $2b36420fded722e7$export$e896d9a1b4631fa1.time,
+    timeEnd: $2b36420fded722e7$export$e896d9a1b4631fa1.timeEnd,
+    timeLog: $2b36420fded722e7$export$e896d9a1b4631fa1.timeLog,
+    trace: $2b36420fded722e7$export$e896d9a1b4631fa1.trace,
+    assert: $2b36420fded722e7$export$e896d9a1b4631fa1.assert,
+    clear: $2b36420fded722e7$export$e896d9a1b4631fa1.clear,
+    count: $2b36420fded722e7$export$e896d9a1b4631fa1.count,
+    countReset: $2b36420fded722e7$export$e896d9a1b4631fa1.countReset,
+    group: $2b36420fded722e7$export$e896d9a1b4631fa1.group,
+    groupEnd: $2b36420fded722e7$export$e896d9a1b4631fa1.groupEnd,
+    table: $2b36420fded722e7$export$e896d9a1b4631fa1.table,
+    debug: $2b36420fded722e7$export$e896d9a1b4631fa1.debug,
+    info: $2b36420fded722e7$export$e896d9a1b4631fa1.info,
+    dirxml: $2b36420fded722e7$export$e896d9a1b4631fa1.dirxml,
+    error: $2b36420fded722e7$export$e896d9a1b4631fa1.error,
+    groupCollapsed: $2b36420fded722e7$export$e896d9a1b4631fa1.groupCollapsed,
+    Console: $2b36420fded722e7$export$e896d9a1b4631fa1.Console,
+    profile: $2b36420fded722e7$export$e896d9a1b4631fa1.profile,
+    profileEnd: $2b36420fded722e7$export$e896d9a1b4631fa1.profileEnd,
+    timeStamp: $2b36420fded722e7$export$e896d9a1b4631fa1.timeStamp,
+    context: $2b36420fded722e7$export$e896d9a1b4631fa1.context
+};
+var $2b36420fded722e7$export$2e2bcd8739ae039 = $2b36420fded722e7$export$9d69f5c452819e4;
 
 
 //# sourceMappingURL=main.js.map
