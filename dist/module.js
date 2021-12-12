@@ -743,7 +743,7 @@ const $4e3327031d001f8c$export$8cef8185e551afa5 = $4e3327031d001f8c$var$createCh
 var $4e3327031d001f8c$export$2e2bcd8739ae039 = $4e3327031d001f8c$var$chalk;
 
 
-const $355a0ba890fd58e7$export$e896d9a1b4631fa1 = globalThis.console;
+const $355a0ba890fd58e7$var$realConsole = globalThis.console;
 class $355a0ba890fd58e7$var$LoggerObject {
     constructor(){
         this.stringBuffer = [];
@@ -1101,7 +1101,7 @@ const $355a0ba890fd58e7$export$9d69f5c452819e4 = {
         return new $355a0ba890fd58e7$var$LoggerObject().bgWhiteBright(...args);
     }
 };
-const $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
+var $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
     reset (...args) {
         return new $355a0ba890fd58e7$var$LoggerObject().reset(...args).log();
     },
@@ -1237,30 +1237,30 @@ const $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
     bgWhiteBright (...args) {
         return new $355a0ba890fd58e7$var$LoggerObject().bgWhiteBright(...args).log();
     },
-    log: $355a0ba890fd58e7$export$e896d9a1b4631fa1.log,
-    warn: $355a0ba890fd58e7$export$e896d9a1b4631fa1.warn,
-    dir: $355a0ba890fd58e7$export$e896d9a1b4631fa1.dir,
-    time: $355a0ba890fd58e7$export$e896d9a1b4631fa1.time,
-    timeEnd: $355a0ba890fd58e7$export$e896d9a1b4631fa1.timeEnd,
-    timeLog: $355a0ba890fd58e7$export$e896d9a1b4631fa1.timeLog,
-    trace: $355a0ba890fd58e7$export$e896d9a1b4631fa1.trace,
-    assert: $355a0ba890fd58e7$export$e896d9a1b4631fa1.assert,
-    clear: $355a0ba890fd58e7$export$e896d9a1b4631fa1.clear,
-    count: $355a0ba890fd58e7$export$e896d9a1b4631fa1.count,
-    countReset: $355a0ba890fd58e7$export$e896d9a1b4631fa1.countReset,
-    group: $355a0ba890fd58e7$export$e896d9a1b4631fa1.group,
-    groupEnd: $355a0ba890fd58e7$export$e896d9a1b4631fa1.groupEnd,
-    table: $355a0ba890fd58e7$export$e896d9a1b4631fa1.table,
-    debug: $355a0ba890fd58e7$export$e896d9a1b4631fa1.debug,
-    info: $355a0ba890fd58e7$export$e896d9a1b4631fa1.info,
-    dirxml: $355a0ba890fd58e7$export$e896d9a1b4631fa1.dirxml,
-    error: $355a0ba890fd58e7$export$e896d9a1b4631fa1.error,
-    groupCollapsed: $355a0ba890fd58e7$export$e896d9a1b4631fa1.groupCollapsed,
-    Console: $355a0ba890fd58e7$export$e896d9a1b4631fa1.Console,
-    profile: $355a0ba890fd58e7$export$e896d9a1b4631fa1.profile,
-    profileEnd: $355a0ba890fd58e7$export$e896d9a1b4631fa1.profileEnd,
-    timeStamp: $355a0ba890fd58e7$export$e896d9a1b4631fa1.timeStamp,
-    context: $355a0ba890fd58e7$export$e896d9a1b4631fa1.context
+    log: $355a0ba890fd58e7$var$realConsole.log,
+    warn: $355a0ba890fd58e7$var$realConsole.warn,
+    dir: $355a0ba890fd58e7$var$realConsole.dir,
+    time: $355a0ba890fd58e7$var$realConsole.time,
+    timeEnd: $355a0ba890fd58e7$var$realConsole.timeEnd,
+    timeLog: $355a0ba890fd58e7$var$realConsole.timeLog,
+    trace: $355a0ba890fd58e7$var$realConsole.trace,
+    assert: $355a0ba890fd58e7$var$realConsole.assert,
+    clear: $355a0ba890fd58e7$var$realConsole.clear,
+    count: $355a0ba890fd58e7$var$realConsole.count,
+    countReset: $355a0ba890fd58e7$var$realConsole.countReset,
+    group: $355a0ba890fd58e7$var$realConsole.group,
+    groupEnd: $355a0ba890fd58e7$var$realConsole.groupEnd,
+    table: $355a0ba890fd58e7$var$realConsole.table,
+    debug: $355a0ba890fd58e7$var$realConsole.debug,
+    info: $355a0ba890fd58e7$var$realConsole.info,
+    dirxml: $355a0ba890fd58e7$var$realConsole.dirxml,
+    error: $355a0ba890fd58e7$var$realConsole.error,
+    groupCollapsed: $355a0ba890fd58e7$var$realConsole.groupCollapsed,
+    Console: $355a0ba890fd58e7$var$realConsole.Console,
+    profile: $355a0ba890fd58e7$var$realConsole.profile,
+    profileEnd: $355a0ba890fd58e7$var$realConsole.profileEnd,
+    timeStamp: $355a0ba890fd58e7$var$realConsole.timeStamp,
+    context: $355a0ba890fd58e7$var$realConsole.context
 };
 var $355a0ba890fd58e7$export$2e2bcd8739ae039 = $355a0ba890fd58e7$export$9d69f5c452819e4;
 
