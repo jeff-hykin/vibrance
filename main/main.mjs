@@ -1,5 +1,6 @@
 import chalk from "../chalk-deno/source/index.js"
-const console = globalThis.console
+
+const realConsole = globalThis.console
 
 class LoggerObject {
     constructor() {
@@ -139,7 +140,7 @@ export const vibrance = {
     bgWhiteBright   (...args) { return (new LoggerObject()).bgWhiteBright(...args) },
 }
 
-export const console = {
+export var console = {
     reset           (...args) { return (new LoggerObject()).reset(...args).log() },
     bold            (...args) { return (new LoggerObject()).bold(...args).log() },
     dim             (...args) { return (new LoggerObject()).dim(...args).log() },
@@ -185,30 +186,30 @@ export const console = {
     bgMagentaBright (...args) { return (new LoggerObject()).bgMagentaBright(...args).log() },
     bgCyanBright    (...args) { return (new LoggerObject()).bgCyanBright(...args).log() },
     bgWhiteBright   (...args) { return (new LoggerObject()).bgWhiteBright(...args).log() },
-    log: console.log,
-    warn: console.warn,
-    dir: console.dir,
-    time: console.time,
-    timeEnd: console.timeEnd,
-    timeLog: console.timeLog,
-    trace: console.trace,
-    assert: console.assert,
-    clear: console.clear,
-    count: console.count,
-    countReset: console.countReset,
-    group: console.group,
-    groupEnd: console.groupEnd,
-    table: console.table,
-    debug: console.debug,
-    info: console.info,
-    dirxml: console.dirxml,
-    error: console.error,
-    groupCollapsed: console.groupCollapsed,
-    Console: console.Console,
-    profile: console.profile,
-    profileEnd: console.profileEnd,
-    timeStamp: console.timeStamp,
-    context: console.context,
+    log: realConsole.log,
+    warn: realConsole.warn,
+    dir: realConsole.dir,
+    time: realConsole.time,
+    timeEnd: realConsole.timeEnd,
+    timeLog: realConsole.timeLog,
+    trace: realConsole.trace,
+    assert: realConsole.assert,
+    clear: realConsole.clear,
+    count: realConsole.count,
+    countReset: realConsole.countReset,
+    group: realConsole.group,
+    groupEnd: realConsole.groupEnd,
+    table: realConsole.table,
+    debug: realConsole.debug,
+    info: realConsole.info,
+    dirxml: realConsole.dirxml,
+    error: realConsole.error,
+    groupCollapsed: realConsole.groupCollapsed,
+    Console: realConsole.Console,
+    profile: realConsole.profile,
+    profileEnd: realConsole.profileEnd,
+    timeStamp: realConsole.timeStamp,
+    context: realConsole.context,
 }
 
 
