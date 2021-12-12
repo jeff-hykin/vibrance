@@ -2,11 +2,12 @@
     "license": "MIT",
     "name": "vibrance",
     "description": "Cli colors for deno, built on chalk",
-    "version": "0.0.3",
-    "main": "main/main.mjs",
+    "version": "0.0.4",
     "source": "main/main.mjs",
+    "main": "dist/main.js",
+    "module": "dist/module.js",
     "exports": {
-        "import": "./main/main.mjs"
+        "import": "./dist/module.js"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +20,9 @@
     "author": "",
     "bugs": {
         "url": "https://github.com/jeff-hykin/vibrance/issues"
+    },
+    "devDependencies": {
+        "parcel": "^2.0.1"
     },
     "homepage": "https://github.com/jeff-hykin/vibrance#readme"
 }

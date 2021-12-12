@@ -1,4 +1,4 @@
-const { chalk } = require("./chalk_deno/source/index.js")
+import chalk from "../chalk-deno/source/index.js"
 
 class LoggerObject {
     constructor() {

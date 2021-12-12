@@ -1,6 +1,23 @@
 import hasFlag from '../has-flag/index.js';
 
-import { isatty } from "https://deno.land/std@0.94.0/node/tty.ts";
+// Copyright 2018-2021 the Deno authors. All rights reserved. MIT license.
+
+// This module implements 'tty' module of Node.JS API.
+// ref: https://nodejs.org/api/tty.html
+
+// Returns true when the given numeric fd is associated with a TTY and false otherwise.
+function isatty(fd) {
+  if (typeof fd !== "number") {
+    return false;
+  }
+  try {
+    return Deno.isatty(fd);
+  } catch (_) {
+    return false;
+  }
+}
+
+
 
 const env = Deno.env.toObject();
 
