@@ -743,6 +743,7 @@ const $4e3327031d001f8c$export$8cef8185e551afa5 = $4e3327031d001f8c$var$createCh
 var $4e3327031d001f8c$export$2e2bcd8739ae039 = $4e3327031d001f8c$var$chalk;
 
 
+const $355a0ba890fd58e7$export$e896d9a1b4631fa1 = globalThis.console;
 class $355a0ba890fd58e7$var$LoggerObject {
     constructor(){
         this.stringBuffer = [];
