@@ -4,6 +4,7 @@
     "description": "Cli colors for deno, built on chalk",
     "version": "0.0.3",
     "main": "main/main.mjs",
+    "source": "main/main.mjs",
     "exports": {
         "import": "./main/main.mjs"
     },

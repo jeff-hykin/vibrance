@@ -1,4 +1,4 @@
-const { default: chalk } = await import("https://deno.land/x/chalk_deno@v4.1.1-deno/source/index.js")
+const { chalk } = require("./chalk_deno/source/index.js")
 
 class LoggerObject {
     constructor() {
