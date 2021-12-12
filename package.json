@@ -2,8 +2,8 @@
   "license": "MIT",
   "name": "vibrance",
   "description": "Cli colors for deno, built on chalk",
-  "version": "0.0.1",
-  "main": "main.mjs",
+  "version": "0.0.2",
+  "main": "main/main.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
