@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/canonic-epicure/chalk-deno
+	branch = main
+	commit = e54de01c45479ab4f19ad0df658794dcdabdaa3f
+	parent = 53c3d1138f7ef1979627bcfad51bb2d77ae8eaa8
+	method = merge
+	cmdver = 0.4.1
