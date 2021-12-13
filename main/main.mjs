@@ -1,11 +1,13 @@
 import chalk from "../chalk-deno/source/index.js"
 
 const realConsole = globalThis.console
+const isBrowserContext = typeof document != 'undefined' && typeof window != 'undefined'
 
 class LoggerObject {
     constructor() {
         this.stringBuffer = []
         this.attributeBuffer = []
+        this.styleString = ""
         const ifStyleCalledAsMethod = (...args)=>{
             let styler = chalk
             while (this.attributeBuffer.length > 0) {
@@ -25,7 +27,6 @@ class LoggerObject {
             ownKeys(original, ...args) { return Reflect.ownKeys(this, ...args) },
             get: (original, key, ...args) => {
                 if (key == proxySymbol||key == thisProxySymbol) {return true}
-                console.debug(`key is:`,key)
                 return Reflect.get(this, key, ...args)
             },
             set: (original, key, ...args) => {
@@ -33,7 +34,6 @@ class LoggerObject {
                 return Reflect.set(this, key, ...args)
             },
         })
-
 
         // 
         // attempt to add node.js logging
@@ -43,58 +43,65 @@ class LoggerObject {
         } catch (error) {}
     }
     
-    get reset           () { this.attributeBuffer.push("reset"          ); return this.proxyiedReturn }
-    get bold            () { this.attributeBuffer.push("bold"           ); return this.proxyiedReturn }
-    get dim             () { this.attributeBuffer.push("dim"            ); return this.proxyiedReturn }
-    get italic          () { this.attributeBuffer.push("italic"         ); return this.proxyiedReturn }
-    get underline       () { this.attributeBuffer.push("underline"      ); return this.proxyiedReturn }
-    get inverse         () { this.attributeBuffer.push("inverse"        ); return this.proxyiedReturn }
-    get hidden          () { this.attributeBuffer.push("hidden"         ); return this.proxyiedReturn }
-    get strikethrough   () { this.attributeBuffer.push("strikethrough"  ); return this.proxyiedReturn }
-    get visible         () { this.attributeBuffer.push("visible"        ); return this.proxyiedReturn }
-    get black           () { this.attributeBuffer.push("black"          ); return this.proxyiedReturn }
-    get red             () { this.attributeBuffer.push("red"            ); return this.proxyiedReturn }
-    get green           () { this.attributeBuffer.push("green"          ); return this.proxyiedReturn }
-    get yellow          () { this.attributeBuffer.push("yellow"         ); return this.proxyiedReturn }
-    get blue            () { this.attributeBuffer.push("blue"           ); return this.proxyiedReturn }
-    get magenta         () { this.attributeBuffer.push("magenta"        ); return this.proxyiedReturn }
-    get cyan            () { this.attributeBuffer.push("cyan"           ); return this.proxyiedReturn }
-    get white           () { this.attributeBuffer.push("white"          ); return this.proxyiedReturn }
-    get blackBright     () { this.attributeBuffer.push("blackBright"    ); return this.proxyiedReturn }
-    get gray            () { this.attributeBuffer.push("gray"           ); return this.proxyiedReturn }
-    get grey            () { this.attributeBuffer.push("grey"           ); return this.proxyiedReturn }
-    get redBright       () { this.attributeBuffer.push("redBright"      ); return this.proxyiedReturn }
-    get greenBright     () { this.attributeBuffer.push("greenBright"    ); return this.proxyiedReturn }
-    get yellowBright    () { this.attributeBuffer.push("yellowBright"   ); return this.proxyiedReturn }
-    get blueBright      () { this.attributeBuffer.push("blueBright"     ); return this.proxyiedReturn }
-    get magentaBright   () { this.attributeBuffer.push("magentaBright"  ); return this.proxyiedReturn }
-    get cyanBright      () { this.attributeBuffer.push("cyanBright"     ); return this.proxyiedReturn }
-    get whiteBright     () { this.attributeBuffer.push("whiteBright"    ); return this.proxyiedReturn }
-    get bgBlack         () { this.attributeBuffer.push("bgBlack"        ); return this.proxyiedReturn }
-    get bgRed           () { this.attributeBuffer.push("bgRed"          ); return this.proxyiedReturn }
-    get bgGreen         () { this.attributeBuffer.push("bgGreen"        ); return this.proxyiedReturn }
-    get bgYellow        () { this.attributeBuffer.push("bgYellow"       ); return this.proxyiedReturn }
-    get bgBlue          () { this.attributeBuffer.push("bgBlue"         ); return this.proxyiedReturn }
-    get bgMagenta       () { this.attributeBuffer.push("bgMagenta"      ); return this.proxyiedReturn }
-    get bgCyan          () { this.attributeBuffer.push("bgCyan"         ); return this.proxyiedReturn }
-    get bgWhite         () { this.attributeBuffer.push("bgWhite"        ); return this.proxyiedReturn }
-    get bgBlackBright   () { this.attributeBuffer.push("bgBlackBright"  ); return this.proxyiedReturn }
-    get bgGray          () { this.attributeBuffer.push("bgGray"         ); return this.proxyiedReturn }
-    get bgGrey          () { this.attributeBuffer.push("bgGrey"         ); return this.proxyiedReturn }
-    get bgRedBright     () { this.attributeBuffer.push("bgRedBright"    ); return this.proxyiedReturn }
-    get bgGreenBright   () { this.attributeBuffer.push("bgGreenBright"  ); return this.proxyiedReturn }
-    get bgYellowBright  () { this.attributeBuffer.push("bgYellowBright" ); return this.proxyiedReturn }
-    get bgBlueBright    () { this.attributeBuffer.push("bgBlueBright"   ); return this.proxyiedReturn }
-    get bgMagentaBright () { this.attributeBuffer.push("bgMagentaBright"); return this.proxyiedReturn }
-    get bgCyanBright    () { this.attributeBuffer.push("bgCyanBright"   ); return this.proxyiedReturn }
-    get bgWhiteBright   () { this.attributeBuffer.push("bgWhiteBright"  ); return this.proxyiedReturn }
+    get reset           () { this.attributeBuffer.push("reset"          );this.styleString += ";";                                                     return this.proxyiedReturn }
+    get bold            () { this.attributeBuffer.push("bold"           );this.styleString += "; font-weight: bold;";                                  return this.proxyiedReturn }
+    get dim             () { this.attributeBuffer.push("dim"            );this.styleString += "; opacity: 0.7;";                                       return this.proxyiedReturn }
+    get italic          () { this.attributeBuffer.push("italic"         );this.styleString += "; font-style: italic;";                                 return this.proxyiedReturn }
+    get underline       () { this.attributeBuffer.push("underline"      );this.styleString += "; text-decoration:underline;";                          return this.proxyiedReturn }
+    get inverse         () { this.attributeBuffer.push("inverse"        );this.styleString += "; -webkit-filter: invert(100%); filter: invert(100%);"; return this.proxyiedReturn }
+    get hidden          () { this.attributeBuffer.push("hidden"         );this.styleString += "; background-color: transparent; color:transparent;";   return this.proxyiedReturn }
+    get strikethrough   () { this.attributeBuffer.push("strikethrough"  );this.styleString += "; text-decoration:line-through;";                       return this.proxyiedReturn }
+    get visible         () { this.attributeBuffer.push("visible"        );this.styleString += "; ";                                                    return this.proxyiedReturn }
+    
+    get black           () { this.attributeBuffer.push("black"          );this.styleString += "; color:#000000;"; return this.proxyiedReturn }
+    get red             () { this.attributeBuffer.push("red"            );this.styleString += "; color:#f07178;"; return this.proxyiedReturn }
+    get green           () { this.attributeBuffer.push("green"          );this.styleString += "; color:#c3e88d;"; return this.proxyiedReturn }
+    get yellow          () { this.attributeBuffer.push("yellow"         );this.styleString += "; color:#ddd790;"; return this.proxyiedReturn }
+    get blue            () { this.attributeBuffer.push("blue"           );this.styleString += "; color:#82aaff;"; return this.proxyiedReturn }
+    get magenta         () { this.attributeBuffer.push("magenta"        );this.styleString += "; color:#c792ea;"; return this.proxyiedReturn }
+    get cyan            () { this.attributeBuffer.push("cyan"           );this.styleString += "; color:#64bac5;"; return this.proxyiedReturn }
+    get white           () { this.attributeBuffer.push("white"          );this.styleString += "; color:#c7cbcd;"; return this.proxyiedReturn }
+    get blackBright     () { this.attributeBuffer.push("blackBright"    );this.styleString += "; color:#546e7a;"; return this.proxyiedReturn }
+    get gray            () { this.attributeBuffer.push("gray"           );this.styleString += "; color:#546e7a;"; return this.proxyiedReturn }
+    get grey            () { this.attributeBuffer.push("grey"           );this.styleString += "; color:#546e7a;"; return this.proxyiedReturn }
+    get redBright       () { this.attributeBuffer.push("redBright"      );this.styleString += "; color:#ff5572;"; return this.proxyiedReturn }
+    get greenBright     () { this.attributeBuffer.push("greenBright"    );this.styleString += "; color:#04d895;"; return this.proxyiedReturn }
+    get yellowBright    () { this.attributeBuffer.push("yellowBright"   );this.styleString += "; color:#fec355;"; return this.proxyiedReturn }
+    get blueBright      () { this.attributeBuffer.push("blueBright"     );this.styleString += "; color:#00aeff;"; return this.proxyiedReturn }
+    get magentaBright   () { this.attributeBuffer.push("magentaBright"  );this.styleString += "; color:#e57eb3;"; return this.proxyiedReturn }
+    get cyanBright      () { this.attributeBuffer.push("cyanBright"     );this.styleString += "; color:#89ddff;"; return this.proxyiedReturn }
+    get whiteBright     () { this.attributeBuffer.push("whiteBright"    );this.styleString += "; color:#ffffff;"; return this.proxyiedReturn }
 
+    get bgBlack         () { this.attributeBuffer.push("bgBlack"        );this.styleString += "; background-color:#000000;"; return this.proxyiedReturn }
+    get bgRed           () { this.attributeBuffer.push("bgRed"          );this.styleString += "; background-color:#f07178;"; return this.proxyiedReturn }
+    get bgGreen         () { this.attributeBuffer.push("bgGreen"        );this.styleString += "; background-color:#c3e88d;"; return this.proxyiedReturn }
+    get bgYellow        () { this.attributeBuffer.push("bgYellow"       );this.styleString += "; background-color:#ddd790;"; return this.proxyiedReturn }
+    get bgBlue          () { this.attributeBuffer.push("bgBlue"         );this.styleString += "; background-color:#82aaff;"; return this.proxyiedReturn }
+    get bgMagenta       () { this.attributeBuffer.push("bgMagenta"      );this.styleString += "; background-color:#c792ea;"; return this.proxyiedReturn }
+    get bgCyan          () { this.attributeBuffer.push("bgCyan"         );this.styleString += "; background-color:#64bac5;"; return this.proxyiedReturn }
+    get bgWhite         () { this.attributeBuffer.push("bgWhite"        );this.styleString += "; background-color:#c7cbcd;"; return this.proxyiedReturn }
+    get bgBlackBright   () { this.attributeBuffer.push("bgBlackBright"  );this.styleString += "; background-color:#546e7a;"; return this.proxyiedReturn }
+    get bgGray          () { this.attributeBuffer.push("bgGray"         );this.styleString += "; background-color:#546e7a;"; return this.proxyiedReturn }
+    get bgGrey          () { this.attributeBuffer.push("bgGrey"         );this.styleString += "; background-color:#546e7a;"; return this.proxyiedReturn }
+    get bgRedBright     () { this.attributeBuffer.push("bgRedBright"    );this.styleString += "; background-color:#ff5572;"; return this.proxyiedReturn }
+    get bgGreenBright   () { this.attributeBuffer.push("bgGreenBright"  );this.styleString += "; background-color:#04d895;"; return this.proxyiedReturn }
+    get bgYellowBright  () { this.attributeBuffer.push("bgYellowBright" );this.styleString += "; background-color:#fec355;"; return this.proxyiedReturn }
+    get bgBlueBright    () { this.attributeBuffer.push("bgBlueBright"   );this.styleString += "; background-color:#00aeff;"; return this.proxyiedReturn }
+    get bgMagentaBright () { this.attributeBuffer.push("bgMagentaBright");this.styleString += "; background-color:#e57eb3;"; return this.proxyiedReturn }
+    get bgCyanBright    () { this.attributeBuffer.push("bgCyanBright"   );this.styleString += "; background-color:#89ddff;"; return this.proxyiedReturn }
+    get bgWhiteBright   () { this.attributeBuffer.push("bgWhiteBright"  );this.styleString += "; background-color:#ffffff;"; return this.proxyiedReturn }
     toString() {
         return this.stringBuffer.join("")
     }
     
     log(...others) {
-        console.log(this.toString().replace("%", "%%"), ...others)
+        if (!isBrowserContext) {
+            console.log(this.toString().replace("%", "%%"), ...others)
+        } else {
+            console.log(`%c${this.toString().replace("%", "%%")}`, this.styleString)
+            // reset it after logging
+            this.styleString = ""
+        }
         return this
     }
 }
