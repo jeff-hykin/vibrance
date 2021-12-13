@@ -797,8 +797,12 @@ class $355a0ba890fd58e7$var$LoggerObject {
         const proxySymbol = Symbol.for('Proxy');
         const thisProxySymbol = Symbol('thisProxy');
         this.proxyiedReturn = new Proxy(originalThing, {
-            defineProperty: Reflect.defineProperty,
-            getPrototypeOf: Reflect.getPrototypeOf,
+            defineProperty (original, ...args) {
+                return Reflect.defineProperty(this, ...args);
+            },
+            getPrototypeOf (original, ...args) {
+                return Reflect.getPrototypeOf(this, ...args);
+            },
             // Object.keys
             ownKeys (original, ...args) {
                 return Reflect.ownKeys(this, ...args);
@@ -1049,6 +1053,9 @@ class $355a0ba890fd58e7$var$LoggerObject {
         return this.stringBuffer.join("");
     }
     log(...others) {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.debug(`this.styleString is:`, this.styleString);
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.debug(`this.stringBuffer is:`, this.stringBuffer);
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.debug(`this.attributeBuffer is:`, this.attributeBuffer);
         if (!$355a0ba890fd58e7$var$isBrowserContext) $355a0ba890fd58e7$var$realConsole.log(this.toString().replace("%", "%%"), ...others);
         else $355a0ba890fd58e7$var$realConsole.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
         // reset it after logging
@@ -1073,15 +1080,20 @@ class $355a0ba890fd58e7$var$ConsoleObject extends $355a0ba890fd58e7$var$LoggerOb
             while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
             const string = styler(...args);
             this.stringBuffer.push(string);
-            return this.log();
+            this.log();
+            return;
         };
         ifStyleCalledAsMethod.id = Math.random();
         const originalThing = ifStyleCalledAsMethod;
         const proxySymbol = Symbol.for('Proxy');
         const thisProxySymbol = Symbol('thisProxy');
         this.proxyiedReturn = new Proxy(originalThing, {
-            defineProperty: Reflect.defineProperty,
-            getPrototypeOf: Reflect.getPrototypeOf,
+            defineProperty (original, ...args) {
+                return Reflect.defineProperty(this, ...args);
+            },
+            getPrototypeOf (original, ...args) {
+                return Reflect.getPrototypeOf(this, ...args);
+            },
             // Object.keys
             ownKeys (original, ...args) {
                 return Reflect.ownKeys(this, ...args);
@@ -1407,5 +1419,5 @@ var $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
 var $355a0ba890fd58e7$export$2e2bcd8739ae039 = $355a0ba890fd58e7$export$9d69f5c452819e4;
 
 
-export {$355a0ba890fd58e7$export$9d69f5c452819e4 as vibrance, $355a0ba890fd58e7$export$e896d9a1b4631fa1 as console, $355a0ba890fd58e7$export$2e2bcd8739ae039 as default};
+export {$355a0ba890fd58e7$export$e896d9a1b4631fa1 as console, $355a0ba890fd58e7$export$9d69f5c452819e4 as vibrance, $355a0ba890fd58e7$export$2e2bcd8739ae039 as default};
 //# sourceMappingURL=module.js.map

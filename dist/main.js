@@ -7,8 +7,8 @@ function $parcel$export(e, n, v, s) {
 
 $parcel$defineInteropFlag(module.exports);
 
-$parcel$export(module.exports, "vibrance", () => $2b36420fded722e7$export$9d69f5c452819e4);
 $parcel$export(module.exports, "console", () => $2b36420fded722e7$export$e896d9a1b4631fa1);
+$parcel$export(module.exports, "vibrance", () => $2b36420fded722e7$export$9d69f5c452819e4);
 $parcel$export(module.exports, "default", () => $2b36420fded722e7$export$2e2bcd8739ae039);
 const $807e4283f2aec814$var$ANSI_BACKGROUND_OFFSET = 10;
 const $807e4283f2aec814$var$wrapAnsi16 = (offset = 0)=>(code)=>`\u001B[${code + offset}m`
@@ -809,8 +809,12 @@ class $2b36420fded722e7$var$LoggerObject {
         const proxySymbol = Symbol.for('Proxy');
         const thisProxySymbol = Symbol('thisProxy');
         this.proxyiedReturn = new Proxy(originalThing, {
-            defineProperty: Reflect.defineProperty,
-            getPrototypeOf: Reflect.getPrototypeOf,
+            defineProperty (original, ...args) {
+                return Reflect.defineProperty(this, ...args);
+            },
+            getPrototypeOf (original, ...args) {
+                return Reflect.getPrototypeOf(this, ...args);
+            },
             // Object.keys
             ownKeys (original, ...args) {
                 return Reflect.ownKeys(this, ...args);
@@ -1061,6 +1065,9 @@ class $2b36420fded722e7$var$LoggerObject {
         return this.stringBuffer.join("");
     }
     log(...others) {
+        $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`this.styleString is:`, this.styleString);
+        $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`this.stringBuffer is:`, this.stringBuffer);
+        $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`this.attributeBuffer is:`, this.attributeBuffer);
         if (!$2b36420fded722e7$var$isBrowserContext) $2b36420fded722e7$var$realConsole.log(this.toString().replace("%", "%%"), ...others);
         else $2b36420fded722e7$var$realConsole.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
         // reset it after logging
@@ -1085,15 +1092,20 @@ class $2b36420fded722e7$var$ConsoleObject extends $2b36420fded722e7$var$LoggerOb
             while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
             const string = styler(...args);
             this.stringBuffer.push(string);
-            return this.log();
+            this.log();
+            return;
         };
         ifStyleCalledAsMethod.id = Math.random();
         const originalThing = ifStyleCalledAsMethod;
         const proxySymbol = Symbol.for('Proxy');
         const thisProxySymbol = Symbol('thisProxy');
         this.proxyiedReturn = new Proxy(originalThing, {
-            defineProperty: Reflect.defineProperty,
-            getPrototypeOf: Reflect.getPrototypeOf,
+            defineProperty (original, ...args) {
+                return Reflect.defineProperty(this, ...args);
+            },
+            getPrototypeOf (original, ...args) {
+                return Reflect.getPrototypeOf(this, ...args);
+            },
             // Object.keys
             ownKeys (original, ...args) {
                 return Reflect.ownKeys(this, ...args);
