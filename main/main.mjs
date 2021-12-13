@@ -22,8 +22,8 @@ class LoggerObject {
         const proxySymbol = Symbol.for('Proxy')
         const thisProxySymbol = Symbol('thisProxy')
         this.proxyiedReturn = new Proxy(originalThing, {
-            defineProperty: Reflect.defineProperty,
-            getPrototypeOf: Reflect.getPrototypeOf,
+            defineProperty(original, ...args) { return Reflect.defineProperty(this, ...args) },
+            getPrototypeOf(original, ...args) { return Reflect.getPrototypeOf(this, ...args) },
             // Object.keys
             ownKeys(original, ...args) { return Reflect.ownKeys(this, ...args) },
             get: (original, key, ...args) => {
@@ -96,6 +96,9 @@ class LoggerObject {
     }
     
     log(...others) {
+        console.debug(`this.styleString is:`,this.styleString)
+        console.debug(`this.stringBuffer is:`,this.stringBuffer)
+        console.debug(`this.attributeBuffer is:`,this.attributeBuffer)
         if (!isBrowserContext) {
             realConsole.log(this.toString().replace("%", "%%"), ...others)
         } else {
@@ -125,15 +128,16 @@ class ConsoleObject extends LoggerObject {
             }
             const string = styler(...args)
             this.stringBuffer.push(string)
-            return this.log()
+            this.log()
+            return
         }
         ifStyleCalledAsMethod.id = Math.random()
         const originalThing = ifStyleCalledAsMethod
         const proxySymbol = Symbol.for('Proxy')
         const thisProxySymbol = Symbol('thisProxy')
         this.proxyiedReturn = new Proxy(originalThing, {
-            defineProperty: Reflect.defineProperty,
-            getPrototypeOf: Reflect.getPrototypeOf,
+            defineProperty(original, ...args) { return Reflect.defineProperty(this, ...args) },
+            getPrototypeOf(original, ...args) { return Reflect.getPrototypeOf(this, ...args) },
             // Object.keys
             ownKeys(original, ...args) { return Reflect.ownKeys(this, ...args) },
             get: (original, key, ...args) => {
