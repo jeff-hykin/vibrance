@@ -24,8 +24,8 @@ globalThis.console = new Proxy(originalThing, {
             return (...args)=>{
                 realConsole.log(
                     ...args.map(each=>{
-                        if (each instanceof Object && each[symbolForConsoleLog]) {
-                            return symbolForConsoleLog[]()
+                        if (each instanceof Object && each[symbolForConsoleLog] instanceof Function) {
+                            return each[symbolForConsoleLog]()
                         }
                         return each
                     })
