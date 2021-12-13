@@ -3,7 +3,7 @@
 A CLI terminal helper for Deno, and a modifiction of chalk.js for deno.
 
 ```js
-const { console, vibrance } = await import('https://cdn.skypack.dev/vibrance@v0.0.33')
+const { console, vibrance } = await import('https://cdn.skypack.dev/vibrance@v0.1.1')
 
 console.red("Howdy!") // has console.log() and all the other methods (debug/warn/error/group/etc)
 console.blue.underline("Howdy!") 
