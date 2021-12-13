@@ -296,7 +296,18 @@ const $2342c8328eb7b0be$var$ansiStyles = $2342c8328eb7b0be$var$assembleStyles();
 var $2342c8328eb7b0be$export$2e2bcd8739ae039 = $2342c8328eb7b0be$var$ansiStyles;
 
 
-function $c06b5817ebab9838$export$2e2bcd8739ae039(flag, argv = Deno.args) {
+let $c06b5817ebab9838$var$args;
+
+try {
+    $c06b5817ebab9838$var$args = Deno.args;
+} catch (error) {
+    try {
+        const [_1, _2, ...argvs] = $c06b5817ebab9838$import$e54fe5b0f43758f7$6f4ae1207c703045;
+        $c06b5817ebab9838$var$args = argvs;
+    } catch (error) {
+    }
+}
+function $c06b5817ebab9838$export$2e2bcd8739ae039(flag, argv = $c06b5817ebab9838$var$args) {
     const prefix = flag.startsWith('-') ? '' : flag.length === 1 ? '-' : '--';
     const position = argv.indexOf(prefix + flag);
     const terminatorPosition = argv.indexOf('--');
