@@ -325,17 +325,17 @@ export let console = {
         } else {
             const rainbowColors = [
                 'red',
-                'brightRed',
+                'redBright',
                 'yellow',
-                'brightYellow',
+                'yellowBright',
                 'green',
-                'brightGreen',
+                'greenBright',
                 'cyan',
-                'brightCyan',
+                'cyanBright',
                 'blue',
-                'brightBlue',
+                'blueBright',
                 'magenta',
-                'brightMagenta',
+                'magentaBright',
             ]
             let number = 0
             let bigString = ""
