@@ -1468,17 +1468,17 @@ let $2b36420fded722e7$export$e896d9a1b4631fa1 = {
         else {
             const rainbowColors = [
                 'red',
-                'brightRed',
+                'redBright',
                 'yellow',
-                'brightYellow',
+                'yellowBright',
                 'green',
-                'brightGreen',
+                'greenBright',
                 'cyan',
-                'brightCyan',
+                'cyanBright',
                 'blue',
-                'brightBlue',
+                'blueBright',
                 'magenta',
-                'brightMagenta', 
+                'magentaBright', 
             ];
             let number = 0;
             let bigString = "";
