@@ -796,7 +796,7 @@ class $2b36420fded722e7$var$LoggerObject {
     constructor(){
         this.stringBuffer = [];
         this.attributeBuffer = [];
-        this.styleString = "";
+        this.styleString = "font-family:monospace;";
         const ifStyleCalledAsMethod = (...args)=>{
             let styler = $ce17e4624c99533e$export$2e2bcd8739ae039;
             while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
@@ -1069,143 +1069,145 @@ class $2b36420fded722e7$var$LoggerObject {
         return this;
     }
 }
-const $2b36420fded722e7$export$9d69f5c452819e4 = {
-    reset (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().reset(...args);
+const $2b36420fded722e7$export$9d69f5c452819e4 = ()=>new $2b36420fded722e7$var$LoggerObject()
+;
+Object.assign($2b36420fded722e7$export$9d69f5c452819e4, {
+    get reset () {
+        return new $2b36420fded722e7$var$LoggerObject().reset;
     },
-    bold (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bold(...args);
+    get bold () {
+        return new $2b36420fded722e7$var$LoggerObject().bold;
     },
-    dim (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().dim(...args);
+    get dim () {
+        return new $2b36420fded722e7$var$LoggerObject().dim;
     },
-    italic (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().italic(...args);
+    get italic () {
+        return new $2b36420fded722e7$var$LoggerObject().italic;
     },
-    underline (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().underline(...args);
+    get underline () {
+        return new $2b36420fded722e7$var$LoggerObject().underline;
     },
-    inverse (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().inverse(...args);
+    get inverse () {
+        return new $2b36420fded722e7$var$LoggerObject().inverse;
     },
-    hidden (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().hidden(...args);
+    get hidden () {
+        return new $2b36420fded722e7$var$LoggerObject().hidden;
     },
-    strikethrough (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().strikethrough(...args);
+    get strikethrough () {
+        return new $2b36420fded722e7$var$LoggerObject().strikethrough;
     },
-    visible (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().visible(...args);
+    get visible () {
+        return new $2b36420fded722e7$var$LoggerObject().visible;
     },
-    black (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().black(...args);
+    get black () {
+        return new $2b36420fded722e7$var$LoggerObject().black;
     },
-    red (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().red(...args);
+    get red () {
+        return new $2b36420fded722e7$var$LoggerObject().red;
     },
-    green (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().green(...args);
+    get green () {
+        return new $2b36420fded722e7$var$LoggerObject().green;
     },
-    yellow (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().yellow(...args);
+    get yellow () {
+        return new $2b36420fded722e7$var$LoggerObject().yellow;
     },
-    blue (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().blue(...args);
+    get blue () {
+        return new $2b36420fded722e7$var$LoggerObject().blue;
     },
-    magenta (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().magenta(...args);
+    get magenta () {
+        return new $2b36420fded722e7$var$LoggerObject().magenta;
     },
-    cyan (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().cyan(...args);
+    get cyan () {
+        return new $2b36420fded722e7$var$LoggerObject().cyan;
     },
-    white (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().white(...args);
+    get white () {
+        return new $2b36420fded722e7$var$LoggerObject().white;
     },
-    blackBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().blackBright(...args);
+    get blackBright () {
+        return new $2b36420fded722e7$var$LoggerObject().blackBright;
     },
-    gray (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().gray(...args);
+    get gray () {
+        return new $2b36420fded722e7$var$LoggerObject().gray;
     },
-    grey (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().grey(...args);
+    get grey () {
+        return new $2b36420fded722e7$var$LoggerObject().grey;
     },
-    redBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().redBright(...args);
+    get redBright () {
+        return new $2b36420fded722e7$var$LoggerObject().redBright;
     },
-    greenBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().greenBright(...args);
+    get greenBright () {
+        return new $2b36420fded722e7$var$LoggerObject().greenBright;
     },
-    yellowBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().yellowBright(...args);
+    get yellowBright () {
+        return new $2b36420fded722e7$var$LoggerObject().yellowBright;
     },
-    blueBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().blueBright(...args);
+    get blueBright () {
+        return new $2b36420fded722e7$var$LoggerObject().blueBright;
     },
-    magentaBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().magentaBright(...args);
+    get magentaBright () {
+        return new $2b36420fded722e7$var$LoggerObject().magentaBright;
     },
-    cyanBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().cyanBright(...args);
+    get cyanBright () {
+        return new $2b36420fded722e7$var$LoggerObject().cyanBright;
     },
-    whiteBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().whiteBright(...args);
+    get whiteBright () {
+        return new $2b36420fded722e7$var$LoggerObject().whiteBright;
     },
-    bgBlack (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgBlack(...args);
+    get bgBlack () {
+        return new $2b36420fded722e7$var$LoggerObject().bgBlack;
     },
-    bgRed (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgRed(...args);
+    get bgRed () {
+        return new $2b36420fded722e7$var$LoggerObject().bgRed;
     },
-    bgGreen (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgGreen(...args);
+    get bgGreen () {
+        return new $2b36420fded722e7$var$LoggerObject().bgGreen;
     },
-    bgYellow (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgYellow(...args);
+    get bgYellow () {
+        return new $2b36420fded722e7$var$LoggerObject().bgYellow;
     },
-    bgBlue (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgBlue(...args);
+    get bgBlue () {
+        return new $2b36420fded722e7$var$LoggerObject().bgBlue;
     },
-    bgMagenta (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgMagenta(...args);
+    get bgMagenta () {
+        return new $2b36420fded722e7$var$LoggerObject().bgMagenta;
     },
-    bgCyan (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgCyan(...args);
+    get bgCyan () {
+        return new $2b36420fded722e7$var$LoggerObject().bgCyan;
     },
-    bgWhite (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgWhite(...args);
+    get bgWhite () {
+        return new $2b36420fded722e7$var$LoggerObject().bgWhite;
     },
-    bgBlackBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgBlackBright(...args);
+    get bgBlackBright () {
+        return new $2b36420fded722e7$var$LoggerObject().bgBlackBright;
     },
-    bgGray (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgGray(...args);
+    get bgGray () {
+        return new $2b36420fded722e7$var$LoggerObject().bgGray;
     },
-    bgGrey (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgGrey(...args);
+    get bgGrey () {
+        return new $2b36420fded722e7$var$LoggerObject().bgGrey;
     },
-    bgRedBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgRedBright(...args);
+    get bgRedBright () {
+        return new $2b36420fded722e7$var$LoggerObject().bgRedBright;
     },
-    bgGreenBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgGreenBright(...args);
+    get bgGreenBright () {
+        return new $2b36420fded722e7$var$LoggerObject().bgGreenBright;
     },
-    bgYellowBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgYellowBright(...args);
+    get bgYellowBright () {
+        return new $2b36420fded722e7$var$LoggerObject().bgYellowBright;
     },
-    bgBlueBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgBlueBright(...args);
+    get bgBlueBright () {
+        return new $2b36420fded722e7$var$LoggerObject().bgBlueBright;
     },
-    bgMagentaBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgMagentaBright(...args);
+    get bgMagentaBright () {
+        return new $2b36420fded722e7$var$LoggerObject().bgMagentaBright;
     },
-    bgCyanBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgCyanBright(...args);
+    get bgCyanBright () {
+        return new $2b36420fded722e7$var$LoggerObject().bgCyanBright;
     },
-    bgWhiteBright (...args) {
-        return new $2b36420fded722e7$var$LoggerObject().bgWhiteBright(...args);
+    get bgWhiteBright () {
+        return new $2b36420fded722e7$var$LoggerObject().bgWhiteBright;
     }
-};
+});
 var $2b36420fded722e7$export$e896d9a1b4631fa1 = {
     reset (...args) {
         return new $2b36420fded722e7$var$LoggerObject().reset(...args).log();
