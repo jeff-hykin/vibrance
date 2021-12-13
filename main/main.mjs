@@ -3,6 +3,43 @@ import chalk from "../chalk-deno/source/index.js"
 const realConsole = globalThis.console
 const isBrowserContext = typeof document != 'undefined' && typeof window != 'undefined'
 
+// patch the built in console to allow classes to override output
+const originalThing = realConsole
+const proxySymbol = Symbol.for('Proxy')
+const thisProxySymbol = Symbol('thisProxy')
+const symbolForConsoleLog = Symbol.for("console.log")
+globalThis.console = new Proxy(originalThing, {
+    defineProperty: Reflect.defineProperty,
+    getPrototypeOf: Reflect.getPrototypeOf,
+    // Object.keys
+    ownKeys(...args) { return Reflect.ownKeys(...args) },
+    // function call (original value needs to be a function)
+    apply(original, context, ...args) { console.log(args) },
+    // new operator (original value needs to be a class)
+    construct(...args) {},
+    get(original, key, ...args) {
+        if (key == proxySymbol||key == thisProxySymbol) {return true}
+        // if logging, then 
+        if (key == "log") {
+            return (...args)=>{
+                realConsole.log(
+                    ...args.map(each=>{
+                        if (each instanceof Object && each[symbolForConsoleLog]) {
+                            return symbolForConsoleLog[]()
+                        }
+                        return each
+                    })
+                )
+            }
+        }
+        return Reflect.get(original, key, ...args)
+    },
+    set(original, key, ...args) {
+        if (key == proxySymbol||key == thisProxySymbol) {return}
+        return Reflect.set(original, key, ...args)
+    },
+})
+
 class LoggerObject {
     constructor() {
         this.stringBuffer = []
@@ -90,10 +127,15 @@ class LoggerObject {
     get bgMagentaBright () { this.attributeBuffer.push("bgMagentaBright");this.styleString += "; background-color:#e57eb3;"; return this.proxyiedReturn }
     get bgCyanBright    () { this.attributeBuffer.push("bgCyanBright"   );this.styleString += "; background-color:#89ddff;"; return this.proxyiedReturn }
     get bgWhiteBright   () { this.attributeBuffer.push("bgWhiteBright"  );this.styleString += "; background-color:#ffffff;"; return this.proxyiedReturn }
+    
     toString() {
         return this.stringBuffer.join("")
     }
     
+    [Symbol.for("console.log")]() {
+        this.toString()
+    }
+
     log(...others) {
         if (!isBrowserContext) {
             realConsole.log(this.toString().replace("%", "%%"), ...others)
@@ -200,7 +242,7 @@ Object.assign(vibrance, {
     get bgWhiteBright   () { return (new LoggerObject()).bgWhiteBright },
 })
 
-export var console = {
+export let console = {
     get reset           () { return (new ConsoleObject()).reset },
     get bold            () { return (new ConsoleObject()).bold },
     get dim             () { return (new ConsoleObject()).dim },
