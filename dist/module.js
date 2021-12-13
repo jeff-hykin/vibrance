@@ -1157,138 +1157,183 @@ const $355a0ba890fd58e7$export$9d69f5c452819e4 = ()=>new $355a0ba890fd58e7$var$L
 ;
 Object.assign($355a0ba890fd58e7$export$9d69f5c452819e4, {
     get reset () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().reset;
     },
     get bold () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bold;
     },
     get dim () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().dim;
     },
     get italic () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().italic;
     },
     get underline () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().underline;
     },
     get inverse () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().inverse;
     },
     get hidden () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().hidden;
     },
     get strikethrough () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().strikethrough;
     },
     get visible () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().visible;
     },
     get black () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().black;
     },
     get red () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().red;
     },
     get green () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().green;
     },
     get yellow () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().yellow;
     },
     get blue () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().blue;
     },
     get magenta () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().magenta;
     },
     get cyan () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().cyan;
     },
     get white () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().white;
     },
     get blackBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().blackBright;
     },
     get gray () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().gray;
     },
     get grey () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().grey;
     },
     get redBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().redBright;
     },
     get greenBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().greenBright;
     },
     get yellowBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().yellowBright;
     },
     get blueBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().blueBright;
     },
     get magentaBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().magentaBright;
     },
     get cyanBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().cyanBright;
     },
     get whiteBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().whiteBright;
     },
     get bgBlack () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgBlack;
     },
     get bgRed () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgRed;
     },
     get bgGreen () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgGreen;
     },
     get bgYellow () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgYellow;
     },
     get bgBlue () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgBlue;
     },
     get bgMagenta () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgMagenta;
     },
     get bgCyan () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgCyan;
     },
     get bgWhite () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgWhite;
     },
     get bgBlackBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgBlackBright;
     },
     get bgGray () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgGray;
     },
     get bgGrey () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgGrey;
     },
     get bgRedBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgRedBright;
     },
     get bgGreenBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgGreenBright;
     },
     get bgYellowBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgYellowBright;
     },
     get bgBlueBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgBlueBright;
     },
     get bgMagentaBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgMagentaBright;
     },
     get bgCyanBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgCyanBright;
     },
     get bgWhiteBright () {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(Math.random());
         return new $355a0ba890fd58e7$var$LoggerObject().bgWhiteBright;
     }
 });
