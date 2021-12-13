@@ -792,6 +792,7 @@ class $355a0ba890fd58e7$var$LoggerObject {
             this.stringBuffer.push(string);
             return this;
         };
+        ifStyleCalledAsMethod.id = Math.random();
         const originalThing = ifStyleCalledAsMethod;
         const proxySymbol = Symbol.for('Proxy');
         const thisProxySymbol = Symbol('thisProxy');
@@ -1049,12 +1050,57 @@ class $355a0ba890fd58e7$var$LoggerObject {
     }
     log(...others) {
         if (!$355a0ba890fd58e7$var$isBrowserContext) $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(this.toString().replace("%", "%%"), ...others);
-        else {
-            $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
-            // reset it after logging
-            this.styleString = "";
-        }
+        else $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
+        // reset it after logging
+        this.styleString = "";
+        this.stringBuffer = [];
+        this.attributeBuffer = [];
         return this;
+    }
+}
+
+class $355a0ba890fd58e7$var$ConsoleObject extends $355a0ba890fd58e7$var$LoggerObject {
+    constructor(){
+        // 
+        // only difference: proxy object executes .log() when called as a function
+        // 
+        this.stringBuffer = [];
+        this.attributeBuffer = [];
+        this.styleString = "font-family:monospace;";
+        const ifStyleCalledAsMethod = (...args)=>{
+            let styler = $4e3327031d001f8c$export$2e2bcd8739ae039;
+            while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
+            const string = styler(...args);
+            this.stringBuffer.push(string);
+            return this.log();
+        };
+        ifStyleCalledAsMethod.id = Math.random();
+        const originalThing = ifStyleCalledAsMethod;
+        const proxySymbol = Symbol.for('Proxy');
+        const thisProxySymbol = Symbol('thisProxy');
+        this.proxyiedReturn = new Proxy(originalThing, {
+            defineProperty: Reflect.defineProperty,
+            getPrototypeOf: Reflect.getPrototypeOf,
+            // Object.keys
+            ownKeys (original, ...args) {
+                return Reflect.ownKeys(this, ...args);
+            },
+            get: (original, key, ...args)=>{
+                if (key == proxySymbol || key == thisProxySymbol) return true;
+                return Reflect.get(this, key, ...args);
+            },
+            set: (original, key, ...args)=>{
+                if (key == proxySymbol || key == thisProxySymbol) return;
+                return Reflect.set(this, key, ...args);
+            }
+        });
+        // 
+        // attempt to add node.js logging
+        // 
+        try {
+            this[$355a0ba890fd58e7$import$7debb50ef11d5e0b$9dec5d1b3b6a130d.custom] = this.toString;
+        } catch (error) {
+        }
     }
 }
 const $355a0ba890fd58e7$export$9d69f5c452819e4 = ()=>new $355a0ba890fd58e7$var$LoggerObject()
@@ -1197,165 +1243,141 @@ Object.assign($355a0ba890fd58e7$export$9d69f5c452819e4, {
     }
 });
 var $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
-    reset (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().reset(...args).log();
+    get reset () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().reset;
     },
-    bold (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bold(...args).log();
+    get bold () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bold;
     },
-    dim (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().dim(...args).log();
+    get dim () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().dim;
     },
-    italic (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().italic(...args).log();
+    get italic () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().italic;
     },
-    underline (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().underline(...args).log();
+    get underline () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().underline;
     },
-    inverse (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().inverse(...args).log();
+    get inverse () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().inverse;
     },
-    hidden (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().hidden(...args).log();
+    get hidden () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().hidden;
     },
-    strikethrough (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().strikethrough(...args).log();
+    get strikethrough () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().strikethrough;
     },
-    visible (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().visible(...args).log();
+    get visible () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().visible;
     },
-    black (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().black(...args).log();
+    get black () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().black;
     },
-    red (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().red(...args).log();
+    get red () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().red;
     },
-    green (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().green(...args).log();
+    get green () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().green;
     },
-    yellow (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().yellow(...args).log();
+    get yellow () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().yellow;
     },
-    blue (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().blue(...args).log();
+    get blue () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().blue;
     },
-    magenta (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().magenta(...args).log();
+    get magenta () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().magenta;
     },
-    cyan (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().cyan(...args).log();
+    get cyan () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().cyan;
     },
-    white (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().white(...args).log();
+    get white () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().white;
     },
-    blackBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().blackBright(...args).log();
+    get blackBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().blackBright;
     },
-    gray (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().gray(...args).log();
+    get gray () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().gray;
     },
-    grey (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().grey(...args).log();
+    get grey () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().grey;
     },
-    redBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().redBright(...args).log();
+    get redBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().redBright;
     },
-    greenBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().greenBright(...args).log();
+    get greenBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().greenBright;
     },
-    yellowBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().yellowBright(...args).log();
+    get yellowBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().yellowBright;
     },
-    blueBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().blueBright(...args).log();
+    get blueBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().blueBright;
     },
-    magentaBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().magentaBright(...args).log();
+    get magentaBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().magentaBright;
     },
-    cyanBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().cyanBright(...args).log();
+    get cyanBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().cyanBright;
     },
-    whiteBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().whiteBright(...args).log();
+    get whiteBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().whiteBright;
     },
-    bgBlack (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgBlack(...args).log();
+    get bgBlack () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgBlack;
     },
-    bgRed (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgRed(...args).log();
+    get bgRed () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgRed;
     },
-    bgGreen (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgGreen(...args).log();
+    get bgGreen () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgGreen;
     },
-    bgYellow (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgYellow(...args).log();
+    get bgYellow () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgYellow;
     },
-    bgBlue (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgBlue(...args).log();
+    get bgBlue () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgBlue;
     },
-    bgMagenta (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgMagenta(...args).log();
+    get bgMagenta () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgMagenta;
     },
-    bgCyan (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgCyan(...args).log();
+    get bgCyan () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgCyan;
     },
-    bgWhite (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgWhite(...args).log();
+    get bgWhite () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgWhite;
     },
-    bgBlackBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgBlackBright(...args).log();
+    get bgBlackBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgBlackBright;
     },
-    bgGray (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgGray(...args).log();
+    get bgGray () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgGray;
     },
-    bgGrey (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgGrey(...args).log();
+    get bgGrey () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgGrey;
     },
-    bgRedBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgRedBright(...args).log();
+    get bgRedBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgRedBright;
     },
-    bgGreenBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgGreenBright(...args).log();
+    get bgGreenBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgGreenBright;
     },
-    bgYellowBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgYellowBright(...args).log();
+    get bgYellowBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgYellowBright;
     },
-    bgBlueBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgBlueBright(...args).log();
+    get bgBlueBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgBlueBright;
     },
-    bgMagentaBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgMagentaBright(...args).log();
+    get bgMagentaBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgMagentaBright;
     },
-    bgCyanBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgCyanBright(...args).log();
+    get bgCyanBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgCyanBright;
     },
-    bgWhiteBright (...args) {
-        return new $355a0ba890fd58e7$var$LoggerObject().bgWhiteBright(...args).log();
-    },
-    log: $355a0ba890fd58e7$var$realConsole.log,
-    warn: $355a0ba890fd58e7$var$realConsole.warn,
-    dir: $355a0ba890fd58e7$var$realConsole.dir,
-    time: $355a0ba890fd58e7$var$realConsole.time,
-    timeEnd: $355a0ba890fd58e7$var$realConsole.timeEnd,
-    timeLog: $355a0ba890fd58e7$var$realConsole.timeLog,
-    trace: $355a0ba890fd58e7$var$realConsole.trace,
-    assert: $355a0ba890fd58e7$var$realConsole.assert,
-    clear: $355a0ba890fd58e7$var$realConsole.clear,
-    count: $355a0ba890fd58e7$var$realConsole.count,
-    countReset: $355a0ba890fd58e7$var$realConsole.countReset,
-    group: $355a0ba890fd58e7$var$realConsole.group,
-    groupEnd: $355a0ba890fd58e7$var$realConsole.groupEnd,
-    table: $355a0ba890fd58e7$var$realConsole.table,
-    debug: $355a0ba890fd58e7$var$realConsole.debug,
-    info: $355a0ba890fd58e7$var$realConsole.info,
-    dirxml: $355a0ba890fd58e7$var$realConsole.dirxml,
-    error: $355a0ba890fd58e7$var$realConsole.error,
-    groupCollapsed: $355a0ba890fd58e7$var$realConsole.groupCollapsed,
-    Console: $355a0ba890fd58e7$var$realConsole.Console,
-    profile: $355a0ba890fd58e7$var$realConsole.profile,
-    profileEnd: $355a0ba890fd58e7$var$realConsole.profileEnd,
-    timeStamp: $355a0ba890fd58e7$var$realConsole.timeStamp,
-    context: $355a0ba890fd58e7$var$realConsole.context
+    get bgWhiteBright () {
+        return new $355a0ba890fd58e7$var$ConsoleObject().bgWhiteBright;
+    }
 };
 var $355a0ba890fd58e7$export$2e2bcd8739ae039 = $355a0ba890fd58e7$export$9d69f5c452819e4;
 
