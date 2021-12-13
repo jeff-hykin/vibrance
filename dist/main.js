@@ -804,7 +804,7 @@ class $2b36420fded722e7$var$LoggerObject {
             this.stringBuffer.push(string);
             return this;
         };
-        ifStyleCalledAsMethod.id = Math.random();
+        this.id = Math.random();
         const originalThing = ifStyleCalledAsMethod;
         const proxySymbol = Symbol.for('Proxy');
         const thisProxySymbol = Symbol('thisProxy');
@@ -1073,6 +1073,7 @@ class $2b36420fded722e7$var$LoggerObject {
 
 class $2b36420fded722e7$var$ConsoleObject extends $2b36420fded722e7$var$LoggerObject {
     constructor(){
+        super();
         // 
         // only difference: proxy object executes .log() when called as a function
         // 
