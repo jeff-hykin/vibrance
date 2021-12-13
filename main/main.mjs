@@ -133,7 +133,7 @@ class LoggerObject {
     }
     
     [Symbol.for("console.log")]() {
-        this.toString()
+        return this.toString()
     }
 
     log(...others) {
