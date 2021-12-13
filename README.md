@@ -9,10 +9,10 @@ console.red("Howdy!") // has console.log() and all the other methods (debug/warn
 console.blue.underline("Howdy!") 
 console.green.bgBlack("Howdy!")
 
-// alternatively use vibrancy
+// a dont-import-console way of using vibrancy
+console.log(vibrance.blue("This will ").bold.magenta("also").blue(" be logged"))
+// alternative way
 vibrance.blue("Howdy! ").green("this will be logged").log() // NOTE: needs log at the end!
-// a different way of using vibrancy
-console.log(vibrance.blue("This will ").bold("also").blue(" be logged"))
 ```
 
 
