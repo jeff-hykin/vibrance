@@ -856,7 +856,6 @@ class $2b36420fded722e7$var$LoggerObject {
             },
             get: (original, key, ...args)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return true;
-                $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`key is:`, key);
                 return this[key];
             },
             set: (original, key, value)=>{
