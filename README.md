@@ -3,7 +3,7 @@
 A CLI colorizing tool, use it in Deno, Node.js or the browswer console (no npm install required!)
 
 ```js
-const { console, vibrance } = await import('https://cdn.skypack.dev/vibrance@v0.1.1')
+const { console, vibrance } = await import('https://cdn.skypack.dev/vibrance@v0.1.5')
 
 console.red("Howdy!") // has console.log() and all the other methods (debug/warn/error/group/etc)
 console.blue.underline("Howdy!") 
@@ -15,8 +15,17 @@ console.log(vibrance.blue("This will ").bold.magenta("also").blue(" be logged"))
 vibrance.blue("Howdy! ").green("this will be logged").log() // NOTE: needs log at the end!
 ```
 
+## Demo
 
-# API
+### Deno.js console
+<img width="1347" alt="Screen Shot 2021-12-12 at 8 43 35 PM" src="https://user-images.githubusercontent.com/17692058/145744706-0b44e0fb-17ec-4a35-978e-9ff46923a96c.png">
+
+### Firefox console
+<img width="788" alt="Screen Shot 2021-12-12 at 8 46 48 PM" src="https://user-images.githubusercontent.com/17692058/145744606-723e3c74-1f7c-4daa-8f00-04f725241465.png">
+
+
+
+## API
 
 - All the methods can be chained
 - All work on both `console` and `vibrance`
