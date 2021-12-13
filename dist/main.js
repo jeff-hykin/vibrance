@@ -7,8 +7,8 @@ function $parcel$export(e, n, v, s) {
 
 $parcel$defineInteropFlag(module.exports);
 
-$parcel$export(module.exports, "vibrance", () => $2b36420fded722e7$export$9d69f5c452819e4);
 $parcel$export(module.exports, "console", () => $2b36420fded722e7$export$e896d9a1b4631fa1);
+$parcel$export(module.exports, "vibrance", () => $2b36420fded722e7$export$9d69f5c452819e4);
 $parcel$export(module.exports, "default", () => $2b36420fded722e7$export$2e2bcd8739ae039);
 const $807e4283f2aec814$var$ANSI_BACKGROUND_OFFSET = 10;
 const $807e4283f2aec814$var$wrapAnsi16 = (offset = 0)=>(code)=>`\u001B[${code + offset}m`
@@ -821,6 +821,7 @@ class $2b36420fded722e7$var$LoggerObject {
             },
             get: (original, key, ...args)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return true;
+                $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`key is:`, key);
                 return Reflect.get(this, key, ...args);
             },
             set: (original, key, ...args)=>{
@@ -1157,6 +1158,7 @@ class $2b36420fded722e7$var$ConsoleObject extends $2b36420fded722e7$var$LoggerOb
             },
             get: (original, key, ...args)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return true;
+                $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`key is:`, key);
                 return Reflect.get(this, key, ...args);
             },
             set: (original, key, ...args)=>{

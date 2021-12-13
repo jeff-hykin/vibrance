@@ -809,6 +809,7 @@ class $355a0ba890fd58e7$var$LoggerObject {
             },
             get: (original, key, ...args)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return true;
+                $355a0ba890fd58e7$export$e896d9a1b4631fa1.debug(`key is:`, key);
                 return Reflect.get(this, key, ...args);
             },
             set: (original, key, ...args)=>{
@@ -1145,6 +1146,7 @@ class $355a0ba890fd58e7$var$ConsoleObject extends $355a0ba890fd58e7$var$LoggerOb
             },
             get: (original, key, ...args)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return true;
+                $355a0ba890fd58e7$export$e896d9a1b4631fa1.debug(`key is:`, key);
                 return Reflect.get(this, key, ...args);
             },
             set: (original, key, ...args)=>{
@@ -1464,5 +1466,5 @@ var $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
 var $355a0ba890fd58e7$export$2e2bcd8739ae039 = $355a0ba890fd58e7$export$9d69f5c452819e4;
 
 
-export {$355a0ba890fd58e7$export$9d69f5c452819e4 as vibrance, $355a0ba890fd58e7$export$e896d9a1b4631fa1 as console, $355a0ba890fd58e7$export$2e2bcd8739ae039 as default};
+export {$355a0ba890fd58e7$export$e896d9a1b4631fa1 as console, $355a0ba890fd58e7$export$9d69f5c452819e4 as vibrance, $355a0ba890fd58e7$export$2e2bcd8739ae039 as default};
 //# sourceMappingURL=module.js.map
