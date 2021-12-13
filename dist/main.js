@@ -7,8 +7,8 @@ function $parcel$export(e, n, v, s) {
 
 $parcel$defineInteropFlag(module.exports);
 
-$parcel$export(module.exports, "console", () => $2b36420fded722e7$export$e896d9a1b4631fa1);
 $parcel$export(module.exports, "vibrance", () => $2b36420fded722e7$export$9d69f5c452819e4);
+$parcel$export(module.exports, "console", () => $2b36420fded722e7$export$e896d9a1b4631fa1);
 $parcel$export(module.exports, "default", () => $2b36420fded722e7$export$2e2bcd8739ae039);
 const $807e4283f2aec814$var$ANSI_BACKGROUND_OFFSET = 10;
 const $807e4283f2aec814$var$wrapAnsi16 = (offset = 0)=>(code)=>`\u001B[${code + offset}m`
@@ -1061,8 +1061,8 @@ class $2b36420fded722e7$var$LoggerObject {
         return this.stringBuffer.join("");
     }
     log(...others) {
-        if (!$2b36420fded722e7$var$isBrowserContext) $2b36420fded722e7$export$e896d9a1b4631fa1.log(this.toString().replace("%", "%%"), ...others);
-        else $2b36420fded722e7$export$e896d9a1b4631fa1.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
+        if (!$2b36420fded722e7$var$isBrowserContext) $2b36420fded722e7$var$realConsole.log(this.toString().replace("%", "%%"), ...others);
+        else $2b36420fded722e7$var$realConsole.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
         // reset it after logging
         this.styleString = "";
         this.stringBuffer = [];
@@ -1390,7 +1390,31 @@ var $2b36420fded722e7$export$e896d9a1b4631fa1 = {
     },
     get bgWhiteBright () {
         return new $2b36420fded722e7$var$ConsoleObject().bgWhiteBright;
-    }
+    },
+    log: $2b36420fded722e7$var$realConsole.log,
+    warn: $2b36420fded722e7$var$realConsole.warn,
+    dir: $2b36420fded722e7$var$realConsole.dir,
+    time: $2b36420fded722e7$var$realConsole.time,
+    timeEnd: $2b36420fded722e7$var$realConsole.timeEnd,
+    timeLog: $2b36420fded722e7$var$realConsole.timeLog,
+    trace: $2b36420fded722e7$var$realConsole.trace,
+    assert: $2b36420fded722e7$var$realConsole.assert,
+    clear: $2b36420fded722e7$var$realConsole.clear,
+    count: $2b36420fded722e7$var$realConsole.count,
+    countReset: $2b36420fded722e7$var$realConsole.countReset,
+    group: $2b36420fded722e7$var$realConsole.group,
+    groupEnd: $2b36420fded722e7$var$realConsole.groupEnd,
+    table: $2b36420fded722e7$var$realConsole.table,
+    debug: $2b36420fded722e7$var$realConsole.debug,
+    info: $2b36420fded722e7$var$realConsole.info,
+    dirxml: $2b36420fded722e7$var$realConsole.dirxml,
+    error: $2b36420fded722e7$var$realConsole.error,
+    groupCollapsed: $2b36420fded722e7$var$realConsole.groupCollapsed,
+    Console: $2b36420fded722e7$var$realConsole.Console,
+    profile: $2b36420fded722e7$var$realConsole.profile,
+    profileEnd: $2b36420fded722e7$var$realConsole.profileEnd,
+    timeStamp: $2b36420fded722e7$var$realConsole.timeStamp,
+    context: $2b36420fded722e7$var$realConsole.context
 };
 var $2b36420fded722e7$export$2e2bcd8739ae039 = $2b36420fded722e7$export$9d69f5c452819e4;
 

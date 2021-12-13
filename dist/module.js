@@ -1049,8 +1049,8 @@ class $355a0ba890fd58e7$var$LoggerObject {
         return this.stringBuffer.join("");
     }
     log(...others) {
-        if (!$355a0ba890fd58e7$var$isBrowserContext) $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(this.toString().replace("%", "%%"), ...others);
-        else $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
+        if (!$355a0ba890fd58e7$var$isBrowserContext) $355a0ba890fd58e7$var$realConsole.log(this.toString().replace("%", "%%"), ...others);
+        else $355a0ba890fd58e7$var$realConsole.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
         // reset it after logging
         this.styleString = "";
         this.stringBuffer = [];
@@ -1378,10 +1378,34 @@ var $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
     },
     get bgWhiteBright () {
         return new $355a0ba890fd58e7$var$ConsoleObject().bgWhiteBright;
-    }
+    },
+    log: $355a0ba890fd58e7$var$realConsole.log,
+    warn: $355a0ba890fd58e7$var$realConsole.warn,
+    dir: $355a0ba890fd58e7$var$realConsole.dir,
+    time: $355a0ba890fd58e7$var$realConsole.time,
+    timeEnd: $355a0ba890fd58e7$var$realConsole.timeEnd,
+    timeLog: $355a0ba890fd58e7$var$realConsole.timeLog,
+    trace: $355a0ba890fd58e7$var$realConsole.trace,
+    assert: $355a0ba890fd58e7$var$realConsole.assert,
+    clear: $355a0ba890fd58e7$var$realConsole.clear,
+    count: $355a0ba890fd58e7$var$realConsole.count,
+    countReset: $355a0ba890fd58e7$var$realConsole.countReset,
+    group: $355a0ba890fd58e7$var$realConsole.group,
+    groupEnd: $355a0ba890fd58e7$var$realConsole.groupEnd,
+    table: $355a0ba890fd58e7$var$realConsole.table,
+    debug: $355a0ba890fd58e7$var$realConsole.debug,
+    info: $355a0ba890fd58e7$var$realConsole.info,
+    dirxml: $355a0ba890fd58e7$var$realConsole.dirxml,
+    error: $355a0ba890fd58e7$var$realConsole.error,
+    groupCollapsed: $355a0ba890fd58e7$var$realConsole.groupCollapsed,
+    Console: $355a0ba890fd58e7$var$realConsole.Console,
+    profile: $355a0ba890fd58e7$var$realConsole.profile,
+    profileEnd: $355a0ba890fd58e7$var$realConsole.profileEnd,
+    timeStamp: $355a0ba890fd58e7$var$realConsole.timeStamp,
+    context: $355a0ba890fd58e7$var$realConsole.context
 };
 var $355a0ba890fd58e7$export$2e2bcd8739ae039 = $355a0ba890fd58e7$export$9d69f5c452819e4;
 
 
-export {$355a0ba890fd58e7$export$e896d9a1b4631fa1 as console, $355a0ba890fd58e7$export$9d69f5c452819e4 as vibrance, $355a0ba890fd58e7$export$2e2bcd8739ae039 as default};
+export {$355a0ba890fd58e7$export$9d69f5c452819e4 as vibrance, $355a0ba890fd58e7$export$e896d9a1b4631fa1 as console, $355a0ba890fd58e7$export$2e2bcd8739ae039 as default};
 //# sourceMappingURL=module.js.map
