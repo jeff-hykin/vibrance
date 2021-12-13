@@ -1,6 +1,7 @@
 # Vibrancy
 
-A CLI colorizing tool, use it in Deno, Node.js or the browswer console (no npm install required!)
+A CLI colorizing tool, use it in Deno, Node.js or the browswer console (no npm install required!) <br>
+Built as a fork off of Chalk.js
 
 ```js
 const { console, vibrance } = await import('https://cdn.skypack.dev/vibrance@v0.1.5')
