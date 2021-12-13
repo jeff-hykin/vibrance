@@ -7,6 +7,7 @@
     "main": "dist/main.js",
     "module": "dist/module.js",
     "exports": {
+        "main": "./dist/main.js",
         "import": "./dist/module.js"
     },
     "keywords": [
