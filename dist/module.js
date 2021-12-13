@@ -820,7 +820,7 @@ class $355a0ba890fd58e7$var$LoggerObject {
         this.id = Math.random();
         this.stringBuffer = [];
         this.attributeBuffer = [];
-        this.styleString = "font-family:monospace;font-size: 0.8rem;";
+        this.styleString = "font-family:monospace;font-size: 1rem;";
         const ifStyleCalledAsMethod = (...args)=>{
             let styler = $4e3327031d001f8c$export$2e2bcd8739ae039;
             while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
@@ -1289,6 +1289,8 @@ const $355a0ba890fd58e7$export$9d69f5c452819e4 = {
         return new $355a0ba890fd58e7$var$LoggerObject().bgWhiteBright;
     }
 };
+const $355a0ba890fd58e7$var$wrapAroundGet = (number, list)=>list[(number % list.length + list.length) % list.length]
+;
 let $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
     get reset () {
         return new $355a0ba890fd58e7$var$ConsoleObject().reset;
@@ -1448,7 +1450,33 @@ let $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
     profile: globalThis.console.profile,
     profileEnd: globalThis.console.profileEnd,
     timeStamp: globalThis.console.timeStamp,
-    context: globalThis.console.context
+    context: globalThis.console.context,
+    secretRainbow: (...args)=>{
+        if ($355a0ba890fd58e7$var$isBrowserContext) $355a0ba890fd58e7$var$realConsole.log(`%c${args.join("").replace("%", "%%")}`, 'font-weight: bold; font-size: 50px;color: red; text-shadow: 3px 3px 0 rgb(217,31,38) , 6px 6px 0 rgb(226,91,14) , 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)');
+        else {
+            const rainbowColors = [
+                'red',
+                'brightRed',
+                'yellow',
+                'brightYellow',
+                'green',
+                'brightGreen',
+                'cyan',
+                'brightCyan',
+                'blue',
+                'brightBlue',
+                'magenta',
+                'brightMagenta', 
+            ];
+            let number = 0;
+            let bigString = "";
+            for (const eachChar of args.join("")){
+                number += number;
+                bigString += $355a0ba890fd58e7$export$9d69f5c452819e4[$355a0ba890fd58e7$var$wrapAroundGet(number, rainbowColors)](eachChar).toString();
+            }
+            $355a0ba890fd58e7$var$realConsole.log(bigString.replace("%", "%%"));
+        }
+    }
 };
 var $355a0ba890fd58e7$export$2e2bcd8739ae039 = $355a0ba890fd58e7$export$9d69f5c452819e4;
 
