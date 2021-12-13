@@ -2,8 +2,9 @@
 root="$FORNIX_FOLDER"
 if [ -z "$root" ]
 then
-    root="."
+    root="$PWD"
 fi
+
 npm version patch \
     && "$root/commands/build" \
     && npm publish \
