@@ -3,10 +3,16 @@
 A CLI terminal helper for Deno, and a modifiction of chalk.js for deno.
 
 ```js
-const { console, vibrance } = await import('https://cdn.skypack.dev/vibrance@v0.0.15')
+const { console, vibrance } = await import('https://cdn.skypack.dev/vibrance@v0.0.33')
 
-vibrance.blue("Howdy!").green("this will be logged").log()
-console.blue("Howdy!") // has console.log() and all the other methods (debug/warn/error/group/etc)
+console.red("Howdy!") // has console.log() and all the other methods (debug/warn/error/group/etc)
+console.blue.underline("Howdy!") 
+console.green.bgBlack("Howdy!")
+
+// alternatively use vibrancy
+vibrance.blue("Howdy! ").green("this will be logged").log() // NOTE: needs log at the end!
+// a different way of using vibrancy
+console.log(vibrance.blue("This will ").bold("also").blue(" be logged"))
 ```
 
 

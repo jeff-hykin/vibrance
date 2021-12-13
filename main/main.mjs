@@ -133,7 +133,12 @@ class LoggerObject {
     }
     
     [Symbol.for("console.log")]() {
-        return this.toString()
+        const result = this.toString()
+        // reset because its about to be logged
+        this.styleString = ""
+        this.stringBuffer = []
+        this.attributeBuffer = []
+        return result
     }
 
     log(...others) {
