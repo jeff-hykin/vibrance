@@ -304,26 +304,39 @@ function $c06b5817ebab9838$export$2e2bcd8739ae039(flag, argv = Deno.args) {
 }
 
 
-// Copyright 2018-2021 the Deno authors. All rights reserved. MIT license.
-// This module implements 'tty' module of Node.JS API.
-// ref: https://nodejs.org/api/tty.html
-// Returns true when the given numeric fd is associated with a TTY and false otherwise.
+
 function $0080e263a13fea1b$var$isatty(fd) {
     if (typeof fd !== "number") return false;
     try {
         return Deno.isatty(fd);
     } catch (_) {
+        // if deno failed, try node
+        try {
+            var tty = $0080e263a13fea1b$import$abaf19b7aa1bfe44;
+            return tty.isatty(fd);
+        } catch (error) {
+        }
         return false;
     }
 }
-const $0080e263a13fea1b$var$env = Deno.env.toObject();
+let $0080e263a13fea1b$var$env = {
+};
+
+try {
+    $0080e263a13fea1b$var$env = Deno.env.toObject();
+} catch (error) {
+    try {
+        $0080e263a13fea1b$var$env = $0080e263a13fea1b$import$e54fe5b0f43758f7$a7b6bc01c63cdfc3;
+    } catch (error) {
+    }
+}
 let $0080e263a13fea1b$var$flagForceColor;
-if ($c06b5817ebab9838$export$2e2bcd8739ae039('no-color') || $c06b5817ebab9838$export$2e2bcd8739ae039('no-colors') || $c06b5817ebab9838$export$2e2bcd8739ae039('color=false') || $c06b5817ebab9838$export$2e2bcd8739ae039('color=never')) $0080e263a13fea1b$var$flagForceColor = 0;
-else if ($c06b5817ebab9838$export$2e2bcd8739ae039('color') || $c06b5817ebab9838$export$2e2bcd8739ae039('colors') || $c06b5817ebab9838$export$2e2bcd8739ae039('color=true') || $c06b5817ebab9838$export$2e2bcd8739ae039('color=always')) $0080e263a13fea1b$var$flagForceColor = 1;
+if ($c06b5817ebab9838$export$2e2bcd8739ae039("no-color") || $c06b5817ebab9838$export$2e2bcd8739ae039("no-colors") || $c06b5817ebab9838$export$2e2bcd8739ae039("color=false") || $c06b5817ebab9838$export$2e2bcd8739ae039("color=never")) $0080e263a13fea1b$var$flagForceColor = 0;
+else if ($c06b5817ebab9838$export$2e2bcd8739ae039("color") || $c06b5817ebab9838$export$2e2bcd8739ae039("colors") || $c06b5817ebab9838$export$2e2bcd8739ae039("color=true") || $c06b5817ebab9838$export$2e2bcd8739ae039("color=always")) $0080e263a13fea1b$var$flagForceColor = 1;
 function $0080e263a13fea1b$var$envForceColor() {
-    if ('FORCE_COLOR' in $0080e263a13fea1b$var$env) {
-        if ($0080e263a13fea1b$var$env.FORCE_COLOR === 'true') return 1;
-        if ($0080e263a13fea1b$var$env.FORCE_COLOR === 'false') return 0;
+    if ("FORCE_COLOR" in $0080e263a13fea1b$var$env) {
+        if ($0080e263a13fea1b$var$env.FORCE_COLOR === "true") return 1;
+        if ($0080e263a13fea1b$var$env.FORCE_COLOR === "false") return 0;
         return $0080e263a13fea1b$var$env.FORCE_COLOR.length === 0 ? 1 : Math.min(Number.parseInt($0080e263a13fea1b$var$env.FORCE_COLOR, 10), 3);
     }
 }
@@ -336,6 +349,7 @@ function $0080e263a13fea1b$var$translateLevel(level) {
         has16m: level >= 3
     };
 }
+
 function $0080e263a13fea1b$var$_supportsColor(haveStream, { streamIsTTY: streamIsTTY , sniffFlags: sniffFlags = true  } = {
 }) {
     const noFlagForceColor = $0080e263a13fea1b$var$envForceColor();
@@ -343,50 +357,59 @@ function $0080e263a13fea1b$var$_supportsColor(haveStream, { streamIsTTY: streamI
     const forceColor = sniffFlags ? $0080e263a13fea1b$var$flagForceColor : noFlagForceColor;
     if (forceColor === 0) return 0;
     if (sniffFlags) {
-        if ($c06b5817ebab9838$export$2e2bcd8739ae039('color=16m') || $c06b5817ebab9838$export$2e2bcd8739ae039('color=full') || $c06b5817ebab9838$export$2e2bcd8739ae039('color=truecolor')) return 3;
-        if ($c06b5817ebab9838$export$2e2bcd8739ae039('color=256')) return 2;
+        if ($c06b5817ebab9838$export$2e2bcd8739ae039("color=16m") || $c06b5817ebab9838$export$2e2bcd8739ae039("color=full") || $c06b5817ebab9838$export$2e2bcd8739ae039("color=truecolor")) return 3;
+        if ($c06b5817ebab9838$export$2e2bcd8739ae039("color=256")) return 2;
     }
     if (haveStream && !streamIsTTY && forceColor === undefined) return 0;
     const min = forceColor || 0;
-    if ($0080e263a13fea1b$var$env.TERM === 'dumb') return min;
-    if (Deno.build.os === 'win32') // TODO could not find how to get the OS release in Deno, the `Deno.osRelease()` (found in std/node/os) does not seem to work
+    if ($0080e263a13fea1b$var$env.TERM === "dumb") return min;
+    let os;
+    try {
+        os = Deno.build.os;
+    } catch (error) {
+        try {
+            os = $0080e263a13fea1b$import$e54fe5b0f43758f7$722a64dea1b767dc;
+        } catch (error) {
+        }
+    }
+    if (os === "win32") // TODO could not find how to get the OS release in Deno, the `Deno.osRelease()` (found in std/node/os) does not seem to work
     // // Windows 10 build 10586 is the first Windows release that supports 256 colors.
     // // Windows 10 build 14931 is the first release that supports 16m/TrueColor.
-    // const osRelease = os.release().split('.');
+    // const osRelease = os.release().split('.')
     // if (
     // 	Number(osRelease[0]) >= 10 &&
     // 	Number(osRelease[2]) >= 10586
     // ) {
-    // 	return Number(osRelease[2]) >= 14931 ? 3 : 2;
+    // 	return Number(osRelease[2]) >= 14931 ? 3 : 2
     // }
     return 1;
-    if ('CI' in $0080e263a13fea1b$var$env) {
+    if ("CI" in $0080e263a13fea1b$var$env) {
         if ([
-            'TRAVIS',
-            'CIRCLECI',
-            'APPVEYOR',
-            'GITLAB_CI',
-            'GITHUB_ACTIONS',
-            'BUILDKITE',
-            'DRONE'
+            "TRAVIS",
+            "CIRCLECI",
+            "APPVEYOR",
+            "GITLAB_CI",
+            "GITHUB_ACTIONS",
+            "BUILDKITE",
+            "DRONE", 
         ].some((sign)=>sign in $0080e263a13fea1b$var$env
-        ) || $0080e263a13fea1b$var$env.CI_NAME === 'codeship') return 1;
+        ) || $0080e263a13fea1b$var$env.CI_NAME === "codeship") return 1;
         return min;
     }
-    if ('TEAMCITY_VERSION' in $0080e263a13fea1b$var$env) return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test($0080e263a13fea1b$var$env.TEAMCITY_VERSION) ? 1 : 0;
-    if ($0080e263a13fea1b$var$env.COLORTERM === 'truecolor') return 3;
-    if ('TERM_PROGRAM' in $0080e263a13fea1b$var$env) {
-        const version = Number.parseInt(($0080e263a13fea1b$var$env.TERM_PROGRAM_VERSION || '').split('.')[0], 10);
+    if ("TEAMCITY_VERSION" in $0080e263a13fea1b$var$env) return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test($0080e263a13fea1b$var$env.TEAMCITY_VERSION) ? 1 : 0;
+    if ($0080e263a13fea1b$var$env.COLORTERM === "truecolor") return 3;
+    if ("TERM_PROGRAM" in $0080e263a13fea1b$var$env) {
+        const version = Number.parseInt(($0080e263a13fea1b$var$env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
         switch($0080e263a13fea1b$var$env.TERM_PROGRAM){
-            case 'iTerm.app':
+            case "iTerm.app":
                 return version >= 3 ? 3 : 2;
-            case 'Apple_Terminal':
+            case "Apple_Terminal":
                 return 2;
         }
     }
     if (/-256(color)?$/i.test($0080e263a13fea1b$var$env.TERM)) return 2;
     if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test($0080e263a13fea1b$var$env.TERM)) return 1;
-    if ('COLORTERM' in $0080e263a13fea1b$var$env) return 1;
+    if ("COLORTERM" in $0080e263a13fea1b$var$env) return 1;
     return min;
 }
 function $0080e263a13fea1b$export$6f279ba00f1459de(stream, options = {
@@ -744,6 +767,7 @@ var $4e3327031d001f8c$export$2e2bcd8739ae039 = $4e3327031d001f8c$var$chalk;
 
 
 const $355a0ba890fd58e7$var$realConsole = globalThis.console;
+
 class $355a0ba890fd58e7$var$LoggerObject {
     constructor(){
         this.stringBuffer = [];
@@ -775,6 +799,13 @@ class $355a0ba890fd58e7$var$LoggerObject {
                 return Reflect.set(this, key, ...args);
             }
         });
+        // 
+        // attempt to add node.js logging
+        // 
+        try {
+            this[$355a0ba890fd58e7$import$7debb50ef11d5e0b$9dec5d1b3b6a130d.custom] = this.toString;
+        } catch (error) {
+        }
     }
     get reset() {
         this.attributeBuffer.push("reset");
