@@ -1471,7 +1471,7 @@ let $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
             let number = 0;
             let bigString = "";
             for (const eachChar of args.join("")){
-                number += number;
+                number += 1;
                 bigString += $355a0ba890fd58e7$export$9d69f5c452819e4[$355a0ba890fd58e7$var$wrapAroundGet(number, rainbowColors)](eachChar).toString();
             }
             $355a0ba890fd58e7$var$realConsole.log(bigString.replace("%", "%%"));
