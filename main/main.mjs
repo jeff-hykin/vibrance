@@ -33,7 +33,14 @@ class LoggerObject {
                 return Reflect.set(this, key, ...args)
             },
         })
-        
+
+
+        // 
+        // attempt to add node.js logging
+        // 
+        try {
+            this[require('util').inspect.custom] = this.toString
+        } catch (error) {}
     }
     
     get reset           () { this.attributeBuffer.push("reset"          ); return this.proxyiedReturn }

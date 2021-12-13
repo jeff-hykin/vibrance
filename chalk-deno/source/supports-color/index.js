@@ -7,11 +7,26 @@ function isatty(fd) {
 	try {
 		return Deno.isatty(fd)
 	} catch (_) {
+        // if deno failed, try node
+        try {
+            var tty = require('tty')
+            return tty.isatty(fd)
+        } catch (error) {
+            
+        }
 		return false
 	}
 }
-
-const env = Deno.env.toObject()
+let env = {}
+try {
+    env = Deno.env.toObject()
+} catch (error) {
+    try {
+        env = require("process").env
+    } catch (error) {
+        
+    }
+}
 
 let flagForceColor
 if (
@@ -94,8 +109,17 @@ function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
 	if (env.TERM === "dumb") {
 		return min
 	}
-
-	if (Deno.build.os === "win32") {
+    let os
+    try {
+        os = Deno.build.os
+    } catch (error) {
+        try {
+            os = require("process").platform
+        } catch (error) {
+            
+        }
+    }
+	if (os === "win32") {
 		// TODO could not find how to get the OS release in Deno, the `Deno.osRelease()` (found in std/node/os) does not seem to work
 
 		// // Windows 10 build 10586 is the first Windows release that supports 256 colors.
