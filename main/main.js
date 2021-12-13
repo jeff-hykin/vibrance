@@ -1,4 +1,6 @@
-import chalk from "../chalk-deno/source/index.js"
+const nodeChalk = require("chalk")
+const es6Chalk = require("../chalk-deno/source/index.js")
+const chalk = typeof module === 'object' && module instanceof Object && module.exports instanceof Object ? nodeChalk : es6Chalk
 
 const realConsole = globalThis.console
 const isBrowserContext = typeof document != 'undefined' && typeof window != 'undefined'
@@ -199,57 +201,9 @@ class ConsoleObject extends LoggerObject {
     }
 }
 
-export const vibrance = {
-    get reset           () { return (new LoggerObject()).reset },
-    get bold            () { return (new LoggerObject()).bold },
-    get dim             () { return (new LoggerObject()).dim },
-    get italic          () { return (new LoggerObject()).italic },
-    get underline       () { return (new LoggerObject()).underline },
-    get inverse         () { return (new LoggerObject()).inverse },
-    get hidden          () { return (new LoggerObject()).hidden },
-    get strikethrough   () { return (new LoggerObject()).strikethrough },
-    get visible         () { return (new LoggerObject()).visible },
-    get black           () { return (new LoggerObject()).black },
-    get red             () { return (new LoggerObject()).red },
-    get green           () { return (new LoggerObject()).green },
-    get yellow          () { return (new LoggerObject()).yellow },
-    get blue            () { return (new LoggerObject()).blue },
-    get magenta         () { return (new LoggerObject()).magenta },
-    get cyan            () { return (new LoggerObject()).cyan },
-    get white           () { return (new LoggerObject()).white },
-    get blackBright     () { return (new LoggerObject()).blackBright },
-    get gray            () { return (new LoggerObject()).gray },
-    get grey            () { return (new LoggerObject()).grey },
-    get redBright       () { return (new LoggerObject()).redBright },
-    get greenBright     () { return (new LoggerObject()).greenBright },
-    get yellowBright    () { return (new LoggerObject()).yellowBright },
-    get blueBright      () { return (new LoggerObject()).blueBright },
-    get magentaBright   () { return (new LoggerObject()).magentaBright },
-    get cyanBright      () { return (new LoggerObject()).cyanBright },
-    get whiteBright     () { return (new LoggerObject()).whiteBright },
-    get bgBlack         () { return (new LoggerObject()).bgBlack },
-    get bgRed           () { return (new LoggerObject()).bgRed },
-    get bgGreen         () { return (new LoggerObject()).bgGreen },
-    get bgYellow        () { return (new LoggerObject()).bgYellow },
-    get bgBlue          () { return (new LoggerObject()).bgBlue },
-    get bgMagenta       () { return (new LoggerObject()).bgMagenta },
-    get bgCyan          () { return (new LoggerObject()).bgCyan },
-    get bgWhite         () { return (new LoggerObject()).bgWhite },
-    get bgBlackBright   () { return (new LoggerObject()).bgBlackBright },
-    get bgGray          () { return (new LoggerObject()).bgGray },
-    get bgGrey          () { return (new LoggerObject()).bgGrey },
-    get bgRedBright     () { return (new LoggerObject()).bgRedBright },
-    get bgGreenBright   () { return (new LoggerObject()).bgGreenBright },
-    get bgYellowBright  () { return (new LoggerObject()).bgYellowBright },
-    get bgBlueBright    () { return (new LoggerObject()).bgBlueBright },
-    get bgMagentaBright () { return (new LoggerObject()).bgMagentaBright },
-    get bgCyanBright    () { return (new LoggerObject()).bgCyanBright },
-    get bgWhiteBright   () { return (new LoggerObject()).bgWhiteBright },
-}
-
 const wrapAroundGet = (number, list) => list[(number % list.length + list.length) % list.length]
 
-export let console = {
+let console = {
     get reset           () { return (new ConsoleObject()).reset },
     get bold            () { return (new ConsoleObject()).bold },
     get dim             () { return (new ConsoleObject()).dim },
@@ -348,4 +302,55 @@ export let console = {
     }
 }
 
-export default vibrance
+const vibrance = {
+    get reset           () { return (new LoggerObject()).reset },
+    get bold            () { return (new LoggerObject()).bold },
+    get dim             () { return (new LoggerObject()).dim },
+    get italic          () { return (new LoggerObject()).italic },
+    get underline       () { return (new LoggerObject()).underline },
+    get inverse         () { return (new LoggerObject()).inverse },
+    get hidden          () { return (new LoggerObject()).hidden },
+    get strikethrough   () { return (new LoggerObject()).strikethrough },
+    get visible         () { return (new LoggerObject()).visible },
+    get black           () { return (new LoggerObject()).black },
+    get red             () { return (new LoggerObject()).red },
+    get green           () { return (new LoggerObject()).green },
+    get yellow          () { return (new LoggerObject()).yellow },
+    get blue            () { return (new LoggerObject()).blue },
+    get magenta         () { return (new LoggerObject()).magenta },
+    get cyan            () { return (new LoggerObject()).cyan },
+    get white           () { return (new LoggerObject()).white },
+    get blackBright     () { return (new LoggerObject()).blackBright },
+    get gray            () { return (new LoggerObject()).gray },
+    get grey            () { return (new LoggerObject()).grey },
+    get redBright       () { return (new LoggerObject()).redBright },
+    get greenBright     () { return (new LoggerObject()).greenBright },
+    get yellowBright    () { return (new LoggerObject()).yellowBright },
+    get blueBright      () { return (new LoggerObject()).blueBright },
+    get magentaBright   () { return (new LoggerObject()).magentaBright },
+    get cyanBright      () { return (new LoggerObject()).cyanBright },
+    get whiteBright     () { return (new LoggerObject()).whiteBright },
+    get bgBlack         () { return (new LoggerObject()).bgBlack },
+    get bgRed           () { return (new LoggerObject()).bgRed },
+    get bgGreen         () { return (new LoggerObject()).bgGreen },
+    get bgYellow        () { return (new LoggerObject()).bgYellow },
+    get bgBlue          () { return (new LoggerObject()).bgBlue },
+    get bgMagenta       () { return (new LoggerObject()).bgMagenta },
+    get bgCyan          () { return (new LoggerObject()).bgCyan },
+    get bgWhite         () { return (new LoggerObject()).bgWhite },
+    get bgBlackBright   () { return (new LoggerObject()).bgBlackBright },
+    get bgGray          () { return (new LoggerObject()).bgGray },
+    get bgGrey          () { return (new LoggerObject()).bgGrey },
+    get bgRedBright     () { return (new LoggerObject()).bgRedBright },
+    get bgGreenBright   () { return (new LoggerObject()).bgGreenBright },
+    get bgYellowBright  () { return (new LoggerObject()).bgYellowBright },
+    get bgBlueBright    () { return (new LoggerObject()).bgBlueBright },
+    get bgMagentaBright () { return (new LoggerObject()).bgMagentaBright },
+    get bgCyanBright    () { return (new LoggerObject()).bgCyanBright },
+    get bgWhiteBright   () { return (new LoggerObject()).bgWhiteBright },
+    console,
+}
+// add self reference
+vibrance.vibrance = vibrance
+
+module.exports = vibrance

@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
-
-npm version patch
-npm publish --access=public
+root="$FORNIX_FOLDER"
+if [ -z "$root" ]
+then
+    root="."
+fi
+npm version patch \
+    && "$root/commands/build" \
+    && npm publish \
+    && git add -A \
+    && git commit -m 'build and version bump' \
+    && git push

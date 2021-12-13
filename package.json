@@ -3,13 +3,31 @@
     "name": "vibrance",
     "description": "Cli colors for deno, built on chalk",
     "version": "0.1.7",
-    "source": "main/main.mjs",
     "main": "dist/main.js",
     "module": "dist/module.js",
+    "source": "main/main.js",
     "exports": {
-        "main": "./dist/main.js",
         "require": "./dist/main.js",
         "import": "./dist/module.js"
+    },
+    "scripts": {
+        "build": "npx parcel build --target node --target module",
+        "pub": "npm version patch && npx parcel build --target node --target module && npm publish && git add -A && git commit -m 'build and version bump' && git push"
+    },
+    "targets": {
+        "node": {
+            "includeNodeModules": true,
+            "distDir": "./dist",
+            "source": "main/main.js",
+            "engines": {
+                "node": "10"
+            }
+        },
+        "module": {
+            "includeNodeModules": true,
+            "distDir": "./dist",
+            "source": "main/main.js"
+        }
     },
     "keywords": [
         "color",
@@ -36,10 +54,6 @@
         "vibrancy",
         "vibrance"
     ],
-    "scripts": {
-        "build": "npx parcel build",
-        "pub": "npm version patch && npx parcel build && npm publish && git add -A && git commit -m 'build and version bump' && git push"
-    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/jeff-hykin/vibrance.git"
@@ -51,5 +65,8 @@
     "devDependencies": {
         "parcel": "^2.0.1"
     },
-    "homepage": "https://github.com/jeff-hykin/vibrance#readme"
+    "homepage": "https://github.com/jeff-hykin/vibrance#readme",
+    "dependencies": {
+        "chalk": "^4.1.2"
+    }
 }
