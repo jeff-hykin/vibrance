@@ -308,7 +308,7 @@ const $807e4283f2aec814$var$ansiStyles = $807e4283f2aec814$var$assembleStyles();
 var $807e4283f2aec814$export$2e2bcd8739ae039 = $807e4283f2aec814$var$ansiStyles;
 
 
-let $315e57156680727c$var$args;
+let $315e57156680727c$var$args = [];
 
 try {
     $315e57156680727c$var$args = Deno.args;

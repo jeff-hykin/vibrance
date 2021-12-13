@@ -296,7 +296,7 @@ const $2342c8328eb7b0be$var$ansiStyles = $2342c8328eb7b0be$var$assembleStyles();
 var $2342c8328eb7b0be$export$2e2bcd8739ae039 = $2342c8328eb7b0be$var$ansiStyles;
 
 
-let $c06b5817ebab9838$var$args;
+let $c06b5817ebab9838$var$args = [];
 
 try {
     $c06b5817ebab9838$var$args = Deno.args;
