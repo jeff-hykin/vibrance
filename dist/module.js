@@ -817,6 +817,7 @@ globalThis.console = new Proxy($355a0ba890fd58e7$var$originalThing, {
 
 class $355a0ba890fd58e7$var$LoggerObject {
     constructor(){
+        this.id = Math.random();
         this.stringBuffer = [];
         this.attributeBuffer = [];
         this.styleString = "font-family:monospace;font-size: 0.8rem;";
@@ -843,6 +844,7 @@ class $355a0ba890fd58e7$var$LoggerObject {
             },
             get: (original, key, ...args)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return true;
+                $355a0ba890fd58e7$export$e896d9a1b4631fa1.debug(`key is:`, key);
                 return this[key];
             },
             set: (original, key, value)=>{
