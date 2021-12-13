@@ -10,4 +10,4 @@ npm version patch \
     && npm publish \
     && git add -A \
     && git commit -m 'build and version bump' \
-    && git push
+    ; git push
