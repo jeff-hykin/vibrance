@@ -7,7 +7,7 @@ class LoggerObject {
     constructor() {
         this.stringBuffer = []
         this.attributeBuffer = []
-        this.styleString = "font-family:monospace;"
+        this.styleString = "font-family:monospace;font-size: 0.8rem;"
         const ifStyleCalledAsMethod = (...args)=>{
             let styler = chalk
             while (this.attributeBuffer.length > 0) {
@@ -17,7 +17,6 @@ class LoggerObject {
             this.stringBuffer.push(string)
             return this
         }
-        this.id = Math.random()
         const originalThing = ifStyleCalledAsMethod
         const proxySymbol = Symbol.for('Proxy')
         const thisProxySymbol = Symbol('thisProxy')
@@ -115,9 +114,6 @@ class ConsoleObject extends LoggerObject {
         // 
         // only difference: proxy object executes .log() when called as a function
         // 
-        this.stringBuffer = []
-        this.attributeBuffer = []
-        this.styleString = "font-family:monospace;"
         const ifStyleCalledAsMethod = (...args)=>{
             let styler = chalk
             while (this.attributeBuffer.length > 0) {
@@ -128,7 +124,6 @@ class ConsoleObject extends LoggerObject {
             this.log()
             return
         }
-        ifStyleCalledAsMethod.id = Math.random()
         const originalThing = ifStyleCalledAsMethod
         const proxySymbol = Symbol.for('Proxy')
         const thisProxySymbol = Symbol('thisProxy')
