@@ -17,7 +17,7 @@ class LoggerObject {
             this.stringBuffer.push(string)
             return this
         }
-        ifStyleCalledAsMethod.id = Math.random()
+        this.id = Math.random()
         const originalThing = ifStyleCalledAsMethod
         const proxySymbol = Symbol.for('Proxy')
         const thisProxySymbol = Symbol('thisProxy')
@@ -111,6 +111,7 @@ class LoggerObject {
 
 class ConsoleObject extends LoggerObject {
     constructor() {
+        super()
         // 
         // only difference: proxy object executes .log() when called as a function
         // 
