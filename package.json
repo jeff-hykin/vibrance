@@ -11,7 +11,7 @@
         "import": "./dist/module.js"
     },
     "scripts": {
-        "build": "npx parcel build --target node --target module",
+        "build": "npx parcel build --target node --target module --no-optimize",
         "pub": "npm version patch && npx parcel build --target node --target module && npm publish && git add -A && git commit -m 'build and version bump' && git push"
     },
     "targets": {
@@ -20,7 +20,7 @@
             "distDir": "./dist",
             "source": "main/main.js",
             "engines": {
-                "node": "10"
+                "node": "14"
             }
         },
         "module": {
@@ -63,7 +63,7 @@
         "url": "https://github.com/jeff-hykin/vibrance/issues"
     },
     "devDependencies": {
-        "parcel": "^2.0.1"
+        "parcel": "2.0.1"
     },
     "homepage": "https://github.com/jeff-hykin/vibrance#readme",
     "dependencies": {

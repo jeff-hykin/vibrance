@@ -1,6 +1,3 @@
-function $parcel$defineInteropFlag(a) {
-  Object.defineProperty(a, '__esModule', {value: true, configurable: true});
-}
 function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
 }
@@ -42,913 +39,10 @@ if (parcelRequire == null) {
 
   $parcel$global["parcelRequire94c2"] = parcelRequire;
 }
-parcelRequire.register("cF4et", function(module, exports) {
-
-var $61gyR = parcelRequire("61gyR");
-
-var $lNjAV = parcelRequire("lNjAV");
-const chalk = "object" === 'object' && module instanceof Object && module.exports instanceof Object ? $61gyR : $lNjAV;
-const realConsole = globalThis.console;
-const isBrowserContext = typeof document != 'undefined' && typeof window != 'undefined';
-// patch the built in console to allow classes to override output
-const originalThing = realConsole;
-const proxySymbol = Symbol.for('Proxy');
-const thisProxySymbol = Symbol('thisProxy');
-const symbolForConsoleLog = Symbol.for("console.log");
-globalThis.console = new Proxy(originalThing, {
-    defineProperty: Reflect.defineProperty,
-    getPrototypeOf: Reflect.getPrototypeOf,
-    // Object.keys
-    ownKeys (...args) {
-        return Reflect.ownKeys(...args);
-    },
-    // function call (original value needs to be a function)
-    apply (original, context, ...args) {
-        console.log(args);
-    },
-    // new operator (original value needs to be a class)
-    construct (...args) {
-    },
-    get (original, key, ...args) {
-        if (key == proxySymbol || key == thisProxySymbol) return true;
-        // if logging, then 
-        if (key == "log") return (...args)=>{
-            realConsole.log(...args.map((each)=>{
-                if (each instanceof Object && each[symbolForConsoleLog] instanceof Function) return each[symbolForConsoleLog]();
-                return each;
-            }));
-        };
-        return Reflect.get(original, key, ...args);
-    },
-    set (original, key, ...args) {
-        if (key == proxySymbol || key == thisProxySymbol) return;
-        return Reflect.set(original, key, ...args);
-    }
-});
-
-var $3xbWd = parcelRequire("3xbWd");
-class LoggerObject {
-    constructor(){
-        this.id = Math.random();
-        this.stringBuffer = [];
-        this.attributeBuffer = [];
-        this.styleString = "font-family:monospace;font-size: 1rem;";
-        const ifStyleCalledAsMethod = (...args)=>{
-            let styler = chalk;
-            while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
-            const string = styler(...args);
-            this.stringBuffer.push(string);
-            return this;
-        };
-        const originalThing1 = ifStyleCalledAsMethod;
-        const proxySymbol1 = Symbol.for('Proxy');
-        const thisProxySymbol1 = Symbol('thisProxy');
-        this.proxyiedReturn = new Proxy(originalThing1, {
-            defineProperty (original, ...args) {
-                return Reflect.defineProperty(this, ...args);
-            },
-            getPrototypeOf (original, ...args) {
-                return Reflect.getPrototypeOf(this, ...args);
-            },
-            // Object.keys
-            ownKeys (original, ...args) {
-                return Reflect.ownKeys(this, ...args);
-            },
-            get: (original, key, ...args)=>{
-                if (key == proxySymbol1 || key == thisProxySymbol1) return true;
-                return this[key];
-            },
-            set: (original, key, value)=>{
-                if (key == proxySymbol1 || key == thisProxySymbol1) return;
-                return this[key] = value;
-            }
-        });
-        // 
-        // attempt to add node.js logging
-        // 
-        try {
-            this[$3xbWd.inspect.custom] = this.toString;
-        } catch (error) {
-        }
-    }
-    get reset() {
-        this.attributeBuffer.push("reset");
-        this.styleString += ";";
-        return this.proxyiedReturn;
-    }
-    get bold() {
-        this.attributeBuffer.push("bold");
-        this.styleString += "; font-weight: bold;";
-        return this.proxyiedReturn;
-    }
-    get dim() {
-        this.attributeBuffer.push("dim");
-        this.styleString += "; opacity: 0.7;";
-        return this.proxyiedReturn;
-    }
-    get italic() {
-        this.attributeBuffer.push("italic");
-        this.styleString += "; font-style: italic;";
-        return this.proxyiedReturn;
-    }
-    get underline() {
-        this.attributeBuffer.push("underline");
-        this.styleString += "; text-decoration:underline;";
-        return this.proxyiedReturn;
-    }
-    get inverse() {
-        this.attributeBuffer.push("inverse");
-        this.styleString += "; -webkit-filter: invert(100%); filter: invert(100%);";
-        return this.proxyiedReturn;
-    }
-    get hidden() {
-        this.attributeBuffer.push("hidden");
-        this.styleString += "; background-color: transparent; color:transparent;";
-        return this.proxyiedReturn;
-    }
-    get strikethrough() {
-        this.attributeBuffer.push("strikethrough");
-        this.styleString += "; text-decoration:line-through;";
-        return this.proxyiedReturn;
-    }
-    get visible() {
-        this.attributeBuffer.push("visible");
-        this.styleString += "; ";
-        return this.proxyiedReturn;
-    }
-    get black() {
-        this.attributeBuffer.push("black");
-        this.styleString += "; color:#000000;";
-        return this.proxyiedReturn;
-    }
-    get red() {
-        this.attributeBuffer.push("red");
-        this.styleString += "; color:#f07178;";
-        return this.proxyiedReturn;
-    }
-    get green() {
-        this.attributeBuffer.push("green");
-        this.styleString += "; color:#c3e88d;";
-        return this.proxyiedReturn;
-    }
-    get yellow() {
-        this.attributeBuffer.push("yellow");
-        this.styleString += "; color:#ddd790;";
-        return this.proxyiedReturn;
-    }
-    get blue() {
-        this.attributeBuffer.push("blue");
-        this.styleString += "; color:#82aaff;";
-        return this.proxyiedReturn;
-    }
-    get magenta() {
-        this.attributeBuffer.push("magenta");
-        this.styleString += "; color:#c792ea;";
-        return this.proxyiedReturn;
-    }
-    get cyan() {
-        this.attributeBuffer.push("cyan");
-        this.styleString += "; color:#64bac5;";
-        return this.proxyiedReturn;
-    }
-    get white() {
-        this.attributeBuffer.push("white");
-        this.styleString += "; color:#c7cbcd;";
-        return this.proxyiedReturn;
-    }
-    get blackBright() {
-        this.attributeBuffer.push("blackBright");
-        this.styleString += "; color:#546e7a;";
-        return this.proxyiedReturn;
-    }
-    get gray() {
-        this.attributeBuffer.push("gray");
-        this.styleString += "; color:#546e7a;";
-        return this.proxyiedReturn;
-    }
-    get grey() {
-        this.attributeBuffer.push("grey");
-        this.styleString += "; color:#546e7a;";
-        return this.proxyiedReturn;
-    }
-    get redBright() {
-        this.attributeBuffer.push("redBright");
-        this.styleString += "; color:#ff5572;";
-        return this.proxyiedReturn;
-    }
-    get greenBright() {
-        this.attributeBuffer.push("greenBright");
-        this.styleString += "; color:#04d895;";
-        return this.proxyiedReturn;
-    }
-    get yellowBright() {
-        this.attributeBuffer.push("yellowBright");
-        this.styleString += "; color:#fec355;";
-        return this.proxyiedReturn;
-    }
-    get blueBright() {
-        this.attributeBuffer.push("blueBright");
-        this.styleString += "; color:#00aeff;";
-        return this.proxyiedReturn;
-    }
-    get magentaBright() {
-        this.attributeBuffer.push("magentaBright");
-        this.styleString += "; color:#e57eb3;";
-        return this.proxyiedReturn;
-    }
-    get cyanBright() {
-        this.attributeBuffer.push("cyanBright");
-        this.styleString += "; color:#89ddff;";
-        return this.proxyiedReturn;
-    }
-    get whiteBright() {
-        this.attributeBuffer.push("whiteBright");
-        this.styleString += "; color:#ffffff;";
-        return this.proxyiedReturn;
-    }
-    get bgBlack() {
-        this.attributeBuffer.push("bgBlack");
-        this.styleString += "; background-color:#000000;";
-        return this.proxyiedReturn;
-    }
-    get bgRed() {
-        this.attributeBuffer.push("bgRed");
-        this.styleString += "; background-color:#f07178;";
-        return this.proxyiedReturn;
-    }
-    get bgGreen() {
-        this.attributeBuffer.push("bgGreen");
-        this.styleString += "; background-color:#c3e88d;";
-        return this.proxyiedReturn;
-    }
-    get bgYellow() {
-        this.attributeBuffer.push("bgYellow");
-        this.styleString += "; background-color:#ddd790;";
-        return this.proxyiedReturn;
-    }
-    get bgBlue() {
-        this.attributeBuffer.push("bgBlue");
-        this.styleString += "; background-color:#82aaff;";
-        return this.proxyiedReturn;
-    }
-    get bgMagenta() {
-        this.attributeBuffer.push("bgMagenta");
-        this.styleString += "; background-color:#c792ea;";
-        return this.proxyiedReturn;
-    }
-    get bgCyan() {
-        this.attributeBuffer.push("bgCyan");
-        this.styleString += "; background-color:#64bac5;";
-        return this.proxyiedReturn;
-    }
-    get bgWhite() {
-        this.attributeBuffer.push("bgWhite");
-        this.styleString += "; background-color:#c7cbcd;";
-        return this.proxyiedReturn;
-    }
-    get bgBlackBright() {
-        this.attributeBuffer.push("bgBlackBright");
-        this.styleString += "; background-color:#546e7a;";
-        return this.proxyiedReturn;
-    }
-    get bgGray() {
-        this.attributeBuffer.push("bgGray");
-        this.styleString += "; background-color:#546e7a;";
-        return this.proxyiedReturn;
-    }
-    get bgGrey() {
-        this.attributeBuffer.push("bgGrey");
-        this.styleString += "; background-color:#546e7a;";
-        return this.proxyiedReturn;
-    }
-    get bgRedBright() {
-        this.attributeBuffer.push("bgRedBright");
-        this.styleString += "; background-color:#ff5572;";
-        return this.proxyiedReturn;
-    }
-    get bgGreenBright() {
-        this.attributeBuffer.push("bgGreenBright");
-        this.styleString += "; background-color:#04d895;";
-        return this.proxyiedReturn;
-    }
-    get bgYellowBright() {
-        this.attributeBuffer.push("bgYellowBright");
-        this.styleString += "; background-color:#fec355;";
-        return this.proxyiedReturn;
-    }
-    get bgBlueBright() {
-        this.attributeBuffer.push("bgBlueBright");
-        this.styleString += "; background-color:#00aeff;";
-        return this.proxyiedReturn;
-    }
-    get bgMagentaBright() {
-        this.attributeBuffer.push("bgMagentaBright");
-        this.styleString += "; background-color:#e57eb3;";
-        return this.proxyiedReturn;
-    }
-    get bgCyanBright() {
-        this.attributeBuffer.push("bgCyanBright");
-        this.styleString += "; background-color:#89ddff;";
-        return this.proxyiedReturn;
-    }
-    get bgWhiteBright() {
-        this.attributeBuffer.push("bgWhiteBright");
-        this.styleString += "; background-color:#ffffff;";
-        return this.proxyiedReturn;
-    }
-    toString() {
-        return this.stringBuffer.join("");
-    }
-    [Symbol.for("console.log")]() {
-        const result = this.toString();
-        // reset because its about to be logged
-        this.styleString = "";
-        this.stringBuffer = [];
-        this.attributeBuffer = [];
-        return result;
-    }
-    log(...others) {
-        if (!isBrowserContext) realConsole.log(this.toString().replace("%", "%%"), ...others);
-        else realConsole.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
-        // reset it after logging
-        this.styleString = "";
-        this.stringBuffer = [];
-        this.attributeBuffer = [];
-        return this;
-    }
-}
-
-var $3xbWd = parcelRequire("3xbWd");
-class ConsoleObject extends LoggerObject {
-    constructor(){
-        super();
-        // 
-        // only difference: proxy object executes .log() when called as a function
-        // 
-        const ifStyleCalledAsMethod1 = (...args)=>{
-            let styler = chalk;
-            while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
-            const string = styler(...args);
-            this.stringBuffer.push(string);
-            this.log();
-            return;
-        };
-        const originalThing2 = ifStyleCalledAsMethod1;
-        const proxySymbol2 = Symbol.for('Proxy');
-        const thisProxySymbol2 = Symbol('thisProxy');
-        this.proxyiedReturn = new Proxy(originalThing2, {
-            defineProperty (original, ...args) {
-                return Reflect.defineProperty(this, ...args);
-            },
-            getPrototypeOf (original, ...args) {
-                return Reflect.getPrototypeOf(this, ...args);
-            },
-            // Object.keys
-            ownKeys (original, ...args) {
-                return Reflect.ownKeys(this, ...args);
-            },
-            get: (original, key, ...args)=>{
-                if (key == proxySymbol2 || key == thisProxySymbol2) return true;
-                return this[key];
-            },
-            set: (original, key, value)=>{
-                if (key == proxySymbol2 || key == thisProxySymbol2) return;
-                return this[key] = value;
-            }
-        });
-        // 
-        // attempt to add node.js logging
-        // 
-        try {
-            this[$3xbWd.inspect.custom] = this.toString;
-        } catch (error) {
-        }
-    }
-}
-const wrapAroundGet = (number, list)=>list[(number % list.length + list.length) % list.length]
-;
-let console = {
-    get reset () {
-        return new ConsoleObject().reset;
-    },
-    get bold () {
-        return new ConsoleObject().bold;
-    },
-    get dim () {
-        return new ConsoleObject().dim;
-    },
-    get italic () {
-        return new ConsoleObject().italic;
-    },
-    get underline () {
-        return new ConsoleObject().underline;
-    },
-    get inverse () {
-        return new ConsoleObject().inverse;
-    },
-    get hidden () {
-        return new ConsoleObject().hidden;
-    },
-    get strikethrough () {
-        return new ConsoleObject().strikethrough;
-    },
-    get visible () {
-        return new ConsoleObject().visible;
-    },
-    get black () {
-        return new ConsoleObject().black;
-    },
-    get red () {
-        return new ConsoleObject().red;
-    },
-    get green () {
-        return new ConsoleObject().green;
-    },
-    get yellow () {
-        return new ConsoleObject().yellow;
-    },
-    get blue () {
-        return new ConsoleObject().blue;
-    },
-    get magenta () {
-        return new ConsoleObject().magenta;
-    },
-    get cyan () {
-        return new ConsoleObject().cyan;
-    },
-    get white () {
-        return new ConsoleObject().white;
-    },
-    get blackBright () {
-        return new ConsoleObject().blackBright;
-    },
-    get gray () {
-        return new ConsoleObject().gray;
-    },
-    get grey () {
-        return new ConsoleObject().grey;
-    },
-    get redBright () {
-        return new ConsoleObject().redBright;
-    },
-    get greenBright () {
-        return new ConsoleObject().greenBright;
-    },
-    get yellowBright () {
-        return new ConsoleObject().yellowBright;
-    },
-    get blueBright () {
-        return new ConsoleObject().blueBright;
-    },
-    get magentaBright () {
-        return new ConsoleObject().magentaBright;
-    },
-    get cyanBright () {
-        return new ConsoleObject().cyanBright;
-    },
-    get whiteBright () {
-        return new ConsoleObject().whiteBright;
-    },
-    get bgBlack () {
-        return new ConsoleObject().bgBlack;
-    },
-    get bgRed () {
-        return new ConsoleObject().bgRed;
-    },
-    get bgGreen () {
-        return new ConsoleObject().bgGreen;
-    },
-    get bgYellow () {
-        return new ConsoleObject().bgYellow;
-    },
-    get bgBlue () {
-        return new ConsoleObject().bgBlue;
-    },
-    get bgMagenta () {
-        return new ConsoleObject().bgMagenta;
-    },
-    get bgCyan () {
-        return new ConsoleObject().bgCyan;
-    },
-    get bgWhite () {
-        return new ConsoleObject().bgWhite;
-    },
-    get bgBlackBright () {
-        return new ConsoleObject().bgBlackBright;
-    },
-    get bgGray () {
-        return new ConsoleObject().bgGray;
-    },
-    get bgGrey () {
-        return new ConsoleObject().bgGrey;
-    },
-    get bgRedBright () {
-        return new ConsoleObject().bgRedBright;
-    },
-    get bgGreenBright () {
-        return new ConsoleObject().bgGreenBright;
-    },
-    get bgYellowBright () {
-        return new ConsoleObject().bgYellowBright;
-    },
-    get bgBlueBright () {
-        return new ConsoleObject().bgBlueBright;
-    },
-    get bgMagentaBright () {
-        return new ConsoleObject().bgMagentaBright;
-    },
-    get bgCyanBright () {
-        return new ConsoleObject().bgCyanBright;
-    },
-    get bgWhiteBright () {
-        return new ConsoleObject().bgWhiteBright;
-    },
-    log: globalThis.console.log,
-    warn: globalThis.console.warn,
-    dir: globalThis.console.dir,
-    time: globalThis.console.time,
-    timeEnd: globalThis.console.timeEnd,
-    timeLog: globalThis.console.timeLog,
-    trace: globalThis.console.trace,
-    assert: globalThis.console.assert,
-    clear: globalThis.console.clear,
-    count: globalThis.console.count,
-    countReset: globalThis.console.countReset,
-    group: globalThis.console.group,
-    groupEnd: globalThis.console.groupEnd,
-    table: globalThis.console.table,
-    debug: globalThis.console.debug,
-    info: globalThis.console.info,
-    dirxml: globalThis.console.dirxml,
-    error: globalThis.console.error,
-    groupCollapsed: globalThis.console.groupCollapsed,
-    Console: globalThis.console.Console,
-    profile: globalThis.console.profile,
-    profileEnd: globalThis.console.profileEnd,
-    timeStamp: globalThis.console.timeStamp,
-    context: globalThis.console.context,
-    secretRainbow: (...args)=>{
-        if (isBrowserContext) realConsole.log(`%c${args.join("").replace("%", "%%")}`, 'font-weight: bold; font-size: 50px;color: red; text-shadow: 3px 3px 0 rgb(217,31,38) , 6px 6px 0 rgb(226,91,14) , 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)');
-        else {
-            const rainbowColors = [
-                'red',
-                'redBright',
-                'yellow',
-                'yellowBright',
-                'green',
-                'greenBright',
-                'cyan',
-                'cyanBright',
-                'blue',
-                'blueBright',
-                'magenta',
-                'magentaBright', 
-            ];
-            let number = 0;
-            let bigString = "";
-            for (const eachChar of args.join("")){
-                number += 1;
-                bigString += vibrance[wrapAroundGet(number, rainbowColors)](eachChar).toString();
-            }
-            realConsole.log(bigString.replace("%", "%%"));
-        }
-    }
-};
-const vibrance = {
-    get reset () {
-        return new LoggerObject().reset;
-    },
-    get bold () {
-        return new LoggerObject().bold;
-    },
-    get dim () {
-        return new LoggerObject().dim;
-    },
-    get italic () {
-        return new LoggerObject().italic;
-    },
-    get underline () {
-        return new LoggerObject().underline;
-    },
-    get inverse () {
-        return new LoggerObject().inverse;
-    },
-    get hidden () {
-        return new LoggerObject().hidden;
-    },
-    get strikethrough () {
-        return new LoggerObject().strikethrough;
-    },
-    get visible () {
-        return new LoggerObject().visible;
-    },
-    get black () {
-        return new LoggerObject().black;
-    },
-    get red () {
-        return new LoggerObject().red;
-    },
-    get green () {
-        return new LoggerObject().green;
-    },
-    get yellow () {
-        return new LoggerObject().yellow;
-    },
-    get blue () {
-        return new LoggerObject().blue;
-    },
-    get magenta () {
-        return new LoggerObject().magenta;
-    },
-    get cyan () {
-        return new LoggerObject().cyan;
-    },
-    get white () {
-        return new LoggerObject().white;
-    },
-    get blackBright () {
-        return new LoggerObject().blackBright;
-    },
-    get gray () {
-        return new LoggerObject().gray;
-    },
-    get grey () {
-        return new LoggerObject().grey;
-    },
-    get redBright () {
-        return new LoggerObject().redBright;
-    },
-    get greenBright () {
-        return new LoggerObject().greenBright;
-    },
-    get yellowBright () {
-        return new LoggerObject().yellowBright;
-    },
-    get blueBright () {
-        return new LoggerObject().blueBright;
-    },
-    get magentaBright () {
-        return new LoggerObject().magentaBright;
-    },
-    get cyanBright () {
-        return new LoggerObject().cyanBright;
-    },
-    get whiteBright () {
-        return new LoggerObject().whiteBright;
-    },
-    get bgBlack () {
-        return new LoggerObject().bgBlack;
-    },
-    get bgRed () {
-        return new LoggerObject().bgRed;
-    },
-    get bgGreen () {
-        return new LoggerObject().bgGreen;
-    },
-    get bgYellow () {
-        return new LoggerObject().bgYellow;
-    },
-    get bgBlue () {
-        return new LoggerObject().bgBlue;
-    },
-    get bgMagenta () {
-        return new LoggerObject().bgMagenta;
-    },
-    get bgCyan () {
-        return new LoggerObject().bgCyan;
-    },
-    get bgWhite () {
-        return new LoggerObject().bgWhite;
-    },
-    get bgBlackBright () {
-        return new LoggerObject().bgBlackBright;
-    },
-    get bgGray () {
-        return new LoggerObject().bgGray;
-    },
-    get bgGrey () {
-        return new LoggerObject().bgGrey;
-    },
-    get bgRedBright () {
-        return new LoggerObject().bgRedBright;
-    },
-    get bgGreenBright () {
-        return new LoggerObject().bgGreenBright;
-    },
-    get bgYellowBright () {
-        return new LoggerObject().bgYellowBright;
-    },
-    get bgBlueBright () {
-        return new LoggerObject().bgBlueBright;
-    },
-    get bgMagentaBright () {
-        return new LoggerObject().bgMagentaBright;
-    },
-    get bgCyanBright () {
-        return new LoggerObject().bgCyanBright;
-    },
-    get bgWhiteBright () {
-        return new LoggerObject().bgWhiteBright;
-    },
-    console
-};
-// add self reference
-vibrance.vibrance = vibrance;
-module.exports = vibrance;
-
-});
-parcelRequire.register("61gyR", function(module, exports) {
+var $11c045df1a5b205b$exports = {};
+var $7e7a99ef2255b980$exports = {};
 'use strict';
-
-var $fn8sB = parcelRequire("fn8sB");
-
-var $9rxdn = parcelRequire("9rxdn");
-var $461faecb049a994e$require$stderrColor = $9rxdn.stderr;
-var $461faecb049a994e$require$stdoutColor = $9rxdn.stdout;
-
-var $29S4V = parcelRequire("29S4V");
-var $461faecb049a994e$require$stringEncaseCRLFWithFirstIndex = $29S4V.stringEncaseCRLFWithFirstIndex;
-var $461faecb049a994e$require$stringReplaceAll = $29S4V.stringReplaceAll;
-const { isArray: $461faecb049a994e$var$isArray  } = Array;
-// `supportsColor.level` → `ansiStyles.color[name]` mapping
-const $461faecb049a994e$var$levelMapping = [
-    'ansi',
-    'ansi',
-    'ansi256',
-    'ansi16m'
-];
-const $461faecb049a994e$var$styles = Object.create(null);
-const $461faecb049a994e$var$applyOptions = (object, options = {
-})=>{
-    if (options.level && !(Number.isInteger(options.level) && options.level >= 0 && options.level <= 3)) throw new Error('The `level` option should be an integer from 0 to 3');
-    // Detect level if not set manually
-    const colorLevel = $461faecb049a994e$require$stdoutColor ? $461faecb049a994e$require$stdoutColor.level : 0;
-    object.level = options.level === undefined ? colorLevel : options.level;
-};
-class $461faecb049a994e$var$ChalkClass {
-    constructor(options){
-        // eslint-disable-next-line no-constructor-return
-        return $461faecb049a994e$var$chalkFactory(options);
-    }
-}
-const $461faecb049a994e$var$chalkFactory = (options1)=>{
-    const chalk = {
-    };
-    $461faecb049a994e$var$applyOptions(chalk, options1);
-    chalk.template = (...arguments_)=>$461faecb049a994e$var$chalkTag(chalk.template, ...arguments_)
-    ;
-    Object.setPrototypeOf(chalk, $461faecb049a994e$var$Chalk.prototype);
-    Object.setPrototypeOf(chalk.template, chalk);
-    chalk.template.constructor = ()=>{
-        throw new Error('`chalk.constructor()` is deprecated. Use `new chalk.Instance()` instead.');
-    };
-    chalk.template.Instance = $461faecb049a994e$var$ChalkClass;
-    return chalk.template;
-};
-function $461faecb049a994e$var$Chalk(options1) {
-    return $461faecb049a994e$var$chalkFactory(options1);
-}
-for (const [styleName, style] of Object.entries($fn8sB))$461faecb049a994e$var$styles[styleName] = {
-    get () {
-        const builder = $461faecb049a994e$var$createBuilder(this, $461faecb049a994e$var$createStyler(style.open, style.close, this._styler), this._isEmpty);
-        Object.defineProperty(this, styleName, {
-            value: builder
-        });
-        return builder;
-    }
-};
-$461faecb049a994e$var$styles.visible = {
-    get () {
-        const builder = $461faecb049a994e$var$createBuilder(this, this._styler, true);
-        Object.defineProperty(this, 'visible', {
-            value: builder
-        });
-        return builder;
-    }
-};
-const $461faecb049a994e$var$usedModels = [
-    'rgb',
-    'hex',
-    'keyword',
-    'hsl',
-    'hsv',
-    'hwb',
-    'ansi',
-    'ansi256'
-];
-for (const model of $461faecb049a994e$var$usedModels)$461faecb049a994e$var$styles[model] = {
-    get () {
-        const { level: level  } = this;
-        return function(...arguments_) {
-            const styler = $461faecb049a994e$var$createStyler($fn8sB.color[$461faecb049a994e$var$levelMapping[level]][model](...arguments_), $fn8sB.color.close, this._styler);
-            return $461faecb049a994e$var$createBuilder(this, styler, this._isEmpty);
-        };
-    }
-};
-for (const model1 of $461faecb049a994e$var$usedModels){
-    const bgModel = 'bg' + model1[0].toUpperCase() + model1.slice(1);
-    $461faecb049a994e$var$styles[bgModel] = {
-        get () {
-            const { level: level  } = this;
-            return function(...arguments_) {
-                const styler = $461faecb049a994e$var$createStyler($fn8sB.bgColor[$461faecb049a994e$var$levelMapping[level]][model1](...arguments_), $fn8sB.bgColor.close, this._styler);
-                return $461faecb049a994e$var$createBuilder(this, styler, this._isEmpty);
-            };
-        }
-    };
-}
-const $461faecb049a994e$var$proto = Object.defineProperties(()=>{
-}, {
-    ...$461faecb049a994e$var$styles,
-    level: {
-        enumerable: true,
-        get () {
-            return this._generator.level;
-        },
-        set (level) {
-            this._generator.level = level;
-        }
-    }
-});
-const $461faecb049a994e$var$createStyler = (open, close, parent)=>{
-    let openAll;
-    let closeAll;
-    if (parent === undefined) {
-        openAll = open;
-        closeAll = close;
-    } else {
-        openAll = parent.openAll + open;
-        closeAll = close + parent.closeAll;
-    }
-    return {
-        open: open,
-        close: close,
-        openAll: openAll,
-        closeAll: closeAll,
-        parent: parent
-    };
-};
-const $461faecb049a994e$var$createBuilder = (self, _styler, _isEmpty)=>{
-    const builder = (...arguments_)=>{
-        if ($461faecb049a994e$var$isArray(arguments_[0]) && $461faecb049a994e$var$isArray(arguments_[0].raw)) // Called as a template literal, for example: chalk.red`2 + 3 = {bold ${2+3}}`
-        return $461faecb049a994e$var$applyStyle(builder, $461faecb049a994e$var$chalkTag(builder, ...arguments_));
-        // Single argument is hot path, implicit coercion is faster than anything
-        // eslint-disable-next-line no-implicit-coercion
-        return $461faecb049a994e$var$applyStyle(builder, arguments_.length === 1 ? '' + arguments_[0] : arguments_.join(' '));
-    };
-    // We alter the prototype because we must return a function, but there is
-    // no way to create a function with a different prototype
-    Object.setPrototypeOf(builder, $461faecb049a994e$var$proto);
-    builder._generator = self;
-    builder._styler = _styler;
-    builder._isEmpty = _isEmpty;
-    return builder;
-};
-const $461faecb049a994e$var$applyStyle = (self, string)=>{
-    if (self.level <= 0 || !string) return self._isEmpty ? '' : string;
-    let styler = self._styler;
-    if (styler === undefined) return string;
-    const { openAll: openAll , closeAll: closeAll  } = styler;
-    if (string.indexOf('\u001B') !== -1) while(styler !== undefined){
-        // Replace any instances already present with a re-opening code
-        // otherwise only the part of the string until said closing code
-        // will be colored, and the rest will simply be 'plain'.
-        string = $461faecb049a994e$require$stringReplaceAll(string, styler.close, styler.open);
-        styler = styler.parent;
-    }
-    // We can move both next actions out of loop, because remaining actions in loop won't have
-    // any/visible effect on parts we add here. Close the styling before a linebreak and reopen
-    // after next line to fix a bleed issue on macOS: https://github.com/chalk/chalk/pull/92
-    const lfIndex = string.indexOf('\n');
-    if (lfIndex !== -1) string = $461faecb049a994e$require$stringEncaseCRLFWithFirstIndex(string, closeAll, openAll, lfIndex);
-    return openAll + string + closeAll;
-};
-let $461faecb049a994e$var$template;
-
-const $461faecb049a994e$var$chalkTag = (chalk, ...strings)=>{
-    const [firstString] = strings;
-    if (!$461faecb049a994e$var$isArray(firstString) || !$461faecb049a994e$var$isArray(firstString.raw)) // If chalk() was called by itself or with a string,
-    // return the string itself as a string.
-    return strings.join(' ');
-    const arguments_ = strings.slice(1);
-    const parts = [
-        firstString.raw[0]
-    ];
-    for(let i = 1; i < firstString.length; i++)parts.push(String(arguments_[i - 1]).replace(/[{}\\]/g, '\\$&'), String(firstString.raw[i]));
-    if ($461faecb049a994e$var$template === undefined) $461faecb049a994e$var$template = (parcelRequire("jUci8"));
-    return $461faecb049a994e$var$template(chalk, parts.join(''));
-};
-Object.defineProperties($461faecb049a994e$var$Chalk.prototype, $461faecb049a994e$var$styles);
-const $461faecb049a994e$var$chalk = $461faecb049a994e$var$Chalk(); // eslint-disable-line new-cap
-$461faecb049a994e$var$chalk.supportsColor = $461faecb049a994e$require$stdoutColor;
-$461faecb049a994e$var$chalk.stderr = $461faecb049a994e$var$Chalk({
-    level: $461faecb049a994e$require$stderrColor ? $461faecb049a994e$require$stderrColor.level : 0
-}); // eslint-disable-line new-cap
-$461faecb049a994e$var$chalk.stderr.supportsColor = $461faecb049a994e$require$stderrColor;
-module.exports = $461faecb049a994e$var$chalk;
-
-});
-parcelRequire.register("fn8sB", function(module, exports) {
+parcelRequire.register("3aJ9y", function(module, exports) {
 'use strict';
 const wrapAnsi16 = (fn, offset)=>(...args)=>{
         const code = fn(...args);
@@ -991,7 +85,7 @@ const setLazyProperty = (object, property, get)=>{
 /** @type {typeof import('color-convert')} */ let colorConvert;
 
 const makeDynamicStyles = (wrap, targetSpace, identity, isBackground)=>{
-    if (colorConvert === undefined) colorConvert = (parcelRequire("iYhee"));
+    if (colorConvert === undefined) colorConvert = (parcelRequire("a4Dft"));
     const offset = isBackground ? 10 : 0;
     const styles = {
     };
@@ -1221,15 +315,15 @@ Object.defineProperty(module, 'exports', {
 });
 
 });
-parcelRequire.register("iYhee", function(module, exports) {
+parcelRequire.register("a4Dft", function(module, exports) {
 
-var $1oJ3O = parcelRequire("1oJ3O");
+var $8jPr5 = parcelRequire("8jPr5");
 
-var $6eX8l = parcelRequire("6eX8l");
-const $dcfb31d17018a3cf$var$convert = {
+var $jc8qk = parcelRequire("jc8qk");
+const $7558b90be48e241e$var$convert = {
 };
-const $dcfb31d17018a3cf$var$models = Object.keys($1oJ3O);
-function $dcfb31d17018a3cf$var$wrapRaw(fn) {
+const $7558b90be48e241e$var$models = Object.keys($8jPr5);
+function $7558b90be48e241e$var$wrapRaw(fn) {
     const wrappedFn = function(...args) {
         const arg0 = args[0];
         if (arg0 === undefined || arg0 === null) return arg0;
@@ -1240,7 +334,7 @@ function $dcfb31d17018a3cf$var$wrapRaw(fn) {
     if ('conversion' in fn) wrappedFn.conversion = fn.conversion;
     return wrappedFn;
 }
-function $dcfb31d17018a3cf$var$wrapRounded(fn) {
+function $7558b90be48e241e$var$wrapRounded(fn) {
     const wrappedFn = function(...args) {
         const arg0 = args[0];
         if (arg0 === undefined || arg0 === null) return arg0;
@@ -1256,36 +350,36 @@ function $dcfb31d17018a3cf$var$wrapRounded(fn) {
     if ('conversion' in fn) wrappedFn.conversion = fn.conversion;
     return wrappedFn;
 }
-$dcfb31d17018a3cf$var$models.forEach((fromModel)=>{
-    $dcfb31d17018a3cf$var$convert[fromModel] = {
+$7558b90be48e241e$var$models.forEach((fromModel)=>{
+    $7558b90be48e241e$var$convert[fromModel] = {
     };
-    Object.defineProperty($dcfb31d17018a3cf$var$convert[fromModel], 'channels', {
-        value: $1oJ3O[fromModel].channels
+    Object.defineProperty($7558b90be48e241e$var$convert[fromModel], 'channels', {
+        value: $8jPr5[fromModel].channels
     });
-    Object.defineProperty($dcfb31d17018a3cf$var$convert[fromModel], 'labels', {
-        value: $1oJ3O[fromModel].labels
+    Object.defineProperty($7558b90be48e241e$var$convert[fromModel], 'labels', {
+        value: $8jPr5[fromModel].labels
     });
-    const routes = $6eX8l(fromModel);
+    const routes = $jc8qk(fromModel);
     const routeModels = Object.keys(routes);
     routeModels.forEach((toModel)=>{
         const fn = routes[toModel];
-        $dcfb31d17018a3cf$var$convert[fromModel][toModel] = $dcfb31d17018a3cf$var$wrapRounded(fn);
-        $dcfb31d17018a3cf$var$convert[fromModel][toModel].raw = $dcfb31d17018a3cf$var$wrapRaw(fn);
+        $7558b90be48e241e$var$convert[fromModel][toModel] = $7558b90be48e241e$var$wrapRounded(fn);
+        $7558b90be48e241e$var$convert[fromModel][toModel].raw = $7558b90be48e241e$var$wrapRaw(fn);
     });
 });
-module.exports = $dcfb31d17018a3cf$var$convert;
+module.exports = $7558b90be48e241e$var$convert;
 
 });
-parcelRequire.register("1oJ3O", function(module, exports) {
+parcelRequire.register("8jPr5", function(module, exports) {
 
-var $22hX9 = parcelRequire("22hX9");
+var $eHZVp = parcelRequire("eHZVp");
 // NOTE: conversions should only return primitive values (i.e. arrays, or
 //       values that give correct `typeof` results).
 //       do not use box values types (i.e. Number(), String(), etc.)
-const $104afc683b5c343c$var$reverseKeywords = {
+const $60e7ff2708bfaf42$var$reverseKeywords = {
 };
-for (const key of Object.keys($22hX9))$104afc683b5c343c$var$reverseKeywords[$22hX9[key]] = key;
-const $104afc683b5c343c$var$convert = {
+for (const key of Object.keys($eHZVp))$60e7ff2708bfaf42$var$reverseKeywords[$eHZVp[key]] = key;
+const $60e7ff2708bfaf42$var$convert = {
     rgb: {
         channels: 3,
         labels: 'rgb'
@@ -1365,23 +459,23 @@ const $104afc683b5c343c$var$convert = {
         ]
     }
 };
-module.exports = $104afc683b5c343c$var$convert;
+module.exports = $60e7ff2708bfaf42$var$convert;
 // Hide .channels and .labels properties
-for (const model of Object.keys($104afc683b5c343c$var$convert)){
-    if (!('channels' in $104afc683b5c343c$var$convert[model])) throw new Error('missing channels property: ' + model);
-    if (!('labels' in $104afc683b5c343c$var$convert[model])) throw new Error('missing channel labels property: ' + model);
-    if ($104afc683b5c343c$var$convert[model].labels.length !== $104afc683b5c343c$var$convert[model].channels) throw new Error('channel and label counts mismatch: ' + model);
-    const { channels: channels , labels: labels  } = $104afc683b5c343c$var$convert[model];
-    delete $104afc683b5c343c$var$convert[model].channels;
-    delete $104afc683b5c343c$var$convert[model].labels;
-    Object.defineProperty($104afc683b5c343c$var$convert[model], 'channels', {
+for (const model of Object.keys($60e7ff2708bfaf42$var$convert)){
+    if (!('channels' in $60e7ff2708bfaf42$var$convert[model])) throw new Error('missing channels property: ' + model);
+    if (!('labels' in $60e7ff2708bfaf42$var$convert[model])) throw new Error('missing channel labels property: ' + model);
+    if ($60e7ff2708bfaf42$var$convert[model].labels.length !== $60e7ff2708bfaf42$var$convert[model].channels) throw new Error('channel and label counts mismatch: ' + model);
+    const { channels: channels , labels: labels  } = $60e7ff2708bfaf42$var$convert[model];
+    delete $60e7ff2708bfaf42$var$convert[model].channels;
+    delete $60e7ff2708bfaf42$var$convert[model].labels;
+    Object.defineProperty($60e7ff2708bfaf42$var$convert[model], 'channels', {
         value: channels
     });
-    Object.defineProperty($104afc683b5c343c$var$convert[model], 'labels', {
+    Object.defineProperty($60e7ff2708bfaf42$var$convert[model], 'labels', {
         value: labels
     });
 }
-$104afc683b5c343c$var$convert.rgb.hsl = function(rgb) {
+$60e7ff2708bfaf42$var$convert.rgb.hsl = function(rgb) {
     const r = rgb[0] / 255;
     const g = rgb[1] / 255;
     const b = rgb[2] / 255;
@@ -1406,7 +500,7 @@ $104afc683b5c343c$var$convert.rgb.hsl = function(rgb) {
         l * 100
     ];
 };
-$104afc683b5c343c$var$convert.rgb.hsv = function(rgb) {
+$60e7ff2708bfaf42$var$convert.rgb.hsv = function(rgb) {
     let rdif;
     let gdif;
     let bdif;
@@ -1440,11 +534,11 @@ $104afc683b5c343c$var$convert.rgb.hsv = function(rgb) {
         v * 100
     ];
 };
-$104afc683b5c343c$var$convert.rgb.hwb = function(rgb) {
+$60e7ff2708bfaf42$var$convert.rgb.hwb = function(rgb) {
     const r = rgb[0];
     const g = rgb[1];
     let b = rgb[2];
-    const h = $104afc683b5c343c$var$convert.rgb.hsl(rgb)[0];
+    const h = $60e7ff2708bfaf42$var$convert.rgb.hsl(rgb)[0];
     const w = 1 / 255 * Math.min(r, Math.min(g, b));
     b = 1 - 1 / 255 * Math.max(r, Math.max(g, b));
     return [
@@ -1453,7 +547,7 @@ $104afc683b5c343c$var$convert.rgb.hwb = function(rgb) {
         b * 100
     ];
 };
-$104afc683b5c343c$var$convert.rgb.cmyk = function(rgb) {
+$60e7ff2708bfaf42$var$convert.rgb.cmyk = function(rgb) {
     const r = rgb[0] / 255;
     const g = rgb[1] / 255;
     const b = rgb[2] / 255;
@@ -1468,20 +562,20 @@ $104afc683b5c343c$var$convert.rgb.cmyk = function(rgb) {
         k * 100
     ];
 };
-function $104afc683b5c343c$var$comparativeDistance(x, y) {
+function $60e7ff2708bfaf42$var$comparativeDistance(x, y) {
     /*
 		See https://en.m.wikipedia.org/wiki/Euclidean_distance#Squared_Euclidean_distance
 	*/ return (x[0] - y[0]) ** 2 + (x[1] - y[1]) ** 2 + (x[2] - y[2]) ** 2;
 }
-$104afc683b5c343c$var$convert.rgb.keyword = function(rgb) {
-    const reversed = $104afc683b5c343c$var$reverseKeywords[rgb];
+$60e7ff2708bfaf42$var$convert.rgb.keyword = function(rgb) {
+    const reversed = $60e7ff2708bfaf42$var$reverseKeywords[rgb];
     if (reversed) return reversed;
     let currentClosestDistance = Infinity;
     let currentClosestKeyword;
-    for (const keyword of Object.keys($22hX9)){
-        const value = $22hX9[keyword];
+    for (const keyword of Object.keys($eHZVp)){
+        const value = $eHZVp[keyword];
         // Compute comparative distance
-        const distance = $104afc683b5c343c$var$comparativeDistance(rgb, value);
+        const distance = $60e7ff2708bfaf42$var$comparativeDistance(rgb, value);
         // Check if its less, if so set as closest
         if (distance < currentClosestDistance) {
             currentClosestDistance = distance;
@@ -1490,10 +584,10 @@ $104afc683b5c343c$var$convert.rgb.keyword = function(rgb) {
     }
     return currentClosestKeyword;
 };
-$104afc683b5c343c$var$convert.keyword.rgb = function(keyword) {
-    return $22hX9[keyword];
+$60e7ff2708bfaf42$var$convert.keyword.rgb = function(keyword) {
+    return $eHZVp[keyword];
 };
-$104afc683b5c343c$var$convert.rgb.xyz = function(rgb) {
+$60e7ff2708bfaf42$var$convert.rgb.xyz = function(rgb) {
     let r = rgb[0] / 255;
     let g = rgb[1] / 255;
     let b = rgb[2] / 255;
@@ -1510,8 +604,8 @@ $104afc683b5c343c$var$convert.rgb.xyz = function(rgb) {
         z * 100
     ];
 };
-$104afc683b5c343c$var$convert.rgb.lab = function(rgb) {
-    const xyz = $104afc683b5c343c$var$convert.rgb.xyz(rgb);
+$60e7ff2708bfaf42$var$convert.rgb.lab = function(rgb) {
+    const xyz = $60e7ff2708bfaf42$var$convert.rgb.xyz(rgb);
     let x = xyz[0];
     let y = xyz[1];
     let z = xyz[2];
@@ -1530,7 +624,7 @@ $104afc683b5c343c$var$convert.rgb.lab = function(rgb) {
         b
     ];
 };
-$104afc683b5c343c$var$convert.hsl.rgb = function(hsl) {
+$60e7ff2708bfaf42$var$convert.hsl.rgb = function(hsl) {
     const h = hsl[0] / 360;
     const s = hsl[1] / 100;
     const l = hsl[2] / 100;
@@ -1565,7 +659,7 @@ $104afc683b5c343c$var$convert.hsl.rgb = function(hsl) {
     }
     return rgb;
 };
-$104afc683b5c343c$var$convert.hsl.hsv = function(hsl) {
+$60e7ff2708bfaf42$var$convert.hsl.hsv = function(hsl) {
     const h = hsl[0];
     let s = hsl[1] / 100;
     let l = hsl[2] / 100;
@@ -1582,7 +676,7 @@ $104afc683b5c343c$var$convert.hsl.hsv = function(hsl) {
         v * 100
     ];
 };
-$104afc683b5c343c$var$convert.hsv.rgb = function(hsv) {
+$60e7ff2708bfaf42$var$convert.hsv.rgb = function(hsv) {
     const h = hsv[0] / 60;
     const s = hsv[1] / 100;
     let v = hsv[2] / 100;
@@ -1631,7 +725,7 @@ $104afc683b5c343c$var$convert.hsv.rgb = function(hsv) {
             ];
     }
 };
-$104afc683b5c343c$var$convert.hsv.hsl = function(hsv) {
+$60e7ff2708bfaf42$var$convert.hsv.hsl = function(hsv) {
     const h = hsv[0];
     const s = hsv[1] / 100;
     const v = hsv[2] / 100;
@@ -1651,7 +745,7 @@ $104afc683b5c343c$var$convert.hsv.hsl = function(hsv) {
     ];
 };
 // http://dev.w3.org/csswg/css-color/#hwb-to-rgb
-$104afc683b5c343c$var$convert.hwb.rgb = function(hwb) {
+$60e7ff2708bfaf42$var$convert.hwb.rgb = function(hwb) {
     const h = hwb[0] / 360;
     let wh = hwb[1] / 100;
     let bl = hwb[2] / 100;
@@ -1710,7 +804,7 @@ $104afc683b5c343c$var$convert.hwb.rgb = function(hwb) {
         b * 255
     ];
 };
-$104afc683b5c343c$var$convert.cmyk.rgb = function(cmyk) {
+$60e7ff2708bfaf42$var$convert.cmyk.rgb = function(cmyk) {
     const c = cmyk[0] / 100;
     const m = cmyk[1] / 100;
     const y = cmyk[2] / 100;
@@ -1724,7 +818,7 @@ $104afc683b5c343c$var$convert.cmyk.rgb = function(cmyk) {
         b * 255
     ];
 };
-$104afc683b5c343c$var$convert.xyz.rgb = function(xyz) {
+$60e7ff2708bfaf42$var$convert.xyz.rgb = function(xyz) {
     const x = xyz[0] / 100;
     const y = xyz[1] / 100;
     const z = xyz[2] / 100;
@@ -1747,7 +841,7 @@ $104afc683b5c343c$var$convert.xyz.rgb = function(xyz) {
         b * 255
     ];
 };
-$104afc683b5c343c$var$convert.xyz.lab = function(xyz) {
+$60e7ff2708bfaf42$var$convert.xyz.lab = function(xyz) {
     let x = xyz[0];
     let y = xyz[1];
     let z = xyz[2];
@@ -1766,7 +860,7 @@ $104afc683b5c343c$var$convert.xyz.lab = function(xyz) {
         b
     ];
 };
-$104afc683b5c343c$var$convert.lab.xyz = function(lab) {
+$60e7ff2708bfaf42$var$convert.lab.xyz = function(lab) {
     const l = lab[0];
     const a = lab[1];
     const b = lab[2];
@@ -1791,7 +885,7 @@ $104afc683b5c343c$var$convert.lab.xyz = function(lab) {
         z
     ];
 };
-$104afc683b5c343c$var$convert.lab.lch = function(lab) {
+$60e7ff2708bfaf42$var$convert.lab.lch = function(lab) {
     const l = lab[0];
     const a = lab[1];
     const b = lab[2];
@@ -1806,7 +900,7 @@ $104afc683b5c343c$var$convert.lab.lch = function(lab) {
         h
     ];
 };
-$104afc683b5c343c$var$convert.lch.lab = function(lch) {
+$60e7ff2708bfaf42$var$convert.lch.lab = function(lch) {
     const l = lch[0];
     const c = lch[1];
     const h = lch[2];
@@ -1819,21 +913,21 @@ $104afc683b5c343c$var$convert.lch.lab = function(lch) {
         b
     ];
 };
-$104afc683b5c343c$var$convert.rgb.ansi16 = function(args, saturation = null) {
+$60e7ff2708bfaf42$var$convert.rgb.ansi16 = function(args, saturation = null) {
     const [r, g, b] = args;
-    let value = saturation === null ? $104afc683b5c343c$var$convert.rgb.hsv(args)[2] : saturation; // Hsv -> ansi16 optimization
+    let value = saturation === null ? $60e7ff2708bfaf42$var$convert.rgb.hsv(args)[2] : saturation; // Hsv -> ansi16 optimization
     value = Math.round(value / 50);
     if (value === 0) return 30;
     let ansi = 30 + (Math.round(b / 255) << 2 | Math.round(g / 255) << 1 | Math.round(r / 255));
     if (value === 2) ansi += 60;
     return ansi;
 };
-$104afc683b5c343c$var$convert.hsv.ansi16 = function(args) {
+$60e7ff2708bfaf42$var$convert.hsv.ansi16 = function(args) {
     // Optimization here; we already know the value and don't need to get
     // it converted for us.
-    return $104afc683b5c343c$var$convert.rgb.ansi16($104afc683b5c343c$var$convert.hsv.rgb(args), args[2]);
+    return $60e7ff2708bfaf42$var$convert.rgb.ansi16($60e7ff2708bfaf42$var$convert.hsv.rgb(args), args[2]);
 };
-$104afc683b5c343c$var$convert.rgb.ansi256 = function(args) {
+$60e7ff2708bfaf42$var$convert.rgb.ansi256 = function(args) {
     const r = args[0];
     const g = args[1];
     const b = args[2];
@@ -1847,7 +941,7 @@ $104afc683b5c343c$var$convert.rgb.ansi256 = function(args) {
     const ansi = 16 + 36 * Math.round(r / 255 * 5) + 6 * Math.round(g / 255 * 5) + Math.round(b / 255 * 5);
     return ansi;
 };
-$104afc683b5c343c$var$convert.ansi16.rgb = function(args) {
+$60e7ff2708bfaf42$var$convert.ansi16.rgb = function(args) {
     let color = args % 10;
     // Handle greyscale
     if (color === 0 || color === 7) {
@@ -1869,7 +963,7 @@ $104afc683b5c343c$var$convert.ansi16.rgb = function(args) {
         b
     ];
 };
-$104afc683b5c343c$var$convert.ansi256.rgb = function(args) {
+$60e7ff2708bfaf42$var$convert.ansi256.rgb = function(args) {
     // Handle greyscale
     if (args >= 232) {
         const c = (args - 232) * 10 + 8;
@@ -1890,12 +984,12 @@ $104afc683b5c343c$var$convert.ansi256.rgb = function(args) {
         b
     ];
 };
-$104afc683b5c343c$var$convert.rgb.hex = function(args) {
+$60e7ff2708bfaf42$var$convert.rgb.hex = function(args) {
     const integer = ((Math.round(args[0]) & 255) << 16) + ((Math.round(args[1]) & 255) << 8) + (Math.round(args[2]) & 255);
     const string = integer.toString(16).toUpperCase();
     return '000000'.substring(string.length) + string;
 };
-$104afc683b5c343c$var$convert.hex.rgb = function(args) {
+$60e7ff2708bfaf42$var$convert.hex.rgb = function(args) {
     const match = args.toString(16).match(/[a-f0-9]{6}|[a-f0-9]{3}/i);
     if (!match) return [
         0,
@@ -1916,7 +1010,7 @@ $104afc683b5c343c$var$convert.hex.rgb = function(args) {
         b
     ];
 };
-$104afc683b5c343c$var$convert.rgb.hcg = function(rgb) {
+$60e7ff2708bfaf42$var$convert.rgb.hcg = function(rgb) {
     const r = rgb[0] / 255;
     const g = rgb[1] / 255;
     const b = rgb[2] / 255;
@@ -1939,7 +1033,7 @@ $104afc683b5c343c$var$convert.rgb.hcg = function(rgb) {
         grayscale * 100
     ];
 };
-$104afc683b5c343c$var$convert.hsl.hcg = function(hsl) {
+$60e7ff2708bfaf42$var$convert.hsl.hcg = function(hsl) {
     const s = hsl[1] / 100;
     const l = hsl[2] / 100;
     const c = l < 0.5 ? 2 * s * l : 2 * s * (1 - l);
@@ -1951,7 +1045,7 @@ $104afc683b5c343c$var$convert.hsl.hcg = function(hsl) {
         f * 100
     ];
 };
-$104afc683b5c343c$var$convert.hsv.hcg = function(hsv) {
+$60e7ff2708bfaf42$var$convert.hsv.hcg = function(hsv) {
     const s = hsv[1] / 100;
     const v = hsv[2] / 100;
     const c = s * v;
@@ -1963,7 +1057,7 @@ $104afc683b5c343c$var$convert.hsv.hcg = function(hsv) {
         f * 100
     ];
 };
-$104afc683b5c343c$var$convert.hcg.rgb = function(hcg) {
+$60e7ff2708bfaf42$var$convert.hcg.rgb = function(hcg) {
     const h = hcg[0] / 360;
     const c = hcg[1] / 100;
     const g = hcg[2] / 100;
@@ -2019,7 +1113,7 @@ $104afc683b5c343c$var$convert.hcg.rgb = function(hcg) {
         (c * pure[2] + mg) * 255
     ];
 };
-$104afc683b5c343c$var$convert.hcg.hsv = function(hcg) {
+$60e7ff2708bfaf42$var$convert.hcg.hsv = function(hcg) {
     const c = hcg[1] / 100;
     const g = hcg[2] / 100;
     const v = c + g * (1 - c);
@@ -2031,7 +1125,7 @@ $104afc683b5c343c$var$convert.hcg.hsv = function(hcg) {
         v * 100
     ];
 };
-$104afc683b5c343c$var$convert.hcg.hsl = function(hcg) {
+$60e7ff2708bfaf42$var$convert.hcg.hsl = function(hcg) {
     const c = hcg[1] / 100;
     const g = hcg[2] / 100;
     const l = g * (1 - c) + 0.5 * c;
@@ -2044,7 +1138,7 @@ $104afc683b5c343c$var$convert.hcg.hsl = function(hcg) {
         l * 100
     ];
 };
-$104afc683b5c343c$var$convert.hcg.hwb = function(hcg) {
+$60e7ff2708bfaf42$var$convert.hcg.hwb = function(hcg) {
     const c = hcg[1] / 100;
     const g = hcg[2] / 100;
     const v = c + g * (1 - c);
@@ -2054,7 +1148,7 @@ $104afc683b5c343c$var$convert.hcg.hwb = function(hcg) {
         (1 - v) * 100
     ];
 };
-$104afc683b5c343c$var$convert.hwb.hcg = function(hwb) {
+$60e7ff2708bfaf42$var$convert.hwb.hcg = function(hwb) {
     const w = hwb[1] / 100;
     const b = hwb[2] / 100;
     const v = 1 - b;
@@ -2067,43 +1161,43 @@ $104afc683b5c343c$var$convert.hwb.hcg = function(hwb) {
         g * 100
     ];
 };
-$104afc683b5c343c$var$convert.apple.rgb = function(apple) {
+$60e7ff2708bfaf42$var$convert.apple.rgb = function(apple) {
     return [
         apple[0] / 65535 * 255,
         apple[1] / 65535 * 255,
         apple[2] / 65535 * 255
     ];
 };
-$104afc683b5c343c$var$convert.rgb.apple = function(rgb) {
+$60e7ff2708bfaf42$var$convert.rgb.apple = function(rgb) {
     return [
         rgb[0] / 255 * 65535,
         rgb[1] / 255 * 65535,
         rgb[2] / 255 * 65535
     ];
 };
-$104afc683b5c343c$var$convert.gray.rgb = function(args) {
+$60e7ff2708bfaf42$var$convert.gray.rgb = function(args) {
     return [
         args[0] / 100 * 255,
         args[0] / 100 * 255,
         args[0] / 100 * 255
     ];
 };
-$104afc683b5c343c$var$convert.gray.hsl = function(args) {
+$60e7ff2708bfaf42$var$convert.gray.hsl = function(args) {
     return [
         0,
         0,
         args[0]
     ];
 };
-$104afc683b5c343c$var$convert.gray.hsv = $104afc683b5c343c$var$convert.gray.hsl;
-$104afc683b5c343c$var$convert.gray.hwb = function(gray) {
+$60e7ff2708bfaf42$var$convert.gray.hsv = $60e7ff2708bfaf42$var$convert.gray.hsl;
+$60e7ff2708bfaf42$var$convert.gray.hwb = function(gray) {
     return [
         0,
         100,
         gray[0]
     ];
 };
-$104afc683b5c343c$var$convert.gray.cmyk = function(gray) {
+$60e7ff2708bfaf42$var$convert.gray.cmyk = function(gray) {
     return [
         0,
         0,
@@ -2111,20 +1205,20 @@ $104afc683b5c343c$var$convert.gray.cmyk = function(gray) {
         gray[0]
     ];
 };
-$104afc683b5c343c$var$convert.gray.lab = function(gray) {
+$60e7ff2708bfaf42$var$convert.gray.lab = function(gray) {
     return [
         gray[0],
         0,
         0
     ];
 };
-$104afc683b5c343c$var$convert.gray.hex = function(gray) {
+$60e7ff2708bfaf42$var$convert.gray.hex = function(gray) {
     const val = Math.round(gray[0] / 100 * 255) & 255;
     const integer = (val << 16) + (val << 8) + val;
     const string = integer.toString(16).toUpperCase();
     return '000000'.substring(string.length) + string;
 };
-$104afc683b5c343c$var$convert.rgb.gray = function(rgb) {
+$60e7ff2708bfaf42$var$convert.rgb.gray = function(rgb) {
     const val = (rgb[0] + rgb[1] + rgb[2]) / 3;
     return [
         val / 255 * 100
@@ -2132,7 +1226,7 @@ $104afc683b5c343c$var$convert.rgb.gray = function(rgb) {
 };
 
 });
-parcelRequire.register("22hX9", function(module, exports) {
+parcelRequire.register("eHZVp", function(module, exports) {
 'use strict';
 module.exports = {
     "aliceblue": [
@@ -2880,9 +1974,9 @@ module.exports = {
 });
 
 
-parcelRequire.register("6eX8l", function(module, exports) {
+parcelRequire.register("jc8qk", function(module, exports) {
 
-var $1oJ3O = parcelRequire("1oJ3O");
+var $8jPr5 = parcelRequire("8jPr5");
 /*
 	This function routes a model to all other models.
 
@@ -2892,11 +1986,11 @@ var $1oJ3O = parcelRequire("1oJ3O");
 	color models (inclusive).
 
 	conversions that are not possible simply are not included.
-*/ function $48b1eb937aea34a8$var$buildGraph() {
+*/ function $df95ac10e327bde8$var$buildGraph() {
     const graph = {
     };
     // https://jsperf.com/object-keys-vs-for-in-with-closure/3
-    const models = Object.keys($1oJ3O);
+    const models = Object.keys($8jPr5);
     for(let len = models.length, i = 0; i < len; i++)graph[models[i]] = {
         // http://jsperf.com/1-vs-infinity
         // micro-opt, but this is simple.
@@ -2906,15 +2000,15 @@ var $1oJ3O = parcelRequire("1oJ3O");
     return graph;
 }
 // https://en.wikipedia.org/wiki/Breadth-first_search
-function $48b1eb937aea34a8$var$deriveBFS(fromModel) {
-    const graph = $48b1eb937aea34a8$var$buildGraph();
+function $df95ac10e327bde8$var$deriveBFS(fromModel) {
+    const graph = $df95ac10e327bde8$var$buildGraph();
     const queue = [
         fromModel
     ]; // Unshift -> queue -> pop
     graph[fromModel].distance = 0;
     while(queue.length){
         const current = queue.pop();
-        const adjacents = Object.keys($1oJ3O[current]);
+        const adjacents = Object.keys($8jPr5[current]);
         for(let len = adjacents.length, i = 0; i < len; i++){
             const adjacent = adjacents[i];
             const node = graph[adjacent];
@@ -2927,28 +2021,28 @@ function $48b1eb937aea34a8$var$deriveBFS(fromModel) {
     }
     return graph;
 }
-function $48b1eb937aea34a8$var$link(from, to) {
+function $df95ac10e327bde8$var$link(from, to) {
     return function(args) {
         return to(from(args));
     };
 }
-function $48b1eb937aea34a8$var$wrapConversion(toModel, graph) {
+function $df95ac10e327bde8$var$wrapConversion(toModel, graph) {
     const path = [
         graph[toModel].parent,
         toModel
     ];
-    let fn = $1oJ3O[graph[toModel].parent][toModel];
+    let fn = $8jPr5[graph[toModel].parent][toModel];
     let cur = graph[toModel].parent;
     while(graph[cur].parent){
         path.unshift(graph[cur].parent);
-        fn = $48b1eb937aea34a8$var$link($1oJ3O[graph[cur].parent][cur], fn);
+        fn = $df95ac10e327bde8$var$link($8jPr5[graph[cur].parent][cur], fn);
         cur = graph[cur].parent;
     }
     fn.conversion = path;
     return fn;
 }
 module.exports = function(fromModel) {
-    const graph = $48b1eb937aea34a8$var$deriveBFS(fromModel);
+    const graph = $df95ac10e327bde8$var$deriveBFS(fromModel);
     const conversion = {
     };
     const models = Object.keys(graph);
@@ -2956,7 +2050,7 @@ module.exports = function(fromModel) {
         const toModel = models[i];
         const node = graph[toModel];
         if (node.parent === null) continue;
-        conversion[toModel] = $48b1eb937aea34a8$var$wrapConversion(toModel, graph);
+        conversion[toModel] = $df95ac10e327bde8$var$wrapConversion(toModel, graph);
     }
     return conversion;
 };
@@ -2965,18 +2059,21 @@ module.exports = function(fromModel) {
 
 
 
-parcelRequire.register("9rxdn", function(module, exports) {
+
+var $3aJ9y = parcelRequire("3aJ9y");
+var $7414f335407bcd98$exports = {};
 'use strict';
-module.exports = {
+$7414f335407bcd98$exports = {
     stdout: false,
     stderr: false
 };
 
-});
 
-parcelRequire.register("29S4V", function(module, exports) {
+var $7e7a99ef2255b980$require$stdoutColor = $7414f335407bcd98$exports.stdout;
+var $7e7a99ef2255b980$require$stderrColor = $7414f335407bcd98$exports.stderr;
+var $7092a0255343b526$exports = {};
 'use strict';
-const $19265ee14ab201e4$var$stringReplaceAll = (string, substring, replacer)=>{
+const $7092a0255343b526$var$stringReplaceAll = (string, substring, replacer)=>{
     let index = string.indexOf(substring);
     if (index === -1) return string;
     const substringLength = substring.length;
@@ -2990,7 +2087,7 @@ const $19265ee14ab201e4$var$stringReplaceAll = (string, substring, replacer)=>{
     returnValue += string.substr(endIndex);
     return returnValue;
 };
-const $19265ee14ab201e4$var$stringEncaseCRLFWithFirstIndex = (string, prefix, postfix, index)=>{
+const $7092a0255343b526$var$stringEncaseCRLFWithFirstIndex = (string, prefix, postfix, index)=>{
     let endIndex = 0;
     let returnValue = '';
     do {
@@ -3002,20 +2099,176 @@ const $19265ee14ab201e4$var$stringEncaseCRLFWithFirstIndex = (string, prefix, po
     returnValue += string.substr(endIndex);
     return returnValue;
 };
-module.exports = {
-    stringReplaceAll: $19265ee14ab201e4$var$stringReplaceAll,
-    stringEncaseCRLFWithFirstIndex: $19265ee14ab201e4$var$stringEncaseCRLFWithFirstIndex
+$7092a0255343b526$exports = {
+    stringReplaceAll: $7092a0255343b526$var$stringReplaceAll,
+    stringEncaseCRLFWithFirstIndex: $7092a0255343b526$var$stringEncaseCRLFWithFirstIndex
 };
 
-});
 
-parcelRequire.register("jUci8", function(module, exports) {
+var $7e7a99ef2255b980$require$stringReplaceAll = $7092a0255343b526$exports.stringReplaceAll;
+var $7e7a99ef2255b980$require$stringEncaseCRLFWithFirstIndex = $7092a0255343b526$exports.stringEncaseCRLFWithFirstIndex;
+const { isArray: $7e7a99ef2255b980$var$isArray  } = Array;
+// `supportsColor.level` → `ansiStyles.color[name]` mapping
+const $7e7a99ef2255b980$var$levelMapping = [
+    'ansi',
+    'ansi',
+    'ansi256',
+    'ansi16m'
+];
+const $7e7a99ef2255b980$var$styles = Object.create(null);
+const $7e7a99ef2255b980$var$applyOptions = (object, options = {
+})=>{
+    if (options.level && !(Number.isInteger(options.level) && options.level >= 0 && options.level <= 3)) throw new Error('The `level` option should be an integer from 0 to 3');
+    // Detect level if not set manually
+    const colorLevel = $7e7a99ef2255b980$require$stdoutColor ? $7e7a99ef2255b980$require$stdoutColor.level : 0;
+    object.level = options.level === undefined ? colorLevel : options.level;
+};
+class $7e7a99ef2255b980$var$ChalkClass {
+    constructor(options1){
+        // eslint-disable-next-line no-constructor-return
+        return $7e7a99ef2255b980$var$chalkFactory(options1);
+    }
+}
+const $7e7a99ef2255b980$var$chalkFactory = (options)=>{
+    const chalk = {
+    };
+    $7e7a99ef2255b980$var$applyOptions(chalk, options);
+    chalk.template = (...arguments_)=>$7e7a99ef2255b980$var$chalkTag(chalk.template, ...arguments_)
+    ;
+    Object.setPrototypeOf(chalk, $7e7a99ef2255b980$var$Chalk.prototype);
+    Object.setPrototypeOf(chalk.template, chalk);
+    chalk.template.constructor = ()=>{
+        throw new Error('`chalk.constructor()` is deprecated. Use `new chalk.Instance()` instead.');
+    };
+    chalk.template.Instance = $7e7a99ef2255b980$var$ChalkClass;
+    return chalk.template;
+};
+function $7e7a99ef2255b980$var$Chalk(options) {
+    return $7e7a99ef2255b980$var$chalkFactory(options);
+}
+for (const [styleName, style] of Object.entries($3aJ9y))$7e7a99ef2255b980$var$styles[styleName] = {
+    get () {
+        const builder = $7e7a99ef2255b980$var$createBuilder(this, $7e7a99ef2255b980$var$createStyler(style.open, style.close, this._styler), this._isEmpty);
+        Object.defineProperty(this, styleName, {
+            value: builder
+        });
+        return builder;
+    }
+};
+$7e7a99ef2255b980$var$styles.visible = {
+    get () {
+        const builder = $7e7a99ef2255b980$var$createBuilder(this, this._styler, true);
+        Object.defineProperty(this, 'visible', {
+            value: builder
+        });
+        return builder;
+    }
+};
+const $7e7a99ef2255b980$var$usedModels = [
+    'rgb',
+    'hex',
+    'keyword',
+    'hsl',
+    'hsv',
+    'hwb',
+    'ansi',
+    'ansi256'
+];
+for (const model of $7e7a99ef2255b980$var$usedModels)$7e7a99ef2255b980$var$styles[model] = {
+    get () {
+        const { level: level  } = this;
+        return function(...arguments_) {
+            const styler = $7e7a99ef2255b980$var$createStyler($3aJ9y.color[$7e7a99ef2255b980$var$levelMapping[level]][model](...arguments_), $3aJ9y.color.close, this._styler);
+            return $7e7a99ef2255b980$var$createBuilder(this, styler, this._isEmpty);
+        };
+    }
+};
+for (const model1 of $7e7a99ef2255b980$var$usedModels){
+    const bgModel = 'bg' + model1[0].toUpperCase() + model1.slice(1);
+    $7e7a99ef2255b980$var$styles[bgModel] = {
+        get () {
+            const { level: level  } = this;
+            return function(...arguments_) {
+                const styler = $7e7a99ef2255b980$var$createStyler($3aJ9y.bgColor[$7e7a99ef2255b980$var$levelMapping[level]][model1](...arguments_), $3aJ9y.bgColor.close, this._styler);
+                return $7e7a99ef2255b980$var$createBuilder(this, styler, this._isEmpty);
+            };
+        }
+    };
+}
+const $7e7a99ef2255b980$var$proto = Object.defineProperties(()=>{
+}, {
+    ...$7e7a99ef2255b980$var$styles,
+    level: {
+        enumerable: true,
+        get () {
+            return this._generator.level;
+        },
+        set (level) {
+            this._generator.level = level;
+        }
+    }
+});
+const $7e7a99ef2255b980$var$createStyler = (open, close, parent)=>{
+    let openAll;
+    let closeAll;
+    if (parent === undefined) {
+        openAll = open;
+        closeAll = close;
+    } else {
+        openAll = parent.openAll + open;
+        closeAll = close + parent.closeAll;
+    }
+    return {
+        open: open,
+        close: close,
+        openAll: openAll,
+        closeAll: closeAll,
+        parent: parent
+    };
+};
+const $7e7a99ef2255b980$var$createBuilder = (self, _styler, _isEmpty)=>{
+    const builder = (...arguments_)=>{
+        if ($7e7a99ef2255b980$var$isArray(arguments_[0]) && $7e7a99ef2255b980$var$isArray(arguments_[0].raw)) // Called as a template literal, for example: chalk.red`2 + 3 = {bold ${2+3}}`
+        return $7e7a99ef2255b980$var$applyStyle(builder, $7e7a99ef2255b980$var$chalkTag(builder, ...arguments_));
+        // Single argument is hot path, implicit coercion is faster than anything
+        // eslint-disable-next-line no-implicit-coercion
+        return $7e7a99ef2255b980$var$applyStyle(builder, arguments_.length === 1 ? '' + arguments_[0] : arguments_.join(' '));
+    };
+    // We alter the prototype because we must return a function, but there is
+    // no way to create a function with a different prototype
+    Object.setPrototypeOf(builder, $7e7a99ef2255b980$var$proto);
+    builder._generator = self;
+    builder._styler = _styler;
+    builder._isEmpty = _isEmpty;
+    return builder;
+};
+const $7e7a99ef2255b980$var$applyStyle = (self, string)=>{
+    if (self.level <= 0 || !string) return self._isEmpty ? '' : string;
+    let styler = self._styler;
+    if (styler === undefined) return string;
+    const { openAll: openAll , closeAll: closeAll  } = styler;
+    if (string.indexOf('\u001B') !== -1) while(styler !== undefined){
+        // Replace any instances already present with a re-opening code
+        // otherwise only the part of the string until said closing code
+        // will be colored, and the rest will simply be 'plain'.
+        string = $7e7a99ef2255b980$require$stringReplaceAll(string, styler.close, styler.open);
+        styler = styler.parent;
+    }
+    // We can move both next actions out of loop, because remaining actions in loop won't have
+    // any/visible effect on parts we add here. Close the styling before a linebreak and reopen
+    // after next line to fix a bleed issue on macOS: https://github.com/chalk/chalk/pull/92
+    const lfIndex = string.indexOf('\n');
+    if (lfIndex !== -1) string = $7e7a99ef2255b980$require$stringEncaseCRLFWithFirstIndex(string, closeAll, openAll, lfIndex);
+    return openAll + string + closeAll;
+};
+let $7e7a99ef2255b980$var$template;
+parcelRequire.register("6Fg3G", function(module, exports) {
 'use strict';
-const $e7dcc81bfad2befb$var$TEMPLATE_REGEX = /(?:\\(u(?:[a-f\d]{4}|\{[a-f\d]{1,6}\})|x[a-f\d]{2}|.))|(?:\{(~)?(\w+(?:\([^)]*\))?(?:\.\w+(?:\([^)]*\))?)*)(?:[ \t]|(?=\r?\n)))|(\})|((?:.|[\r\n\f])+?)/gi;
-const $e7dcc81bfad2befb$var$STYLE_REGEX = /(?:^|\.)(\w+)(?:\(([^)]*)\))?/g;
-const $e7dcc81bfad2befb$var$STRING_REGEX = /^(['"])((?:\\.|(?!\1)[^\\])*)\1$/;
-const $e7dcc81bfad2befb$var$ESCAPE_REGEX = /\\(u(?:[a-f\d]{4}|{[a-f\d]{1,6}})|x[a-f\d]{2}|.)|([^\\])/gi;
-const $e7dcc81bfad2befb$var$ESCAPES = new Map([
+const $4da3074cf060f090$var$TEMPLATE_REGEX = /(?:\\(u(?:[a-f\d]{4}|\{[a-f\d]{1,6}\})|x[a-f\d]{2}|.))|(?:\{(~)?(\w+(?:\([^)]*\))?(?:\.\w+(?:\([^)]*\))?)*)(?:[ \t]|(?=\r?\n)))|(\})|((?:.|[\r\n\f])+?)/gi;
+const $4da3074cf060f090$var$STYLE_REGEX = /(?:^|\.)(\w+)(?:\(([^)]*)\))?/g;
+const $4da3074cf060f090$var$STRING_REGEX = /^(['"])((?:\\.|(?!\1)[^\\])*)\1$/;
+const $4da3074cf060f090$var$ESCAPE_REGEX = /\\(u(?:[a-f\d]{4}|{[a-f\d]{1,6}})|x[a-f\d]{2}|.)|([^\\])/gi;
+const $4da3074cf060f090$var$ESCAPES = new Map([
     [
         'n',
         '\n'
@@ -3057,34 +2310,34 @@ const $e7dcc81bfad2befb$var$ESCAPES = new Map([
         '\u0007'
     ]
 ]);
-function $e7dcc81bfad2befb$var$unescape(c) {
+function $4da3074cf060f090$var$unescape(c) {
     const u = c[0] === 'u';
     const bracket = c[1] === '{';
     if (u && !bracket && c.length === 5 || c[0] === 'x' && c.length === 3) return String.fromCharCode(parseInt(c.slice(1), 16));
     if (u && bracket) return String.fromCodePoint(parseInt(c.slice(2, -1), 16));
-    return $e7dcc81bfad2befb$var$ESCAPES.get(c) || c;
+    return $4da3074cf060f090$var$ESCAPES.get(c) || c;
 }
-function $e7dcc81bfad2befb$var$parseArguments(name, arguments_) {
+function $4da3074cf060f090$var$parseArguments(name, arguments_) {
     const results = [];
     const chunks = arguments_.trim().split(/\s*,\s*/g);
     let matches;
     for (const chunk of chunks){
         const number = Number(chunk);
         if (!Number.isNaN(number)) results.push(number);
-        else if (matches = chunk.match($e7dcc81bfad2befb$var$STRING_REGEX)) results.push(matches[2].replace($e7dcc81bfad2befb$var$ESCAPE_REGEX, (m, escape, character)=>escape ? $e7dcc81bfad2befb$var$unescape(escape) : character
+        else if (matches = chunk.match($4da3074cf060f090$var$STRING_REGEX)) results.push(matches[2].replace($4da3074cf060f090$var$ESCAPE_REGEX, (m, escape, character)=>escape ? $4da3074cf060f090$var$unescape(escape) : character
         ));
         else throw new Error(`Invalid Chalk template style argument: ${chunk} (in style '${name}')`);
     }
     return results;
 }
-function $e7dcc81bfad2befb$var$parseStyle(style) {
-    $e7dcc81bfad2befb$var$STYLE_REGEX.lastIndex = 0;
+function $4da3074cf060f090$var$parseStyle(style) {
+    $4da3074cf060f090$var$STYLE_REGEX.lastIndex = 0;
     const results = [];
     let matches;
-    while((matches = $e7dcc81bfad2befb$var$STYLE_REGEX.exec(style)) !== null){
+    while((matches = $4da3074cf060f090$var$STYLE_REGEX.exec(style)) !== null){
         const name = matches[1];
         if (matches[2]) {
-            const args = $e7dcc81bfad2befb$var$parseArguments(name, matches[2]);
+            const args = $4da3074cf060f090$var$parseArguments(name, matches[2]);
             results.push([
                 name
             ].concat(args));
@@ -3094,7 +2347,7 @@ function $e7dcc81bfad2befb$var$parseStyle(style) {
     }
     return results;
 }
-function $e7dcc81bfad2befb$var$buildStyle(chalk, styles) {
+function $4da3074cf060f090$var$buildStyle(chalk, styles) {
     const enabled = {
     };
     for (const layer of styles)for (const style of layer.styles)enabled[style[0]] = layer.inverse ? null : style.slice(1);
@@ -3111,19 +2364,19 @@ module.exports = (chalk, temporary)=>{
     const chunks = [];
     let chunk = [];
     // eslint-disable-next-line max-params
-    temporary.replace($e7dcc81bfad2befb$var$TEMPLATE_REGEX, (m, escapeCharacter, inverse, style, close, character)=>{
-        if (escapeCharacter) chunk.push($e7dcc81bfad2befb$var$unescape(escapeCharacter));
+    temporary.replace($4da3074cf060f090$var$TEMPLATE_REGEX, (m, escapeCharacter, inverse, style, close, character)=>{
+        if (escapeCharacter) chunk.push($4da3074cf060f090$var$unescape(escapeCharacter));
         else if (style) {
             const string = chunk.join('');
             chunk = [];
-            chunks.push(styles.length === 0 ? string : $e7dcc81bfad2befb$var$buildStyle(chalk, styles)(string));
+            chunks.push(styles.length === 0 ? string : $4da3074cf060f090$var$buildStyle(chalk, styles)(string));
             styles.push({
                 inverse: inverse,
-                styles: $e7dcc81bfad2befb$var$parseStyle(style)
+                styles: $4da3074cf060f090$var$parseStyle(style)
             });
         } else if (close) {
             if (styles.length === 0) throw new Error('Found extraneous } in Chalk template literal');
-            chunks.push($e7dcc81bfad2befb$var$buildStyle(chalk, styles)(chunk.join('')));
+            chunks.push($4da3074cf060f090$var$buildStyle(chalk, styles)(chunk.join('')));
             chunk = [];
             styles.pop();
         } else chunk.push(character);
@@ -3139,186 +2392,9 @@ module.exports = (chalk, temporary)=>{
 });
 
 
-parcelRequire.register("lNjAV", function(module, exports) {
-
-$parcel$defineInteropFlag(module.exports);
-
-$parcel$export(module.exports, "Chalk", () => $fddd5fa89d9523a3$export$71e289472ea891bc);
-$parcel$export(module.exports, "supportsColor", () => $fddd5fa89d9523a3$export$14dc0f862cd743cf);
-$parcel$export(module.exports, "chalkStderr", () => $fddd5fa89d9523a3$export$46348ae7515f5916);
-$parcel$export(module.exports, "default", () => $fddd5fa89d9523a3$export$9099ad97b570f7c);
-$parcel$export(module.exports, "supportsColorStderr", () => $fddd5fa89d9523a3$export$e9dd22d6b9c0c455);
-
-var $h527d = parcelRequire("h527d");
-
-var $75teS = parcelRequire("75teS");
-
-var $jVyQD = parcelRequire("jVyQD");
-
-var $7LV6B = parcelRequire("7LV6B");
-const { stdout: $fddd5fa89d9523a3$export$14dc0f862cd743cf , stderr: $fddd5fa89d9523a3$export$e9dd22d6b9c0c455  } = $75teS.default;
-const { isArray: $fddd5fa89d9523a3$var$isArray  } = Array;
-const $fddd5fa89d9523a3$var$GENERATOR = Symbol('GENERATOR');
-const $fddd5fa89d9523a3$var$STYLER = Symbol('STYLER');
-const $fddd5fa89d9523a3$var$IS_EMPTY = Symbol('IS_EMPTY');
-// `supportsColor.level` → `ansiStyles.color[name]` mapping
-const $fddd5fa89d9523a3$var$levelMapping = [
-    'ansi',
-    'ansi',
-    'ansi256',
-    'ansi16m'
-];
-const $fddd5fa89d9523a3$var$styles = Object.create(null);
-const $fddd5fa89d9523a3$var$applyOptions = (object, options = {
-})=>{
-    if (options.level && !(Number.isInteger(options.level) && options.level >= 0 && options.level <= 3)) throw new Error('The `level` option should be an integer from 0 to 3');
-    // Detect level if not set manually
-    const colorLevel = $fddd5fa89d9523a3$export$14dc0f862cd743cf ? $fddd5fa89d9523a3$export$14dc0f862cd743cf.level : 0;
-    object.level = options.level === undefined ? colorLevel : options.level;
-};
-class $fddd5fa89d9523a3$export$71e289472ea891bc {
-    constructor(options){
-        // eslint-disable-next-line no-constructor-return
-        return $fddd5fa89d9523a3$var$chalkFactory(options);
-    }
-}
-const $fddd5fa89d9523a3$var$chalkFactory = (options1)=>{
-    const chalk = {
-    };
-    $fddd5fa89d9523a3$var$applyOptions(chalk, options1);
-    chalk.template = (...arguments_)=>$fddd5fa89d9523a3$var$chalkTag(chalk.template, ...arguments_)
-    ;
-    Object.setPrototypeOf(chalk, $fddd5fa89d9523a3$var$createChalk.prototype);
-    Object.setPrototypeOf(chalk.template, chalk);
-    chalk.template.Chalk = $fddd5fa89d9523a3$export$71e289472ea891bc;
-    return chalk.template;
-};
-function $fddd5fa89d9523a3$var$createChalk(options1) {
-    return $fddd5fa89d9523a3$var$chalkFactory(options1);
-}
-Object.setPrototypeOf($fddd5fa89d9523a3$var$createChalk.prototype, Function.prototype);
-for (const [styleName, style] of Object.entries($h527d.default))$fddd5fa89d9523a3$var$styles[styleName] = {
-    get () {
-        const builder = $fddd5fa89d9523a3$var$createBuilder(this, $fddd5fa89d9523a3$var$createStyler(style.open, style.close, this[$fddd5fa89d9523a3$var$STYLER]), this[$fddd5fa89d9523a3$var$IS_EMPTY]);
-        Object.defineProperty(this, styleName, {
-            value: builder
-        });
-        return builder;
-    }
-};
-$fddd5fa89d9523a3$var$styles.visible = {
-    get () {
-        const builder = $fddd5fa89d9523a3$var$createBuilder(this, this[$fddd5fa89d9523a3$var$STYLER], true);
-        Object.defineProperty(this, 'visible', {
-            value: builder
-        });
-        return builder;
-    }
-};
-const $fddd5fa89d9523a3$var$getModelAnsi = (model, level, type, ...arguments_)=>{
-    if (model === 'rgb') {
-        if (level === 'ansi16m') return $h527d.default[type].ansi16m(...arguments_);
-        if (level === 'ansi256') return $h527d.default[type].ansi256($h527d.default.rgbToAnsi256(...arguments_));
-        return $h527d.default[type].ansi($h527d.default.rgbToAnsi(...arguments_));
-    }
-    if (model === 'hex') return $fddd5fa89d9523a3$var$getModelAnsi('rgb', level, type, ...$h527d.default.hexToRgb(...arguments_));
-    return $h527d.default[type][model](...arguments_);
-};
-const $fddd5fa89d9523a3$var$usedModels = [
-    'rgb',
-    'hex',
-    'ansi256'
-];
-for (const model of $fddd5fa89d9523a3$var$usedModels){
-    $fddd5fa89d9523a3$var$styles[model] = {
-        get () {
-            const { level: level  } = this;
-            return function(...arguments_) {
-                const styler = $fddd5fa89d9523a3$var$createStyler($fddd5fa89d9523a3$var$getModelAnsi(model, $fddd5fa89d9523a3$var$levelMapping[level], 'color', ...arguments_), $h527d.default.color.close, this[$fddd5fa89d9523a3$var$STYLER]);
-                return $fddd5fa89d9523a3$var$createBuilder(this, styler, this[$fddd5fa89d9523a3$var$IS_EMPTY]);
-            };
-        }
-    };
-    const bgModel = 'bg' + model[0].toUpperCase() + model.slice(1);
-    $fddd5fa89d9523a3$var$styles[bgModel] = {
-        get () {
-            const { level: level  } = this;
-            return function(...arguments_) {
-                const styler = $fddd5fa89d9523a3$var$createStyler($fddd5fa89d9523a3$var$getModelAnsi(model, $fddd5fa89d9523a3$var$levelMapping[level], 'bgColor', ...arguments_), $h527d.default.bgColor.close, this[$fddd5fa89d9523a3$var$STYLER]);
-                return $fddd5fa89d9523a3$var$createBuilder(this, styler, this[$fddd5fa89d9523a3$var$IS_EMPTY]);
-            };
-        }
-    };
-}
-const $fddd5fa89d9523a3$var$proto = Object.defineProperties(()=>{
-}, {
-    ...$fddd5fa89d9523a3$var$styles,
-    level: {
-        enumerable: true,
-        get () {
-            return this[$fddd5fa89d9523a3$var$GENERATOR].level;
-        },
-        set (level) {
-            this[$fddd5fa89d9523a3$var$GENERATOR].level = level;
-        }
-    }
-});
-const $fddd5fa89d9523a3$var$createStyler = (open, close, parent)=>{
-    let openAll;
-    let closeAll;
-    if (parent === undefined) {
-        openAll = open;
-        closeAll = close;
-    } else {
-        openAll = parent.openAll + open;
-        closeAll = close + parent.closeAll;
-    }
-    return {
-        open: open,
-        close: close,
-        openAll: openAll,
-        closeAll: closeAll,
-        parent: parent
-    };
-};
-const $fddd5fa89d9523a3$var$createBuilder = (self, _styler, _isEmpty)=>{
-    const builder = (...arguments_)=>{
-        if ($fddd5fa89d9523a3$var$isArray(arguments_[0]) && $fddd5fa89d9523a3$var$isArray(arguments_[0].raw)) // Called as a template literal, for example: chalk.red`2 + 3 = {bold ${2+3}}`
-        return $fddd5fa89d9523a3$var$applyStyle(builder, $fddd5fa89d9523a3$var$chalkTag(builder, ...arguments_));
-        // Single argument is hot path, implicit coercion is faster than anything
-        // eslint-disable-next-line no-implicit-coercion
-        return $fddd5fa89d9523a3$var$applyStyle(builder, arguments_.length === 1 ? '' + arguments_[0] : arguments_.join(' '));
-    };
-    // We alter the prototype because we must return a function, but there is
-    // no way to create a function with a different prototype
-    Object.setPrototypeOf(builder, $fddd5fa89d9523a3$var$proto);
-    builder[$fddd5fa89d9523a3$var$GENERATOR] = self;
-    builder[$fddd5fa89d9523a3$var$STYLER] = _styler;
-    builder[$fddd5fa89d9523a3$var$IS_EMPTY] = _isEmpty;
-    return builder;
-};
-const $fddd5fa89d9523a3$var$applyStyle = (self, string)=>{
-    if (self.level <= 0 || !string) return self[$fddd5fa89d9523a3$var$IS_EMPTY] ? '' : string;
-    let styler = self[$fddd5fa89d9523a3$var$STYLER];
-    if (styler === undefined) return string;
-    const { openAll: openAll , closeAll: closeAll  } = styler;
-    if (string.includes('\u001B')) while(styler !== undefined){
-        // Replace any instances already present with a re-opening code
-        // otherwise only the part of the string until said closing code
-        // will be colored, and the rest will simply be 'plain'.
-        string = $jVyQD.stringReplaceAll(string, styler.close, styler.open);
-        styler = styler.parent;
-    }
-    // We can move both next actions out of loop, because remaining actions in loop won't have
-    // any/visible effect on parts we add here. Close the styling before a linebreak and reopen
-    // after next line to fix a bleed issue on macOS: https://github.com/chalk/chalk/pull/92
-    const lfIndex = string.indexOf('\n');
-    if (lfIndex !== -1) string = $jVyQD.stringEncaseCRLFWithFirstIndex(string, closeAll, openAll, lfIndex);
-    return openAll + string + closeAll;
-};
-const $fddd5fa89d9523a3$var$chalkTag = (chalk, ...strings)=>{
+const $7e7a99ef2255b980$var$chalkTag = (chalk, ...strings)=>{
     const [firstString] = strings;
-    if (!$fddd5fa89d9523a3$var$isArray(firstString) || !$fddd5fa89d9523a3$var$isArray(firstString.raw)) // If chalk() was called by itself or with a string,
+    if (!$7e7a99ef2255b980$var$isArray(firstString) || !$7e7a99ef2255b980$var$isArray(firstString.raw)) // If chalk() was called by itself or with a string,
     // return the string itself as a string.
     return strings.join(' ');
     const arguments_ = strings.slice(1);
@@ -3326,27 +2402,27 @@ const $fddd5fa89d9523a3$var$chalkTag = (chalk, ...strings)=>{
         firstString.raw[0]
     ];
     for(let i = 1; i < firstString.length; i++)parts.push(String(arguments_[i - 1]).replace(/[{}\\]/g, '\\$&'), String(firstString.raw[i]));
-    return $7LV6B.default(chalk, parts.join(''));
+    if ($7e7a99ef2255b980$var$template === undefined) $7e7a99ef2255b980$var$template = (parcelRequire("6Fg3G"));
+    return $7e7a99ef2255b980$var$template(chalk, parts.join(''));
 };
-Object.defineProperties($fddd5fa89d9523a3$var$createChalk.prototype, $fddd5fa89d9523a3$var$styles);
-const $fddd5fa89d9523a3$var$chalk = $fddd5fa89d9523a3$var$createChalk();
-const $fddd5fa89d9523a3$export$46348ae7515f5916 = $fddd5fa89d9523a3$var$createChalk({
-    level: $fddd5fa89d9523a3$export$e9dd22d6b9c0c455 ? $fddd5fa89d9523a3$export$e9dd22d6b9c0c455.level : 0
-});
-var $fddd5fa89d9523a3$export$9099ad97b570f7c = $fddd5fa89d9523a3$var$chalk;
+Object.defineProperties($7e7a99ef2255b980$var$Chalk.prototype, $7e7a99ef2255b980$var$styles);
+const $7e7a99ef2255b980$var$chalk = $7e7a99ef2255b980$var$Chalk(); // eslint-disable-line new-cap
+$7e7a99ef2255b980$var$chalk.supportsColor = $7e7a99ef2255b980$require$stdoutColor;
+$7e7a99ef2255b980$var$chalk.stderr = $7e7a99ef2255b980$var$Chalk({
+    level: $7e7a99ef2255b980$require$stderrColor ? $7e7a99ef2255b980$require$stderrColor.level : 0
+}); // eslint-disable-line new-cap
+$7e7a99ef2255b980$var$chalk.stderr.supportsColor = $7e7a99ef2255b980$require$stderrColor;
+$7e7a99ef2255b980$exports = $7e7a99ef2255b980$var$chalk;
 
-});
-parcelRequire.register("h527d", function(module, exports) {
 
-$parcel$export(module.exports, "default", () => $c6f48b604bcc0391$export$9099ad97b570f7c);
-const $c6f48b604bcc0391$var$ANSI_BACKGROUND_OFFSET = 10;
-const $c6f48b604bcc0391$var$wrapAnsi16 = (offset = 0)=>(code)=>`\u001B[${code + offset}m`
+const $2010dab071e0cfa0$var$ANSI_BACKGROUND_OFFSET = 10;
+const $2010dab071e0cfa0$var$wrapAnsi16 = (offset = 0)=>(code)=>`\u001B[${code + offset}m`
 ;
-const $c6f48b604bcc0391$var$wrapAnsi256 = (offset = 0)=>(code)=>`\u001B[${38 + offset};5;${code}m`
+const $2010dab071e0cfa0$var$wrapAnsi256 = (offset = 0)=>(code)=>`\u001B[${38 + offset};5;${code}m`
 ;
-const $c6f48b604bcc0391$var$wrapAnsi16m = (offset = 0)=>(red, green, blue)=>`\u001B[${38 + offset};2;${red};${green};${blue}m`
+const $2010dab071e0cfa0$var$wrapAnsi16m = (offset = 0)=>(red, green, blue)=>`\u001B[${38 + offset};2;${red};${green};${blue}m`
 ;
-function $c6f48b604bcc0391$var$assembleStyles() {
+function $2010dab071e0cfa0$var$assembleStyles() {
     const codes = new Map();
     const styles = {
         modifier: {
@@ -3548,12 +2624,12 @@ function $c6f48b604bcc0391$var$assembleStyles() {
     });
     styles.color.close = '\u001B[39m';
     styles.bgColor.close = '\u001B[49m';
-    styles.color.ansi = $c6f48b604bcc0391$var$wrapAnsi16();
-    styles.color.ansi256 = $c6f48b604bcc0391$var$wrapAnsi256();
-    styles.color.ansi16m = $c6f48b604bcc0391$var$wrapAnsi16m();
-    styles.bgColor.ansi = $c6f48b604bcc0391$var$wrapAnsi16($c6f48b604bcc0391$var$ANSI_BACKGROUND_OFFSET);
-    styles.bgColor.ansi256 = $c6f48b604bcc0391$var$wrapAnsi256($c6f48b604bcc0391$var$ANSI_BACKGROUND_OFFSET);
-    styles.bgColor.ansi16m = $c6f48b604bcc0391$var$wrapAnsi16m($c6f48b604bcc0391$var$ANSI_BACKGROUND_OFFSET);
+    styles.color.ansi = $2010dab071e0cfa0$var$wrapAnsi16();
+    styles.color.ansi256 = $2010dab071e0cfa0$var$wrapAnsi256();
+    styles.color.ansi16m = $2010dab071e0cfa0$var$wrapAnsi16m();
+    styles.bgColor.ansi = $2010dab071e0cfa0$var$wrapAnsi16($2010dab071e0cfa0$var$ANSI_BACKGROUND_OFFSET);
+    styles.bgColor.ansi256 = $2010dab071e0cfa0$var$wrapAnsi256($2010dab071e0cfa0$var$ANSI_BACKGROUND_OFFSET);
+    styles.bgColor.ansi16m = $2010dab071e0cfa0$var$wrapAnsi16m($2010dab071e0cfa0$var$ANSI_BACKGROUND_OFFSET);
     // From https://github.com/Qix-/color-convert/blob/3f0e0d4e92e235796ccb17f6e85c72094a651f49/conversions.js
     Object.defineProperties(styles, {
         rgbToAnsi256: {
@@ -3633,53 +2709,239 @@ function $c6f48b604bcc0391$var$assembleStyles() {
     });
     return styles;
 }
-const $c6f48b604bcc0391$var$ansiStyles = $c6f48b604bcc0391$var$assembleStyles();
-var $c6f48b604bcc0391$export$9099ad97b570f7c = $c6f48b604bcc0391$var$ansiStyles;
+const $2010dab071e0cfa0$var$ansiStyles = $2010dab071e0cfa0$var$assembleStyles();
+var $2010dab071e0cfa0$export$2e2bcd8739ae039 = $2010dab071e0cfa0$var$ansiStyles;
+
+
+let $91e28553b6f62951$var$args = [];
+parcelRequire.register("4cYrz", function(module, exports) {
+// shim for using process in browser
+var $31072b48e9a06a1f$var$process = module.exports = {
+};
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+var $31072b48e9a06a1f$var$cachedSetTimeout;
+var $31072b48e9a06a1f$var$cachedClearTimeout;
+function $31072b48e9a06a1f$var$defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function $31072b48e9a06a1f$var$defaultClearTimeout() {
+    throw new Error('clearTimeout has not been defined');
+}
+(function() {
+    try {
+        if (typeof setTimeout === 'function') $31072b48e9a06a1f$var$cachedSetTimeout = setTimeout;
+        else $31072b48e9a06a1f$var$cachedSetTimeout = $31072b48e9a06a1f$var$defaultSetTimout;
+    } catch (e) {
+        $31072b48e9a06a1f$var$cachedSetTimeout = $31072b48e9a06a1f$var$defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') $31072b48e9a06a1f$var$cachedClearTimeout = clearTimeout;
+        else $31072b48e9a06a1f$var$cachedClearTimeout = $31072b48e9a06a1f$var$defaultClearTimeout;
+    } catch (e1) {
+        $31072b48e9a06a1f$var$cachedClearTimeout = $31072b48e9a06a1f$var$defaultClearTimeout;
+    }
+})();
+function $31072b48e9a06a1f$var$runTimeout(fun) {
+    if ($31072b48e9a06a1f$var$cachedSetTimeout === setTimeout) //normal enviroments in sane situations
+    return setTimeout(fun, 0);
+    // if setTimeout wasn't available but was latter defined
+    if (($31072b48e9a06a1f$var$cachedSetTimeout === $31072b48e9a06a1f$var$defaultSetTimout || !$31072b48e9a06a1f$var$cachedSetTimeout) && setTimeout) {
+        $31072b48e9a06a1f$var$cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return $31072b48e9a06a1f$var$cachedSetTimeout(fun, 0);
+    } catch (e) {
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return $31072b48e9a06a1f$var$cachedSetTimeout.call(null, fun, 0);
+        } catch (e) {
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return $31072b48e9a06a1f$var$cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+}
+function $31072b48e9a06a1f$var$runClearTimeout(marker) {
+    if ($31072b48e9a06a1f$var$cachedClearTimeout === clearTimeout) //normal enviroments in sane situations
+    return clearTimeout(marker);
+    // if clearTimeout wasn't available but was latter defined
+    if (($31072b48e9a06a1f$var$cachedClearTimeout === $31072b48e9a06a1f$var$defaultClearTimeout || !$31072b48e9a06a1f$var$cachedClearTimeout) && clearTimeout) {
+        $31072b48e9a06a1f$var$cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return $31072b48e9a06a1f$var$cachedClearTimeout(marker);
+    } catch (e) {
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return $31072b48e9a06a1f$var$cachedClearTimeout.call(null, marker);
+        } catch (e) {
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return $31072b48e9a06a1f$var$cachedClearTimeout.call(this, marker);
+        }
+    }
+}
+var $31072b48e9a06a1f$var$queue = [];
+var $31072b48e9a06a1f$var$draining = false;
+var $31072b48e9a06a1f$var$currentQueue;
+var $31072b48e9a06a1f$var$queueIndex = -1;
+function $31072b48e9a06a1f$var$cleanUpNextTick() {
+    if (!$31072b48e9a06a1f$var$draining || !$31072b48e9a06a1f$var$currentQueue) return;
+    $31072b48e9a06a1f$var$draining = false;
+    if ($31072b48e9a06a1f$var$currentQueue.length) $31072b48e9a06a1f$var$queue = $31072b48e9a06a1f$var$currentQueue.concat($31072b48e9a06a1f$var$queue);
+    else $31072b48e9a06a1f$var$queueIndex = -1;
+    if ($31072b48e9a06a1f$var$queue.length) $31072b48e9a06a1f$var$drainQueue();
+}
+function $31072b48e9a06a1f$var$drainQueue() {
+    if ($31072b48e9a06a1f$var$draining) return;
+    var timeout = $31072b48e9a06a1f$var$runTimeout($31072b48e9a06a1f$var$cleanUpNextTick);
+    $31072b48e9a06a1f$var$draining = true;
+    var len = $31072b48e9a06a1f$var$queue.length;
+    while(len){
+        $31072b48e9a06a1f$var$currentQueue = $31072b48e9a06a1f$var$queue;
+        $31072b48e9a06a1f$var$queue = [];
+        while(++$31072b48e9a06a1f$var$queueIndex < len)if ($31072b48e9a06a1f$var$currentQueue) $31072b48e9a06a1f$var$currentQueue[$31072b48e9a06a1f$var$queueIndex].run();
+        $31072b48e9a06a1f$var$queueIndex = -1;
+        len = $31072b48e9a06a1f$var$queue.length;
+    }
+    $31072b48e9a06a1f$var$currentQueue = null;
+    $31072b48e9a06a1f$var$draining = false;
+    $31072b48e9a06a1f$var$runClearTimeout(timeout);
+}
+$31072b48e9a06a1f$var$process.nextTick = function(fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) for(var i = 1; i < arguments.length; i++)args[i - 1] = arguments[i];
+    $31072b48e9a06a1f$var$queue.push(new $31072b48e9a06a1f$var$Item(fun, args));
+    if ($31072b48e9a06a1f$var$queue.length === 1 && !$31072b48e9a06a1f$var$draining) $31072b48e9a06a1f$var$runTimeout($31072b48e9a06a1f$var$drainQueue);
+};
+// v8 likes predictible objects
+function $31072b48e9a06a1f$var$Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+$31072b48e9a06a1f$var$Item.prototype.run = function() {
+    this.fun.apply(null, this.array);
+};
+$31072b48e9a06a1f$var$process.title = 'browser';
+$31072b48e9a06a1f$var$process.browser = true;
+$31072b48e9a06a1f$var$process.env = {
+};
+$31072b48e9a06a1f$var$process.argv = [];
+$31072b48e9a06a1f$var$process.version = ''; // empty string to avoid regexp issues
+$31072b48e9a06a1f$var$process.versions = {
+};
+function $31072b48e9a06a1f$var$noop() {
+}
+$31072b48e9a06a1f$var$process.on = $31072b48e9a06a1f$var$noop;
+$31072b48e9a06a1f$var$process.addListener = $31072b48e9a06a1f$var$noop;
+$31072b48e9a06a1f$var$process.once = $31072b48e9a06a1f$var$noop;
+$31072b48e9a06a1f$var$process.off = $31072b48e9a06a1f$var$noop;
+$31072b48e9a06a1f$var$process.removeListener = $31072b48e9a06a1f$var$noop;
+$31072b48e9a06a1f$var$process.removeAllListeners = $31072b48e9a06a1f$var$noop;
+$31072b48e9a06a1f$var$process.emit = $31072b48e9a06a1f$var$noop;
+$31072b48e9a06a1f$var$process.prependListener = $31072b48e9a06a1f$var$noop;
+$31072b48e9a06a1f$var$process.prependOnceListener = $31072b48e9a06a1f$var$noop;
+$31072b48e9a06a1f$var$process.listeners = function(name) {
+    return [];
+};
+$31072b48e9a06a1f$var$process.binding = function(name) {
+    throw new Error('process.binding is not supported');
+};
+$31072b48e9a06a1f$var$process.cwd = function() {
+    return '/';
+};
+$31072b48e9a06a1f$var$process.chdir = function(dir) {
+    throw new Error('process.chdir is not supported');
+};
+$31072b48e9a06a1f$var$process.umask = function() {
+    return 0;
+};
 
 });
 
-parcelRequire.register("75teS", function(module, exports) {
 
-$parcel$export(module.exports, "default", () => $528fae4305378571$export$9099ad97b570f7c);
+try {
+    $91e28553b6f62951$var$args = Deno.args;
+} catch (error) {
+    try {
+        const [_1, _2, ...argvs] = (parcelRequire("4cYrz")).argv;
+        $91e28553b6f62951$var$args = argvs;
+    } catch (error) {
+    }
+}
+function $91e28553b6f62951$export$2e2bcd8739ae039(flag, argv = $91e28553b6f62951$var$args) {
+    const prefix = flag.startsWith('-') ? '' : flag.length === 1 ? '-' : '--';
+    const position = argv.indexOf(prefix + flag);
+    const terminatorPosition = argv.indexOf('--');
+    return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
+}
 
-var $ahD0O = parcelRequire("ahD0O");
 
-function $528fae4305378571$var$isatty(fd) {
+parcelRequire.register("h5iGV", function(module, exports) {
+
+$parcel$export(module.exports, "isatty", () => $c701670612364e19$export$9b473d35051e2626, (v) => $c701670612364e19$export$9b473d35051e2626 = v);
+$parcel$export(module.exports, "ReadStream", () => $c701670612364e19$export$de64a30e4ee40519, (v) => $c701670612364e19$export$de64a30e4ee40519 = v);
+$parcel$export(module.exports, "WriteStream", () => $c701670612364e19$export$b6b358f069d459a3, (v) => $c701670612364e19$export$b6b358f069d459a3 = v);
+var $c701670612364e19$export$9b473d35051e2626;
+var $c701670612364e19$export$de64a30e4ee40519;
+var $c701670612364e19$export$b6b358f069d459a3;
+$c701670612364e19$export$9b473d35051e2626 = function() {
+    return false;
+};
+function $c701670612364e19$var$ReadStream() {
+    throw new Error('tty.ReadStream is not implemented');
+}
+$c701670612364e19$export$de64a30e4ee40519 = $c701670612364e19$var$ReadStream;
+function $c701670612364e19$var$WriteStream() {
+    throw new Error('tty.WriteStream is not implemented');
+}
+$c701670612364e19$export$b6b358f069d459a3 = $c701670612364e19$var$WriteStream;
+
+});
+
+
+function $ddd3502303dad6de$var$isatty(fd) {
     if (typeof fd !== "number") return false;
     try {
         return Deno.isatty(fd);
     } catch (_) {
         // if deno failed, try node
         try {
-            var tty = (parcelRequire("4BChY"));
+            var tty = (parcelRequire("h5iGV"));
             return tty.isatty(fd);
         } catch (error) {
         }
         return false;
     }
 }
-let $528fae4305378571$var$env = {
+let $ddd3502303dad6de$var$env = {
 };
 
 try {
-    $528fae4305378571$var$env = Deno.env.toObject();
+    $ddd3502303dad6de$var$env = Deno.env.toObject();
 } catch (error) {
     try {
-        $528fae4305378571$var$env = (parcelRequire("ewvuw")).env;
-    } catch (error1) {
+        $ddd3502303dad6de$var$env = (parcelRequire("4cYrz")).env;
+    } catch (error) {
     }
 }
-let $528fae4305378571$var$flagForceColor;
-if ($ahD0O.default("no-color") || $ahD0O.default("no-colors") || $ahD0O.default("color=false") || $ahD0O.default("color=never")) $528fae4305378571$var$flagForceColor = 0;
-else if ($ahD0O.default("color") || $ahD0O.default("colors") || $ahD0O.default("color=true") || $ahD0O.default("color=always")) $528fae4305378571$var$flagForceColor = 1;
-function $528fae4305378571$var$envForceColor() {
-    if ("FORCE_COLOR" in $528fae4305378571$var$env) {
-        if ($528fae4305378571$var$env.FORCE_COLOR === "true") return 1;
-        if ($528fae4305378571$var$env.FORCE_COLOR === "false") return 0;
-        return $528fae4305378571$var$env.FORCE_COLOR.length === 0 ? 1 : Math.min(Number.parseInt($528fae4305378571$var$env.FORCE_COLOR, 10), 3);
+let $ddd3502303dad6de$var$flagForceColor;
+if ($91e28553b6f62951$export$2e2bcd8739ae039("no-color") || $91e28553b6f62951$export$2e2bcd8739ae039("no-colors") || $91e28553b6f62951$export$2e2bcd8739ae039("color=false") || $91e28553b6f62951$export$2e2bcd8739ae039("color=never")) $ddd3502303dad6de$var$flagForceColor = 0;
+else if ($91e28553b6f62951$export$2e2bcd8739ae039("color") || $91e28553b6f62951$export$2e2bcd8739ae039("colors") || $91e28553b6f62951$export$2e2bcd8739ae039("color=true") || $91e28553b6f62951$export$2e2bcd8739ae039("color=always")) $ddd3502303dad6de$var$flagForceColor = 1;
+function $ddd3502303dad6de$var$envForceColor() {
+    if ("FORCE_COLOR" in $ddd3502303dad6de$var$env) {
+        if ($ddd3502303dad6de$var$env.FORCE_COLOR === "true") return 1;
+        if ($ddd3502303dad6de$var$env.FORCE_COLOR === "false") return 0;
+        return $ddd3502303dad6de$var$env.FORCE_COLOR.length === 0 ? 1 : Math.min(Number.parseInt($ddd3502303dad6de$var$env.FORCE_COLOR, 10), 3);
     }
 }
-function $528fae4305378571$var$translateLevel(level) {
+function $ddd3502303dad6de$var$translateLevel(level) {
     if (level === 0) return false;
     return {
         level: level,
@@ -3689,26 +2951,26 @@ function $528fae4305378571$var$translateLevel(level) {
     };
 }
 
-function $528fae4305378571$var$_supportsColor(haveStream, { streamIsTTY: streamIsTTY , sniffFlags: sniffFlags = true  } = {
+function $ddd3502303dad6de$var$_supportsColor(haveStream, { streamIsTTY: streamIsTTY , sniffFlags: sniffFlags = true  } = {
 }) {
-    const noFlagForceColor = $528fae4305378571$var$envForceColor();
-    if (noFlagForceColor !== undefined) $528fae4305378571$var$flagForceColor = noFlagForceColor;
-    const forceColor = sniffFlags ? $528fae4305378571$var$flagForceColor : noFlagForceColor;
+    const noFlagForceColor = $ddd3502303dad6de$var$envForceColor();
+    if (noFlagForceColor !== undefined) $ddd3502303dad6de$var$flagForceColor = noFlagForceColor;
+    const forceColor = sniffFlags ? $ddd3502303dad6de$var$flagForceColor : noFlagForceColor;
     if (forceColor === 0) return 0;
     if (sniffFlags) {
-        if ($ahD0O.default("color=16m") || $ahD0O.default("color=full") || $ahD0O.default("color=truecolor")) return 3;
-        if ($ahD0O.default("color=256")) return 2;
+        if ($91e28553b6f62951$export$2e2bcd8739ae039("color=16m") || $91e28553b6f62951$export$2e2bcd8739ae039("color=full") || $91e28553b6f62951$export$2e2bcd8739ae039("color=truecolor")) return 3;
+        if ($91e28553b6f62951$export$2e2bcd8739ae039("color=256")) return 2;
     }
     if (haveStream && !streamIsTTY && forceColor === undefined) return 0;
     const min = forceColor || 0;
-    if ($528fae4305378571$var$env.TERM === "dumb") return min;
+    if ($ddd3502303dad6de$var$env.TERM === "dumb") return min;
     let os;
     try {
         os = Deno.build.os;
     } catch (error) {
         try {
-            os = (parcelRequire("ewvuw")).platform;
-        } catch (error1) {
+            os = (parcelRequire("4cYrz")).platform;
+        } catch (error) {
         }
     }
     if (os === "win32") // TODO could not find how to get the OS release in Deno, the `Deno.osRelease()` (found in std/node/os) does not seem to work
@@ -3722,7 +2984,7 @@ function $528fae4305378571$var$_supportsColor(haveStream, { streamIsTTY: streamI
     // 	return Number(osRelease[2]) >= 14931 ? 3 : 2
     // }
     return 1;
-    if ("CI" in $528fae4305378571$var$env) {
+    if ("CI" in $ddd3502303dad6de$var$env) {
         if ([
             "TRAVIS",
             "CIRCLECI",
@@ -3731,247 +2993,46 @@ function $528fae4305378571$var$_supportsColor(haveStream, { streamIsTTY: streamI
             "GITHUB_ACTIONS",
             "BUILDKITE",
             "DRONE", 
-        ].some((sign)=>sign in $528fae4305378571$var$env
-        ) || $528fae4305378571$var$env.CI_NAME === "codeship") return 1;
+        ].some((sign)=>sign in $ddd3502303dad6de$var$env
+        ) || $ddd3502303dad6de$var$env.CI_NAME === "codeship") return 1;
         return min;
     }
-    if ("TEAMCITY_VERSION" in $528fae4305378571$var$env) return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test($528fae4305378571$var$env.TEAMCITY_VERSION) ? 1 : 0;
-    if ($528fae4305378571$var$env.COLORTERM === "truecolor") return 3;
-    if ("TERM_PROGRAM" in $528fae4305378571$var$env) {
-        const version = Number.parseInt(($528fae4305378571$var$env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
-        switch($528fae4305378571$var$env.TERM_PROGRAM){
+    if ("TEAMCITY_VERSION" in $ddd3502303dad6de$var$env) return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test($ddd3502303dad6de$var$env.TEAMCITY_VERSION) ? 1 : 0;
+    if ($ddd3502303dad6de$var$env.COLORTERM === "truecolor") return 3;
+    if ("TERM_PROGRAM" in $ddd3502303dad6de$var$env) {
+        const version = Number.parseInt(($ddd3502303dad6de$var$env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+        switch($ddd3502303dad6de$var$env.TERM_PROGRAM){
             case "iTerm.app":
                 return version >= 3 ? 3 : 2;
             case "Apple_Terminal":
                 return 2;
         }
     }
-    if (/-256(color)?$/i.test($528fae4305378571$var$env.TERM)) return 2;
-    if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test($528fae4305378571$var$env.TERM)) return 1;
-    if ("COLORTERM" in $528fae4305378571$var$env) return 1;
+    if (/-256(color)?$/i.test($ddd3502303dad6de$var$env.TERM)) return 2;
+    if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test($ddd3502303dad6de$var$env.TERM)) return 1;
+    if ("COLORTERM" in $ddd3502303dad6de$var$env) return 1;
     return min;
 }
-function $528fae4305378571$export$104f125f7782dcf1(stream, options = {
+function $ddd3502303dad6de$export$6f279ba00f1459de(stream, options = {
 }) {
-    const level = $528fae4305378571$var$_supportsColor(stream, {
+    const level = $ddd3502303dad6de$var$_supportsColor(stream, {
         streamIsTTY: stream && stream.isTTY,
         ...options
     });
-    return $528fae4305378571$var$translateLevel(level);
+    return $ddd3502303dad6de$var$translateLevel(level);
 }
-const $528fae4305378571$var$supportsColor = {
-    stdout: $528fae4305378571$export$104f125f7782dcf1({
-        isTTY: $528fae4305378571$var$isatty(1)
+const $ddd3502303dad6de$var$supportsColor = {
+    stdout: $ddd3502303dad6de$export$6f279ba00f1459de({
+        isTTY: $ddd3502303dad6de$var$isatty(1)
     }),
-    stderr: $528fae4305378571$export$104f125f7782dcf1({
-        isTTY: $528fae4305378571$var$isatty(2)
+    stderr: $ddd3502303dad6de$export$6f279ba00f1459de({
+        isTTY: $ddd3502303dad6de$var$isatty(2)
     })
 };
-var $528fae4305378571$export$9099ad97b570f7c = $528fae4305378571$var$supportsColor;
-
-});
-parcelRequire.register("ahD0O", function(module, exports) {
-
-$parcel$export(module.exports, "default", () => $77c9c0e708d2416d$export$9099ad97b570f7c);
-let $77c9c0e708d2416d$var$args = [];
-
-try {
-    $77c9c0e708d2416d$var$args = Deno.args;
-} catch (error) {
-    try {
-        const [_1, _2, ...argvs] = (parcelRequire("ewvuw")).argv;
-        $77c9c0e708d2416d$var$args = argvs;
-    } catch (error1) {
-    }
-}
-function $77c9c0e708d2416d$export$9099ad97b570f7c(flag, argv = $77c9c0e708d2416d$var$args) {
-    const prefix = flag.startsWith('-') ? '' : flag.length === 1 ? '-' : '--';
-    const position = argv.indexOf(prefix + flag);
-    const terminatorPosition = argv.indexOf('--');
-    return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
-}
-
-});
-parcelRequire.register("ewvuw", function(module, exports) {
-// shim for using process in browser
-var $a92c7b5d984e6e9f$var$process = module.exports = {
-};
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-var $a92c7b5d984e6e9f$var$cachedSetTimeout;
-var $a92c7b5d984e6e9f$var$cachedClearTimeout;
-function $a92c7b5d984e6e9f$var$defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function $a92c7b5d984e6e9f$var$defaultClearTimeout() {
-    throw new Error('clearTimeout has not been defined');
-}
-(function() {
-    try {
-        if (typeof setTimeout === 'function') $a92c7b5d984e6e9f$var$cachedSetTimeout = setTimeout;
-        else $a92c7b5d984e6e9f$var$cachedSetTimeout = $a92c7b5d984e6e9f$var$defaultSetTimout;
-    } catch (e) {
-        $a92c7b5d984e6e9f$var$cachedSetTimeout = $a92c7b5d984e6e9f$var$defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') $a92c7b5d984e6e9f$var$cachedClearTimeout = clearTimeout;
-        else $a92c7b5d984e6e9f$var$cachedClearTimeout = $a92c7b5d984e6e9f$var$defaultClearTimeout;
-    } catch (e) {
-        $a92c7b5d984e6e9f$var$cachedClearTimeout = $a92c7b5d984e6e9f$var$defaultClearTimeout;
-    }
-})();
-function $a92c7b5d984e6e9f$var$runTimeout(fun) {
-    if ($a92c7b5d984e6e9f$var$cachedSetTimeout === setTimeout) //normal enviroments in sane situations
-    return setTimeout(fun, 0);
-    // if setTimeout wasn't available but was latter defined
-    if (($a92c7b5d984e6e9f$var$cachedSetTimeout === $a92c7b5d984e6e9f$var$defaultSetTimout || !$a92c7b5d984e6e9f$var$cachedSetTimeout) && setTimeout) {
-        $a92c7b5d984e6e9f$var$cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return $a92c7b5d984e6e9f$var$cachedSetTimeout(fun, 0);
-    } catch (e) {
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return $a92c7b5d984e6e9f$var$cachedSetTimeout.call(null, fun, 0);
-        } catch (e1) {
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return $a92c7b5d984e6e9f$var$cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-}
-function $a92c7b5d984e6e9f$var$runClearTimeout(marker) {
-    if ($a92c7b5d984e6e9f$var$cachedClearTimeout === clearTimeout) //normal enviroments in sane situations
-    return clearTimeout(marker);
-    // if clearTimeout wasn't available but was latter defined
-    if (($a92c7b5d984e6e9f$var$cachedClearTimeout === $a92c7b5d984e6e9f$var$defaultClearTimeout || !$a92c7b5d984e6e9f$var$cachedClearTimeout) && clearTimeout) {
-        $a92c7b5d984e6e9f$var$cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return $a92c7b5d984e6e9f$var$cachedClearTimeout(marker);
-    } catch (e) {
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return $a92c7b5d984e6e9f$var$cachedClearTimeout.call(null, marker);
-        } catch (e1) {
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return $a92c7b5d984e6e9f$var$cachedClearTimeout.call(this, marker);
-        }
-    }
-}
-var $a92c7b5d984e6e9f$var$queue = [];
-var $a92c7b5d984e6e9f$var$draining = false;
-var $a92c7b5d984e6e9f$var$currentQueue;
-var $a92c7b5d984e6e9f$var$queueIndex = -1;
-function $a92c7b5d984e6e9f$var$cleanUpNextTick() {
-    if (!$a92c7b5d984e6e9f$var$draining || !$a92c7b5d984e6e9f$var$currentQueue) return;
-    $a92c7b5d984e6e9f$var$draining = false;
-    if ($a92c7b5d984e6e9f$var$currentQueue.length) $a92c7b5d984e6e9f$var$queue = $a92c7b5d984e6e9f$var$currentQueue.concat($a92c7b5d984e6e9f$var$queue);
-    else $a92c7b5d984e6e9f$var$queueIndex = -1;
-    if ($a92c7b5d984e6e9f$var$queue.length) $a92c7b5d984e6e9f$var$drainQueue();
-}
-function $a92c7b5d984e6e9f$var$drainQueue() {
-    if ($a92c7b5d984e6e9f$var$draining) return;
-    var timeout = $a92c7b5d984e6e9f$var$runTimeout($a92c7b5d984e6e9f$var$cleanUpNextTick);
-    $a92c7b5d984e6e9f$var$draining = true;
-    var len = $a92c7b5d984e6e9f$var$queue.length;
-    while(len){
-        $a92c7b5d984e6e9f$var$currentQueue = $a92c7b5d984e6e9f$var$queue;
-        $a92c7b5d984e6e9f$var$queue = [];
-        while((++$a92c7b5d984e6e9f$var$queueIndex) < len)if ($a92c7b5d984e6e9f$var$currentQueue) $a92c7b5d984e6e9f$var$currentQueue[$a92c7b5d984e6e9f$var$queueIndex].run();
-        $a92c7b5d984e6e9f$var$queueIndex = -1;
-        len = $a92c7b5d984e6e9f$var$queue.length;
-    }
-    $a92c7b5d984e6e9f$var$currentQueue = null;
-    $a92c7b5d984e6e9f$var$draining = false;
-    $a92c7b5d984e6e9f$var$runClearTimeout(timeout);
-}
-$a92c7b5d984e6e9f$var$process.nextTick = function(fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) for(var i = 1; i < arguments.length; i++)args[i - 1] = arguments[i];
-    $a92c7b5d984e6e9f$var$queue.push(new $a92c7b5d984e6e9f$var$Item(fun, args));
-    if ($a92c7b5d984e6e9f$var$queue.length === 1 && !$a92c7b5d984e6e9f$var$draining) $a92c7b5d984e6e9f$var$runTimeout($a92c7b5d984e6e9f$var$drainQueue);
-};
-// v8 likes predictible objects
-function $a92c7b5d984e6e9f$var$Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-$a92c7b5d984e6e9f$var$Item.prototype.run = function() {
-    this.fun.apply(null, this.array);
-};
-$a92c7b5d984e6e9f$var$process.title = 'browser';
-$a92c7b5d984e6e9f$var$process.browser = true;
-$a92c7b5d984e6e9f$var$process.env = {
-};
-$a92c7b5d984e6e9f$var$process.argv = [];
-$a92c7b5d984e6e9f$var$process.version = ''; // empty string to avoid regexp issues
-$a92c7b5d984e6e9f$var$process.versions = {
-};
-function $a92c7b5d984e6e9f$var$noop() {
-}
-$a92c7b5d984e6e9f$var$process.on = $a92c7b5d984e6e9f$var$noop;
-$a92c7b5d984e6e9f$var$process.addListener = $a92c7b5d984e6e9f$var$noop;
-$a92c7b5d984e6e9f$var$process.once = $a92c7b5d984e6e9f$var$noop;
-$a92c7b5d984e6e9f$var$process.off = $a92c7b5d984e6e9f$var$noop;
-$a92c7b5d984e6e9f$var$process.removeListener = $a92c7b5d984e6e9f$var$noop;
-$a92c7b5d984e6e9f$var$process.removeAllListeners = $a92c7b5d984e6e9f$var$noop;
-$a92c7b5d984e6e9f$var$process.emit = $a92c7b5d984e6e9f$var$noop;
-$a92c7b5d984e6e9f$var$process.prependListener = $a92c7b5d984e6e9f$var$noop;
-$a92c7b5d984e6e9f$var$process.prependOnceListener = $a92c7b5d984e6e9f$var$noop;
-$a92c7b5d984e6e9f$var$process.listeners = function(name) {
-    return [];
-};
-$a92c7b5d984e6e9f$var$process.binding = function(name) {
-    throw new Error('process.binding is not supported');
-};
-$a92c7b5d984e6e9f$var$process.cwd = function() {
-    return '/';
-};
-$a92c7b5d984e6e9f$var$process.chdir = function(dir) {
-    throw new Error('process.chdir is not supported');
-};
-$a92c7b5d984e6e9f$var$process.umask = function() {
-    return 0;
-};
-
-});
+var $ddd3502303dad6de$export$2e2bcd8739ae039 = $ddd3502303dad6de$var$supportsColor;
 
 
-parcelRequire.register("4BChY", function(module, exports) {
-
-$parcel$export(module.exports, "WriteStream", () => $35a851831d5f7693$export$1953153abafa5eda, (v) => $35a851831d5f7693$export$1953153abafa5eda = v);
-$parcel$export(module.exports, "isatty", () => $35a851831d5f7693$export$72dd798ff3d6c7cd, (v) => $35a851831d5f7693$export$72dd798ff3d6c7cd = v);
-$parcel$export(module.exports, "ReadStream", () => $35a851831d5f7693$export$8247c093a68e0242, (v) => $35a851831d5f7693$export$8247c093a68e0242 = v);
-var $35a851831d5f7693$export$1953153abafa5eda;
-var $35a851831d5f7693$export$8247c093a68e0242;
-var $35a851831d5f7693$export$72dd798ff3d6c7cd;
-$35a851831d5f7693$export$72dd798ff3d6c7cd = function() {
-    return false;
-};
-function $35a851831d5f7693$var$ReadStream() {
-    throw new Error('tty.ReadStream is not implemented');
-}
-$35a851831d5f7693$export$8247c093a68e0242 = $35a851831d5f7693$var$ReadStream;
-function $35a851831d5f7693$var$WriteStream() {
-    throw new Error('tty.WriteStream is not implemented');
-}
-$35a851831d5f7693$export$1953153abafa5eda = $35a851831d5f7693$var$WriteStream;
-
-});
-
-
-parcelRequire.register("jVyQD", function(module, exports) {
-
-$parcel$export(module.exports, "stringEncaseCRLFWithFirstIndex", () => $e81e5f4ac5214b19$export$7797e13f30e96f2c);
-$parcel$export(module.exports, "stringReplaceAll", () => $e81e5f4ac5214b19$export$fbb981a622011428);
-function $e81e5f4ac5214b19$export$fbb981a622011428(string, substring, replacer) {
+function $2fc9955a13feadc7$export$9300dfb554c6c407(string, substring, replacer) {
     let index = string.indexOf(substring);
     if (index === -1) return string;
     const substringLength = substring.length;
@@ -3985,7 +3046,7 @@ function $e81e5f4ac5214b19$export$fbb981a622011428(string, substring, replacer) 
     returnValue += string.slice(endIndex);
     return returnValue;
 }
-function $e81e5f4ac5214b19$export$7797e13f30e96f2c(string, prefix, postfix, index) {
+function $2fc9955a13feadc7$export$ecabf4aff2e9764(string, prefix, postfix, index) {
     let endIndex = 0;
     let returnValue = '';
     do {
@@ -3998,16 +3059,12 @@ function $e81e5f4ac5214b19$export$7797e13f30e96f2c(string, prefix, postfix, inde
     return returnValue;
 }
 
-});
 
-parcelRequire.register("7LV6B", function(module, exports) {
-
-$parcel$export(module.exports, "default", () => $5a893827d4540656$export$9099ad97b570f7c);
-const $5a893827d4540656$var$TEMPLATE_REGEX = /(?:\\(u(?:[a-f\d]{4}|\{[a-f\d]{1,6}\})|x[a-f\d]{2}|.))|(?:\{(~)?(\w+(?:\([^)]*\))?(?:\.\w+(?:\([^)]*\))?)*)(?:[ \t]|(?=\r?\n)))|(\})|((?:.|[\r\n\f])+?)/gi;
-const $5a893827d4540656$var$STYLE_REGEX = /(?:^|\.)(\w+)(?:\(([^)]*)\))?/g;
-const $5a893827d4540656$var$STRING_REGEX = /^(['"])((?:\\.|(?!\1)[^\\])*)\1$/;
-const $5a893827d4540656$var$ESCAPE_REGEX = /\\(u(?:[a-f\d]{4}|{[a-f\d]{1,6}})|x[a-f\d]{2}|.)|([^\\])/gi;
-const $5a893827d4540656$var$ESCAPES = new Map([
+const $0b1ac7e9aaf40a4e$var$TEMPLATE_REGEX = /(?:\\(u(?:[a-f\d]{4}|\{[a-f\d]{1,6}\})|x[a-f\d]{2}|.))|(?:\{(~)?(\w+(?:\([^)]*\))?(?:\.\w+(?:\([^)]*\))?)*)(?:[ \t]|(?=\r?\n)))|(\})|((?:.|[\r\n\f])+?)/gi;
+const $0b1ac7e9aaf40a4e$var$STYLE_REGEX = /(?:^|\.)(\w+)(?:\(([^)]*)\))?/g;
+const $0b1ac7e9aaf40a4e$var$STRING_REGEX = /^(['"])((?:\\.|(?!\1)[^\\])*)\1$/;
+const $0b1ac7e9aaf40a4e$var$ESCAPE_REGEX = /\\(u(?:[a-f\d]{4}|{[a-f\d]{1,6}})|x[a-f\d]{2}|.)|([^\\])/gi;
+const $0b1ac7e9aaf40a4e$var$ESCAPES = new Map([
     [
         'n',
         '\n'
@@ -4049,34 +3106,34 @@ const $5a893827d4540656$var$ESCAPES = new Map([
         '\u0007'
     ]
 ]);
-function $5a893827d4540656$var$unescape(c) {
+function $0b1ac7e9aaf40a4e$var$unescape(c) {
     const u = c[0] === 'u';
     const bracket = c[1] === '{';
     if (u && !bracket && c.length === 5 || c[0] === 'x' && c.length === 3) return String.fromCharCode(Number.parseInt(c.slice(1), 16));
     if (u && bracket) return String.fromCodePoint(Number.parseInt(c.slice(2, -1), 16));
-    return $5a893827d4540656$var$ESCAPES.get(c) || c;
+    return $0b1ac7e9aaf40a4e$var$ESCAPES.get(c) || c;
 }
-function $5a893827d4540656$var$parseArguments(name, arguments_) {
+function $0b1ac7e9aaf40a4e$var$parseArguments(name, arguments_) {
     const results = [];
     const chunks = arguments_.trim().split(/\s*,\s*/g);
     let matches;
     for (const chunk of chunks){
         const number = Number(chunk);
         if (!Number.isNaN(number)) results.push(number);
-        else if (matches = chunk.match($5a893827d4540656$var$STRING_REGEX)) results.push(matches[2].replace($5a893827d4540656$var$ESCAPE_REGEX, (m, escape, character)=>escape ? $5a893827d4540656$var$unescape(escape) : character
+        else if (matches = chunk.match($0b1ac7e9aaf40a4e$var$STRING_REGEX)) results.push(matches[2].replace($0b1ac7e9aaf40a4e$var$ESCAPE_REGEX, (m, escape, character)=>escape ? $0b1ac7e9aaf40a4e$var$unescape(escape) : character
         ));
         else throw new Error(`Invalid Chalk template style argument: ${chunk} (in style '${name}')`);
     }
     return results;
 }
-function $5a893827d4540656$var$parseStyle(style) {
-    $5a893827d4540656$var$STYLE_REGEX.lastIndex = 0;
+function $0b1ac7e9aaf40a4e$var$parseStyle(style) {
+    $0b1ac7e9aaf40a4e$var$STYLE_REGEX.lastIndex = 0;
     const results = [];
     let matches;
-    while((matches = $5a893827d4540656$var$STYLE_REGEX.exec(style)) !== null){
+    while((matches = $0b1ac7e9aaf40a4e$var$STYLE_REGEX.exec(style)) !== null){
         const name = matches[1];
         if (matches[2]) {
-            const args = $5a893827d4540656$var$parseArguments(name, matches[2]);
+            const args = $0b1ac7e9aaf40a4e$var$parseArguments(name, matches[2]);
             results.push([
                 name,
                 ...args
@@ -4087,7 +3144,7 @@ function $5a893827d4540656$var$parseStyle(style) {
     }
     return results;
 }
-function $5a893827d4540656$var$buildStyle(chalk, styles) {
+function $0b1ac7e9aaf40a4e$var$buildStyle(chalk, styles) {
     const enabled = {
     };
     for (const layer of styles)for (const style of layer.styles)enabled[style[0]] = layer.inverse ? null : style.slice(1);
@@ -4099,24 +3156,24 @@ function $5a893827d4540656$var$buildStyle(chalk, styles) {
     }
     return current;
 }
-function $5a893827d4540656$export$9099ad97b570f7c(chalk, temporary) {
+function $0b1ac7e9aaf40a4e$export$2e2bcd8739ae039(chalk, temporary) {
     const styles = [];
     const chunks = [];
     let chunk = [];
     // eslint-disable-next-line max-params
-    temporary.replace($5a893827d4540656$var$TEMPLATE_REGEX, (m, escapeCharacter, inverse, style, close, character)=>{
-        if (escapeCharacter) chunk.push($5a893827d4540656$var$unescape(escapeCharacter));
+    temporary.replace($0b1ac7e9aaf40a4e$var$TEMPLATE_REGEX, (m, escapeCharacter, inverse, style, close, character)=>{
+        if (escapeCharacter) chunk.push($0b1ac7e9aaf40a4e$var$unescape(escapeCharacter));
         else if (style) {
             const string = chunk.join('');
             chunk = [];
-            chunks.push(styles.length === 0 ? string : $5a893827d4540656$var$buildStyle(chalk, styles)(string));
+            chunks.push(styles.length === 0 ? string : $0b1ac7e9aaf40a4e$var$buildStyle(chalk, styles)(string));
             styles.push({
                 inverse: inverse,
-                styles: $5a893827d4540656$var$parseStyle(style)
+                styles: $0b1ac7e9aaf40a4e$var$parseStyle(style)
             });
         } else if (close) {
             if (styles.length === 0) throw new Error('Found extraneous } in Chalk template literal');
-            chunks.push($5a893827d4540656$var$buildStyle(chalk, styles)(chunk.join('')));
+            chunks.push($0b1ac7e9aaf40a4e$var$buildStyle(chalk, styles)(chunk.join('')));
             chunk = [];
             styles.pop();
         } else chunk.push(character);
@@ -4129,12 +3186,231 @@ function $5a893827d4540656$export$9099ad97b570f7c(chalk, temporary) {
     return chunks.join('');
 }
 
+
+const { stdout: $22d59f45aa7c47f0$export$fcbe44f5d6fcebd , stderr: $22d59f45aa7c47f0$export$8107055a758cd2bd  } = $ddd3502303dad6de$export$2e2bcd8739ae039;
+const { isArray: $22d59f45aa7c47f0$var$isArray  } = Array;
+const $22d59f45aa7c47f0$var$GENERATOR = Symbol('GENERATOR');
+const $22d59f45aa7c47f0$var$STYLER = Symbol('STYLER');
+const $22d59f45aa7c47f0$var$IS_EMPTY = Symbol('IS_EMPTY');
+// `supportsColor.level` → `ansiStyles.color[name]` mapping
+const $22d59f45aa7c47f0$var$levelMapping = [
+    'ansi',
+    'ansi',
+    'ansi256',
+    'ansi16m'
+];
+const $22d59f45aa7c47f0$var$styles = Object.create(null);
+const $22d59f45aa7c47f0$var$applyOptions = (object, options = {
+})=>{
+    if (options.level && !(Number.isInteger(options.level) && options.level >= 0 && options.level <= 3)) throw new Error('The `level` option should be an integer from 0 to 3');
+    // Detect level if not set manually
+    const colorLevel = $22d59f45aa7c47f0$export$fcbe44f5d6fcebd ? $22d59f45aa7c47f0$export$fcbe44f5d6fcebd.level : 0;
+    object.level = options.level === undefined ? colorLevel : options.level;
+};
+class $22d59f45aa7c47f0$export$79544b80b91c2197 {
+    constructor(options1){
+        // eslint-disable-next-line no-constructor-return
+        return $22d59f45aa7c47f0$var$chalkFactory(options1);
+    }
+}
+const $22d59f45aa7c47f0$var$chalkFactory = (options)=>{
+    const chalk = {
+    };
+    $22d59f45aa7c47f0$var$applyOptions(chalk, options);
+    chalk.template = (...arguments_)=>$22d59f45aa7c47f0$var$chalkTag(chalk.template, ...arguments_)
+    ;
+    Object.setPrototypeOf(chalk, $22d59f45aa7c47f0$var$createChalk.prototype);
+    Object.setPrototypeOf(chalk.template, chalk);
+    chalk.template.Chalk = $22d59f45aa7c47f0$export$79544b80b91c2197;
+    return chalk.template;
+};
+function $22d59f45aa7c47f0$var$createChalk(options) {
+    return $22d59f45aa7c47f0$var$chalkFactory(options);
+}
+Object.setPrototypeOf($22d59f45aa7c47f0$var$createChalk.prototype, Function.prototype);
+for (const [styleName, style] of Object.entries($2010dab071e0cfa0$export$2e2bcd8739ae039))$22d59f45aa7c47f0$var$styles[styleName] = {
+    get () {
+        const builder = $22d59f45aa7c47f0$var$createBuilder(this, $22d59f45aa7c47f0$var$createStyler(style.open, style.close, this[$22d59f45aa7c47f0$var$STYLER]), this[$22d59f45aa7c47f0$var$IS_EMPTY]);
+        Object.defineProperty(this, styleName, {
+            value: builder
+        });
+        return builder;
+    }
+};
+$22d59f45aa7c47f0$var$styles.visible = {
+    get () {
+        const builder = $22d59f45aa7c47f0$var$createBuilder(this, this[$22d59f45aa7c47f0$var$STYLER], true);
+        Object.defineProperty(this, 'visible', {
+            value: builder
+        });
+        return builder;
+    }
+};
+const $22d59f45aa7c47f0$var$getModelAnsi = (model, level, type, ...arguments_)=>{
+    if (model === 'rgb') {
+        if (level === 'ansi16m') return $2010dab071e0cfa0$export$2e2bcd8739ae039[type].ansi16m(...arguments_);
+        if (level === 'ansi256') return $2010dab071e0cfa0$export$2e2bcd8739ae039[type].ansi256($2010dab071e0cfa0$export$2e2bcd8739ae039.rgbToAnsi256(...arguments_));
+        return $2010dab071e0cfa0$export$2e2bcd8739ae039[type].ansi($2010dab071e0cfa0$export$2e2bcd8739ae039.rgbToAnsi(...arguments_));
+    }
+    if (model === 'hex') return $22d59f45aa7c47f0$var$getModelAnsi('rgb', level, type, ...$2010dab071e0cfa0$export$2e2bcd8739ae039.hexToRgb(...arguments_));
+    return $2010dab071e0cfa0$export$2e2bcd8739ae039[type][model](...arguments_);
+};
+const $22d59f45aa7c47f0$var$usedModels = [
+    'rgb',
+    'hex',
+    'ansi256'
+];
+for (const model1 of $22d59f45aa7c47f0$var$usedModels){
+    $22d59f45aa7c47f0$var$styles[model1] = {
+        get () {
+            const { level: level  } = this;
+            return function(...arguments_) {
+                const styler = $22d59f45aa7c47f0$var$createStyler($22d59f45aa7c47f0$var$getModelAnsi(model1, $22d59f45aa7c47f0$var$levelMapping[level], 'color', ...arguments_), $2010dab071e0cfa0$export$2e2bcd8739ae039.color.close, this[$22d59f45aa7c47f0$var$STYLER]);
+                return $22d59f45aa7c47f0$var$createBuilder(this, styler, this[$22d59f45aa7c47f0$var$IS_EMPTY]);
+            };
+        }
+    };
+    const bgModel = 'bg' + model1[0].toUpperCase() + model1.slice(1);
+    $22d59f45aa7c47f0$var$styles[bgModel] = {
+        get () {
+            const { level: level  } = this;
+            return function(...arguments_) {
+                const styler = $22d59f45aa7c47f0$var$createStyler($22d59f45aa7c47f0$var$getModelAnsi(model1, $22d59f45aa7c47f0$var$levelMapping[level], 'bgColor', ...arguments_), $2010dab071e0cfa0$export$2e2bcd8739ae039.bgColor.close, this[$22d59f45aa7c47f0$var$STYLER]);
+                return $22d59f45aa7c47f0$var$createBuilder(this, styler, this[$22d59f45aa7c47f0$var$IS_EMPTY]);
+            };
+        }
+    };
+}
+const $22d59f45aa7c47f0$var$proto = Object.defineProperties(()=>{
+}, {
+    ...$22d59f45aa7c47f0$var$styles,
+    level: {
+        enumerable: true,
+        get () {
+            return this[$22d59f45aa7c47f0$var$GENERATOR].level;
+        },
+        set (level) {
+            this[$22d59f45aa7c47f0$var$GENERATOR].level = level;
+        }
+    }
 });
+const $22d59f45aa7c47f0$var$createStyler = (open, close, parent)=>{
+    let openAll;
+    let closeAll;
+    if (parent === undefined) {
+        openAll = open;
+        closeAll = close;
+    } else {
+        openAll = parent.openAll + open;
+        closeAll = close + parent.closeAll;
+    }
+    return {
+        open: open,
+        close: close,
+        openAll: openAll,
+        closeAll: closeAll,
+        parent: parent
+    };
+};
+const $22d59f45aa7c47f0$var$createBuilder = (self, _styler, _isEmpty)=>{
+    const builder = (...arguments_)=>{
+        if ($22d59f45aa7c47f0$var$isArray(arguments_[0]) && $22d59f45aa7c47f0$var$isArray(arguments_[0].raw)) // Called as a template literal, for example: chalk.red`2 + 3 = {bold ${2+3}}`
+        return $22d59f45aa7c47f0$var$applyStyle(builder, $22d59f45aa7c47f0$var$chalkTag(builder, ...arguments_));
+        // Single argument is hot path, implicit coercion is faster than anything
+        // eslint-disable-next-line no-implicit-coercion
+        return $22d59f45aa7c47f0$var$applyStyle(builder, arguments_.length === 1 ? '' + arguments_[0] : arguments_.join(' '));
+    };
+    // We alter the prototype because we must return a function, but there is
+    // no way to create a function with a different prototype
+    Object.setPrototypeOf(builder, $22d59f45aa7c47f0$var$proto);
+    builder[$22d59f45aa7c47f0$var$GENERATOR] = self;
+    builder[$22d59f45aa7c47f0$var$STYLER] = _styler;
+    builder[$22d59f45aa7c47f0$var$IS_EMPTY] = _isEmpty;
+    return builder;
+};
+const $22d59f45aa7c47f0$var$applyStyle = (self, string)=>{
+    if (self.level <= 0 || !string) return self[$22d59f45aa7c47f0$var$IS_EMPTY] ? '' : string;
+    let styler = self[$22d59f45aa7c47f0$var$STYLER];
+    if (styler === undefined) return string;
+    const { openAll: openAll , closeAll: closeAll  } = styler;
+    if (string.includes('\u001B')) while(styler !== undefined){
+        // Replace any instances already present with a re-opening code
+        // otherwise only the part of the string until said closing code
+        // will be colored, and the rest will simply be 'plain'.
+        string = $2fc9955a13feadc7$export$9300dfb554c6c407(string, styler.close, styler.open);
+        styler = styler.parent;
+    }
+    // We can move both next actions out of loop, because remaining actions in loop won't have
+    // any/visible effect on parts we add here. Close the styling before a linebreak and reopen
+    // after next line to fix a bleed issue on macOS: https://github.com/chalk/chalk/pull/92
+    const lfIndex = string.indexOf('\n');
+    if (lfIndex !== -1) string = $2fc9955a13feadc7$export$ecabf4aff2e9764(string, closeAll, openAll, lfIndex);
+    return openAll + string + closeAll;
+};
+const $22d59f45aa7c47f0$var$chalkTag = (chalk, ...strings)=>{
+    const [firstString] = strings;
+    if (!$22d59f45aa7c47f0$var$isArray(firstString) || !$22d59f45aa7c47f0$var$isArray(firstString.raw)) // If chalk() was called by itself or with a string,
+    // return the string itself as a string.
+    return strings.join(' ');
+    const arguments_ = strings.slice(1);
+    const parts = [
+        firstString.raw[0]
+    ];
+    for(let i = 1; i < firstString.length; i++)parts.push(String(arguments_[i - 1]).replace(/[{}\\]/g, '\\$&'), String(firstString.raw[i]));
+    return $0b1ac7e9aaf40a4e$export$2e2bcd8739ae039(chalk, parts.join(''));
+};
+Object.defineProperties($22d59f45aa7c47f0$var$createChalk.prototype, $22d59f45aa7c47f0$var$styles);
+const $22d59f45aa7c47f0$var$chalk = $22d59f45aa7c47f0$var$createChalk();
+const $22d59f45aa7c47f0$export$8cef8185e551afa5 = $22d59f45aa7c47f0$var$createChalk({
+    level: $22d59f45aa7c47f0$export$8107055a758cd2bd ? $22d59f45aa7c47f0$export$8107055a758cd2bd.level : 0
+});
+var $22d59f45aa7c47f0$export$2e2bcd8739ae039 = $22d59f45aa7c47f0$var$chalk;
 
 
-parcelRequire.register("3xbWd", function(module, exports) {
+var $11c045df1a5b205b$require$es6Chalk = $22d59f45aa7c47f0$export$2e2bcd8739ae039;
+// because Parcel.js 2 is jank-AF (normally eval wouldn't be needed, and normally I wouldn't have to use globalThis to get it)
+const $11c045df1a5b205b$var$isNode = globalThis["eval"]("typeof module === 'object' && module instanceof Object && module.exports instanceof Object");
+const $11c045df1a5b205b$var$chalk = $11c045df1a5b205b$var$isNode ? $7e7a99ef2255b980$exports : $11c045df1a5b205b$require$es6Chalk;
+const $11c045df1a5b205b$var$realConsole = globalThis.console;
+const $11c045df1a5b205b$var$isBrowserContext = typeof document != 'undefined' && typeof window != 'undefined';
+// patch the built in console to allow classes to override output
+const $11c045df1a5b205b$var$originalThing = $11c045df1a5b205b$var$realConsole;
+const $11c045df1a5b205b$var$proxySymbol = Symbol.for('Proxy');
+const $11c045df1a5b205b$var$thisProxySymbol = Symbol('thisProxy');
+const $11c045df1a5b205b$var$symbolForConsoleLog = Symbol.for("console.log");
+globalThis.console = new Proxy($11c045df1a5b205b$var$originalThing, {
+    defineProperty: Reflect.defineProperty,
+    getPrototypeOf: Reflect.getPrototypeOf,
+    // Object.keys
+    ownKeys (...args) {
+        return Reflect.ownKeys(...args);
+    },
+    // function call (original value needs to be a function)
+    apply (original, context, ...args) {
+        $11c045df1a5b205b$var$console.log(args);
+    },
+    // new operator (original value needs to be a class)
+    construct (...args) {
+    },
+    get (original, key, ...args1) {
+        if (key == $11c045df1a5b205b$var$proxySymbol || key == $11c045df1a5b205b$var$thisProxySymbol) return true;
+        // if logging, then 
+        if (key == "log") return (...args)=>{
+            $11c045df1a5b205b$var$realConsole.log(...args.map((each)=>{
+                if (each instanceof Object && each[$11c045df1a5b205b$var$symbolForConsoleLog] instanceof Function) return each[$11c045df1a5b205b$var$symbolForConsoleLog]();
+                return each;
+            }));
+        };
+        return Reflect.get(original, key, ...args1);
+    },
+    set (original, key, ...args) {
+        if (key == $11c045df1a5b205b$var$proxySymbol || key == $11c045df1a5b205b$var$thisProxySymbol) return;
+        return Reflect.set(original, key, ...args);
+    }
+});
+var $6b43bec9714ecd1e$exports = {};
 
-var $ewvuw = parcelRequire("ewvuw");
+var $4cYrz = parcelRequire("4cYrz");
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4155,24 +3431,24 @@ var $ewvuw = parcelRequire("ewvuw");
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
-var $292db6cc5cf238f4$var$getOwnPropertyDescriptors = Object.getOwnPropertyDescriptors || function getOwnPropertyDescriptors(obj) {
+var $6b43bec9714ecd1e$var$getOwnPropertyDescriptors = Object.getOwnPropertyDescriptors || function getOwnPropertyDescriptors(obj) {
     var keys = Object.keys(obj);
     var descriptors = {
     };
     for(var i = 0; i < keys.length; i++)descriptors[keys[i]] = Object.getOwnPropertyDescriptor(obj, keys[i]);
     return descriptors;
 };
-var $292db6cc5cf238f4$var$formatRegExp = /%[sdj%]/g;
-module.exports.format = function(f) {
-    if (!$292db6cc5cf238f4$var$isString(f)) {
+var $6b43bec9714ecd1e$var$formatRegExp = /%[sdj%]/g;
+$6b43bec9714ecd1e$exports.format = function(f) {
+    if (!$6b43bec9714ecd1e$var$isString(f)) {
         var objects = [];
-        for(var i = 0; i < arguments.length; i++)objects.push($292db6cc5cf238f4$var$inspect(arguments[i]));
+        for(var i = 0; i < arguments.length; i++)objects.push($6b43bec9714ecd1e$var$inspect(arguments[i]));
         return objects.join(' ');
     }
     var i = 1;
     var args = arguments;
     var len = args.length;
-    var str = String(f).replace($292db6cc5cf238f4$var$formatRegExp, function(x) {
+    var str = String(f).replace($6b43bec9714ecd1e$var$formatRegExp, function(x) {
         if (x === '%%') return '%';
         if (i >= len) return x;
         switch(x){
@@ -4190,24 +3466,24 @@ module.exports.format = function(f) {
                 return x;
         }
     });
-    for(var x = args[i]; i < len; x = args[++i])if ($292db6cc5cf238f4$var$isNull(x) || !$292db6cc5cf238f4$var$isObject(x)) str += ' ' + x;
-    else str += ' ' + $292db6cc5cf238f4$var$inspect(x);
+    for(var x1 = args[i]; i < len; x1 = args[++i])if ($6b43bec9714ecd1e$var$isNull(x1) || !$6b43bec9714ecd1e$var$isObject(x1)) str += ' ' + x1;
+    else str += ' ' + $6b43bec9714ecd1e$var$inspect(x1);
     return str;
 };
 // Mark that a method should not be used.
 // Returns a modified function which warns once by default.
 // If --no-deprecation is set, then it is a no-op.
-module.exports.deprecate = function(fn, msg) {
-    if (typeof $ewvuw !== 'undefined' && $ewvuw.noDeprecation === true) return fn;
+$6b43bec9714ecd1e$exports.deprecate = function(fn, msg) {
+    if (typeof $4cYrz !== 'undefined' && $4cYrz.noDeprecation === true) return fn;
     // Allow for deprecating things in the process of starting up.
-    if (typeof $ewvuw === 'undefined') return function() {
-        return module.exports.deprecate(fn, msg).apply(this, arguments);
+    if (typeof $4cYrz === 'undefined') return function() {
+        return $6b43bec9714ecd1e$exports.deprecate(fn, msg).apply(this, arguments);
     };
     var warned = false;
     function deprecated() {
         if (!warned) {
-            if ($ewvuw.throwDeprecation) throw new Error(msg);
-            else if ($ewvuw.traceDeprecation) console.trace(msg);
+            if ($4cYrz.throwDeprecation) throw new Error(msg);
+            else if ($4cYrz.traceDeprecation) console.trace(msg);
             else console.error(msg);
             warned = true;
         }
@@ -4215,23 +3491,23 @@ module.exports.deprecate = function(fn, msg) {
     }
     return deprecated;
 };
-var $292db6cc5cf238f4$var$debugs = {
+var $6b43bec9714ecd1e$var$debugs = {
 };
-var $292db6cc5cf238f4$var$debugEnvRegex = /^$/;
-var $292db6cc5cf238f4$var$debugEnv;
-module.exports.debuglog = function(set) {
+var $6b43bec9714ecd1e$var$debugEnvRegex = /^$/;
+var $6b43bec9714ecd1e$var$debugEnv;
+$6b43bec9714ecd1e$exports.debuglog = function(set) {
     set = set.toUpperCase();
-    if (!$292db6cc5cf238f4$var$debugs[set]) {
-        if ($292db6cc5cf238f4$var$debugEnvRegex.test(set)) {
-            var pid = $ewvuw.pid;
-            $292db6cc5cf238f4$var$debugs[set] = function() {
-                var msg = module.exports.format.apply(module.exports, arguments);
+    if (!$6b43bec9714ecd1e$var$debugs[set]) {
+        if ($6b43bec9714ecd1e$var$debugEnvRegex.test(set)) {
+            var pid = $4cYrz.pid;
+            $6b43bec9714ecd1e$var$debugs[set] = function() {
+                var msg = $6b43bec9714ecd1e$exports.format.apply($6b43bec9714ecd1e$exports, arguments);
                 console.error('%s %d: %s', set, pid, msg);
             };
-        } else $292db6cc5cf238f4$var$debugs[set] = function() {
+        } else $6b43bec9714ecd1e$var$debugs[set] = function() {
         };
     }
-    return $292db6cc5cf238f4$var$debugs[set];
+    return $6b43bec9714ecd1e$var$debugs[set];
 };
 /**
  * Echos the value of a value. Trys to print the value out
@@ -4239,30 +3515,30 @@ module.exports.debuglog = function(set) {
  *
  * @param {Object} obj The object to print out.
  * @param {Object} opts Optional options object that alters the output.
- */ /* legacy: obj, showHidden, depth, colors*/ function $292db6cc5cf238f4$var$inspect(obj, opts) {
+ */ /* legacy: obj, showHidden, depth, colors*/ function $6b43bec9714ecd1e$var$inspect(obj, opts) {
     // default options
     var ctx = {
         seen: [],
-        stylize: $292db6cc5cf238f4$var$stylizeNoColor
+        stylize: $6b43bec9714ecd1e$var$stylizeNoColor
     };
     // legacy...
     if (arguments.length >= 3) ctx.depth = arguments[2];
     if (arguments.length >= 4) ctx.colors = arguments[3];
-    if ($292db6cc5cf238f4$var$isBoolean(opts)) // legacy...
+    if ($6b43bec9714ecd1e$var$isBoolean(opts)) // legacy...
     ctx.showHidden = opts;
     else if (opts) // got an "options" object
-    module.exports._extend(ctx, opts);
+    $6b43bec9714ecd1e$exports._extend(ctx, opts);
     // set default options
-    if ($292db6cc5cf238f4$var$isUndefined(ctx.showHidden)) ctx.showHidden = false;
-    if ($292db6cc5cf238f4$var$isUndefined(ctx.depth)) ctx.depth = 2;
-    if ($292db6cc5cf238f4$var$isUndefined(ctx.colors)) ctx.colors = false;
-    if ($292db6cc5cf238f4$var$isUndefined(ctx.customInspect)) ctx.customInspect = true;
-    if (ctx.colors) ctx.stylize = $292db6cc5cf238f4$var$stylizeWithColor;
-    return $292db6cc5cf238f4$var$formatValue(ctx, obj, ctx.depth);
+    if ($6b43bec9714ecd1e$var$isUndefined(ctx.showHidden)) ctx.showHidden = false;
+    if ($6b43bec9714ecd1e$var$isUndefined(ctx.depth)) ctx.depth = 2;
+    if ($6b43bec9714ecd1e$var$isUndefined(ctx.colors)) ctx.colors = false;
+    if ($6b43bec9714ecd1e$var$isUndefined(ctx.customInspect)) ctx.customInspect = true;
+    if (ctx.colors) ctx.stylize = $6b43bec9714ecd1e$var$stylizeWithColor;
+    return $6b43bec9714ecd1e$var$formatValue(ctx, obj, ctx.depth);
 }
-module.exports.inspect = $292db6cc5cf238f4$var$inspect;
+$6b43bec9714ecd1e$exports.inspect = $6b43bec9714ecd1e$var$inspect;
 // http://en.wikipedia.org/wiki/ANSI_escape_code#graphics
-$292db6cc5cf238f4$var$inspect.colors = {
+$6b43bec9714ecd1e$var$inspect.colors = {
     'bold': [
         1,
         22
@@ -4317,7 +3593,7 @@ $292db6cc5cf238f4$var$inspect.colors = {
     ]
 };
 // Don't use 'blue' not visible on cmd.exe
-$292db6cc5cf238f4$var$inspect.styles = {
+$6b43bec9714ecd1e$var$inspect.styles = {
     'special': 'cyan',
     'number': 'yellow',
     'boolean': 'yellow',
@@ -4328,15 +3604,15 @@ $292db6cc5cf238f4$var$inspect.styles = {
     // "name": intentionally not styling
     'regexp': 'red'
 };
-function $292db6cc5cf238f4$var$stylizeWithColor(str, styleType) {
-    var style = $292db6cc5cf238f4$var$inspect.styles[styleType];
-    if (style) return '\u001b[' + $292db6cc5cf238f4$var$inspect.colors[style][0] + 'm' + str + '\u001b[' + $292db6cc5cf238f4$var$inspect.colors[style][1] + 'm';
+function $6b43bec9714ecd1e$var$stylizeWithColor(str, styleType) {
+    var style = $6b43bec9714ecd1e$var$inspect.styles[styleType];
+    if (style) return '\u001b[' + $6b43bec9714ecd1e$var$inspect.colors[style][0] + 'm' + str + '\u001b[' + $6b43bec9714ecd1e$var$inspect.colors[style][1] + 'm';
     else return str;
 }
-function $292db6cc5cf238f4$var$stylizeNoColor(str, styleType) {
+function $6b43bec9714ecd1e$var$stylizeNoColor(str, styleType) {
     return str;
 }
-function $292db6cc5cf238f4$var$arrayToHash(array) {
+function $6b43bec9714ecd1e$var$arrayToHash(array) {
     var hash = {
     };
     array.forEach(function(val, idx) {
@@ -4344,42 +3620,42 @@ function $292db6cc5cf238f4$var$arrayToHash(array) {
     });
     return hash;
 }
-function $292db6cc5cf238f4$var$formatValue(ctx, value, recurseTimes) {
+function $6b43bec9714ecd1e$var$formatValue(ctx, value, recurseTimes) {
     // Provide a hook for user-specified inspect functions.
     // Check that value is an object with an inspect function on it
-    if (ctx.customInspect && value && $292db6cc5cf238f4$var$isFunction(value.inspect) && // Filter out the util module, it's inspect function is special
-    value.inspect !== module.exports.inspect && // Also filter out any prototype objects using the circular check.
+    if (ctx.customInspect && value && $6b43bec9714ecd1e$var$isFunction(value.inspect) && // Filter out the util module, it's inspect function is special
+    value.inspect !== $6b43bec9714ecd1e$exports.inspect && // Also filter out any prototype objects using the circular check.
     !(value.constructor && value.constructor.prototype === value)) {
         var ret = value.inspect(recurseTimes, ctx);
-        if (!$292db6cc5cf238f4$var$isString(ret)) ret = $292db6cc5cf238f4$var$formatValue(ctx, ret, recurseTimes);
+        if (!$6b43bec9714ecd1e$var$isString(ret)) ret = $6b43bec9714ecd1e$var$formatValue(ctx, ret, recurseTimes);
         return ret;
     }
     // Primitive types cannot have properties
-    var primitive = $292db6cc5cf238f4$var$formatPrimitive(ctx, value);
+    var primitive = $6b43bec9714ecd1e$var$formatPrimitive(ctx, value);
     if (primitive) return primitive;
     // Look up the keys of the object.
     var keys = Object.keys(value);
-    var visibleKeys = $292db6cc5cf238f4$var$arrayToHash(keys);
+    var visibleKeys = $6b43bec9714ecd1e$var$arrayToHash(keys);
     if (ctx.showHidden) keys = Object.getOwnPropertyNames(value);
     // IE doesn't make error fields non-enumerable
     // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
-    if ($292db6cc5cf238f4$var$isError(value) && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) return $292db6cc5cf238f4$var$formatError(value);
+    if ($6b43bec9714ecd1e$var$isError(value) && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) return $6b43bec9714ecd1e$var$formatError(value);
     // Some type of object without properties can be shortcutted.
     if (keys.length === 0) {
-        if ($292db6cc5cf238f4$var$isFunction(value)) {
+        if ($6b43bec9714ecd1e$var$isFunction(value)) {
             var name = value.name ? ': ' + value.name : '';
             return ctx.stylize('[Function' + name + ']', 'special');
         }
-        if ($292db6cc5cf238f4$var$isRegExp(value)) return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
-        if ($292db6cc5cf238f4$var$isDate(value)) return ctx.stylize(Date.prototype.toString.call(value), 'date');
-        if ($292db6cc5cf238f4$var$isError(value)) return $292db6cc5cf238f4$var$formatError(value);
+        if ($6b43bec9714ecd1e$var$isRegExp(value)) return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
+        if ($6b43bec9714ecd1e$var$isDate(value)) return ctx.stylize(Date.prototype.toString.call(value), 'date');
+        if ($6b43bec9714ecd1e$var$isError(value)) return $6b43bec9714ecd1e$var$formatError(value);
     }
     var base = '', array = false, braces = [
         '{',
         '}'
     ];
     // Make Array say that they are Array
-    if ($292db6cc5cf238f4$var$isArray(value)) {
+    if ($6b43bec9714ecd1e$var$isArray(value)) {
         array = true;
         braces = [
             '[',
@@ -4387,54 +3663,54 @@ function $292db6cc5cf238f4$var$formatValue(ctx, value, recurseTimes) {
         ];
     }
     // Make functions say that they are functions
-    if ($292db6cc5cf238f4$var$isFunction(value)) {
+    if ($6b43bec9714ecd1e$var$isFunction(value)) {
         var n = value.name ? ': ' + value.name : '';
         base = ' [Function' + n + ']';
     }
     // Make RegExps say that they are RegExps
-    if ($292db6cc5cf238f4$var$isRegExp(value)) base = ' ' + RegExp.prototype.toString.call(value);
+    if ($6b43bec9714ecd1e$var$isRegExp(value)) base = ' ' + RegExp.prototype.toString.call(value);
     // Make dates with properties first say the date
-    if ($292db6cc5cf238f4$var$isDate(value)) base = ' ' + Date.prototype.toUTCString.call(value);
+    if ($6b43bec9714ecd1e$var$isDate(value)) base = ' ' + Date.prototype.toUTCString.call(value);
     // Make error with message first say the error
-    if ($292db6cc5cf238f4$var$isError(value)) base = ' ' + $292db6cc5cf238f4$var$formatError(value);
+    if ($6b43bec9714ecd1e$var$isError(value)) base = ' ' + $6b43bec9714ecd1e$var$formatError(value);
     if (keys.length === 0 && (!array || value.length == 0)) return braces[0] + base + braces[1];
     if (recurseTimes < 0) {
-        if ($292db6cc5cf238f4$var$isRegExp(value)) return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
+        if ($6b43bec9714ecd1e$var$isRegExp(value)) return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
         else return ctx.stylize('[Object]', 'special');
     }
     ctx.seen.push(value);
     var output;
-    if (array) output = $292db6cc5cf238f4$var$formatArray(ctx, value, recurseTimes, visibleKeys, keys);
+    if (array) output = $6b43bec9714ecd1e$var$formatArray(ctx, value, recurseTimes, visibleKeys, keys);
     else output = keys.map(function(key) {
-        return $292db6cc5cf238f4$var$formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);
+        return $6b43bec9714ecd1e$var$formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);
     });
     ctx.seen.pop();
-    return $292db6cc5cf238f4$var$reduceToSingleString(output, base, braces);
+    return $6b43bec9714ecd1e$var$reduceToSingleString(output, base, braces);
 }
-function $292db6cc5cf238f4$var$formatPrimitive(ctx, value) {
-    if ($292db6cc5cf238f4$var$isUndefined(value)) return ctx.stylize('undefined', 'undefined');
-    if ($292db6cc5cf238f4$var$isString(value)) {
+function $6b43bec9714ecd1e$var$formatPrimitive(ctx, value) {
+    if ($6b43bec9714ecd1e$var$isUndefined(value)) return ctx.stylize('undefined', 'undefined');
+    if ($6b43bec9714ecd1e$var$isString(value)) {
         var simple = '\'' + JSON.stringify(value).replace(/^"|"$/g, '').replace(/'/g, "\\'").replace(/\\"/g, '"') + '\'';
         return ctx.stylize(simple, 'string');
     }
-    if ($292db6cc5cf238f4$var$isNumber(value)) return ctx.stylize('' + value, 'number');
-    if ($292db6cc5cf238f4$var$isBoolean(value)) return ctx.stylize('' + value, 'boolean');
+    if ($6b43bec9714ecd1e$var$isNumber(value)) return ctx.stylize('' + value, 'number');
+    if ($6b43bec9714ecd1e$var$isBoolean(value)) return ctx.stylize('' + value, 'boolean');
     // For some reason typeof null is "object", so special case here.
-    if ($292db6cc5cf238f4$var$isNull(value)) return ctx.stylize('null', 'null');
+    if ($6b43bec9714ecd1e$var$isNull(value)) return ctx.stylize('null', 'null');
 }
-function $292db6cc5cf238f4$var$formatError(value) {
+function $6b43bec9714ecd1e$var$formatError(value) {
     return '[' + Error.prototype.toString.call(value) + ']';
 }
-function $292db6cc5cf238f4$var$formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
+function $6b43bec9714ecd1e$var$formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
     var output = [];
-    for(var i = 0, l = value.length; i < l; ++i)if ($292db6cc5cf238f4$var$hasOwnProperty(value, String(i))) output.push($292db6cc5cf238f4$var$formatProperty(ctx, value, recurseTimes, visibleKeys, String(i), true));
+    for(var i = 0, l = value.length; i < l; ++i)if ($6b43bec9714ecd1e$var$hasOwnProperty(value, String(i))) output.push($6b43bec9714ecd1e$var$formatProperty(ctx, value, recurseTimes, visibleKeys, String(i), true));
     else output.push('');
     keys.forEach(function(key) {
-        if (!key.match(/^\d+$/)) output.push($292db6cc5cf238f4$var$formatProperty(ctx, value, recurseTimes, visibleKeys, key, true));
+        if (!key.match(/^\d+$/)) output.push($6b43bec9714ecd1e$var$formatProperty(ctx, value, recurseTimes, visibleKeys, key, true));
     });
     return output;
 }
-function $292db6cc5cf238f4$var$formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
+function $6b43bec9714ecd1e$var$formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
     var name, str, desc;
     desc = Object.getOwnPropertyDescriptor(value, key) || {
         value: value[key]
@@ -4443,11 +3719,11 @@ function $292db6cc5cf238f4$var$formatProperty(ctx, value, recurseTimes, visibleK
         if (desc.set) str = ctx.stylize('[Getter/Setter]', 'special');
         else str = ctx.stylize('[Getter]', 'special');
     } else if (desc.set) str = ctx.stylize('[Setter]', 'special');
-    if (!$292db6cc5cf238f4$var$hasOwnProperty(visibleKeys, key)) name = '[' + key + ']';
+    if (!$6b43bec9714ecd1e$var$hasOwnProperty(visibleKeys, key)) name = '[' + key + ']';
     if (!str) {
         if (ctx.seen.indexOf(desc.value) < 0) {
-            if ($292db6cc5cf238f4$var$isNull(recurseTimes)) str = $292db6cc5cf238f4$var$formatValue(ctx, desc.value, null);
-            else str = $292db6cc5cf238f4$var$formatValue(ctx, desc.value, recurseTimes - 1);
+            if ($6b43bec9714ecd1e$var$isNull(recurseTimes)) str = $6b43bec9714ecd1e$var$formatValue(ctx, desc.value, null);
+            else str = $6b43bec9714ecd1e$var$formatValue(ctx, desc.value, recurseTimes - 1);
             if (str.indexOf('\n') > -1) {
                 if (array) str = str.split('\n').map(function(line) {
                     return '  ' + line;
@@ -4458,7 +3734,7 @@ function $292db6cc5cf238f4$var$formatProperty(ctx, value, recurseTimes, visibleK
             }
         } else str = ctx.stylize('[Circular]', 'special');
     }
-    if ($292db6cc5cf238f4$var$isUndefined(name)) {
+    if ($6b43bec9714ecd1e$var$isUndefined(name)) {
         if (array && key.match(/^\d+$/)) return str;
         name = JSON.stringify('' + key);
         if (name.match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
@@ -4471,7 +3747,7 @@ function $292db6cc5cf238f4$var$formatProperty(ctx, value, recurseTimes, visibleK
     }
     return name + ': ' + str;
 }
-function $292db6cc5cf238f4$var$reduceToSingleString(output, base, braces) {
+function $6b43bec9714ecd1e$var$reduceToSingleString(output, base, braces) {
     var numLinesEst = 0;
     var length = output.reduce(function(prev, cur) {
         numLinesEst++;
@@ -4481,242 +3757,30 @@ function $292db6cc5cf238f4$var$reduceToSingleString(output, base, braces) {
     if (length > 60) return braces[0] + (base === '' ? '' : base + '\n ') + ' ' + output.join(',\n  ') + ' ' + braces[1];
     return braces[0] + base + ' ' + output.join(', ') + ' ' + braces[1];
 }
-
-// NOTE: These type checking functions intentionally don't use `instanceof`
-// because it is fragile and can be easily faked with `Object.create()`.
-module.exports.types = (parcelRequire("h96W4"));
-function $292db6cc5cf238f4$var$isArray(ar) {
-    return Array.isArray(ar);
-}
-module.exports.isArray = $292db6cc5cf238f4$var$isArray;
-function $292db6cc5cf238f4$var$isBoolean(arg) {
-    return typeof arg === 'boolean';
-}
-module.exports.isBoolean = $292db6cc5cf238f4$var$isBoolean;
-function $292db6cc5cf238f4$var$isNull(arg) {
-    return arg === null;
-}
-module.exports.isNull = $292db6cc5cf238f4$var$isNull;
-function $292db6cc5cf238f4$var$isNullOrUndefined(arg) {
-    return arg == null;
-}
-module.exports.isNullOrUndefined = $292db6cc5cf238f4$var$isNullOrUndefined;
-function $292db6cc5cf238f4$var$isNumber(arg) {
-    return typeof arg === 'number';
-}
-module.exports.isNumber = $292db6cc5cf238f4$var$isNumber;
-function $292db6cc5cf238f4$var$isString(arg) {
-    return typeof arg === 'string';
-}
-module.exports.isString = $292db6cc5cf238f4$var$isString;
-function $292db6cc5cf238f4$var$isSymbol(arg) {
-    return typeof arg === 'symbol';
-}
-module.exports.isSymbol = $292db6cc5cf238f4$var$isSymbol;
-function $292db6cc5cf238f4$var$isUndefined(arg) {
-    return arg === void 0;
-}
-module.exports.isUndefined = $292db6cc5cf238f4$var$isUndefined;
-function $292db6cc5cf238f4$var$isRegExp(re) {
-    return $292db6cc5cf238f4$var$isObject(re) && $292db6cc5cf238f4$var$objectToString(re) === '[object RegExp]';
-}
-module.exports.isRegExp = $292db6cc5cf238f4$var$isRegExp;
-module.exports.types.isRegExp = $292db6cc5cf238f4$var$isRegExp;
-function $292db6cc5cf238f4$var$isObject(arg) {
-    return typeof arg === 'object' && arg !== null;
-}
-module.exports.isObject = $292db6cc5cf238f4$var$isObject;
-function $292db6cc5cf238f4$var$isDate(d) {
-    return $292db6cc5cf238f4$var$isObject(d) && $292db6cc5cf238f4$var$objectToString(d) === '[object Date]';
-}
-module.exports.isDate = $292db6cc5cf238f4$var$isDate;
-module.exports.types.isDate = $292db6cc5cf238f4$var$isDate;
-function $292db6cc5cf238f4$var$isError(e) {
-    return $292db6cc5cf238f4$var$isObject(e) && ($292db6cc5cf238f4$var$objectToString(e) === '[object Error]' || e instanceof Error);
-}
-module.exports.isError = $292db6cc5cf238f4$var$isError;
-module.exports.types.isNativeError = $292db6cc5cf238f4$var$isError;
-function $292db6cc5cf238f4$var$isFunction(arg) {
-    return typeof arg === 'function';
-}
-module.exports.isFunction = $292db6cc5cf238f4$var$isFunction;
-function $292db6cc5cf238f4$var$isPrimitive(arg) {
-    return arg === null || typeof arg === 'boolean' || typeof arg === 'number' || typeof arg === 'string' || typeof arg === 'symbol' || typeof arg === 'undefined';
-}
-module.exports.isPrimitive = $292db6cc5cf238f4$var$isPrimitive;
-
-module.exports.isBuffer = (parcelRequire("iwya7"));
-function $292db6cc5cf238f4$var$objectToString(o) {
-    return Object.prototype.toString.call(o);
-}
-function $292db6cc5cf238f4$var$pad(n) {
-    return n < 10 ? '0' + n.toString(10) : n.toString(10);
-}
-var $292db6cc5cf238f4$var$months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
-];
-// 26 Feb 16:19:34
-function $292db6cc5cf238f4$var$timestamp() {
-    var d = new Date();
-    var time = [
-        $292db6cc5cf238f4$var$pad(d.getHours()),
-        $292db6cc5cf238f4$var$pad(d.getMinutes()),
-        $292db6cc5cf238f4$var$pad(d.getSeconds())
-    ].join(':');
-    return [
-        d.getDate(),
-        $292db6cc5cf238f4$var$months[d.getMonth()],
-        time
-    ].join(' ');
-}
-// log is just a thin wrapper to console.log that prepends a timestamp
-module.exports.log = function() {
-    console.log('%s - %s', $292db6cc5cf238f4$var$timestamp(), module.exports.format.apply(module.exports, arguments));
-};
-
-/**
- * Inherit the prototype methods from one constructor into another.
- *
- * The Function.prototype.inherits from lang.js rewritten as a standalone
- * function (not on Function.prototype). NOTE: If this file is to be loaded
- * during bootstrapping this function needs to be rewritten using some native
- * functions as prototype setup using normal JavaScript does not work as
- * expected during bootstrapping (see mirror.js in r114903).
- *
- * @param {function} ctor Constructor function which needs to inherit the
- *     prototype.
- * @param {function} superCtor Constructor function to inherit prototype from.
- */ module.exports.inherits = (parcelRequire("eeC3p"));
-module.exports._extend = function(origin, add) {
-    // Don't do anything if add isn't an object
-    if (!add || !$292db6cc5cf238f4$var$isObject(add)) return origin;
-    var keys = Object.keys(add);
-    var i = keys.length;
-    while(i--)origin[keys[i]] = add[keys[i]];
-    return origin;
-};
-function $292db6cc5cf238f4$var$hasOwnProperty(obj, prop) {
-    return Object.prototype.hasOwnProperty.call(obj, prop);
-}
-var $292db6cc5cf238f4$var$kCustomPromisifiedSymbol = typeof Symbol !== 'undefined' ? Symbol('util.promisify.custom') : undefined;
-module.exports.promisify = function promisify(original) {
-    if (typeof original !== 'function') throw new TypeError('The "original" argument must be of type Function');
-    if ($292db6cc5cf238f4$var$kCustomPromisifiedSymbol && original[$292db6cc5cf238f4$var$kCustomPromisifiedSymbol]) {
-        var fn = original[$292db6cc5cf238f4$var$kCustomPromisifiedSymbol];
-        if (typeof fn !== 'function') throw new TypeError('The "util.promisify.custom" argument must be of type Function');
-        Object.defineProperty(fn, $292db6cc5cf238f4$var$kCustomPromisifiedSymbol, {
-            value: fn,
-            enumerable: false,
-            writable: false,
-            configurable: true
-        });
-        return fn;
-    }
-    function fn() {
-        var promiseResolve, promiseReject;
-        var promise = new Promise(function(resolve, reject) {
-            promiseResolve = resolve;
-            promiseReject = reject;
-        });
-        var args = [];
-        for(var i = 0; i < arguments.length; i++)args.push(arguments[i]);
-        args.push(function(err, value) {
-            if (err) promiseReject(err);
-            else promiseResolve(value);
-        });
-        try {
-            original.apply(this, args);
-        } catch (err) {
-            promiseReject(err);
-        }
-        return promise;
-    }
-    Object.setPrototypeOf(fn, Object.getPrototypeOf(original));
-    if ($292db6cc5cf238f4$var$kCustomPromisifiedSymbol) Object.defineProperty(fn, $292db6cc5cf238f4$var$kCustomPromisifiedSymbol, {
-        value: fn,
-        enumerable: false,
-        writable: false,
-        configurable: true
-    });
-    return Object.defineProperties(fn, $292db6cc5cf238f4$var$getOwnPropertyDescriptors(original));
-};
-module.exports.promisify.custom = $292db6cc5cf238f4$var$kCustomPromisifiedSymbol;
-function $292db6cc5cf238f4$var$callbackifyOnRejected(reason, cb) {
-    // `!reason` guard inspired by bluebird (Ref: https://goo.gl/t5IS6M).
-    // Because `null` is a special error value in callbacks which means "no error
-    // occurred", we error-wrap so the callback consumer can distinguish between
-    // "the promise rejected with null" or "the promise fulfilled with undefined".
-    if (!reason) {
-        var newReason = new Error('Promise was rejected with a falsy value');
-        newReason.reason = reason;
-        reason = newReason;
-    }
-    return cb(reason);
-}
-function $292db6cc5cf238f4$var$callbackify(original) {
-    if (typeof original !== 'function') throw new TypeError('The "original" argument must be of type Function');
-    // We DO NOT return the promise as it gives the user a false sense that
-    // the promise is actually somehow related to the callback's execution
-    // and that the callback throwing will reject the promise.
-    function callbackified() {
-        var args = [];
-        for(var i = 0; i < arguments.length; i++)args.push(arguments[i]);
-        var maybeCb = args.pop();
-        if (typeof maybeCb !== 'function') throw new TypeError('The last argument must be of type Function');
-        var self = this;
-        var cb = function() {
-            return maybeCb.apply(self, arguments);
-        };
-        // In true node style we process the callback on `nextTick` with all the
-        // implications (stack, `uncaughtException`, `async_hooks`)
-        original.apply(this, args).then(function(ret) {
-            $ewvuw.nextTick(cb.bind(null, null, ret));
-        }, function(rej) {
-            $ewvuw.nextTick($292db6cc5cf238f4$var$callbackifyOnRejected.bind(null, rej, cb));
-        });
-    }
-    Object.setPrototypeOf(callbackified, Object.getPrototypeOf(original));
-    Object.defineProperties(callbackified, $292db6cc5cf238f4$var$getOwnPropertyDescriptors(original));
-    return callbackified;
-}
-module.exports.callbackify = $292db6cc5cf238f4$var$callbackify;
-
-});
-parcelRequire.register("h96W4", function(module, exports) {
+parcelRequire.register("gUdyo", function(module, exports) {
 // Currently in sync with Node.js lib/internal/util/types.js
 // https://github.com/nodejs/node/commit/112cc7c27551254aa2b17098fb774867f05ed0d9
 'use strict';
 
-var $alMHE = parcelRequire("alMHE");
+var $aYNSh = parcelRequire("aYNSh");
 
-var $liNZQ = parcelRequire("liNZQ");
+var $iUVnI = parcelRequire("iUVnI");
 
-var $8pHxd = parcelRequire("8pHxd");
+var $7s39a = parcelRequire("7s39a");
 
-var $fV6Lw = parcelRequire("fV6Lw");
-function $c7b8a83128cdd6c4$var$uncurryThis(f) {
+var $ju8Yj = parcelRequire("ju8Yj");
+function $c4ec63cc77772976$var$uncurryThis(f) {
     return f.call.bind(f);
 }
-var $c7b8a83128cdd6c4$var$BigIntSupported = typeof BigInt !== 'undefined';
-var $c7b8a83128cdd6c4$var$SymbolSupported = typeof Symbol !== 'undefined';
-var $c7b8a83128cdd6c4$var$ObjectToString = $c7b8a83128cdd6c4$var$uncurryThis(Object.prototype.toString);
-var $c7b8a83128cdd6c4$var$numberValue = $c7b8a83128cdd6c4$var$uncurryThis(Number.prototype.valueOf);
-var $c7b8a83128cdd6c4$var$stringValue = $c7b8a83128cdd6c4$var$uncurryThis(String.prototype.valueOf);
-var $c7b8a83128cdd6c4$var$booleanValue = $c7b8a83128cdd6c4$var$uncurryThis(Boolean.prototype.valueOf);
-if ($c7b8a83128cdd6c4$var$BigIntSupported) var $c7b8a83128cdd6c4$var$bigIntValue = $c7b8a83128cdd6c4$var$uncurryThis(BigInt.prototype.valueOf);
-if ($c7b8a83128cdd6c4$var$SymbolSupported) var $c7b8a83128cdd6c4$var$symbolValue = $c7b8a83128cdd6c4$var$uncurryThis(Symbol.prototype.valueOf);
-function $c7b8a83128cdd6c4$var$checkBoxedPrimitive(value, prototypeValueOf) {
+var $c4ec63cc77772976$var$BigIntSupported = typeof BigInt !== 'undefined';
+var $c4ec63cc77772976$var$SymbolSupported = typeof Symbol !== 'undefined';
+var $c4ec63cc77772976$var$ObjectToString = $c4ec63cc77772976$var$uncurryThis(Object.prototype.toString);
+var $c4ec63cc77772976$var$numberValue = $c4ec63cc77772976$var$uncurryThis(Number.prototype.valueOf);
+var $c4ec63cc77772976$var$stringValue = $c4ec63cc77772976$var$uncurryThis(String.prototype.valueOf);
+var $c4ec63cc77772976$var$booleanValue = $c4ec63cc77772976$var$uncurryThis(Boolean.prototype.valueOf);
+if ($c4ec63cc77772976$var$BigIntSupported) var $c4ec63cc77772976$var$bigIntValue = $c4ec63cc77772976$var$uncurryThis(BigInt.prototype.valueOf);
+if ($c4ec63cc77772976$var$SymbolSupported) var $c4ec63cc77772976$var$symbolValue = $c4ec63cc77772976$var$uncurryThis(Symbol.prototype.valueOf);
+function $c4ec63cc77772976$var$checkBoxedPrimitive(value, prototypeValueOf) {
     if (typeof value !== 'object') return false;
     try {
         prototypeValueOf(value);
@@ -4725,176 +3789,176 @@ function $c7b8a83128cdd6c4$var$checkBoxedPrimitive(value, prototypeValueOf) {
         return false;
     }
 }
-module.exports.isArgumentsObject = $alMHE;
-module.exports.isGeneratorFunction = $liNZQ;
-module.exports.isTypedArray = $fV6Lw;
+module.exports.isArgumentsObject = $aYNSh;
+module.exports.isGeneratorFunction = $iUVnI;
+module.exports.isTypedArray = $ju8Yj;
 // Taken from here and modified for better browser support
 // https://github.com/sindresorhus/p-is-promise/blob/cda35a513bda03f977ad5cde3a079d237e82d7ef/index.js
-function $c7b8a83128cdd6c4$var$isPromise(input) {
+function $c4ec63cc77772976$var$isPromise(input) {
     return typeof Promise !== 'undefined' && input instanceof Promise || input !== null && typeof input === 'object' && typeof input.then === 'function' && typeof input.catch === 'function';
 }
-module.exports.isPromise = $c7b8a83128cdd6c4$var$isPromise;
-function $c7b8a83128cdd6c4$var$isArrayBufferView(value) {
+module.exports.isPromise = $c4ec63cc77772976$var$isPromise;
+function $c4ec63cc77772976$var$isArrayBufferView(value) {
     if (typeof ArrayBuffer !== 'undefined' && ArrayBuffer.isView) return ArrayBuffer.isView(value);
-    return $fV6Lw(value) || $c7b8a83128cdd6c4$var$isDataView(value);
+    return $ju8Yj(value) || $c4ec63cc77772976$var$isDataView(value);
 }
-module.exports.isArrayBufferView = $c7b8a83128cdd6c4$var$isArrayBufferView;
-function $c7b8a83128cdd6c4$var$isUint8Array(value) {
-    return $8pHxd(value) === 'Uint8Array';
+module.exports.isArrayBufferView = $c4ec63cc77772976$var$isArrayBufferView;
+function $c4ec63cc77772976$var$isUint8Array(value) {
+    return $7s39a(value) === 'Uint8Array';
 }
-module.exports.isUint8Array = $c7b8a83128cdd6c4$var$isUint8Array;
-function $c7b8a83128cdd6c4$var$isUint8ClampedArray(value) {
-    return $8pHxd(value) === 'Uint8ClampedArray';
+module.exports.isUint8Array = $c4ec63cc77772976$var$isUint8Array;
+function $c4ec63cc77772976$var$isUint8ClampedArray(value) {
+    return $7s39a(value) === 'Uint8ClampedArray';
 }
-module.exports.isUint8ClampedArray = $c7b8a83128cdd6c4$var$isUint8ClampedArray;
-function $c7b8a83128cdd6c4$var$isUint16Array(value) {
-    return $8pHxd(value) === 'Uint16Array';
+module.exports.isUint8ClampedArray = $c4ec63cc77772976$var$isUint8ClampedArray;
+function $c4ec63cc77772976$var$isUint16Array(value) {
+    return $7s39a(value) === 'Uint16Array';
 }
-module.exports.isUint16Array = $c7b8a83128cdd6c4$var$isUint16Array;
-function $c7b8a83128cdd6c4$var$isUint32Array(value) {
-    return $8pHxd(value) === 'Uint32Array';
+module.exports.isUint16Array = $c4ec63cc77772976$var$isUint16Array;
+function $c4ec63cc77772976$var$isUint32Array(value) {
+    return $7s39a(value) === 'Uint32Array';
 }
-module.exports.isUint32Array = $c7b8a83128cdd6c4$var$isUint32Array;
-function $c7b8a83128cdd6c4$var$isInt8Array(value) {
-    return $8pHxd(value) === 'Int8Array';
+module.exports.isUint32Array = $c4ec63cc77772976$var$isUint32Array;
+function $c4ec63cc77772976$var$isInt8Array(value) {
+    return $7s39a(value) === 'Int8Array';
 }
-module.exports.isInt8Array = $c7b8a83128cdd6c4$var$isInt8Array;
-function $c7b8a83128cdd6c4$var$isInt16Array(value) {
-    return $8pHxd(value) === 'Int16Array';
+module.exports.isInt8Array = $c4ec63cc77772976$var$isInt8Array;
+function $c4ec63cc77772976$var$isInt16Array(value) {
+    return $7s39a(value) === 'Int16Array';
 }
-module.exports.isInt16Array = $c7b8a83128cdd6c4$var$isInt16Array;
-function $c7b8a83128cdd6c4$var$isInt32Array(value) {
-    return $8pHxd(value) === 'Int32Array';
+module.exports.isInt16Array = $c4ec63cc77772976$var$isInt16Array;
+function $c4ec63cc77772976$var$isInt32Array(value) {
+    return $7s39a(value) === 'Int32Array';
 }
-module.exports.isInt32Array = $c7b8a83128cdd6c4$var$isInt32Array;
-function $c7b8a83128cdd6c4$var$isFloat32Array(value) {
-    return $8pHxd(value) === 'Float32Array';
+module.exports.isInt32Array = $c4ec63cc77772976$var$isInt32Array;
+function $c4ec63cc77772976$var$isFloat32Array(value) {
+    return $7s39a(value) === 'Float32Array';
 }
-module.exports.isFloat32Array = $c7b8a83128cdd6c4$var$isFloat32Array;
-function $c7b8a83128cdd6c4$var$isFloat64Array(value) {
-    return $8pHxd(value) === 'Float64Array';
+module.exports.isFloat32Array = $c4ec63cc77772976$var$isFloat32Array;
+function $c4ec63cc77772976$var$isFloat64Array(value) {
+    return $7s39a(value) === 'Float64Array';
 }
-module.exports.isFloat64Array = $c7b8a83128cdd6c4$var$isFloat64Array;
-function $c7b8a83128cdd6c4$var$isBigInt64Array(value) {
-    return $8pHxd(value) === 'BigInt64Array';
+module.exports.isFloat64Array = $c4ec63cc77772976$var$isFloat64Array;
+function $c4ec63cc77772976$var$isBigInt64Array(value) {
+    return $7s39a(value) === 'BigInt64Array';
 }
-module.exports.isBigInt64Array = $c7b8a83128cdd6c4$var$isBigInt64Array;
-function $c7b8a83128cdd6c4$var$isBigUint64Array(value) {
-    return $8pHxd(value) === 'BigUint64Array';
+module.exports.isBigInt64Array = $c4ec63cc77772976$var$isBigInt64Array;
+function $c4ec63cc77772976$var$isBigUint64Array(value) {
+    return $7s39a(value) === 'BigUint64Array';
 }
-module.exports.isBigUint64Array = $c7b8a83128cdd6c4$var$isBigUint64Array;
-function $c7b8a83128cdd6c4$var$isMapToString(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object Map]';
+module.exports.isBigUint64Array = $c4ec63cc77772976$var$isBigUint64Array;
+function $c4ec63cc77772976$var$isMapToString(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object Map]';
 }
-$c7b8a83128cdd6c4$var$isMapToString.working = typeof Map !== 'undefined' && $c7b8a83128cdd6c4$var$isMapToString(new Map());
-function $c7b8a83128cdd6c4$var$isMap(value) {
+$c4ec63cc77772976$var$isMapToString.working = typeof Map !== 'undefined' && $c4ec63cc77772976$var$isMapToString(new Map());
+function $c4ec63cc77772976$var$isMap(value) {
     if (typeof Map === 'undefined') return false;
-    return $c7b8a83128cdd6c4$var$isMapToString.working ? $c7b8a83128cdd6c4$var$isMapToString(value) : value instanceof Map;
+    return $c4ec63cc77772976$var$isMapToString.working ? $c4ec63cc77772976$var$isMapToString(value) : value instanceof Map;
 }
-module.exports.isMap = $c7b8a83128cdd6c4$var$isMap;
-function $c7b8a83128cdd6c4$var$isSetToString(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object Set]';
+module.exports.isMap = $c4ec63cc77772976$var$isMap;
+function $c4ec63cc77772976$var$isSetToString(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object Set]';
 }
-$c7b8a83128cdd6c4$var$isSetToString.working = typeof Set !== 'undefined' && $c7b8a83128cdd6c4$var$isSetToString(new Set());
-function $c7b8a83128cdd6c4$var$isSet(value) {
+$c4ec63cc77772976$var$isSetToString.working = typeof Set !== 'undefined' && $c4ec63cc77772976$var$isSetToString(new Set());
+function $c4ec63cc77772976$var$isSet(value) {
     if (typeof Set === 'undefined') return false;
-    return $c7b8a83128cdd6c4$var$isSetToString.working ? $c7b8a83128cdd6c4$var$isSetToString(value) : value instanceof Set;
+    return $c4ec63cc77772976$var$isSetToString.working ? $c4ec63cc77772976$var$isSetToString(value) : value instanceof Set;
 }
-module.exports.isSet = $c7b8a83128cdd6c4$var$isSet;
-function $c7b8a83128cdd6c4$var$isWeakMapToString(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object WeakMap]';
+module.exports.isSet = $c4ec63cc77772976$var$isSet;
+function $c4ec63cc77772976$var$isWeakMapToString(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object WeakMap]';
 }
-$c7b8a83128cdd6c4$var$isWeakMapToString.working = typeof WeakMap !== 'undefined' && $c7b8a83128cdd6c4$var$isWeakMapToString(new WeakMap());
-function $c7b8a83128cdd6c4$var$isWeakMap(value) {
+$c4ec63cc77772976$var$isWeakMapToString.working = typeof WeakMap !== 'undefined' && $c4ec63cc77772976$var$isWeakMapToString(new WeakMap());
+function $c4ec63cc77772976$var$isWeakMap(value) {
     if (typeof WeakMap === 'undefined') return false;
-    return $c7b8a83128cdd6c4$var$isWeakMapToString.working ? $c7b8a83128cdd6c4$var$isWeakMapToString(value) : value instanceof WeakMap;
+    return $c4ec63cc77772976$var$isWeakMapToString.working ? $c4ec63cc77772976$var$isWeakMapToString(value) : value instanceof WeakMap;
 }
-module.exports.isWeakMap = $c7b8a83128cdd6c4$var$isWeakMap;
-function $c7b8a83128cdd6c4$var$isWeakSetToString(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object WeakSet]';
+module.exports.isWeakMap = $c4ec63cc77772976$var$isWeakMap;
+function $c4ec63cc77772976$var$isWeakSetToString(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object WeakSet]';
 }
-$c7b8a83128cdd6c4$var$isWeakSetToString.working = typeof WeakSet !== 'undefined' && $c7b8a83128cdd6c4$var$isWeakSetToString(new WeakSet());
-function $c7b8a83128cdd6c4$var$isWeakSet(value) {
-    return $c7b8a83128cdd6c4$var$isWeakSetToString(value);
+$c4ec63cc77772976$var$isWeakSetToString.working = typeof WeakSet !== 'undefined' && $c4ec63cc77772976$var$isWeakSetToString(new WeakSet());
+function $c4ec63cc77772976$var$isWeakSet(value) {
+    return $c4ec63cc77772976$var$isWeakSetToString(value);
 }
-module.exports.isWeakSet = $c7b8a83128cdd6c4$var$isWeakSet;
-function $c7b8a83128cdd6c4$var$isArrayBufferToString(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object ArrayBuffer]';
+module.exports.isWeakSet = $c4ec63cc77772976$var$isWeakSet;
+function $c4ec63cc77772976$var$isArrayBufferToString(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object ArrayBuffer]';
 }
-$c7b8a83128cdd6c4$var$isArrayBufferToString.working = typeof ArrayBuffer !== 'undefined' && $c7b8a83128cdd6c4$var$isArrayBufferToString(new ArrayBuffer());
-function $c7b8a83128cdd6c4$var$isArrayBuffer(value) {
+$c4ec63cc77772976$var$isArrayBufferToString.working = typeof ArrayBuffer !== 'undefined' && $c4ec63cc77772976$var$isArrayBufferToString(new ArrayBuffer());
+function $c4ec63cc77772976$var$isArrayBuffer(value) {
     if (typeof ArrayBuffer === 'undefined') return false;
-    return $c7b8a83128cdd6c4$var$isArrayBufferToString.working ? $c7b8a83128cdd6c4$var$isArrayBufferToString(value) : value instanceof ArrayBuffer;
+    return $c4ec63cc77772976$var$isArrayBufferToString.working ? $c4ec63cc77772976$var$isArrayBufferToString(value) : value instanceof ArrayBuffer;
 }
-module.exports.isArrayBuffer = $c7b8a83128cdd6c4$var$isArrayBuffer;
-function $c7b8a83128cdd6c4$var$isDataViewToString(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object DataView]';
+module.exports.isArrayBuffer = $c4ec63cc77772976$var$isArrayBuffer;
+function $c4ec63cc77772976$var$isDataViewToString(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object DataView]';
 }
-$c7b8a83128cdd6c4$var$isDataViewToString.working = typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'undefined' && $c7b8a83128cdd6c4$var$isDataViewToString(new DataView(new ArrayBuffer(1), 0, 1));
-function $c7b8a83128cdd6c4$var$isDataView(value) {
+$c4ec63cc77772976$var$isDataViewToString.working = typeof ArrayBuffer !== 'undefined' && typeof DataView !== 'undefined' && $c4ec63cc77772976$var$isDataViewToString(new DataView(new ArrayBuffer(1), 0, 1));
+function $c4ec63cc77772976$var$isDataView(value) {
     if (typeof DataView === 'undefined') return false;
-    return $c7b8a83128cdd6c4$var$isDataViewToString.working ? $c7b8a83128cdd6c4$var$isDataViewToString(value) : value instanceof DataView;
+    return $c4ec63cc77772976$var$isDataViewToString.working ? $c4ec63cc77772976$var$isDataViewToString(value) : value instanceof DataView;
 }
-module.exports.isDataView = $c7b8a83128cdd6c4$var$isDataView;
+module.exports.isDataView = $c4ec63cc77772976$var$isDataView;
 // Store a copy of SharedArrayBuffer in case it's deleted elsewhere
-var $c7b8a83128cdd6c4$var$SharedArrayBufferCopy = typeof SharedArrayBuffer !== 'undefined' ? SharedArrayBuffer : undefined;
-function $c7b8a83128cdd6c4$var$isSharedArrayBufferToString(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object SharedArrayBuffer]';
+var $c4ec63cc77772976$var$SharedArrayBufferCopy = typeof SharedArrayBuffer !== 'undefined' ? SharedArrayBuffer : undefined;
+function $c4ec63cc77772976$var$isSharedArrayBufferToString(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object SharedArrayBuffer]';
 }
-function $c7b8a83128cdd6c4$var$isSharedArrayBuffer(value) {
-    if (typeof $c7b8a83128cdd6c4$var$SharedArrayBufferCopy === 'undefined') return false;
-    if (typeof $c7b8a83128cdd6c4$var$isSharedArrayBufferToString.working === 'undefined') $c7b8a83128cdd6c4$var$isSharedArrayBufferToString.working = $c7b8a83128cdd6c4$var$isSharedArrayBufferToString(new $c7b8a83128cdd6c4$var$SharedArrayBufferCopy());
-    return $c7b8a83128cdd6c4$var$isSharedArrayBufferToString.working ? $c7b8a83128cdd6c4$var$isSharedArrayBufferToString(value) : value instanceof $c7b8a83128cdd6c4$var$SharedArrayBufferCopy;
+function $c4ec63cc77772976$var$isSharedArrayBuffer(value) {
+    if (typeof $c4ec63cc77772976$var$SharedArrayBufferCopy === 'undefined') return false;
+    if (typeof $c4ec63cc77772976$var$isSharedArrayBufferToString.working === 'undefined') $c4ec63cc77772976$var$isSharedArrayBufferToString.working = $c4ec63cc77772976$var$isSharedArrayBufferToString(new $c4ec63cc77772976$var$SharedArrayBufferCopy());
+    return $c4ec63cc77772976$var$isSharedArrayBufferToString.working ? $c4ec63cc77772976$var$isSharedArrayBufferToString(value) : value instanceof $c4ec63cc77772976$var$SharedArrayBufferCopy;
 }
-module.exports.isSharedArrayBuffer = $c7b8a83128cdd6c4$var$isSharedArrayBuffer;
-function $c7b8a83128cdd6c4$var$isAsyncFunction(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object AsyncFunction]';
+module.exports.isSharedArrayBuffer = $c4ec63cc77772976$var$isSharedArrayBuffer;
+function $c4ec63cc77772976$var$isAsyncFunction(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object AsyncFunction]';
 }
-module.exports.isAsyncFunction = $c7b8a83128cdd6c4$var$isAsyncFunction;
-function $c7b8a83128cdd6c4$var$isMapIterator(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object Map Iterator]';
+module.exports.isAsyncFunction = $c4ec63cc77772976$var$isAsyncFunction;
+function $c4ec63cc77772976$var$isMapIterator(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object Map Iterator]';
 }
-module.exports.isMapIterator = $c7b8a83128cdd6c4$var$isMapIterator;
-function $c7b8a83128cdd6c4$var$isSetIterator(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object Set Iterator]';
+module.exports.isMapIterator = $c4ec63cc77772976$var$isMapIterator;
+function $c4ec63cc77772976$var$isSetIterator(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object Set Iterator]';
 }
-module.exports.isSetIterator = $c7b8a83128cdd6c4$var$isSetIterator;
-function $c7b8a83128cdd6c4$var$isGeneratorObject(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object Generator]';
+module.exports.isSetIterator = $c4ec63cc77772976$var$isSetIterator;
+function $c4ec63cc77772976$var$isGeneratorObject(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object Generator]';
 }
-module.exports.isGeneratorObject = $c7b8a83128cdd6c4$var$isGeneratorObject;
-function $c7b8a83128cdd6c4$var$isWebAssemblyCompiledModule(value) {
-    return $c7b8a83128cdd6c4$var$ObjectToString(value) === '[object WebAssembly.Module]';
+module.exports.isGeneratorObject = $c4ec63cc77772976$var$isGeneratorObject;
+function $c4ec63cc77772976$var$isWebAssemblyCompiledModule(value) {
+    return $c4ec63cc77772976$var$ObjectToString(value) === '[object WebAssembly.Module]';
 }
-module.exports.isWebAssemblyCompiledModule = $c7b8a83128cdd6c4$var$isWebAssemblyCompiledModule;
-function $c7b8a83128cdd6c4$var$isNumberObject(value) {
-    return $c7b8a83128cdd6c4$var$checkBoxedPrimitive(value, $c7b8a83128cdd6c4$var$numberValue);
+module.exports.isWebAssemblyCompiledModule = $c4ec63cc77772976$var$isWebAssemblyCompiledModule;
+function $c4ec63cc77772976$var$isNumberObject(value) {
+    return $c4ec63cc77772976$var$checkBoxedPrimitive(value, $c4ec63cc77772976$var$numberValue);
 }
-module.exports.isNumberObject = $c7b8a83128cdd6c4$var$isNumberObject;
-function $c7b8a83128cdd6c4$var$isStringObject(value) {
-    return $c7b8a83128cdd6c4$var$checkBoxedPrimitive(value, $c7b8a83128cdd6c4$var$stringValue);
+module.exports.isNumberObject = $c4ec63cc77772976$var$isNumberObject;
+function $c4ec63cc77772976$var$isStringObject(value) {
+    return $c4ec63cc77772976$var$checkBoxedPrimitive(value, $c4ec63cc77772976$var$stringValue);
 }
-module.exports.isStringObject = $c7b8a83128cdd6c4$var$isStringObject;
-function $c7b8a83128cdd6c4$var$isBooleanObject(value) {
-    return $c7b8a83128cdd6c4$var$checkBoxedPrimitive(value, $c7b8a83128cdd6c4$var$booleanValue);
+module.exports.isStringObject = $c4ec63cc77772976$var$isStringObject;
+function $c4ec63cc77772976$var$isBooleanObject(value) {
+    return $c4ec63cc77772976$var$checkBoxedPrimitive(value, $c4ec63cc77772976$var$booleanValue);
 }
-module.exports.isBooleanObject = $c7b8a83128cdd6c4$var$isBooleanObject;
-function $c7b8a83128cdd6c4$var$isBigIntObject(value) {
-    return $c7b8a83128cdd6c4$var$BigIntSupported && $c7b8a83128cdd6c4$var$checkBoxedPrimitive(value, $c7b8a83128cdd6c4$var$bigIntValue);
+module.exports.isBooleanObject = $c4ec63cc77772976$var$isBooleanObject;
+function $c4ec63cc77772976$var$isBigIntObject(value) {
+    return $c4ec63cc77772976$var$BigIntSupported && $c4ec63cc77772976$var$checkBoxedPrimitive(value, $c4ec63cc77772976$var$bigIntValue);
 }
-module.exports.isBigIntObject = $c7b8a83128cdd6c4$var$isBigIntObject;
-function $c7b8a83128cdd6c4$var$isSymbolObject(value) {
-    return $c7b8a83128cdd6c4$var$SymbolSupported && $c7b8a83128cdd6c4$var$checkBoxedPrimitive(value, $c7b8a83128cdd6c4$var$symbolValue);
+module.exports.isBigIntObject = $c4ec63cc77772976$var$isBigIntObject;
+function $c4ec63cc77772976$var$isSymbolObject(value) {
+    return $c4ec63cc77772976$var$SymbolSupported && $c4ec63cc77772976$var$checkBoxedPrimitive(value, $c4ec63cc77772976$var$symbolValue);
 }
-module.exports.isSymbolObject = $c7b8a83128cdd6c4$var$isSymbolObject;
-function $c7b8a83128cdd6c4$var$isBoxedPrimitive(value) {
-    return $c7b8a83128cdd6c4$var$isNumberObject(value) || $c7b8a83128cdd6c4$var$isStringObject(value) || $c7b8a83128cdd6c4$var$isBooleanObject(value) || $c7b8a83128cdd6c4$var$isBigIntObject(value) || $c7b8a83128cdd6c4$var$isSymbolObject(value);
+module.exports.isSymbolObject = $c4ec63cc77772976$var$isSymbolObject;
+function $c4ec63cc77772976$var$isBoxedPrimitive(value) {
+    return $c4ec63cc77772976$var$isNumberObject(value) || $c4ec63cc77772976$var$isStringObject(value) || $c4ec63cc77772976$var$isBooleanObject(value) || $c4ec63cc77772976$var$isBigIntObject(value) || $c4ec63cc77772976$var$isSymbolObject(value);
 }
-module.exports.isBoxedPrimitive = $c7b8a83128cdd6c4$var$isBoxedPrimitive;
-function $c7b8a83128cdd6c4$var$isAnyArrayBuffer(value) {
-    return typeof Uint8Array !== 'undefined' && ($c7b8a83128cdd6c4$var$isArrayBuffer(value) || $c7b8a83128cdd6c4$var$isSharedArrayBuffer(value));
+module.exports.isBoxedPrimitive = $c4ec63cc77772976$var$isBoxedPrimitive;
+function $c4ec63cc77772976$var$isAnyArrayBuffer(value) {
+    return typeof Uint8Array !== 'undefined' && ($c4ec63cc77772976$var$isArrayBuffer(value) || $c4ec63cc77772976$var$isSharedArrayBuffer(value));
 }
-module.exports.isAnyArrayBuffer = $c7b8a83128cdd6c4$var$isAnyArrayBuffer;
+module.exports.isAnyArrayBuffer = $c4ec63cc77772976$var$isAnyArrayBuffer;
 [
     'isProxy',
     'isExternal',
@@ -4909,38 +3973,38 @@ module.exports.isAnyArrayBuffer = $c7b8a83128cdd6c4$var$isAnyArrayBuffer;
 });
 
 });
-parcelRequire.register("alMHE", function(module, exports) {
+parcelRequire.register("aYNSh", function(module, exports) {
 'use strict';
 
-var $7891a4f44ad228e7$var$hasToStringTag = (parcelRequire("6vpUc"))();
+var $7fe632012dc5aa5f$var$hasToStringTag = (parcelRequire("CUUJa"))();
 
-var $a8Z2V = parcelRequire("a8Z2V");
-var $7891a4f44ad228e7$var$$toString = $a8Z2V('Object.prototype.toString');
-var $7891a4f44ad228e7$var$isStandardArguments = function isArguments(value) {
-    if ($7891a4f44ad228e7$var$hasToStringTag && value && typeof value === 'object' && Symbol.toStringTag in value) return false;
-    return $7891a4f44ad228e7$var$$toString(value) === '[object Arguments]';
+var $lRlve = parcelRequire("lRlve");
+var $7fe632012dc5aa5f$var$$toString = $lRlve('Object.prototype.toString');
+var $7fe632012dc5aa5f$var$isStandardArguments = function isArguments(value) {
+    if ($7fe632012dc5aa5f$var$hasToStringTag && value && typeof value === 'object' && Symbol.toStringTag in value) return false;
+    return $7fe632012dc5aa5f$var$$toString(value) === '[object Arguments]';
 };
-var $7891a4f44ad228e7$var$isLegacyArguments = function isArguments1(value) {
-    if ($7891a4f44ad228e7$var$isStandardArguments(value)) return true;
-    return value !== null && typeof value === 'object' && typeof value.length === 'number' && value.length >= 0 && $7891a4f44ad228e7$var$$toString(value) !== '[object Array]' && $7891a4f44ad228e7$var$$toString(value.callee) === '[object Function]';
+var $7fe632012dc5aa5f$var$isLegacyArguments = function isArguments(value) {
+    if ($7fe632012dc5aa5f$var$isStandardArguments(value)) return true;
+    return value !== null && typeof value === 'object' && typeof value.length === 'number' && value.length >= 0 && $7fe632012dc5aa5f$var$$toString(value) !== '[object Array]' && $7fe632012dc5aa5f$var$$toString(value.callee) === '[object Function]';
 };
-var $7891a4f44ad228e7$var$supportsStandardArguments = function() {
-    return $7891a4f44ad228e7$var$isStandardArguments(arguments);
+var $7fe632012dc5aa5f$var$supportsStandardArguments = function() {
+    return $7fe632012dc5aa5f$var$isStandardArguments(arguments);
 }();
-$7891a4f44ad228e7$var$isStandardArguments.isLegacyArguments = $7891a4f44ad228e7$var$isLegacyArguments; // for tests
-module.exports = $7891a4f44ad228e7$var$supportsStandardArguments ? $7891a4f44ad228e7$var$isStandardArguments : $7891a4f44ad228e7$var$isLegacyArguments;
+$7fe632012dc5aa5f$var$isStandardArguments.isLegacyArguments = $7fe632012dc5aa5f$var$isLegacyArguments; // for tests
+module.exports = $7fe632012dc5aa5f$var$supportsStandardArguments ? $7fe632012dc5aa5f$var$isStandardArguments : $7fe632012dc5aa5f$var$isLegacyArguments;
 
 });
-parcelRequire.register("6vpUc", function(module, exports) {
+parcelRequire.register("CUUJa", function(module, exports) {
 'use strict';
 
-var $d14kg = parcelRequire("d14kg");
+var $6Y5Uz = parcelRequire("6Y5Uz");
 module.exports = function hasToStringTagShams() {
-    return $d14kg() && !!Symbol.toStringTag;
+    return $6Y5Uz() && !!Symbol.toStringTag;
 };
 
 });
-parcelRequire.register("d14kg", function(module, exports) {
+parcelRequire.register("6Y5Uz", function(module, exports) {
 'use strict';
 /* eslint complexity: [2, 18], max-statements: [2, 33] */ module.exports = function hasSymbols() {
     if (typeof Symbol !== 'function' || typeof Object.getOwnPropertySymbols !== 'function') return false;
@@ -4977,79 +4041,79 @@ parcelRequire.register("d14kg", function(module, exports) {
 });
 
 
-parcelRequire.register("a8Z2V", function(module, exports) {
+parcelRequire.register("lRlve", function(module, exports) {
 'use strict';
 
-var $lROOG = parcelRequire("lROOG");
+var $5Ekch = parcelRequire("5Ekch");
 
-var $1Q6UW = parcelRequire("1Q6UW");
-var $762a0141316fcf5d$var$$indexOf = $1Q6UW($lROOG('String.prototype.indexOf'));
+var $eM3I4 = parcelRequire("eM3I4");
+var $fe9f3a3774129222$var$$indexOf = $eM3I4($5Ekch('String.prototype.indexOf'));
 module.exports = function callBoundIntrinsic(name, allowMissing) {
-    var intrinsic = $lROOG(name, !!allowMissing);
-    if (typeof intrinsic === 'function' && $762a0141316fcf5d$var$$indexOf(name, '.prototype.') > -1) return $1Q6UW(intrinsic);
+    var intrinsic = $5Ekch(name, !!allowMissing);
+    if (typeof intrinsic === 'function' && $fe9f3a3774129222$var$$indexOf(name, '.prototype.') > -1) return $eM3I4(intrinsic);
     return intrinsic;
 };
 
 });
-parcelRequire.register("lROOG", function(module, exports) {
+parcelRequire.register("5Ekch", function(module, exports) {
 'use strict';
-var $feb5f7542f36dbc7$var$undefined;
-var $feb5f7542f36dbc7$var$$SyntaxError = SyntaxError;
-var $feb5f7542f36dbc7$var$$Function = Function;
-var $feb5f7542f36dbc7$var$$TypeError = TypeError;
+var $41d05ae3623ccfcd$var$undefined;
+var $41d05ae3623ccfcd$var$$SyntaxError = SyntaxError;
+var $41d05ae3623ccfcd$var$$Function = Function;
+var $41d05ae3623ccfcd$var$$TypeError = TypeError;
 // eslint-disable-next-line consistent-return
-var $feb5f7542f36dbc7$var$getEvalledConstructor = function(expressionSyntax) {
+var $41d05ae3623ccfcd$var$getEvalledConstructor = function(expressionSyntax) {
     try {
-        return $feb5f7542f36dbc7$var$$Function('"use strict"; return (' + expressionSyntax + ').constructor;')();
+        return $41d05ae3623ccfcd$var$$Function('"use strict"; return (' + expressionSyntax + ').constructor;')();
     } catch (e) {
     }
 };
-var $feb5f7542f36dbc7$var$$gOPD = Object.getOwnPropertyDescriptor;
-if ($feb5f7542f36dbc7$var$$gOPD) try {
-    $feb5f7542f36dbc7$var$$gOPD({
+var $41d05ae3623ccfcd$var$$gOPD = Object.getOwnPropertyDescriptor;
+if ($41d05ae3623ccfcd$var$$gOPD) try {
+    $41d05ae3623ccfcd$var$$gOPD({
     }, '');
 } catch (e) {
-    $feb5f7542f36dbc7$var$$gOPD = null; // this is IE 8, which has a broken gOPD
+    $41d05ae3623ccfcd$var$$gOPD = null; // this is IE 8, which has a broken gOPD
 }
-var $feb5f7542f36dbc7$var$throwTypeError = function() {
-    throw new $feb5f7542f36dbc7$var$$TypeError();
+var $41d05ae3623ccfcd$var$throwTypeError = function() {
+    throw new $41d05ae3623ccfcd$var$$TypeError();
 };
-var $feb5f7542f36dbc7$var$ThrowTypeError = $feb5f7542f36dbc7$var$$gOPD ? function() {
+var $41d05ae3623ccfcd$var$ThrowTypeError = $41d05ae3623ccfcd$var$$gOPD ? function() {
     try {
         // eslint-disable-next-line no-unused-expressions, no-caller, no-restricted-properties
         arguments.callee; // IE 8 does not throw here
-        return $feb5f7542f36dbc7$var$throwTypeError;
+        return $41d05ae3623ccfcd$var$throwTypeError;
     } catch (calleeThrows) {
         try {
             // IE 8 throws on Object.getOwnPropertyDescriptor(arguments, '')
-            return $feb5f7542f36dbc7$var$$gOPD(arguments, 'callee').get;
+            return $41d05ae3623ccfcd$var$$gOPD(arguments, 'callee').get;
         } catch (gOPDthrows) {
-            return $feb5f7542f36dbc7$var$throwTypeError;
+            return $41d05ae3623ccfcd$var$throwTypeError;
         }
     }
-}() : $feb5f7542f36dbc7$var$throwTypeError;
+}() : $41d05ae3623ccfcd$var$throwTypeError;
 
-var $feb5f7542f36dbc7$var$hasSymbols = (parcelRequire("1lfue"))();
-var $feb5f7542f36dbc7$var$getProto = Object.getPrototypeOf || function(x) {
+var $41d05ae3623ccfcd$var$hasSymbols = (parcelRequire("7e1u9"))();
+var $41d05ae3623ccfcd$var$getProto = Object.getPrototypeOf || function(x) {
     return x.__proto__;
 }; // eslint-disable-line no-proto
-var $feb5f7542f36dbc7$var$needsEval = {
+var $41d05ae3623ccfcd$var$needsEval = {
 };
-var $feb5f7542f36dbc7$var$TypedArray = typeof Uint8Array === 'undefined' ? $feb5f7542f36dbc7$var$undefined : $feb5f7542f36dbc7$var$getProto(Uint8Array);
-var $feb5f7542f36dbc7$var$INTRINSICS = {
-    '%AggregateError%': typeof AggregateError === 'undefined' ? $feb5f7542f36dbc7$var$undefined : AggregateError,
+var $41d05ae3623ccfcd$var$TypedArray = typeof Uint8Array === 'undefined' ? $41d05ae3623ccfcd$var$undefined : $41d05ae3623ccfcd$var$getProto(Uint8Array);
+var $41d05ae3623ccfcd$var$INTRINSICS = {
+    '%AggregateError%': typeof AggregateError === 'undefined' ? $41d05ae3623ccfcd$var$undefined : AggregateError,
     '%Array%': Array,
-    '%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? $feb5f7542f36dbc7$var$undefined : ArrayBuffer,
-    '%ArrayIteratorPrototype%': $feb5f7542f36dbc7$var$hasSymbols ? $feb5f7542f36dbc7$var$getProto([][Symbol.iterator]()) : $feb5f7542f36dbc7$var$undefined,
-    '%AsyncFromSyncIteratorPrototype%': $feb5f7542f36dbc7$var$undefined,
-    '%AsyncFunction%': $feb5f7542f36dbc7$var$needsEval,
-    '%AsyncGenerator%': $feb5f7542f36dbc7$var$needsEval,
-    '%AsyncGeneratorFunction%': $feb5f7542f36dbc7$var$needsEval,
-    '%AsyncIteratorPrototype%': $feb5f7542f36dbc7$var$needsEval,
-    '%Atomics%': typeof Atomics === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Atomics,
-    '%BigInt%': typeof BigInt === 'undefined' ? $feb5f7542f36dbc7$var$undefined : BigInt,
+    '%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? $41d05ae3623ccfcd$var$undefined : ArrayBuffer,
+    '%ArrayIteratorPrototype%': $41d05ae3623ccfcd$var$hasSymbols ? $41d05ae3623ccfcd$var$getProto([][Symbol.iterator]()) : $41d05ae3623ccfcd$var$undefined,
+    '%AsyncFromSyncIteratorPrototype%': $41d05ae3623ccfcd$var$undefined,
+    '%AsyncFunction%': $41d05ae3623ccfcd$var$needsEval,
+    '%AsyncGenerator%': $41d05ae3623ccfcd$var$needsEval,
+    '%AsyncGeneratorFunction%': $41d05ae3623ccfcd$var$needsEval,
+    '%AsyncIteratorPrototype%': $41d05ae3623ccfcd$var$needsEval,
+    '%Atomics%': typeof Atomics === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Atomics,
+    '%BigInt%': typeof BigInt === 'undefined' ? $41d05ae3623ccfcd$var$undefined : BigInt,
     '%Boolean%': Boolean,
-    '%DataView%': typeof DataView === 'undefined' ? $feb5f7542f36dbc7$var$undefined : DataView,
+    '%DataView%': typeof DataView === 'undefined' ? $41d05ae3623ccfcd$var$undefined : DataView,
     '%Date%': Date,
     '%decodeURI%': decodeURI,
     '%decodeURIComponent%': decodeURIComponent,
@@ -5058,66 +4122,66 @@ var $feb5f7542f36dbc7$var$INTRINSICS = {
     '%Error%': Error,
     '%eval%': eval,
     '%EvalError%': EvalError,
-    '%Float32Array%': typeof Float32Array === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Float32Array,
-    '%Float64Array%': typeof Float64Array === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Float64Array,
-    '%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? $feb5f7542f36dbc7$var$undefined : FinalizationRegistry,
-    '%Function%': $feb5f7542f36dbc7$var$$Function,
-    '%GeneratorFunction%': $feb5f7542f36dbc7$var$needsEval,
-    '%Int8Array%': typeof Int8Array === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Int8Array,
-    '%Int16Array%': typeof Int16Array === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Int16Array,
-    '%Int32Array%': typeof Int32Array === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Int32Array,
+    '%Float32Array%': typeof Float32Array === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Float32Array,
+    '%Float64Array%': typeof Float64Array === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Float64Array,
+    '%FinalizationRegistry%': typeof FinalizationRegistry === 'undefined' ? $41d05ae3623ccfcd$var$undefined : FinalizationRegistry,
+    '%Function%': $41d05ae3623ccfcd$var$$Function,
+    '%GeneratorFunction%': $41d05ae3623ccfcd$var$needsEval,
+    '%Int8Array%': typeof Int8Array === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Int8Array,
+    '%Int16Array%': typeof Int16Array === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Int16Array,
+    '%Int32Array%': typeof Int32Array === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Int32Array,
     '%isFinite%': isFinite,
     '%isNaN%': isNaN,
-    '%IteratorPrototype%': $feb5f7542f36dbc7$var$hasSymbols ? $feb5f7542f36dbc7$var$getProto($feb5f7542f36dbc7$var$getProto([][Symbol.iterator]())) : $feb5f7542f36dbc7$var$undefined,
-    '%JSON%': typeof JSON === 'object' ? JSON : $feb5f7542f36dbc7$var$undefined,
-    '%Map%': typeof Map === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Map,
-    '%MapIteratorPrototype%': typeof Map === 'undefined' || !$feb5f7542f36dbc7$var$hasSymbols ? $feb5f7542f36dbc7$var$undefined : $feb5f7542f36dbc7$var$getProto(new Map()[Symbol.iterator]()),
+    '%IteratorPrototype%': $41d05ae3623ccfcd$var$hasSymbols ? $41d05ae3623ccfcd$var$getProto($41d05ae3623ccfcd$var$getProto([][Symbol.iterator]())) : $41d05ae3623ccfcd$var$undefined,
+    '%JSON%': typeof JSON === 'object' ? JSON : $41d05ae3623ccfcd$var$undefined,
+    '%Map%': typeof Map === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Map,
+    '%MapIteratorPrototype%': typeof Map === 'undefined' || !$41d05ae3623ccfcd$var$hasSymbols ? $41d05ae3623ccfcd$var$undefined : $41d05ae3623ccfcd$var$getProto(new Map()[Symbol.iterator]()),
     '%Math%': Math,
     '%Number%': Number,
     '%Object%': Object,
     '%parseFloat%': parseFloat,
     '%parseInt%': parseInt,
-    '%Promise%': typeof Promise === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Promise,
-    '%Proxy%': typeof Proxy === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Proxy,
+    '%Promise%': typeof Promise === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Promise,
+    '%Proxy%': typeof Proxy === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Proxy,
     '%RangeError%': RangeError,
     '%ReferenceError%': ReferenceError,
-    '%Reflect%': typeof Reflect === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Reflect,
+    '%Reflect%': typeof Reflect === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Reflect,
     '%RegExp%': RegExp,
-    '%Set%': typeof Set === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Set,
-    '%SetIteratorPrototype%': typeof Set === 'undefined' || !$feb5f7542f36dbc7$var$hasSymbols ? $feb5f7542f36dbc7$var$undefined : $feb5f7542f36dbc7$var$getProto(new Set()[Symbol.iterator]()),
-    '%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? $feb5f7542f36dbc7$var$undefined : SharedArrayBuffer,
+    '%Set%': typeof Set === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Set,
+    '%SetIteratorPrototype%': typeof Set === 'undefined' || !$41d05ae3623ccfcd$var$hasSymbols ? $41d05ae3623ccfcd$var$undefined : $41d05ae3623ccfcd$var$getProto(new Set()[Symbol.iterator]()),
+    '%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? $41d05ae3623ccfcd$var$undefined : SharedArrayBuffer,
     '%String%': String,
-    '%StringIteratorPrototype%': $feb5f7542f36dbc7$var$hasSymbols ? $feb5f7542f36dbc7$var$getProto(''[Symbol.iterator]()) : $feb5f7542f36dbc7$var$undefined,
-    '%Symbol%': $feb5f7542f36dbc7$var$hasSymbols ? Symbol : $feb5f7542f36dbc7$var$undefined,
-    '%SyntaxError%': $feb5f7542f36dbc7$var$$SyntaxError,
-    '%ThrowTypeError%': $feb5f7542f36dbc7$var$ThrowTypeError,
-    '%TypedArray%': $feb5f7542f36dbc7$var$TypedArray,
-    '%TypeError%': $feb5f7542f36dbc7$var$$TypeError,
-    '%Uint8Array%': typeof Uint8Array === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Uint8Array,
-    '%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Uint8ClampedArray,
-    '%Uint16Array%': typeof Uint16Array === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Uint16Array,
-    '%Uint32Array%': typeof Uint32Array === 'undefined' ? $feb5f7542f36dbc7$var$undefined : Uint32Array,
+    '%StringIteratorPrototype%': $41d05ae3623ccfcd$var$hasSymbols ? $41d05ae3623ccfcd$var$getProto(''[Symbol.iterator]()) : $41d05ae3623ccfcd$var$undefined,
+    '%Symbol%': $41d05ae3623ccfcd$var$hasSymbols ? Symbol : $41d05ae3623ccfcd$var$undefined,
+    '%SyntaxError%': $41d05ae3623ccfcd$var$$SyntaxError,
+    '%ThrowTypeError%': $41d05ae3623ccfcd$var$ThrowTypeError,
+    '%TypedArray%': $41d05ae3623ccfcd$var$TypedArray,
+    '%TypeError%': $41d05ae3623ccfcd$var$$TypeError,
+    '%Uint8Array%': typeof Uint8Array === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Uint8Array,
+    '%Uint8ClampedArray%': typeof Uint8ClampedArray === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Uint8ClampedArray,
+    '%Uint16Array%': typeof Uint16Array === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Uint16Array,
+    '%Uint32Array%': typeof Uint32Array === 'undefined' ? $41d05ae3623ccfcd$var$undefined : Uint32Array,
     '%URIError%': URIError,
-    '%WeakMap%': typeof WeakMap === 'undefined' ? $feb5f7542f36dbc7$var$undefined : WeakMap,
-    '%WeakRef%': typeof WeakRef === 'undefined' ? $feb5f7542f36dbc7$var$undefined : WeakRef,
-    '%WeakSet%': typeof WeakSet === 'undefined' ? $feb5f7542f36dbc7$var$undefined : WeakSet
+    '%WeakMap%': typeof WeakMap === 'undefined' ? $41d05ae3623ccfcd$var$undefined : WeakMap,
+    '%WeakRef%': typeof WeakRef === 'undefined' ? $41d05ae3623ccfcd$var$undefined : WeakRef,
+    '%WeakSet%': typeof WeakSet === 'undefined' ? $41d05ae3623ccfcd$var$undefined : WeakSet
 };
-var $feb5f7542f36dbc7$var$doEval = function doEval(name) {
+var $41d05ae3623ccfcd$var$doEval = function doEval(name) {
     var value;
-    if (name === '%AsyncFunction%') value = $feb5f7542f36dbc7$var$getEvalledConstructor('async function () {}');
-    else if (name === '%GeneratorFunction%') value = $feb5f7542f36dbc7$var$getEvalledConstructor('function* () {}');
-    else if (name === '%AsyncGeneratorFunction%') value = $feb5f7542f36dbc7$var$getEvalledConstructor('async function* () {}');
+    if (name === '%AsyncFunction%') value = $41d05ae3623ccfcd$var$getEvalledConstructor('async function () {}');
+    else if (name === '%GeneratorFunction%') value = $41d05ae3623ccfcd$var$getEvalledConstructor('function* () {}');
+    else if (name === '%AsyncGeneratorFunction%') value = $41d05ae3623ccfcd$var$getEvalledConstructor('async function* () {}');
     else if (name === '%AsyncGenerator%') {
         var fn = doEval('%AsyncGeneratorFunction%');
         if (fn) value = fn.prototype;
     } else if (name === '%AsyncIteratorPrototype%') {
         var gen = doEval('%AsyncGenerator%');
-        if (gen) value = $feb5f7542f36dbc7$var$getProto(gen.prototype);
+        if (gen) value = $41d05ae3623ccfcd$var$getProto(gen.prototype);
     }
-    $feb5f7542f36dbc7$var$INTRINSICS[name] = value;
+    $41d05ae3623ccfcd$var$INTRINSICS[name] = value;
     return value;
 };
-var $feb5f7542f36dbc7$var$LEGACY_ALIASES = {
+var $41d05ae3623ccfcd$var$LEGACY_ALIASES = {
     '%ArrayBufferPrototype%': [
         'ArrayBuffer',
         'prototype'
@@ -5333,78 +4397,78 @@ var $feb5f7542f36dbc7$var$LEGACY_ALIASES = {
     ]
 };
 
-var $dVgr9 = parcelRequire("dVgr9");
+var $hYKua = parcelRequire("hYKua");
 
-var $4ZE0K = parcelRequire("4ZE0K");
-var $feb5f7542f36dbc7$var$$concat = $dVgr9.call(Function.call, Array.prototype.concat);
-var $feb5f7542f36dbc7$var$$spliceApply = $dVgr9.call(Function.apply, Array.prototype.splice);
-var $feb5f7542f36dbc7$var$$replace = $dVgr9.call(Function.call, String.prototype.replace);
-var $feb5f7542f36dbc7$var$$strSlice = $dVgr9.call(Function.call, String.prototype.slice);
-/* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */ var $feb5f7542f36dbc7$var$rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
-var $feb5f7542f36dbc7$var$reEscapeChar = /\\(\\)?/g; /** Used to match backslashes in property paths. */ 
-var $feb5f7542f36dbc7$var$stringToPath = function stringToPath(string) {
-    var first = $feb5f7542f36dbc7$var$$strSlice(string, 0, 1);
-    var last = $feb5f7542f36dbc7$var$$strSlice(string, -1);
-    if (first === '%' && last !== '%') throw new $feb5f7542f36dbc7$var$$SyntaxError('invalid intrinsic syntax, expected closing `%`');
-    else if (last === '%' && first !== '%') throw new $feb5f7542f36dbc7$var$$SyntaxError('invalid intrinsic syntax, expected opening `%`');
+var $gKR0c = parcelRequire("gKR0c");
+var $41d05ae3623ccfcd$var$$concat = $hYKua.call(Function.call, Array.prototype.concat);
+var $41d05ae3623ccfcd$var$$spliceApply = $hYKua.call(Function.apply, Array.prototype.splice);
+var $41d05ae3623ccfcd$var$$replace = $hYKua.call(Function.call, String.prototype.replace);
+var $41d05ae3623ccfcd$var$$strSlice = $hYKua.call(Function.call, String.prototype.slice);
+/* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */ var $41d05ae3623ccfcd$var$rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
+var $41d05ae3623ccfcd$var$reEscapeChar = /\\(\\)?/g; /** Used to match backslashes in property paths. */ 
+var $41d05ae3623ccfcd$var$stringToPath = function stringToPath(string) {
+    var first = $41d05ae3623ccfcd$var$$strSlice(string, 0, 1);
+    var last = $41d05ae3623ccfcd$var$$strSlice(string, -1);
+    if (first === '%' && last !== '%') throw new $41d05ae3623ccfcd$var$$SyntaxError('invalid intrinsic syntax, expected closing `%`');
+    else if (last === '%' && first !== '%') throw new $41d05ae3623ccfcd$var$$SyntaxError('invalid intrinsic syntax, expected opening `%`');
     var result = [];
-    $feb5f7542f36dbc7$var$$replace(string, $feb5f7542f36dbc7$var$rePropName, function(match, number, quote, subString) {
-        result[result.length] = quote ? $feb5f7542f36dbc7$var$$replace(subString, $feb5f7542f36dbc7$var$reEscapeChar, '$1') : number || match;
+    $41d05ae3623ccfcd$var$$replace(string, $41d05ae3623ccfcd$var$rePropName, function(match, number, quote, subString) {
+        result[result.length] = quote ? $41d05ae3623ccfcd$var$$replace(subString, $41d05ae3623ccfcd$var$reEscapeChar, '$1') : number || match;
     });
     return result;
 };
-/* end adaptation */ var $feb5f7542f36dbc7$var$getBaseIntrinsic = function getBaseIntrinsic(name, allowMissing) {
+/* end adaptation */ var $41d05ae3623ccfcd$var$getBaseIntrinsic = function getBaseIntrinsic(name, allowMissing) {
     var intrinsicName = name;
     var alias;
-    if ($4ZE0K($feb5f7542f36dbc7$var$LEGACY_ALIASES, intrinsicName)) {
-        alias = $feb5f7542f36dbc7$var$LEGACY_ALIASES[intrinsicName];
+    if ($gKR0c($41d05ae3623ccfcd$var$LEGACY_ALIASES, intrinsicName)) {
+        alias = $41d05ae3623ccfcd$var$LEGACY_ALIASES[intrinsicName];
         intrinsicName = '%' + alias[0] + '%';
     }
-    if ($4ZE0K($feb5f7542f36dbc7$var$INTRINSICS, intrinsicName)) {
-        var value = $feb5f7542f36dbc7$var$INTRINSICS[intrinsicName];
-        if (value === $feb5f7542f36dbc7$var$needsEval) value = $feb5f7542f36dbc7$var$doEval(intrinsicName);
-        if (typeof value === 'undefined' && !allowMissing) throw new $feb5f7542f36dbc7$var$$TypeError('intrinsic ' + name + ' exists, but is not available. Please file an issue!');
+    if ($gKR0c($41d05ae3623ccfcd$var$INTRINSICS, intrinsicName)) {
+        var value = $41d05ae3623ccfcd$var$INTRINSICS[intrinsicName];
+        if (value === $41d05ae3623ccfcd$var$needsEval) value = $41d05ae3623ccfcd$var$doEval(intrinsicName);
+        if (typeof value === 'undefined' && !allowMissing) throw new $41d05ae3623ccfcd$var$$TypeError('intrinsic ' + name + ' exists, but is not available. Please file an issue!');
         return {
             alias: alias,
             name: intrinsicName,
             value: value
         };
     }
-    throw new $feb5f7542f36dbc7$var$$SyntaxError('intrinsic ' + name + ' does not exist!');
+    throw new $41d05ae3623ccfcd$var$$SyntaxError('intrinsic ' + name + ' does not exist!');
 };
 module.exports = function GetIntrinsic(name, allowMissing) {
-    if (typeof name !== 'string' || name.length === 0) throw new $feb5f7542f36dbc7$var$$TypeError('intrinsic name must be a non-empty string');
-    if (arguments.length > 1 && typeof allowMissing !== 'boolean') throw new $feb5f7542f36dbc7$var$$TypeError('"allowMissing" argument must be a boolean');
-    var parts = $feb5f7542f36dbc7$var$stringToPath(name);
+    if (typeof name !== 'string' || name.length === 0) throw new $41d05ae3623ccfcd$var$$TypeError('intrinsic name must be a non-empty string');
+    if (arguments.length > 1 && typeof allowMissing !== 'boolean') throw new $41d05ae3623ccfcd$var$$TypeError('"allowMissing" argument must be a boolean');
+    var parts = $41d05ae3623ccfcd$var$stringToPath(name);
     var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
-    var intrinsic = $feb5f7542f36dbc7$var$getBaseIntrinsic('%' + intrinsicBaseName + '%', allowMissing);
+    var intrinsic = $41d05ae3623ccfcd$var$getBaseIntrinsic('%' + intrinsicBaseName + '%', allowMissing);
     var intrinsicRealName = intrinsic.name;
     var value = intrinsic.value;
     var skipFurtherCaching = false;
     var alias = intrinsic.alias;
     if (alias) {
         intrinsicBaseName = alias[0];
-        $feb5f7542f36dbc7$var$$spliceApply(parts, $feb5f7542f36dbc7$var$$concat([
+        $41d05ae3623ccfcd$var$$spliceApply(parts, $41d05ae3623ccfcd$var$$concat([
             0,
             1
         ], alias));
     }
     for(var i = 1, isOwn = true; i < parts.length; i += 1){
         var part = parts[i];
-        var first = $feb5f7542f36dbc7$var$$strSlice(part, 0, 1);
-        var last = $feb5f7542f36dbc7$var$$strSlice(part, -1);
-        if ((first === '"' || first === "'" || first === '`' || last === '"' || last === "'" || last === '`') && first !== last) throw new $feb5f7542f36dbc7$var$$SyntaxError('property names with quotes must have matching quotes');
+        var first = $41d05ae3623ccfcd$var$$strSlice(part, 0, 1);
+        var last = $41d05ae3623ccfcd$var$$strSlice(part, -1);
+        if ((first === '"' || first === "'" || first === '`' || last === '"' || last === "'" || last === '`') && first !== last) throw new $41d05ae3623ccfcd$var$$SyntaxError('property names with quotes must have matching quotes');
         if (part === 'constructor' || !isOwn) skipFurtherCaching = true;
         intrinsicBaseName += '.' + part;
         intrinsicRealName = '%' + intrinsicBaseName + '%';
-        if ($4ZE0K($feb5f7542f36dbc7$var$INTRINSICS, intrinsicRealName)) value = $feb5f7542f36dbc7$var$INTRINSICS[intrinsicRealName];
+        if ($gKR0c($41d05ae3623ccfcd$var$INTRINSICS, intrinsicRealName)) value = $41d05ae3623ccfcd$var$INTRINSICS[intrinsicRealName];
         else if (value != null) {
             if (!(part in value)) {
-                if (!allowMissing) throw new $feb5f7542f36dbc7$var$$TypeError('base intrinsic for ' + name + ' exists, but the property is not available.');
+                if (!allowMissing) throw new $41d05ae3623ccfcd$var$$TypeError('base intrinsic for ' + name + ' exists, but the property is not available.');
                 return void 0;
             }
-            if ($feb5f7542f36dbc7$var$$gOPD && i + 1 >= parts.length) {
-                var desc = $feb5f7542f36dbc7$var$$gOPD(value, part);
+            if ($41d05ae3623ccfcd$var$$gOPD && i + 1 >= parts.length) {
+                var desc = $41d05ae3623ccfcd$var$$gOPD(value, part);
                 isOwn = !!desc;
                 // By convention, when a data property is converted to an accessor
                 // property to emulate a data property that does not suffer from
@@ -5416,62 +4480,62 @@ module.exports = function GetIntrinsic(name, allowMissing) {
                 if (isOwn && 'get' in desc && !('originalValue' in desc.get)) value = desc.get;
                 else value = value[part];
             } else {
-                isOwn = $4ZE0K(value, part);
+                isOwn = $gKR0c(value, part);
                 value = value[part];
             }
-            if (isOwn && !skipFurtherCaching) $feb5f7542f36dbc7$var$INTRINSICS[intrinsicRealName] = value;
+            if (isOwn && !skipFurtherCaching) $41d05ae3623ccfcd$var$INTRINSICS[intrinsicRealName] = value;
         }
     }
     return value;
 };
 
 });
-parcelRequire.register("1lfue", function(module, exports) {
+parcelRequire.register("7e1u9", function(module, exports) {
 'use strict';
-var $0fa3c3edbe092954$var$origSymbol = typeof Symbol !== 'undefined' && Symbol;
+var $542afe2e32c92715$var$origSymbol = typeof Symbol !== 'undefined' && Symbol;
 
-var $d14kg = parcelRequire("d14kg");
+var $6Y5Uz = parcelRequire("6Y5Uz");
 module.exports = function hasNativeSymbols() {
-    if (typeof $0fa3c3edbe092954$var$origSymbol !== 'function') return false;
+    if (typeof $542afe2e32c92715$var$origSymbol !== 'function') return false;
     if (typeof Symbol !== 'function') return false;
-    if (typeof $0fa3c3edbe092954$var$origSymbol('foo') !== 'symbol') return false;
+    if (typeof $542afe2e32c92715$var$origSymbol('foo') !== 'symbol') return false;
     if (typeof Symbol('bar') !== 'symbol') return false;
-    return $d14kg();
+    return $6Y5Uz();
 };
 
 });
 
-parcelRequire.register("dVgr9", function(module, exports) {
+parcelRequire.register("hYKua", function(module, exports) {
 'use strict';
 
-var $hlOfT = parcelRequire("hlOfT");
-module.exports = Function.prototype.bind || $hlOfT;
+var $g5MKA = parcelRequire("g5MKA");
+module.exports = Function.prototype.bind || $g5MKA;
 
 });
-parcelRequire.register("hlOfT", function(module, exports) {
+parcelRequire.register("g5MKA", function(module, exports) {
 'use strict';
-/* eslint no-invalid-this: 1 */ var $ca1b617e851bbb22$var$ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
-var $ca1b617e851bbb22$var$slice = Array.prototype.slice;
-var $ca1b617e851bbb22$var$toStr = Object.prototype.toString;
-var $ca1b617e851bbb22$var$funcType = '[object Function]';
+/* eslint no-invalid-this: 1 */ var $bb72edc4c8ad609c$var$ERROR_MESSAGE = 'Function.prototype.bind called on incompatible ';
+var $bb72edc4c8ad609c$var$slice = Array.prototype.slice;
+var $bb72edc4c8ad609c$var$toStr = Object.prototype.toString;
+var $bb72edc4c8ad609c$var$funcType = '[object Function]';
 module.exports = function bind(that) {
     var target = this;
-    if (typeof target !== 'function' || $ca1b617e851bbb22$var$toStr.call(target) !== $ca1b617e851bbb22$var$funcType) throw new TypeError($ca1b617e851bbb22$var$ERROR_MESSAGE + target);
-    var args = $ca1b617e851bbb22$var$slice.call(arguments, 1);
+    if (typeof target !== 'function' || $bb72edc4c8ad609c$var$toStr.call(target) !== $bb72edc4c8ad609c$var$funcType) throw new TypeError($bb72edc4c8ad609c$var$ERROR_MESSAGE + target);
+    var args = $bb72edc4c8ad609c$var$slice.call(arguments, 1);
     var bound;
     var binder = function() {
         if (this instanceof bound) {
-            var result = target.apply(this, args.concat($ca1b617e851bbb22$var$slice.call(arguments)));
+            var result = target.apply(this, args.concat($bb72edc4c8ad609c$var$slice.call(arguments)));
             if (Object(result) === result) return result;
             return this;
-        } else return target.apply(that, args.concat($ca1b617e851bbb22$var$slice.call(arguments)));
+        } else return target.apply(that, args.concat($bb72edc4c8ad609c$var$slice.call(arguments)));
     };
     var boundLength = Math.max(0, target.length - args.length);
     var boundArgs = [];
     for(var i = 0; i < boundLength; i++)boundArgs.push('$' + i);
     bound = Function('binder', 'return function (' + boundArgs.join(',') + '){ return binder.apply(this,arguments); }')(binder);
     if (target.prototype) {
-        var Empty = function Empty1() {
+        var Empty = function Empty() {
         };
         Empty.prototype = target.prototype;
         bound.prototype = new Empty();
@@ -5483,128 +4547,128 @@ module.exports = function bind(that) {
 });
 
 
-parcelRequire.register("4ZE0K", function(module, exports) {
+parcelRequire.register("gKR0c", function(module, exports) {
 'use strict';
 
-var $dVgr9 = parcelRequire("dVgr9");
-module.exports = $dVgr9.call(Function.call, Object.prototype.hasOwnProperty);
+var $hYKua = parcelRequire("hYKua");
+module.exports = $hYKua.call(Function.call, Object.prototype.hasOwnProperty);
 
 });
 
 
-parcelRequire.register("1Q6UW", function(module, exports) {
+parcelRequire.register("eM3I4", function(module, exports) {
 'use strict';
 
-var $dVgr9 = parcelRequire("dVgr9");
+var $hYKua = parcelRequire("hYKua");
 
-var $lROOG = parcelRequire("lROOG");
-var $1570036a5f4bf247$var$$apply = $lROOG('%Function.prototype.apply%');
-var $1570036a5f4bf247$var$$call = $lROOG('%Function.prototype.call%');
-var $1570036a5f4bf247$var$$reflectApply = $lROOG('%Reflect.apply%', true) || $dVgr9.call($1570036a5f4bf247$var$$call, $1570036a5f4bf247$var$$apply);
-var $1570036a5f4bf247$var$$gOPD = $lROOG('%Object.getOwnPropertyDescriptor%', true);
-var $1570036a5f4bf247$var$$defineProperty = $lROOG('%Object.defineProperty%', true);
-var $1570036a5f4bf247$var$$max = $lROOG('%Math.max%');
-if ($1570036a5f4bf247$var$$defineProperty) try {
-    $1570036a5f4bf247$var$$defineProperty({
+var $5Ekch = parcelRequire("5Ekch");
+var $ac186d169e6ed63c$var$$apply = $5Ekch('%Function.prototype.apply%');
+var $ac186d169e6ed63c$var$$call = $5Ekch('%Function.prototype.call%');
+var $ac186d169e6ed63c$var$$reflectApply = $5Ekch('%Reflect.apply%', true) || $hYKua.call($ac186d169e6ed63c$var$$call, $ac186d169e6ed63c$var$$apply);
+var $ac186d169e6ed63c$var$$gOPD = $5Ekch('%Object.getOwnPropertyDescriptor%', true);
+var $ac186d169e6ed63c$var$$defineProperty = $5Ekch('%Object.defineProperty%', true);
+var $ac186d169e6ed63c$var$$max = $5Ekch('%Math.max%');
+if ($ac186d169e6ed63c$var$$defineProperty) try {
+    $ac186d169e6ed63c$var$$defineProperty({
     }, 'a', {
         value: 1
     });
 } catch (e) {
     // IE 8 has a broken defineProperty
-    $1570036a5f4bf247$var$$defineProperty = null;
+    $ac186d169e6ed63c$var$$defineProperty = null;
 }
 module.exports = function callBind(originalFunction) {
-    var func = $1570036a5f4bf247$var$$reflectApply($dVgr9, $1570036a5f4bf247$var$$call, arguments);
-    if ($1570036a5f4bf247$var$$gOPD && $1570036a5f4bf247$var$$defineProperty) {
-        var desc = $1570036a5f4bf247$var$$gOPD(func, 'length');
+    var func = $ac186d169e6ed63c$var$$reflectApply($hYKua, $ac186d169e6ed63c$var$$call, arguments);
+    if ($ac186d169e6ed63c$var$$gOPD && $ac186d169e6ed63c$var$$defineProperty) {
+        var desc = $ac186d169e6ed63c$var$$gOPD(func, 'length');
         if (desc.configurable) // original length, plus the receiver, minus any additional arguments (after the receiver)
-        $1570036a5f4bf247$var$$defineProperty(func, 'length', {
-            value: 1 + $1570036a5f4bf247$var$$max(0, originalFunction.length - (arguments.length - 1))
+        $ac186d169e6ed63c$var$$defineProperty(func, 'length', {
+            value: 1 + $ac186d169e6ed63c$var$$max(0, originalFunction.length - (arguments.length - 1))
         });
     }
     return func;
 };
-var $1570036a5f4bf247$var$applyBind = function applyBind() {
-    return $1570036a5f4bf247$var$$reflectApply($dVgr9, $1570036a5f4bf247$var$$apply, arguments);
+var $ac186d169e6ed63c$var$applyBind = function applyBind() {
+    return $ac186d169e6ed63c$var$$reflectApply($hYKua, $ac186d169e6ed63c$var$$apply, arguments);
 };
-if ($1570036a5f4bf247$var$$defineProperty) $1570036a5f4bf247$var$$defineProperty(module.exports, 'apply', {
-    value: $1570036a5f4bf247$var$applyBind
+if ($ac186d169e6ed63c$var$$defineProperty) $ac186d169e6ed63c$var$$defineProperty(module.exports, 'apply', {
+    value: $ac186d169e6ed63c$var$applyBind
 });
-else module.exports.apply = $1570036a5f4bf247$var$applyBind;
+else module.exports.apply = $ac186d169e6ed63c$var$applyBind;
 
 });
 
 
 
-parcelRequire.register("liNZQ", function(module, exports) {
+parcelRequire.register("iUVnI", function(module, exports) {
 'use strict';
-var $f8220fb33aeb5589$var$toStr = Object.prototype.toString;
-var $f8220fb33aeb5589$var$fnToStr = Function.prototype.toString;
-var $f8220fb33aeb5589$var$isFnRegex = /^\s*(?:function)?\*/;
+var $dc59f7b7881c94ff$var$toStr = Object.prototype.toString;
+var $dc59f7b7881c94ff$var$fnToStr = Function.prototype.toString;
+var $dc59f7b7881c94ff$var$isFnRegex = /^\s*(?:function)?\*/;
 
-var $f8220fb33aeb5589$var$hasToStringTag = (parcelRequire("6vpUc"))();
-var $f8220fb33aeb5589$var$getProto = Object.getPrototypeOf;
-var $f8220fb33aeb5589$var$getGeneratorFunc = function() {
-    if (!$f8220fb33aeb5589$var$hasToStringTag) return false;
+var $dc59f7b7881c94ff$var$hasToStringTag = (parcelRequire("CUUJa"))();
+var $dc59f7b7881c94ff$var$getProto = Object.getPrototypeOf;
+var $dc59f7b7881c94ff$var$getGeneratorFunc = function() {
+    if (!$dc59f7b7881c94ff$var$hasToStringTag) return false;
     try {
         return Function('return function*() {}')();
     } catch (e) {
     }
 };
-var $f8220fb33aeb5589$var$GeneratorFunction;
+var $dc59f7b7881c94ff$var$GeneratorFunction;
 module.exports = function isGeneratorFunction(fn) {
     if (typeof fn !== 'function') return false;
-    if ($f8220fb33aeb5589$var$isFnRegex.test($f8220fb33aeb5589$var$fnToStr.call(fn))) return true;
-    if (!$f8220fb33aeb5589$var$hasToStringTag) {
-        var str = $f8220fb33aeb5589$var$toStr.call(fn);
+    if ($dc59f7b7881c94ff$var$isFnRegex.test($dc59f7b7881c94ff$var$fnToStr.call(fn))) return true;
+    if (!$dc59f7b7881c94ff$var$hasToStringTag) {
+        var str = $dc59f7b7881c94ff$var$toStr.call(fn);
         return str === '[object GeneratorFunction]';
     }
-    if (!$f8220fb33aeb5589$var$getProto) return false;
-    if (typeof $f8220fb33aeb5589$var$GeneratorFunction === 'undefined') {
-        var generatorFunc = $f8220fb33aeb5589$var$getGeneratorFunc();
-        $f8220fb33aeb5589$var$GeneratorFunction = generatorFunc ? $f8220fb33aeb5589$var$getProto(generatorFunc) : false;
+    if (!$dc59f7b7881c94ff$var$getProto) return false;
+    if (typeof $dc59f7b7881c94ff$var$GeneratorFunction === 'undefined') {
+        var generatorFunc = $dc59f7b7881c94ff$var$getGeneratorFunc();
+        $dc59f7b7881c94ff$var$GeneratorFunction = generatorFunc ? $dc59f7b7881c94ff$var$getProto(generatorFunc) : false;
     }
-    return $f8220fb33aeb5589$var$getProto(fn) === $f8220fb33aeb5589$var$GeneratorFunction;
+    return $dc59f7b7881c94ff$var$getProto(fn) === $dc59f7b7881c94ff$var$GeneratorFunction;
 };
 
 });
 
-parcelRequire.register("8pHxd", function(module, exports) {
+parcelRequire.register("7s39a", function(module, exports) {
 'use strict';
 
-var $7yRiA = parcelRequire("7yRiA");
+var $gY1Kw = parcelRequire("gY1Kw");
 
-var $kE0EK = parcelRequire("kE0EK");
+var $bWznr = parcelRequire("bWznr");
 
-var $a8Z2V = parcelRequire("a8Z2V");
-var $62026da2a3202391$var$$toString = $a8Z2V('Object.prototype.toString');
+var $lRlve = parcelRequire("lRlve");
+var $56cd96d103c3752b$var$$toString = $lRlve('Object.prototype.toString');
 
-var $62026da2a3202391$var$hasToStringTag = (parcelRequire("6vpUc"))();
-var $62026da2a3202391$var$g = typeof globalThis === 'undefined' ? $parcel$global : globalThis;
-var $62026da2a3202391$var$typedArrays = $kE0EK();
-var $62026da2a3202391$var$$slice = $a8Z2V('String.prototype.slice');
-var $62026da2a3202391$var$toStrTags = {
+var $56cd96d103c3752b$var$hasToStringTag = (parcelRequire("CUUJa"))();
+var $56cd96d103c3752b$var$g = typeof globalThis === 'undefined' ? $parcel$global : globalThis;
+var $56cd96d103c3752b$var$typedArrays = $bWznr();
+var $56cd96d103c3752b$var$$slice = $lRlve('String.prototype.slice');
+var $56cd96d103c3752b$var$toStrTags = {
 };
 
-var $8ZWjA = parcelRequire("8ZWjA");
-var $62026da2a3202391$var$getPrototypeOf = Object.getPrototypeOf; // require('getprototypeof');
-if ($62026da2a3202391$var$hasToStringTag && $8ZWjA && $62026da2a3202391$var$getPrototypeOf) $7yRiA($62026da2a3202391$var$typedArrays, function(typedArray) {
-    if (typeof $62026da2a3202391$var$g[typedArray] === 'function') {
-        var arr = new $62026da2a3202391$var$g[typedArray]();
+var $hBaS4 = parcelRequire("hBaS4");
+var $56cd96d103c3752b$var$getPrototypeOf = Object.getPrototypeOf; // require('getprototypeof');
+if ($56cd96d103c3752b$var$hasToStringTag && $hBaS4 && $56cd96d103c3752b$var$getPrototypeOf) $gY1Kw($56cd96d103c3752b$var$typedArrays, function(typedArray) {
+    if (typeof $56cd96d103c3752b$var$g[typedArray] === 'function') {
+        var arr = new $56cd96d103c3752b$var$g[typedArray]();
         if (Symbol.toStringTag in arr) {
-            var proto = $62026da2a3202391$var$getPrototypeOf(arr);
-            var descriptor = $8ZWjA(proto, Symbol.toStringTag);
+            var proto = $56cd96d103c3752b$var$getPrototypeOf(arr);
+            var descriptor = $hBaS4(proto, Symbol.toStringTag);
             if (!descriptor) {
-                var superProto = $62026da2a3202391$var$getPrototypeOf(proto);
-                descriptor = $8ZWjA(superProto, Symbol.toStringTag);
+                var superProto = $56cd96d103c3752b$var$getPrototypeOf(proto);
+                descriptor = $hBaS4(superProto, Symbol.toStringTag);
             }
-            $62026da2a3202391$var$toStrTags[typedArray] = descriptor.get;
+            $56cd96d103c3752b$var$toStrTags[typedArray] = descriptor.get;
         }
     }
 });
-var $62026da2a3202391$var$tryTypedArrays = function tryAllTypedArrays(value) {
+var $56cd96d103c3752b$var$tryTypedArrays = function tryAllTypedArrays(value) {
     var foundName = false;
-    $7yRiA($62026da2a3202391$var$toStrTags, function(getter, typedArray) {
+    $gY1Kw($56cd96d103c3752b$var$toStrTags, function(getter, typedArray) {
         if (!foundName) try {
             var name = getter.call(value);
             if (name === typedArray) foundName = name;
@@ -5614,31 +4678,31 @@ var $62026da2a3202391$var$tryTypedArrays = function tryAllTypedArrays(value) {
     return foundName;
 };
 
-var $fV6Lw = parcelRequire("fV6Lw");
+var $ju8Yj = parcelRequire("ju8Yj");
 module.exports = function whichTypedArray(value) {
-    if (!$fV6Lw(value)) return false;
-    if (!$62026da2a3202391$var$hasToStringTag || !(Symbol.toStringTag in value)) return $62026da2a3202391$var$$slice($62026da2a3202391$var$$toString(value), 8, -1);
-    return $62026da2a3202391$var$tryTypedArrays(value);
+    if (!$ju8Yj(value)) return false;
+    if (!$56cd96d103c3752b$var$hasToStringTag || !(Symbol.toStringTag in value)) return $56cd96d103c3752b$var$$slice($56cd96d103c3752b$var$$toString(value), 8, -1);
+    return $56cd96d103c3752b$var$tryTypedArrays(value);
 };
 
 });
-parcelRequire.register("7yRiA", function(module, exports) {
-var $58150d6c0412c116$var$hasOwn = Object.prototype.hasOwnProperty;
-var $58150d6c0412c116$var$toString = Object.prototype.toString;
+parcelRequire.register("gY1Kw", function(module, exports) {
+var $c5a39b4f2b948639$var$hasOwn = Object.prototype.hasOwnProperty;
+var $c5a39b4f2b948639$var$toString = Object.prototype.toString;
 module.exports = function forEach(obj, fn, ctx) {
-    if ($58150d6c0412c116$var$toString.call(fn) !== '[object Function]') throw new TypeError('iterator must be a function');
+    if ($c5a39b4f2b948639$var$toString.call(fn) !== '[object Function]') throw new TypeError('iterator must be a function');
     var l = obj.length;
     if (l === +l) for(var i = 0; i < l; i++)fn.call(ctx, obj[i], i, obj);
     else {
-        for(var k in obj)if ($58150d6c0412c116$var$hasOwn.call(obj, k)) fn.call(ctx, obj[k], k, obj);
+        for(var k in obj)if ($c5a39b4f2b948639$var$hasOwn.call(obj, k)) fn.call(ctx, obj[k], k, obj);
     }
 };
 
 });
 
-parcelRequire.register("kE0EK", function(module, exports) {
+parcelRequire.register("bWznr", function(module, exports) {
 'use strict';
-var $f0780d5d2ad49200$var$possibleNames = [
+var $8b208da88bcc77e2$var$possibleNames = [
     'BigInt64Array',
     'BigUint64Array',
     'Float32Array',
@@ -5651,70 +4715,70 @@ var $f0780d5d2ad49200$var$possibleNames = [
     'Uint8Array',
     'Uint8ClampedArray'
 ];
-var $f0780d5d2ad49200$var$g = typeof globalThis === 'undefined' ? $parcel$global : globalThis;
+var $8b208da88bcc77e2$var$g = typeof globalThis === 'undefined' ? $parcel$global : globalThis;
 module.exports = function availableTypedArrays() {
     var out = [];
-    for(var i = 0; i < $f0780d5d2ad49200$var$possibleNames.length; i++)if (typeof $f0780d5d2ad49200$var$g[$f0780d5d2ad49200$var$possibleNames[i]] === 'function') out[out.length] = $f0780d5d2ad49200$var$possibleNames[i];
+    for(var i = 0; i < $8b208da88bcc77e2$var$possibleNames.length; i++)if (typeof $8b208da88bcc77e2$var$g[$8b208da88bcc77e2$var$possibleNames[i]] === 'function') out[out.length] = $8b208da88bcc77e2$var$possibleNames[i];
     return out;
 };
 
 });
 
-parcelRequire.register("8ZWjA", function(module, exports) {
+parcelRequire.register("hBaS4", function(module, exports) {
 'use strict';
 
-var $lROOG = parcelRequire("lROOG");
-var $68d1416015817d27$var$$gOPD = $lROOG('%Object.getOwnPropertyDescriptor%', true);
-if ($68d1416015817d27$var$$gOPD) try {
-    $68d1416015817d27$var$$gOPD([], 'length');
+var $5Ekch = parcelRequire("5Ekch");
+var $ccfe5329c2bbb895$var$$gOPD = $5Ekch('%Object.getOwnPropertyDescriptor%', true);
+if ($ccfe5329c2bbb895$var$$gOPD) try {
+    $ccfe5329c2bbb895$var$$gOPD([], 'length');
 } catch (e) {
     // IE 8 has a broken gOPD
-    $68d1416015817d27$var$$gOPD = null;
+    $ccfe5329c2bbb895$var$$gOPD = null;
 }
-module.exports = $68d1416015817d27$var$$gOPD;
+module.exports = $ccfe5329c2bbb895$var$$gOPD;
 
 });
 
-parcelRequire.register("fV6Lw", function(module, exports) {
+parcelRequire.register("ju8Yj", function(module, exports) {
 'use strict';
 
-var $7yRiA = parcelRequire("7yRiA");
+var $gY1Kw = parcelRequire("gY1Kw");
 
-var $kE0EK = parcelRequire("kE0EK");
+var $bWznr = parcelRequire("bWznr");
 
-var $a8Z2V = parcelRequire("a8Z2V");
-var $b9716d648d831028$var$$toString = $a8Z2V('Object.prototype.toString');
+var $lRlve = parcelRequire("lRlve");
+var $e2f7c745416ca9f9$var$$toString = $lRlve('Object.prototype.toString');
 
-var $b9716d648d831028$var$hasToStringTag = (parcelRequire("6vpUc"))();
-var $b9716d648d831028$var$g = typeof globalThis === 'undefined' ? $parcel$global : globalThis;
-var $b9716d648d831028$var$typedArrays = $kE0EK();
-var $b9716d648d831028$var$$indexOf = $a8Z2V('Array.prototype.indexOf', true) || function indexOf(array, value) {
+var $e2f7c745416ca9f9$var$hasToStringTag = (parcelRequire("CUUJa"))();
+var $e2f7c745416ca9f9$var$g = typeof globalThis === 'undefined' ? $parcel$global : globalThis;
+var $e2f7c745416ca9f9$var$typedArrays = $bWznr();
+var $e2f7c745416ca9f9$var$$indexOf = $lRlve('Array.prototype.indexOf', true) || function indexOf(array, value) {
     for(var i = 0; i < array.length; i += 1){
         if (array[i] === value) return i;
     }
     return -1;
 };
-var $b9716d648d831028$var$$slice = $a8Z2V('String.prototype.slice');
-var $b9716d648d831028$var$toStrTags = {
+var $e2f7c745416ca9f9$var$$slice = $lRlve('String.prototype.slice');
+var $e2f7c745416ca9f9$var$toStrTags = {
 };
 
-var $8ZWjA = parcelRequire("8ZWjA");
-var $b9716d648d831028$var$getPrototypeOf = Object.getPrototypeOf; // require('getprototypeof');
-if ($b9716d648d831028$var$hasToStringTag && $8ZWjA && $b9716d648d831028$var$getPrototypeOf) $7yRiA($b9716d648d831028$var$typedArrays, function(typedArray) {
-    var arr = new $b9716d648d831028$var$g[typedArray]();
+var $hBaS4 = parcelRequire("hBaS4");
+var $e2f7c745416ca9f9$var$getPrototypeOf = Object.getPrototypeOf; // require('getprototypeof');
+if ($e2f7c745416ca9f9$var$hasToStringTag && $hBaS4 && $e2f7c745416ca9f9$var$getPrototypeOf) $gY1Kw($e2f7c745416ca9f9$var$typedArrays, function(typedArray) {
+    var arr = new $e2f7c745416ca9f9$var$g[typedArray]();
     if (Symbol.toStringTag in arr) {
-        var proto = $b9716d648d831028$var$getPrototypeOf(arr);
-        var descriptor = $8ZWjA(proto, Symbol.toStringTag);
+        var proto = $e2f7c745416ca9f9$var$getPrototypeOf(arr);
+        var descriptor = $hBaS4(proto, Symbol.toStringTag);
         if (!descriptor) {
-            var superProto = $b9716d648d831028$var$getPrototypeOf(proto);
-            descriptor = $8ZWjA(superProto, Symbol.toStringTag);
+            var superProto = $e2f7c745416ca9f9$var$getPrototypeOf(proto);
+            descriptor = $hBaS4(superProto, Symbol.toStringTag);
         }
-        $b9716d648d831028$var$toStrTags[typedArray] = descriptor.get;
+        $e2f7c745416ca9f9$var$toStrTags[typedArray] = descriptor.get;
     }
 });
-var $b9716d648d831028$var$tryTypedArrays = function tryAllTypedArrays(value) {
+var $e2f7c745416ca9f9$var$tryTypedArrays = function tryAllTypedArrays(value) {
     var anyTrue = false;
-    $7yRiA($b9716d648d831028$var$toStrTags, function(getter, typedArray) {
+    $gY1Kw($e2f7c745416ca9f9$var$toStrTags, function(getter, typedArray) {
         if (!anyTrue) try {
             anyTrue = getter.call(value) === typedArray;
         } catch (e) {
@@ -5724,26 +4788,129 @@ var $b9716d648d831028$var$tryTypedArrays = function tryAllTypedArrays(value) {
 };
 module.exports = function isTypedArray(value) {
     if (!value || typeof value !== 'object') return false;
-    if (!$b9716d648d831028$var$hasToStringTag || !(Symbol.toStringTag in value)) {
-        var tag = $b9716d648d831028$var$$slice($b9716d648d831028$var$$toString(value), 8, -1);
-        return $b9716d648d831028$var$$indexOf($b9716d648d831028$var$typedArrays, tag) > -1;
+    if (!$e2f7c745416ca9f9$var$hasToStringTag || !(Symbol.toStringTag in value)) {
+        var tag = $e2f7c745416ca9f9$var$$slice($e2f7c745416ca9f9$var$$toString(value), 8, -1);
+        return $e2f7c745416ca9f9$var$$indexOf($e2f7c745416ca9f9$var$typedArrays, tag) > -1;
     }
-    if (!$8ZWjA) return false;
-    return $b9716d648d831028$var$tryTypedArrays(value);
+    if (!$hBaS4) return false;
+    return $e2f7c745416ca9f9$var$tryTypedArrays(value);
 };
 
 });
 
 
 
-parcelRequire.register("iwya7", function(module, exports) {
+
+// NOTE: These type checking functions intentionally don't use `instanceof`
+// because it is fragile and can be easily faked with `Object.create()`.
+$6b43bec9714ecd1e$exports.types = (parcelRequire("gUdyo"));
+function $6b43bec9714ecd1e$var$isArray(ar) {
+    return Array.isArray(ar);
+}
+$6b43bec9714ecd1e$exports.isArray = $6b43bec9714ecd1e$var$isArray;
+function $6b43bec9714ecd1e$var$isBoolean(arg) {
+    return typeof arg === 'boolean';
+}
+$6b43bec9714ecd1e$exports.isBoolean = $6b43bec9714ecd1e$var$isBoolean;
+function $6b43bec9714ecd1e$var$isNull(arg) {
+    return arg === null;
+}
+$6b43bec9714ecd1e$exports.isNull = $6b43bec9714ecd1e$var$isNull;
+function $6b43bec9714ecd1e$var$isNullOrUndefined(arg) {
+    return arg == null;
+}
+$6b43bec9714ecd1e$exports.isNullOrUndefined = $6b43bec9714ecd1e$var$isNullOrUndefined;
+function $6b43bec9714ecd1e$var$isNumber(arg) {
+    return typeof arg === 'number';
+}
+$6b43bec9714ecd1e$exports.isNumber = $6b43bec9714ecd1e$var$isNumber;
+function $6b43bec9714ecd1e$var$isString(arg) {
+    return typeof arg === 'string';
+}
+$6b43bec9714ecd1e$exports.isString = $6b43bec9714ecd1e$var$isString;
+function $6b43bec9714ecd1e$var$isSymbol(arg) {
+    return typeof arg === 'symbol';
+}
+$6b43bec9714ecd1e$exports.isSymbol = $6b43bec9714ecd1e$var$isSymbol;
+function $6b43bec9714ecd1e$var$isUndefined(arg) {
+    return arg === void 0;
+}
+$6b43bec9714ecd1e$exports.isUndefined = $6b43bec9714ecd1e$var$isUndefined;
+function $6b43bec9714ecd1e$var$isRegExp(re) {
+    return $6b43bec9714ecd1e$var$isObject(re) && $6b43bec9714ecd1e$var$objectToString(re) === '[object RegExp]';
+}
+$6b43bec9714ecd1e$exports.isRegExp = $6b43bec9714ecd1e$var$isRegExp;
+$6b43bec9714ecd1e$exports.types.isRegExp = $6b43bec9714ecd1e$var$isRegExp;
+function $6b43bec9714ecd1e$var$isObject(arg) {
+    return typeof arg === 'object' && arg !== null;
+}
+$6b43bec9714ecd1e$exports.isObject = $6b43bec9714ecd1e$var$isObject;
+function $6b43bec9714ecd1e$var$isDate(d) {
+    return $6b43bec9714ecd1e$var$isObject(d) && $6b43bec9714ecd1e$var$objectToString(d) === '[object Date]';
+}
+$6b43bec9714ecd1e$exports.isDate = $6b43bec9714ecd1e$var$isDate;
+$6b43bec9714ecd1e$exports.types.isDate = $6b43bec9714ecd1e$var$isDate;
+function $6b43bec9714ecd1e$var$isError(e) {
+    return $6b43bec9714ecd1e$var$isObject(e) && ($6b43bec9714ecd1e$var$objectToString(e) === '[object Error]' || e instanceof Error);
+}
+$6b43bec9714ecd1e$exports.isError = $6b43bec9714ecd1e$var$isError;
+$6b43bec9714ecd1e$exports.types.isNativeError = $6b43bec9714ecd1e$var$isError;
+function $6b43bec9714ecd1e$var$isFunction(arg) {
+    return typeof arg === 'function';
+}
+$6b43bec9714ecd1e$exports.isFunction = $6b43bec9714ecd1e$var$isFunction;
+function $6b43bec9714ecd1e$var$isPrimitive(arg) {
+    return arg === null || typeof arg === 'boolean' || typeof arg === 'number' || typeof arg === 'string' || typeof arg === 'symbol' || typeof arg === 'undefined';
+}
+$6b43bec9714ecd1e$exports.isPrimitive = $6b43bec9714ecd1e$var$isPrimitive;
+parcelRequire.register("9F572", function(module, exports) {
 module.exports = function isBuffer(arg) {
     return arg && typeof arg === 'object' && typeof arg.copy === 'function' && typeof arg.fill === 'function' && typeof arg.readUInt8 === 'function';
 };
 
 });
 
-parcelRequire.register("eeC3p", function(module, exports) {
+
+$6b43bec9714ecd1e$exports.isBuffer = (parcelRequire("9F572"));
+function $6b43bec9714ecd1e$var$objectToString(o) {
+    return Object.prototype.toString.call(o);
+}
+function $6b43bec9714ecd1e$var$pad(n) {
+    return n < 10 ? '0' + n.toString(10) : n.toString(10);
+}
+var $6b43bec9714ecd1e$var$months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+];
+// 26 Feb 16:19:34
+function $6b43bec9714ecd1e$var$timestamp() {
+    var d = new Date();
+    var time = [
+        $6b43bec9714ecd1e$var$pad(d.getHours()),
+        $6b43bec9714ecd1e$var$pad(d.getMinutes()),
+        $6b43bec9714ecd1e$var$pad(d.getSeconds())
+    ].join(':');
+    return [
+        d.getDate(),
+        $6b43bec9714ecd1e$var$months[d.getMonth()],
+        time
+    ].join(' ');
+}
+// log is just a thin wrapper to console.log that prepends a timestamp
+$6b43bec9714ecd1e$exports.log = function() {
+    console.log('%s - %s', $6b43bec9714ecd1e$var$timestamp(), $6b43bec9714ecd1e$exports.format.apply($6b43bec9714ecd1e$exports, arguments));
+};
+parcelRequire.register("1SwcL", function(module, exports) {
 if (typeof Object.create === 'function') // implementation from standard node.js 'util' module
 module.exports = function inherits(ctor, superCtor) {
     if (superCtor) {
@@ -5759,7 +4926,7 @@ module.exports = function inherits(ctor, superCtor) {
     }
 };
 else // old school shim for old browsers
-module.exports = function inherits1(ctor, superCtor) {
+module.exports = function inherits(ctor, superCtor) {
     if (superCtor) {
         ctor.super_ = superCtor;
         var TempCtor = function() {
@@ -5773,8 +4940,782 @@ module.exports = function inherits1(ctor, superCtor) {
 });
 
 
+/**
+ * Inherit the prototype methods from one constructor into another.
+ *
+ * The Function.prototype.inherits from lang.js rewritten as a standalone
+ * function (not on Function.prototype). NOTE: If this file is to be loaded
+ * during bootstrapping this function needs to be rewritten using some native
+ * functions as prototype setup using normal JavaScript does not work as
+ * expected during bootstrapping (see mirror.js in r114903).
+ *
+ * @param {function} ctor Constructor function which needs to inherit the
+ *     prototype.
+ * @param {function} superCtor Constructor function to inherit prototype from.
+ */ $6b43bec9714ecd1e$exports.inherits = (parcelRequire("1SwcL"));
+$6b43bec9714ecd1e$exports._extend = function(origin, add) {
+    // Don't do anything if add isn't an object
+    if (!add || !$6b43bec9714ecd1e$var$isObject(add)) return origin;
+    var keys = Object.keys(add);
+    var i = keys.length;
+    while(i--)origin[keys[i]] = add[keys[i]];
+    return origin;
+};
+function $6b43bec9714ecd1e$var$hasOwnProperty(obj, prop) {
+    return Object.prototype.hasOwnProperty.call(obj, prop);
+}
+var $6b43bec9714ecd1e$var$kCustomPromisifiedSymbol = typeof Symbol !== 'undefined' ? Symbol('util.promisify.custom') : undefined;
+$6b43bec9714ecd1e$exports.promisify = function promisify(original) {
+    if (typeof original !== 'function') throw new TypeError('The "original" argument must be of type Function');
+    if ($6b43bec9714ecd1e$var$kCustomPromisifiedSymbol && original[$6b43bec9714ecd1e$var$kCustomPromisifiedSymbol]) {
+        var fn = original[$6b43bec9714ecd1e$var$kCustomPromisifiedSymbol];
+        if (typeof fn !== 'function') throw new TypeError('The "util.promisify.custom" argument must be of type Function');
+        Object.defineProperty(fn, $6b43bec9714ecd1e$var$kCustomPromisifiedSymbol, {
+            value: fn,
+            enumerable: false,
+            writable: false,
+            configurable: true
+        });
+        return fn;
+    }
+    function fn() {
+        var promiseResolve, promiseReject;
+        var promise = new Promise(function(resolve, reject) {
+            promiseResolve = resolve;
+            promiseReject = reject;
+        });
+        var args = [];
+        for(var i = 0; i < arguments.length; i++)args.push(arguments[i]);
+        args.push(function(err, value) {
+            if (err) promiseReject(err);
+            else promiseResolve(value);
+        });
+        try {
+            original.apply(this, args);
+        } catch (err) {
+            promiseReject(err);
+        }
+        return promise;
+    }
+    Object.setPrototypeOf(fn, Object.getPrototypeOf(original));
+    if ($6b43bec9714ecd1e$var$kCustomPromisifiedSymbol) Object.defineProperty(fn, $6b43bec9714ecd1e$var$kCustomPromisifiedSymbol, {
+        value: fn,
+        enumerable: false,
+        writable: false,
+        configurable: true
+    });
+    return Object.defineProperties(fn, $6b43bec9714ecd1e$var$getOwnPropertyDescriptors(original));
+};
+$6b43bec9714ecd1e$exports.promisify.custom = $6b43bec9714ecd1e$var$kCustomPromisifiedSymbol;
+function $6b43bec9714ecd1e$var$callbackifyOnRejected(reason, cb) {
+    // `!reason` guard inspired by bluebird (Ref: https://goo.gl/t5IS6M).
+    // Because `null` is a special error value in callbacks which means "no error
+    // occurred", we error-wrap so the callback consumer can distinguish between
+    // "the promise rejected with null" or "the promise fulfilled with undefined".
+    if (!reason) {
+        var newReason = new Error('Promise was rejected with a falsy value');
+        newReason.reason = reason;
+        reason = newReason;
+    }
+    return cb(reason);
+}
+function $6b43bec9714ecd1e$var$callbackify(original) {
+    if (typeof original !== 'function') throw new TypeError('The "original" argument must be of type Function');
+    // We DO NOT return the promise as it gives the user a false sense that
+    // the promise is actually somehow related to the callback's execution
+    // and that the callback throwing will reject the promise.
+    function callbackified() {
+        var args = [];
+        for(var i = 0; i < arguments.length; i++)args.push(arguments[i]);
+        var maybeCb = args.pop();
+        if (typeof maybeCb !== 'function') throw new TypeError('The last argument must be of type Function');
+        var self = this;
+        var cb = function() {
+            return maybeCb.apply(self, arguments);
+        };
+        // In true node style we process the callback on `nextTick` with all the
+        // implications (stack, `uncaughtException`, `async_hooks`)
+        original.apply(this, args).then(function(ret) {
+            $4cYrz.nextTick(cb.bind(null, null, ret));
+        }, function(rej) {
+            $4cYrz.nextTick($6b43bec9714ecd1e$var$callbackifyOnRejected.bind(null, rej, cb));
+        });
+    }
+    Object.setPrototypeOf(callbackified, Object.getPrototypeOf(original));
+    Object.defineProperties(callbackified, $6b43bec9714ecd1e$var$getOwnPropertyDescriptors(original));
+    return callbackified;
+}
+$6b43bec9714ecd1e$exports.callbackify = $6b43bec9714ecd1e$var$callbackify;
 
 
-parcelRequire("cF4et");
+class $11c045df1a5b205b$var$LoggerObject {
+    constructor(){
+        this.id = Math.random();
+        this.stringBuffer = [];
+        this.attributeBuffer = [];
+        this.styleString = "font-family:monospace;font-size: 1rem;";
+        const ifStyleCalledAsMethod = (...args)=>{
+            let styler = $11c045df1a5b205b$var$chalk;
+            while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
+            const string = styler(...args);
+            this.stringBuffer.push(string);
+            return this;
+        };
+        const originalThing = ifStyleCalledAsMethod;
+        const proxySymbol = Symbol.for('Proxy');
+        const thisProxySymbol = Symbol('thisProxy');
+        this.proxyiedReturn = new Proxy(originalThing, {
+            defineProperty (original, ...args) {
+                return Reflect.defineProperty(this, ...args);
+            },
+            getPrototypeOf (original, ...args) {
+                return Reflect.getPrototypeOf(this, ...args);
+            },
+            // Object.keys
+            ownKeys (original, ...args) {
+                return Reflect.ownKeys(this, ...args);
+            },
+            get: (original, key, ...args)=>{
+                if (key == proxySymbol || key == thisProxySymbol) return true;
+                return this[key];
+            },
+            set: (original, key, value)=>{
+                if (key == proxySymbol || key == thisProxySymbol) return;
+                return this[key] = value;
+            }
+        });
+        // 
+        // attempt to add node.js logging
+        // 
+        try {
+            this[$6b43bec9714ecd1e$exports.inspect.custom] = this.toString;
+        } catch (error) {
+        }
+    }
+    get reset() {
+        this.attributeBuffer.push("reset");
+        this.styleString += ";";
+        return this.proxyiedReturn;
+    }
+    get bold() {
+        this.attributeBuffer.push("bold");
+        this.styleString += "; font-weight: bold;";
+        return this.proxyiedReturn;
+    }
+    get dim() {
+        this.attributeBuffer.push("dim");
+        this.styleString += "; opacity: 0.7;";
+        return this.proxyiedReturn;
+    }
+    get italic() {
+        this.attributeBuffer.push("italic");
+        this.styleString += "; font-style: italic;";
+        return this.proxyiedReturn;
+    }
+    get underline() {
+        this.attributeBuffer.push("underline");
+        this.styleString += "; text-decoration:underline;";
+        return this.proxyiedReturn;
+    }
+    get inverse() {
+        this.attributeBuffer.push("inverse");
+        this.styleString += "; -webkit-filter: invert(100%); filter: invert(100%);";
+        return this.proxyiedReturn;
+    }
+    get hidden() {
+        this.attributeBuffer.push("hidden");
+        this.styleString += "; background-color: transparent; color:transparent;";
+        return this.proxyiedReturn;
+    }
+    get strikethrough() {
+        this.attributeBuffer.push("strikethrough");
+        this.styleString += "; text-decoration:line-through;";
+        return this.proxyiedReturn;
+    }
+    get visible() {
+        this.attributeBuffer.push("visible");
+        this.styleString += "; ";
+        return this.proxyiedReturn;
+    }
+    get black() {
+        this.attributeBuffer.push("black");
+        this.styleString += "; color:#000000;";
+        return this.proxyiedReturn;
+    }
+    get red() {
+        this.attributeBuffer.push("red");
+        this.styleString += "; color:#f07178;";
+        return this.proxyiedReturn;
+    }
+    get green() {
+        this.attributeBuffer.push("green");
+        this.styleString += "; color:#c3e88d;";
+        return this.proxyiedReturn;
+    }
+    get yellow() {
+        this.attributeBuffer.push("yellow");
+        this.styleString += "; color:#ddd790;";
+        return this.proxyiedReturn;
+    }
+    get blue() {
+        this.attributeBuffer.push("blue");
+        this.styleString += "; color:#82aaff;";
+        return this.proxyiedReturn;
+    }
+    get magenta() {
+        this.attributeBuffer.push("magenta");
+        this.styleString += "; color:#c792ea;";
+        return this.proxyiedReturn;
+    }
+    get cyan() {
+        this.attributeBuffer.push("cyan");
+        this.styleString += "; color:#64bac5;";
+        return this.proxyiedReturn;
+    }
+    get white() {
+        this.attributeBuffer.push("white");
+        this.styleString += "; color:#c7cbcd;";
+        return this.proxyiedReturn;
+    }
+    get blackBright() {
+        this.attributeBuffer.push("blackBright");
+        this.styleString += "; color:#546e7a;";
+        return this.proxyiedReturn;
+    }
+    get gray() {
+        this.attributeBuffer.push("gray");
+        this.styleString += "; color:#546e7a;";
+        return this.proxyiedReturn;
+    }
+    get grey() {
+        this.attributeBuffer.push("grey");
+        this.styleString += "; color:#546e7a;";
+        return this.proxyiedReturn;
+    }
+    get redBright() {
+        this.attributeBuffer.push("redBright");
+        this.styleString += "; color:#ff5572;";
+        return this.proxyiedReturn;
+    }
+    get greenBright() {
+        this.attributeBuffer.push("greenBright");
+        this.styleString += "; color:#04d895;";
+        return this.proxyiedReturn;
+    }
+    get yellowBright() {
+        this.attributeBuffer.push("yellowBright");
+        this.styleString += "; color:#fec355;";
+        return this.proxyiedReturn;
+    }
+    get blueBright() {
+        this.attributeBuffer.push("blueBright");
+        this.styleString += "; color:#00aeff;";
+        return this.proxyiedReturn;
+    }
+    get magentaBright() {
+        this.attributeBuffer.push("magentaBright");
+        this.styleString += "; color:#e57eb3;";
+        return this.proxyiedReturn;
+    }
+    get cyanBright() {
+        this.attributeBuffer.push("cyanBright");
+        this.styleString += "; color:#89ddff;";
+        return this.proxyiedReturn;
+    }
+    get whiteBright() {
+        this.attributeBuffer.push("whiteBright");
+        this.styleString += "; color:#ffffff;";
+        return this.proxyiedReturn;
+    }
+    get bgBlack() {
+        this.attributeBuffer.push("bgBlack");
+        this.styleString += "; background-color:#000000;";
+        return this.proxyiedReturn;
+    }
+    get bgRed() {
+        this.attributeBuffer.push("bgRed");
+        this.styleString += "; background-color:#f07178;";
+        return this.proxyiedReturn;
+    }
+    get bgGreen() {
+        this.attributeBuffer.push("bgGreen");
+        this.styleString += "; background-color:#c3e88d;";
+        return this.proxyiedReturn;
+    }
+    get bgYellow() {
+        this.attributeBuffer.push("bgYellow");
+        this.styleString += "; background-color:#ddd790;";
+        return this.proxyiedReturn;
+    }
+    get bgBlue() {
+        this.attributeBuffer.push("bgBlue");
+        this.styleString += "; background-color:#82aaff;";
+        return this.proxyiedReturn;
+    }
+    get bgMagenta() {
+        this.attributeBuffer.push("bgMagenta");
+        this.styleString += "; background-color:#c792ea;";
+        return this.proxyiedReturn;
+    }
+    get bgCyan() {
+        this.attributeBuffer.push("bgCyan");
+        this.styleString += "; background-color:#64bac5;";
+        return this.proxyiedReturn;
+    }
+    get bgWhite() {
+        this.attributeBuffer.push("bgWhite");
+        this.styleString += "; background-color:#c7cbcd;";
+        return this.proxyiedReturn;
+    }
+    get bgBlackBright() {
+        this.attributeBuffer.push("bgBlackBright");
+        this.styleString += "; background-color:#546e7a;";
+        return this.proxyiedReturn;
+    }
+    get bgGray() {
+        this.attributeBuffer.push("bgGray");
+        this.styleString += "; background-color:#546e7a;";
+        return this.proxyiedReturn;
+    }
+    get bgGrey() {
+        this.attributeBuffer.push("bgGrey");
+        this.styleString += "; background-color:#546e7a;";
+        return this.proxyiedReturn;
+    }
+    get bgRedBright() {
+        this.attributeBuffer.push("bgRedBright");
+        this.styleString += "; background-color:#ff5572;";
+        return this.proxyiedReturn;
+    }
+    get bgGreenBright() {
+        this.attributeBuffer.push("bgGreenBright");
+        this.styleString += "; background-color:#04d895;";
+        return this.proxyiedReturn;
+    }
+    get bgYellowBright() {
+        this.attributeBuffer.push("bgYellowBright");
+        this.styleString += "; background-color:#fec355;";
+        return this.proxyiedReturn;
+    }
+    get bgBlueBright() {
+        this.attributeBuffer.push("bgBlueBright");
+        this.styleString += "; background-color:#00aeff;";
+        return this.proxyiedReturn;
+    }
+    get bgMagentaBright() {
+        this.attributeBuffer.push("bgMagentaBright");
+        this.styleString += "; background-color:#e57eb3;";
+        return this.proxyiedReturn;
+    }
+    get bgCyanBright() {
+        this.attributeBuffer.push("bgCyanBright");
+        this.styleString += "; background-color:#89ddff;";
+        return this.proxyiedReturn;
+    }
+    get bgWhiteBright() {
+        this.attributeBuffer.push("bgWhiteBright");
+        this.styleString += "; background-color:#ffffff;";
+        return this.proxyiedReturn;
+    }
+    toString() {
+        return this.stringBuffer.join("");
+    }
+    [Symbol.for("console.log")]() {
+        const result = this.toString();
+        // reset because its about to be logged
+        this.styleString = "";
+        this.stringBuffer = [];
+        this.attributeBuffer = [];
+        return result;
+    }
+    log(...others) {
+        if (!$11c045df1a5b205b$var$isBrowserContext) $11c045df1a5b205b$var$realConsole.log(this.toString().replace("%", "%%"), ...others);
+        else $11c045df1a5b205b$var$realConsole.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
+        // reset it after logging
+        this.styleString = "";
+        this.stringBuffer = [];
+        this.attributeBuffer = [];
+        return this;
+    }
+}
 
+class $11c045df1a5b205b$var$ConsoleObject extends $11c045df1a5b205b$var$LoggerObject {
+    constructor(){
+        super();
+        // 
+        // only difference: proxy object executes .log() when called as a function
+        // 
+        const ifStyleCalledAsMethod = (...args)=>{
+            let styler = $11c045df1a5b205b$var$chalk;
+            while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
+            const string = styler(...args);
+            this.stringBuffer.push(string);
+            this.log();
+            return;
+        };
+        const originalThing = ifStyleCalledAsMethod;
+        const proxySymbol = Symbol.for('Proxy');
+        const thisProxySymbol = Symbol('thisProxy');
+        this.proxyiedReturn = new Proxy(originalThing, {
+            defineProperty (original, ...args) {
+                return Reflect.defineProperty(this, ...args);
+            },
+            getPrototypeOf (original, ...args) {
+                return Reflect.getPrototypeOf(this, ...args);
+            },
+            // Object.keys
+            ownKeys (original, ...args) {
+                return Reflect.ownKeys(this, ...args);
+            },
+            get: (original, key, ...args)=>{
+                if (key == proxySymbol || key == thisProxySymbol) return true;
+                return this[key];
+            },
+            set: (original, key, value)=>{
+                if (key == proxySymbol || key == thisProxySymbol) return;
+                return this[key] = value;
+            }
+        });
+        // 
+        // attempt to add node.js logging
+        // 
+        try {
+            this[$6b43bec9714ecd1e$exports.inspect.custom] = this.toString;
+        } catch (error) {
+        }
+    }
+}
+const $11c045df1a5b205b$var$wrapAroundGet = (number, list)=>list[(number % list.length + list.length) % list.length]
+;
+let $11c045df1a5b205b$var$console = {
+    get reset () {
+        return new $11c045df1a5b205b$var$ConsoleObject().reset;
+    },
+    get bold () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bold;
+    },
+    get dim () {
+        return new $11c045df1a5b205b$var$ConsoleObject().dim;
+    },
+    get italic () {
+        return new $11c045df1a5b205b$var$ConsoleObject().italic;
+    },
+    get underline () {
+        return new $11c045df1a5b205b$var$ConsoleObject().underline;
+    },
+    get inverse () {
+        return new $11c045df1a5b205b$var$ConsoleObject().inverse;
+    },
+    get hidden () {
+        return new $11c045df1a5b205b$var$ConsoleObject().hidden;
+    },
+    get strikethrough () {
+        return new $11c045df1a5b205b$var$ConsoleObject().strikethrough;
+    },
+    get visible () {
+        return new $11c045df1a5b205b$var$ConsoleObject().visible;
+    },
+    get black () {
+        return new $11c045df1a5b205b$var$ConsoleObject().black;
+    },
+    get red () {
+        return new $11c045df1a5b205b$var$ConsoleObject().red;
+    },
+    get green () {
+        return new $11c045df1a5b205b$var$ConsoleObject().green;
+    },
+    get yellow () {
+        return new $11c045df1a5b205b$var$ConsoleObject().yellow;
+    },
+    get blue () {
+        return new $11c045df1a5b205b$var$ConsoleObject().blue;
+    },
+    get magenta () {
+        return new $11c045df1a5b205b$var$ConsoleObject().magenta;
+    },
+    get cyan () {
+        return new $11c045df1a5b205b$var$ConsoleObject().cyan;
+    },
+    get white () {
+        return new $11c045df1a5b205b$var$ConsoleObject().white;
+    },
+    get blackBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().blackBright;
+    },
+    get gray () {
+        return new $11c045df1a5b205b$var$ConsoleObject().gray;
+    },
+    get grey () {
+        return new $11c045df1a5b205b$var$ConsoleObject().grey;
+    },
+    get redBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().redBright;
+    },
+    get greenBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().greenBright;
+    },
+    get yellowBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().yellowBright;
+    },
+    get blueBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().blueBright;
+    },
+    get magentaBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().magentaBright;
+    },
+    get cyanBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().cyanBright;
+    },
+    get whiteBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().whiteBright;
+    },
+    get bgBlack () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgBlack;
+    },
+    get bgRed () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgRed;
+    },
+    get bgGreen () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgGreen;
+    },
+    get bgYellow () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgYellow;
+    },
+    get bgBlue () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgBlue;
+    },
+    get bgMagenta () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgMagenta;
+    },
+    get bgCyan () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgCyan;
+    },
+    get bgWhite () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgWhite;
+    },
+    get bgBlackBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgBlackBright;
+    },
+    get bgGray () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgGray;
+    },
+    get bgGrey () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgGrey;
+    },
+    get bgRedBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgRedBright;
+    },
+    get bgGreenBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgGreenBright;
+    },
+    get bgYellowBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgYellowBright;
+    },
+    get bgBlueBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgBlueBright;
+    },
+    get bgMagentaBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgMagentaBright;
+    },
+    get bgCyanBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgCyanBright;
+    },
+    get bgWhiteBright () {
+        return new $11c045df1a5b205b$var$ConsoleObject().bgWhiteBright;
+    },
+    log: globalThis.console.log,
+    warn: globalThis.console.warn,
+    dir: globalThis.console.dir,
+    time: globalThis.console.time,
+    timeEnd: globalThis.console.timeEnd,
+    timeLog: globalThis.console.timeLog,
+    trace: globalThis.console.trace,
+    assert: globalThis.console.assert,
+    clear: globalThis.console.clear,
+    count: globalThis.console.count,
+    countReset: globalThis.console.countReset,
+    group: globalThis.console.group,
+    groupEnd: globalThis.console.groupEnd,
+    table: globalThis.console.table,
+    debug: globalThis.console.debug,
+    info: globalThis.console.info,
+    dirxml: globalThis.console.dirxml,
+    error: globalThis.console.error,
+    groupCollapsed: globalThis.console.groupCollapsed,
+    Console: globalThis.console.Console,
+    profile: globalThis.console.profile,
+    profileEnd: globalThis.console.profileEnd,
+    timeStamp: globalThis.console.timeStamp,
+    context: globalThis.console.context,
+    secretRainbow: (...args)=>{
+        if ($11c045df1a5b205b$var$isBrowserContext) $11c045df1a5b205b$var$realConsole.log(`%c${args.join("").replace("%", "%%")}`, 'font-weight: bold; font-size: 50px;color: red; text-shadow: 3px 3px 0 rgb(217,31,38) , 6px 6px 0 rgb(226,91,14) , 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)');
+        else {
+            const rainbowColors = [
+                'red',
+                'redBright',
+                'yellow',
+                'yellowBright',
+                'green',
+                'greenBright',
+                'cyan',
+                'cyanBright',
+                'blue',
+                'blueBright',
+                'magenta',
+                'magentaBright', 
+            ];
+            let number = 0;
+            let bigString = "";
+            for (const eachChar of args.join("")){
+                number += 1;
+                bigString += $11c045df1a5b205b$var$vibrance[$11c045df1a5b205b$var$wrapAroundGet(number, rainbowColors)](eachChar).toString();
+            }
+            $11c045df1a5b205b$var$realConsole.log(bigString.replace("%", "%%"));
+        }
+    }
+};
+const $11c045df1a5b205b$var$vibrance = {
+    get reset () {
+        return new $11c045df1a5b205b$var$LoggerObject().reset;
+    },
+    get bold () {
+        return new $11c045df1a5b205b$var$LoggerObject().bold;
+    },
+    get dim () {
+        return new $11c045df1a5b205b$var$LoggerObject().dim;
+    },
+    get italic () {
+        return new $11c045df1a5b205b$var$LoggerObject().italic;
+    },
+    get underline () {
+        return new $11c045df1a5b205b$var$LoggerObject().underline;
+    },
+    get inverse () {
+        return new $11c045df1a5b205b$var$LoggerObject().inverse;
+    },
+    get hidden () {
+        return new $11c045df1a5b205b$var$LoggerObject().hidden;
+    },
+    get strikethrough () {
+        return new $11c045df1a5b205b$var$LoggerObject().strikethrough;
+    },
+    get visible () {
+        return new $11c045df1a5b205b$var$LoggerObject().visible;
+    },
+    get black () {
+        return new $11c045df1a5b205b$var$LoggerObject().black;
+    },
+    get red () {
+        return new $11c045df1a5b205b$var$LoggerObject().red;
+    },
+    get green () {
+        return new $11c045df1a5b205b$var$LoggerObject().green;
+    },
+    get yellow () {
+        return new $11c045df1a5b205b$var$LoggerObject().yellow;
+    },
+    get blue () {
+        return new $11c045df1a5b205b$var$LoggerObject().blue;
+    },
+    get magenta () {
+        return new $11c045df1a5b205b$var$LoggerObject().magenta;
+    },
+    get cyan () {
+        return new $11c045df1a5b205b$var$LoggerObject().cyan;
+    },
+    get white () {
+        return new $11c045df1a5b205b$var$LoggerObject().white;
+    },
+    get blackBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().blackBright;
+    },
+    get gray () {
+        return new $11c045df1a5b205b$var$LoggerObject().gray;
+    },
+    get grey () {
+        return new $11c045df1a5b205b$var$LoggerObject().grey;
+    },
+    get redBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().redBright;
+    },
+    get greenBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().greenBright;
+    },
+    get yellowBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().yellowBright;
+    },
+    get blueBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().blueBright;
+    },
+    get magentaBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().magentaBright;
+    },
+    get cyanBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().cyanBright;
+    },
+    get whiteBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().whiteBright;
+    },
+    get bgBlack () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgBlack;
+    },
+    get bgRed () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgRed;
+    },
+    get bgGreen () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgGreen;
+    },
+    get bgYellow () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgYellow;
+    },
+    get bgBlue () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgBlue;
+    },
+    get bgMagenta () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgMagenta;
+    },
+    get bgCyan () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgCyan;
+    },
+    get bgWhite () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgWhite;
+    },
+    get bgBlackBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgBlackBright;
+    },
+    get bgGray () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgGray;
+    },
+    get bgGrey () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgGrey;
+    },
+    get bgRedBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgRedBright;
+    },
+    get bgGreenBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgGreenBright;
+    },
+    get bgYellowBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgYellowBright;
+    },
+    get bgBlueBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgBlueBright;
+    },
+    get bgMagentaBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgMagentaBright;
+    },
+    get bgCyanBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgCyanBright;
+    },
+    get bgWhiteBright () {
+        return new $11c045df1a5b205b$var$LoggerObject().bgWhiteBright;
+    },
+    console: $11c045df1a5b205b$var$console
+};
+// add self reference
+$11c045df1a5b205b$var$vibrance.vibrance = $11c045df1a5b205b$var$vibrance;
+$11c045df1a5b205b$exports = $11c045df1a5b205b$var$vibrance;
+
+
+export {$11c045df1a5b205b$exports as default};
 //# sourceMappingURL=module.js.map
