@@ -2,23 +2,23 @@
     "license": "MIT",
     "name": "vibrance",
     "description": "Cli colors for deno, built on chalk",
-    "version": "0.1.8",
-    "main": "dist/main.js",
-    "module": "dist/module.js",
+    "version": "0.1.9",
+    "main": "dist/node.min.js",
+    "module": "dist/module.min.js",
     "source": "main/main.js",
     "exports": {
-        "require": "./dist/main.js",
-        "import": "./dist/module.js"
+        "require": "./dist/node.min.js",
+        "import": "./dist/module.min.js"
     },
     "scripts": {
         "build": "npx parcel build --target node --target module --no-optimize",
-        "pub": "npm version patch && npx parcel build --target node --target module && npm publish && git add -A && git commit -m 'build and version bump' && git push"
+        "pub": "npm version patch && npx parcel build --target node --target module && npx uglifyjs-folder ./dist --each --output ./dist/ && npm publish && git add -A && git commit -m 'build and version bump' && git push"
     },
     "targets": {
         "node": {
             "includeNodeModules": true,
             "distDir": "./dist",
-            "source": "main/main.js",
+            "source": "main/node.js",
             "engines": {
                 "node": "14"
             }
@@ -26,7 +26,7 @@
         "module": {
             "includeNodeModules": true,
             "distDir": "./dist",
-            "source": "main/main.js"
+            "source": "main/module.js"
         }
     },
     "keywords": [
@@ -63,10 +63,11 @@
         "url": "https://github.com/jeff-hykin/vibrance/issues"
     },
     "devDependencies": {
-        "parcel": "2.0.1"
+        "chalk": "4.1.2",
+        "parcel": "2.0.1",
+        "uglifyjs-folder": "3.0.0"
     },
     "homepage": "https://github.com/jeff-hykin/vibrance#readme",
     "dependencies": {
-        "chalk": "^4.1.2"
     }
 }
