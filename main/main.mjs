@@ -340,7 +340,7 @@ export let console = {
             let number = 0
             let bigString = ""
             for (const eachChar of args.join("")) {
-                number += number
+                number += 1
                 bigString += vibrance[wrapAroundGet(number, rainbowColors)](eachChar).toString()
             }
             realConsole.log(bigString.replace("%", "%%"))
