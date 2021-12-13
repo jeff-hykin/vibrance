@@ -7,8 +7,8 @@ function $parcel$export(e, n, v, s) {
 
 $parcel$defineInteropFlag(module.exports);
 
-$parcel$export(module.exports, "console", () => $2b36420fded722e7$export$e896d9a1b4631fa1);
 $parcel$export(module.exports, "vibrance", () => $2b36420fded722e7$export$9d69f5c452819e4);
+$parcel$export(module.exports, "console", () => $2b36420fded722e7$export$e896d9a1b4631fa1);
 $parcel$export(module.exports, "default", () => $2b36420fded722e7$export$2e2bcd8739ae039);
 const $807e4283f2aec814$var$ANSI_BACKGROUND_OFFSET = 10;
 const $807e4283f2aec814$var$wrapAnsi16 = (offset = 0)=>(code)=>`\u001B[${code + offset}m`
@@ -839,235 +839,280 @@ class $2b36420fded722e7$var$LoggerObject {
     get reset() {
         this.attributeBuffer.push("reset");
         this.styleString += ";";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bold() {
         this.attributeBuffer.push("bold");
         this.styleString += "; font-weight: bold;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get dim() {
         this.attributeBuffer.push("dim");
         this.styleString += "; opacity: 0.7;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get italic() {
         this.attributeBuffer.push("italic");
         this.styleString += "; font-style: italic;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get underline() {
         this.attributeBuffer.push("underline");
         this.styleString += "; text-decoration:underline;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get inverse() {
         this.attributeBuffer.push("inverse");
         this.styleString += "; -webkit-filter: invert(100%); filter: invert(100%);";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get hidden() {
         this.attributeBuffer.push("hidden");
         this.styleString += "; background-color: transparent; color:transparent;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get strikethrough() {
         this.attributeBuffer.push("strikethrough");
         this.styleString += "; text-decoration:line-through;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get visible() {
         this.attributeBuffer.push("visible");
         this.styleString += "; ";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get black() {
         this.attributeBuffer.push("black");
         this.styleString += "; color:#000000;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get red() {
         this.attributeBuffer.push("red");
         this.styleString += "; color:#f07178;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get green() {
         this.attributeBuffer.push("green");
         this.styleString += "; color:#c3e88d;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get yellow() {
         this.attributeBuffer.push("yellow");
         this.styleString += "; color:#ddd790;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get blue() {
         this.attributeBuffer.push("blue");
         this.styleString += "; color:#82aaff;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get magenta() {
         this.attributeBuffer.push("magenta");
         this.styleString += "; color:#c792ea;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get cyan() {
         this.attributeBuffer.push("cyan");
         this.styleString += "; color:#64bac5;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get white() {
         this.attributeBuffer.push("white");
         this.styleString += "; color:#c7cbcd;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get blackBright() {
         this.attributeBuffer.push("blackBright");
         this.styleString += "; color:#546e7a;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get gray() {
         this.attributeBuffer.push("gray");
         this.styleString += "; color:#546e7a;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get grey() {
         this.attributeBuffer.push("grey");
         this.styleString += "; color:#546e7a;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get redBright() {
         this.attributeBuffer.push("redBright");
         this.styleString += "; color:#ff5572;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get greenBright() {
         this.attributeBuffer.push("greenBright");
         this.styleString += "; color:#04d895;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get yellowBright() {
         this.attributeBuffer.push("yellowBright");
         this.styleString += "; color:#fec355;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get blueBright() {
         this.attributeBuffer.push("blueBright");
         this.styleString += "; color:#00aeff;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get magentaBright() {
         this.attributeBuffer.push("magentaBright");
         this.styleString += "; color:#e57eb3;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get cyanBright() {
         this.attributeBuffer.push("cyanBright");
         this.styleString += "; color:#89ddff;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get whiteBright() {
         this.attributeBuffer.push("whiteBright");
         this.styleString += "; color:#ffffff;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgBlack() {
         this.attributeBuffer.push("bgBlack");
         this.styleString += "; background-color:#000000;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgRed() {
         this.attributeBuffer.push("bgRed");
         this.styleString += "; background-color:#f07178;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgGreen() {
         this.attributeBuffer.push("bgGreen");
         this.styleString += "; background-color:#c3e88d;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgYellow() {
         this.attributeBuffer.push("bgYellow");
         this.styleString += "; background-color:#ddd790;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgBlue() {
         this.attributeBuffer.push("bgBlue");
         this.styleString += "; background-color:#82aaff;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgMagenta() {
         this.attributeBuffer.push("bgMagenta");
         this.styleString += "; background-color:#c792ea;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgCyan() {
         this.attributeBuffer.push("bgCyan");
         this.styleString += "; background-color:#64bac5;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgWhite() {
         this.attributeBuffer.push("bgWhite");
         this.styleString += "; background-color:#c7cbcd;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgBlackBright() {
         this.attributeBuffer.push("bgBlackBright");
         this.styleString += "; background-color:#546e7a;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgGray() {
         this.attributeBuffer.push("bgGray");
         this.styleString += "; background-color:#546e7a;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgGrey() {
         this.attributeBuffer.push("bgGrey");
         this.styleString += "; background-color:#546e7a;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgRedBright() {
         this.attributeBuffer.push("bgRedBright");
         this.styleString += "; background-color:#ff5572;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgGreenBright() {
         this.attributeBuffer.push("bgGreenBright");
         this.styleString += "; background-color:#04d895;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgYellowBright() {
         this.attributeBuffer.push("bgYellowBright");
         this.styleString += "; background-color:#fec355;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgBlueBright() {
         this.attributeBuffer.push("bgBlueBright");
         this.styleString += "; background-color:#00aeff;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgMagentaBright() {
         this.attributeBuffer.push("bgMagentaBright");
         this.styleString += "; background-color:#e57eb3;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgCyanBright() {
         this.attributeBuffer.push("bgCyanBright");
         this.styleString += "; background-color:#89ddff;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     get bgWhiteBright() {
         this.attributeBuffer.push("bgWhiteBright");
         this.styleString += "; background-color:#ffffff;";
+        $2b36420fded722e7$var$realConsole.log("this.styleString", this.styleString);
         return this.proxyiedReturn;
     }
     toString() {
         return this.stringBuffer.join("");
     }
     log(...others) {
-        $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`this.styleString is:`, this.styleString);
-        $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`this.stringBuffer is:`, this.stringBuffer);
-        $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`this.attributeBuffer is:`, this.attributeBuffer);
+        $2b36420fded722e7$var$realConsole.debug(`this.styleString is:`, this.styleString);
+        $2b36420fded722e7$var$realConsole.debug(`this.stringBuffer is:`, this.stringBuffer);
+        $2b36420fded722e7$var$realConsole.debug(`this.attributeBuffer is:`, this.attributeBuffer);
         if (!$2b36420fded722e7$var$isBrowserContext) $2b36420fded722e7$var$realConsole.log(this.toString().replace("%", "%%"), ...others);
         else $2b36420fded722e7$var$realConsole.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
         // reset it after logging
