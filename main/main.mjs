@@ -17,6 +17,7 @@ class LoggerObject {
             this.stringBuffer.push(string)
             return this
         }
+        ifStyleCalledAsMethod.id = Math.random()
         const originalThing = ifStyleCalledAsMethod
         const proxySymbol = Symbol.for('Proxy')
         const thisProxySymbol = Symbol('thisProxy')
@@ -99,10 +100,57 @@ class LoggerObject {
             console.log(this.toString().replace("%", "%%"), ...others)
         } else {
             console.log(`%c${this.toString().replace("%", "%%")}`, this.styleString)
-            // reset it after logging
-            this.styleString = ""
         }
+        // reset it after logging
+        this.styleString = ""
+        this.stringBuffer = []
+        this.attributeBuffer = []
         return this
+    }
+}
+
+class ConsoleObject extends LoggerObject {
+    constructor() {
+        // 
+        // only difference: proxy object executes .log() when called as a function
+        // 
+        this.stringBuffer = []
+        this.attributeBuffer = []
+        this.styleString = "font-family:monospace;"
+        const ifStyleCalledAsMethod = (...args)=>{
+            let styler = chalk
+            while (this.attributeBuffer.length > 0) {
+                styler = styler[this.attributeBuffer.shift()]
+            }
+            const string = styler(...args)
+            this.stringBuffer.push(string)
+            return this.log()
+        }
+        ifStyleCalledAsMethod.id = Math.random()
+        const originalThing = ifStyleCalledAsMethod
+        const proxySymbol = Symbol.for('Proxy')
+        const thisProxySymbol = Symbol('thisProxy')
+        this.proxyiedReturn = new Proxy(originalThing, {
+            defineProperty: Reflect.defineProperty,
+            getPrototypeOf: Reflect.getPrototypeOf,
+            // Object.keys
+            ownKeys(original, ...args) { return Reflect.ownKeys(this, ...args) },
+            get: (original, key, ...args) => {
+                if (key == proxySymbol||key == thisProxySymbol) {return true}
+                return Reflect.get(this, key, ...args)
+            },
+            set: (original, key, ...args) => {
+                if (key == proxySymbol||key == thisProxySymbol) {return}
+                return Reflect.set(this, key, ...args)
+            },
+        })
+
+        // 
+        // attempt to add node.js logging
+        // 
+        try {
+            this[require('util').inspect.custom] = this.toString
+        } catch (error) {}
     }
 }
 
@@ -156,76 +204,51 @@ Object.assign(vibrance, {
 })
 
 export var console = {
-    reset           (...args) { return (new LoggerObject()).reset(...args).log() },
-    bold            (...args) { return (new LoggerObject()).bold(...args).log() },
-    dim             (...args) { return (new LoggerObject()).dim(...args).log() },
-    italic          (...args) { return (new LoggerObject()).italic(...args).log() },
-    underline       (...args) { return (new LoggerObject()).underline(...args).log() },
-    inverse         (...args) { return (new LoggerObject()).inverse(...args).log() },
-    hidden          (...args) { return (new LoggerObject()).hidden(...args).log() },
-    strikethrough   (...args) { return (new LoggerObject()).strikethrough(...args).log() },
-    visible         (...args) { return (new LoggerObject()).visible(...args).log() },
-    black           (...args) { return (new LoggerObject()).black(...args).log() },
-    red             (...args) { return (new LoggerObject()).red(...args).log() },
-    green           (...args) { return (new LoggerObject()).green(...args).log() },
-    yellow          (...args) { return (new LoggerObject()).yellow(...args).log() },
-    blue            (...args) { return (new LoggerObject()).blue(...args).log() },
-    magenta         (...args) { return (new LoggerObject()).magenta(...args).log() },
-    cyan            (...args) { return (new LoggerObject()).cyan(...args).log() },
-    white           (...args) { return (new LoggerObject()).white(...args).log() },
-    blackBright     (...args) { return (new LoggerObject()).blackBright(...args).log() },
-    gray            (...args) { return (new LoggerObject()).gray(...args).log() },
-    grey            (...args) { return (new LoggerObject()).grey(...args).log() },
-    redBright       (...args) { return (new LoggerObject()).redBright(...args).log() },
-    greenBright     (...args) { return (new LoggerObject()).greenBright(...args).log() },
-    yellowBright    (...args) { return (new LoggerObject()).yellowBright(...args).log() },
-    blueBright      (...args) { return (new LoggerObject()).blueBright(...args).log() },
-    magentaBright   (...args) { return (new LoggerObject()).magentaBright(...args).log() },
-    cyanBright      (...args) { return (new LoggerObject()).cyanBright(...args).log() },
-    whiteBright     (...args) { return (new LoggerObject()).whiteBright(...args).log() },
-    bgBlack         (...args) { return (new LoggerObject()).bgBlack(...args).log() },
-    bgRed           (...args) { return (new LoggerObject()).bgRed(...args).log() },
-    bgGreen         (...args) { return (new LoggerObject()).bgGreen(...args).log() },
-    bgYellow        (...args) { return (new LoggerObject()).bgYellow(...args).log() },
-    bgBlue          (...args) { return (new LoggerObject()).bgBlue(...args).log() },
-    bgMagenta       (...args) { return (new LoggerObject()).bgMagenta(...args).log() },
-    bgCyan          (...args) { return (new LoggerObject()).bgCyan(...args).log() },
-    bgWhite         (...args) { return (new LoggerObject()).bgWhite(...args).log() },
-    bgBlackBright   (...args) { return (new LoggerObject()).bgBlackBright(...args).log() },
-    bgGray          (...args) { return (new LoggerObject()).bgGray(...args).log() },
-    bgGrey          (...args) { return (new LoggerObject()).bgGrey(...args).log() },
-    bgRedBright     (...args) { return (new LoggerObject()).bgRedBright(...args).log() },
-    bgGreenBright   (...args) { return (new LoggerObject()).bgGreenBright(...args).log() },
-    bgYellowBright  (...args) { return (new LoggerObject()).bgYellowBright(...args).log() },
-    bgBlueBright    (...args) { return (new LoggerObject()).bgBlueBright(...args).log() },
-    bgMagentaBright (...args) { return (new LoggerObject()).bgMagentaBright(...args).log() },
-    bgCyanBright    (...args) { return (new LoggerObject()).bgCyanBright(...args).log() },
-    bgWhiteBright   (...args) { return (new LoggerObject()).bgWhiteBright(...args).log() },
-    log: realConsole.log,
-    warn: realConsole.warn,
-    dir: realConsole.dir,
-    time: realConsole.time,
-    timeEnd: realConsole.timeEnd,
-    timeLog: realConsole.timeLog,
-    trace: realConsole.trace,
-    assert: realConsole.assert,
-    clear: realConsole.clear,
-    count: realConsole.count,
-    countReset: realConsole.countReset,
-    group: realConsole.group,
-    groupEnd: realConsole.groupEnd,
-    table: realConsole.table,
-    debug: realConsole.debug,
-    info: realConsole.info,
-    dirxml: realConsole.dirxml,
-    error: realConsole.error,
-    groupCollapsed: realConsole.groupCollapsed,
-    Console: realConsole.Console,
-    profile: realConsole.profile,
-    profileEnd: realConsole.profileEnd,
-    timeStamp: realConsole.timeStamp,
-    context: realConsole.context,
+    get reset           () { return (new ConsoleObject()).reset },
+    get bold            () { return (new ConsoleObject()).bold },
+    get dim             () { return (new ConsoleObject()).dim },
+    get italic          () { return (new ConsoleObject()).italic },
+    get underline       () { return (new ConsoleObject()).underline },
+    get inverse         () { return (new ConsoleObject()).inverse },
+    get hidden          () { return (new ConsoleObject()).hidden },
+    get strikethrough   () { return (new ConsoleObject()).strikethrough },
+    get visible         () { return (new ConsoleObject()).visible },
+    get black           () { return (new ConsoleObject()).black },
+    get red             () { return (new ConsoleObject()).red },
+    get green           () { return (new ConsoleObject()).green },
+    get yellow          () { return (new ConsoleObject()).yellow },
+    get blue            () { return (new ConsoleObject()).blue },
+    get magenta         () { return (new ConsoleObject()).magenta },
+    get cyan            () { return (new ConsoleObject()).cyan },
+    get white           () { return (new ConsoleObject()).white },
+    get blackBright     () { return (new ConsoleObject()).blackBright },
+    get gray            () { return (new ConsoleObject()).gray },
+    get grey            () { return (new ConsoleObject()).grey },
+    get redBright       () { return (new ConsoleObject()).redBright },
+    get greenBright     () { return (new ConsoleObject()).greenBright },
+    get yellowBright    () { return (new ConsoleObject()).yellowBright },
+    get blueBright      () { return (new ConsoleObject()).blueBright },
+    get magentaBright   () { return (new ConsoleObject()).magentaBright },
+    get cyanBright      () { return (new ConsoleObject()).cyanBright },
+    get whiteBright     () { return (new ConsoleObject()).whiteBright },
+    get bgBlack         () { return (new ConsoleObject()).bgBlack },
+    get bgRed           () { return (new ConsoleObject()).bgRed },
+    get bgGreen         () { return (new ConsoleObject()).bgGreen },
+    get bgYellow        () { return (new ConsoleObject()).bgYellow },
+    get bgBlue          () { return (new ConsoleObject()).bgBlue },
+    get bgMagenta       () { return (new ConsoleObject()).bgMagenta },
+    get bgCyan          () { return (new ConsoleObject()).bgCyan },
+    get bgWhite         () { return (new ConsoleObject()).bgWhite },
+    get bgBlackBright   () { return (new ConsoleObject()).bgBlackBright },
+    get bgGray          () { return (new ConsoleObject()).bgGray },
+    get bgGrey          () { return (new ConsoleObject()).bgGrey },
+    get bgRedBright     () { return (new ConsoleObject()).bgRedBright },
+    get bgGreenBright   () { return (new ConsoleObject()).bgGreenBright },
+    get bgYellowBright  () { return (new ConsoleObject()).bgYellowBright },
+    get bgBlueBright    () { return (new ConsoleObject()).bgBlueBright },
+    get bgMagentaBright () { return (new ConsoleObject()).bgMagentaBright },
+    get bgCyanBright    () { return (new ConsoleObject()).bgCyanBright },
+    get bgWhiteBright   () { return (new ConsoleObject()).bgWhiteBright },
 }
-
 
 export default vibrance
