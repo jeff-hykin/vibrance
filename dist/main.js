@@ -822,11 +822,11 @@ class $2b36420fded722e7$var$LoggerObject {
             get: (original, key, ...args)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return true;
                 $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`key is:`, key);
-                return Reflect.get(this, key, ...args);
+                return this[key];
             },
-            set: (original, key, ...args)=>{
+            set: (original, key, value)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return;
-                return Reflect.set(this, key, ...args);
+                return this[key] = value;
             }
         });
         // 
@@ -1159,11 +1159,11 @@ class $2b36420fded722e7$var$ConsoleObject extends $2b36420fded722e7$var$LoggerOb
             get: (original, key, ...args)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return true;
                 $2b36420fded722e7$export$e896d9a1b4631fa1.debug(`key is:`, key);
-                return Reflect.get(this, key, ...args);
+                return this[key];
             },
-            set: (original, key, ...args)=>{
+            set: (original, key, value)=>{
                 if (key == proxySymbol || key == thisProxySymbol) return;
-                return Reflect.set(this, key, ...args);
+                return this[key] = value;
             }
         });
         // 
