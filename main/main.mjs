@@ -45,7 +45,7 @@ class LoggerObject {
         this.id = Math.random()
         this.stringBuffer = []
         this.attributeBuffer = []
-        this.styleString = "font-family:monospace;font-size: 0.8rem;"
+        this.styleString = "font-family:monospace;font-size: 1rem;"
         const ifStyleCalledAsMethod = (...args)=>{
             let styler = chalk
             while (this.attributeBuffer.length > 0) {

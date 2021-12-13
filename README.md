@@ -1,6 +1,6 @@
 # Vibrancy
 
-A CLI terminal helper for Deno, and a modifiction of chalk.js for deno.
+A CLI colorizing tool, use it in Deno, Node.js or the browswer console (no npm install required!)
 
 ```js
 const { console, vibrance } = await import('https://cdn.skypack.dev/vibrance@v0.1.1')
@@ -16,7 +16,10 @@ vibrance.blue("Howdy! ").green("this will be logged").log() // NOTE: needs log a
 ```
 
 
-The API is extremely straightforwards, just call the methods and 
+# API
+
+- All the methods can be chained
+- All work on both `console` and `vibrance`
 
 ```js
 // colors
