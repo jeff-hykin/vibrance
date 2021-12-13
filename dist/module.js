@@ -779,6 +779,41 @@ var $4e3327031d001f8c$export$2e2bcd8739ae039 = $4e3327031d001f8c$var$chalk;
 
 const $355a0ba890fd58e7$var$realConsole = globalThis.console;
 const $355a0ba890fd58e7$var$isBrowserContext = typeof document != 'undefined' && typeof window != 'undefined';
+// patch the built in console to allow classes to override output
+const $355a0ba890fd58e7$var$originalThing = $355a0ba890fd58e7$var$realConsole;
+const $355a0ba890fd58e7$var$proxySymbol = Symbol.for('Proxy');
+const $355a0ba890fd58e7$var$thisProxySymbol = Symbol('thisProxy');
+const $355a0ba890fd58e7$var$symbolForConsoleLog = Symbol.for("console.log");
+globalThis.console = new Proxy($355a0ba890fd58e7$var$originalThing, {
+    defineProperty: Reflect.defineProperty,
+    getPrototypeOf: Reflect.getPrototypeOf,
+    // Object.keys
+    ownKeys (...args) {
+        return Reflect.ownKeys(...args);
+    },
+    // function call (original value needs to be a function)
+    apply (original, context, ...args) {
+        $355a0ba890fd58e7$export$e896d9a1b4631fa1.log(args);
+    },
+    // new operator (original value needs to be a class)
+    construct (...args) {
+    },
+    get (original, key, ...args1) {
+        if (key == $355a0ba890fd58e7$var$proxySymbol || key == $355a0ba890fd58e7$var$thisProxySymbol) return true;
+        // if logging, then 
+        if (key == "log") return (...args)=>{
+            $355a0ba890fd58e7$var$realConsole.log(...args.map((each)=>{
+                if (each instanceof Object && each[$355a0ba890fd58e7$var$symbolForConsoleLog] instanceof Function) return each[$355a0ba890fd58e7$var$symbolForConsoleLog]();
+                return each;
+            }));
+        };
+        return Reflect.get(original, key, ...args1);
+    },
+    set (original, key, ...args) {
+        if (key == $355a0ba890fd58e7$var$proxySymbol || key == $355a0ba890fd58e7$var$thisProxySymbol) return;
+        return Reflect.set(original, key, ...args);
+    }
+});
 
 class $355a0ba890fd58e7$var$LoggerObject {
     constructor(){
@@ -1051,6 +1086,9 @@ class $355a0ba890fd58e7$var$LoggerObject {
     toString() {
         return this.stringBuffer.join("");
     }
+    [Symbol.for("console.log")]() {
+        this.toString();
+    }
     log(...others) {
         if (!$355a0ba890fd58e7$var$isBrowserContext) $355a0ba890fd58e7$var$realConsole.log(this.toString().replace("%", "%%"), ...others);
         else $355a0ba890fd58e7$var$realConsole.log(`%c${this.toString().replace("%", "%%")}`, this.styleString);
@@ -1247,7 +1285,7 @@ Object.assign($355a0ba890fd58e7$export$9d69f5c452819e4, {
         return new $355a0ba890fd58e7$var$LoggerObject().bgWhiteBright;
     }
 });
-var $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
+let $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
     get reset () {
         return new $355a0ba890fd58e7$var$ConsoleObject().reset;
     },
@@ -1411,5 +1449,5 @@ var $355a0ba890fd58e7$export$e896d9a1b4631fa1 = {
 var $355a0ba890fd58e7$export$2e2bcd8739ae039 = $355a0ba890fd58e7$export$9d69f5c452819e4;
 
 
-export {$355a0ba890fd58e7$export$9d69f5c452819e4 as vibrance, $355a0ba890fd58e7$export$e896d9a1b4631fa1 as console, $355a0ba890fd58e7$export$2e2bcd8739ae039 as default};
+export {$355a0ba890fd58e7$export$e896d9a1b4631fa1 as console, $355a0ba890fd58e7$export$9d69f5c452819e4 as vibrance, $355a0ba890fd58e7$export$2e2bcd8739ae039 as default};
 //# sourceMappingURL=module.js.map
