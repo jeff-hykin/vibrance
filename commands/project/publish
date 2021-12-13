@@ -8,6 +8,7 @@ fi
 npm version patch \
     && "$root/commands/project/build" \
     && npm publish \
+    && git push &>/dev/null \
     && git add -A \
     && git commit -m 'build and version bump' \
-    ; git push
+    && git push
