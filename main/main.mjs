@@ -29,11 +29,11 @@ class LoggerObject {
             get: (original, key, ...args) => {
                 if (key == proxySymbol||key == thisProxySymbol) {return true}
                 console.debug(`key is:`,key)
-                return Reflect.get(this, key, ...args)
+                return this[key]
             },
-            set: (original, key, ...args) => {
+            set: (original, key, value) => {
                 if (key == proxySymbol||key == thisProxySymbol) {return}
-                return Reflect.set(this, key, ...args)
+                return this[key] = value
             },
         })
 
@@ -144,11 +144,11 @@ class ConsoleObject extends LoggerObject {
             get: (original, key, ...args) => {
                 if (key == proxySymbol||key == thisProxySymbol) {return true}
                 console.debug(`key is:`,key)
-                return Reflect.get(this, key, ...args)
+                return this[key]
             },
-            set: (original, key, ...args) => {
+            set: (original, key, value) => {
                 if (key == proxySymbol||key == thisProxySymbol) {return}
-                return Reflect.set(this, key, ...args)
+                return this[key] = value
             },
         })
 
