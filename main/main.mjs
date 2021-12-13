@@ -42,6 +42,7 @@ globalThis.console = new Proxy(originalThing, {
 
 class LoggerObject {
     constructor() {
+        this.id = Math.random()
         this.stringBuffer = []
         this.attributeBuffer = []
         this.styleString = "font-family:monospace;font-size: 0.8rem;"
@@ -64,6 +65,7 @@ class LoggerObject {
             ownKeys(original, ...args) { return Reflect.ownKeys(this, ...args) },
             get: (original, key, ...args) => {
                 if (key == proxySymbol||key == thisProxySymbol) {return true}
+                console.debug(`key is:`,key)
                 return this[key]
             },
             set: (original, key, value) => {
