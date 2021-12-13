@@ -247,6 +247,8 @@ export const vibrance = {
     get bgWhiteBright   () { return (new LoggerObject()).bgWhiteBright },
 }
 
+const wrapAroundGet = (number, list) => list[(number % list.length + list.length) % list.length]
+
 export let console = {
     get reset           () { return (new ConsoleObject()).reset },
     get bold            () { return (new ConsoleObject()).bold },
@@ -317,6 +319,33 @@ export let console = {
     profileEnd: globalThis.console.profileEnd,
     timeStamp: globalThis.console.timeStamp,
     context: globalThis.console.context,
+    secretRainbow: (...args)=>{
+        if (isBrowserContext) {
+            realConsole.log(`%c${args.join("").replace("%", "%%")}`, 'font-weight: bold; font-size: 50px;color: red; text-shadow: 3px 3px 0 rgb(217,31,38) , 6px 6px 0 rgb(226,91,14) , 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)');
+        } else {
+            const rainbowColors = [
+                'red',
+                'brightRed',
+                'yellow',
+                'brightYellow',
+                'green',
+                'brightGreen',
+                'cyan',
+                'brightCyan',
+                'blue',
+                'brightBlue',
+                'magenta',
+                'brightMagenta',
+            ]
+            let number = 0
+            let bigString = ""
+            for (const eachChar of args.join("")) {
+                number += number
+                bigString += vibrance[wrapAroundGet(number, rainbowColors)](eachChar).toString()
+            }
+            realConsole.log(bigString.replace("%", "%%"))
+        }
+    }
 }
 
 export default vibrance
