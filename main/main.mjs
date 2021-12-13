@@ -97,9 +97,9 @@ class LoggerObject {
     
     log(...others) {
         if (!isBrowserContext) {
-            console.log(this.toString().replace("%", "%%"), ...others)
+            realConsole.log(this.toString().replace("%", "%%"), ...others)
         } else {
-            console.log(`%c${this.toString().replace("%", "%%")}`, this.styleString)
+            realConsole.log(`%c${this.toString().replace("%", "%%")}`, this.styleString)
         }
         // reset it after logging
         this.styleString = ""
@@ -250,6 +250,30 @@ export var console = {
     get bgMagentaBright () { return (new ConsoleObject()).bgMagentaBright },
     get bgCyanBright    () { return (new ConsoleObject()).bgCyanBright },
     get bgWhiteBright   () { return (new ConsoleObject()).bgWhiteBright },
+    log: realConsole.log,
+    warn: realConsole.warn,
+    dir: realConsole.dir,
+    time: realConsole.time,
+    timeEnd: realConsole.timeEnd,
+    timeLog: realConsole.timeLog,
+    trace: realConsole.trace,
+    assert: realConsole.assert,
+    clear: realConsole.clear,
+    count: realConsole.count,
+    countReset: realConsole.countReset,
+    group: realConsole.group,
+    groupEnd: realConsole.groupEnd,
+    table: realConsole.table,
+    debug: realConsole.debug,
+    info: realConsole.info,
+    dirxml: realConsole.dirxml,
+    error: realConsole.error,
+    groupCollapsed: realConsole.groupCollapsed,
+    Console: realConsole.Console,
+    profile: realConsole.profile,
+    profileEnd: realConsole.profileEnd,
+    timeStamp: realConsole.timeStamp,
+    context: realConsole.context,
 }
 
 export default vibrance
