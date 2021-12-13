@@ -1,4 +1,4 @@
-let args
+let args = []
 try {
     args = Deno.args
 } catch (error) {
