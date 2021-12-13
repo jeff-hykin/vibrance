@@ -5,7 +5,7 @@ Built as a fork off of Chalk.js
 
 #### Brower or Deno
 ```js
-const { console, vibrance } = (await import('https://cdn.skypack.dev/vibrance@v0.1.13')).default
+const { console, vibrance } = (await import('https://cdn.skypack.dev/vibrance@v0.1.15')).default
 
 console.red("Howdy!") // has console.log() and all the other methods (debug/warn/error/group/etc)
 console.blue.underline("Howdy!") 
