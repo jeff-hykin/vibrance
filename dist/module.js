@@ -784,7 +784,7 @@ class $355a0ba890fd58e7$var$LoggerObject {
     constructor(){
         this.stringBuffer = [];
         this.attributeBuffer = [];
-        this.styleString = "font-family:monospace;";
+        this.styleString = "font-family:monospace;font-size: 0.8rem;";
         const ifStyleCalledAsMethod = (...args)=>{
             let styler = $4e3327031d001f8c$export$2e2bcd8739ae039;
             while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
@@ -792,7 +792,6 @@ class $355a0ba890fd58e7$var$LoggerObject {
             this.stringBuffer.push(string);
             return this;
         };
-        this.id = Math.random();
         const originalThing = ifStyleCalledAsMethod;
         const proxySymbol = Symbol.for('Proxy');
         const thisProxySymbol = Symbol('thisProxy');
@@ -1069,9 +1068,6 @@ class $355a0ba890fd58e7$var$ConsoleObject extends $355a0ba890fd58e7$var$LoggerOb
         // 
         // only difference: proxy object executes .log() when called as a function
         // 
-        this.stringBuffer = [];
-        this.attributeBuffer = [];
-        this.styleString = "font-family:monospace;";
         const ifStyleCalledAsMethod = (...args)=>{
             let styler = $4e3327031d001f8c$export$2e2bcd8739ae039;
             while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
@@ -1080,7 +1076,6 @@ class $355a0ba890fd58e7$var$ConsoleObject extends $355a0ba890fd58e7$var$LoggerOb
             this.log();
             return;
         };
-        ifStyleCalledAsMethod.id = Math.random();
         const originalThing = ifStyleCalledAsMethod;
         const proxySymbol = Symbol.for('Proxy');
         const thisProxySymbol = Symbol('thisProxy');
