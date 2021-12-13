@@ -1,4 +1,4 @@
-# Vibrancy
+# Vibrance
 
 A CLI colorizing tool, use it in Deno, Node.js or the browswer console (no npm install required!) <br>
 Built as a fork off of Chalk.js
