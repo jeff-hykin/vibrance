@@ -28,6 +28,7 @@ class LoggerObject {
             ownKeys(original, ...args) { return Reflect.ownKeys(this, ...args) },
             get: (original, key, ...args) => {
                 if (key == proxySymbol||key == thisProxySymbol) {return true}
+                console.debug(`key is:`,key)
                 return Reflect.get(this, key, ...args)
             },
             set: (original, key, ...args) => {
@@ -142,6 +143,7 @@ class ConsoleObject extends LoggerObject {
             ownKeys(original, ...args) { return Reflect.ownKeys(this, ...args) },
             get: (original, key, ...args) => {
                 if (key == proxySymbol||key == thisProxySymbol) {return true}
+                console.debug(`key is:`,key)
                 return Reflect.get(this, key, ...args)
             },
             set: (original, key, ...args) => {
