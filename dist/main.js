@@ -1099,7 +1099,7 @@ class $2b36420fded722e7$var$LoggerObject {
         return this.stringBuffer.join("");
     }
     [Symbol.for("console.log")]() {
-        this.toString();
+        return this.toString();
     }
     log(...others) {
         if (!$2b36420fded722e7$var$isBrowserContext) $2b36420fded722e7$var$realConsole.log(this.toString().replace("%", "%%"), ...others);

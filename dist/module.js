@@ -1087,7 +1087,7 @@ class $355a0ba890fd58e7$var$LoggerObject {
         return this.stringBuffer.join("");
     }
     [Symbol.for("console.log")]() {
-        this.toString();
+        return this.toString();
     }
     log(...others) {
         if (!$355a0ba890fd58e7$var$isBrowserContext) $355a0ba890fd58e7$var$realConsole.log(this.toString().replace("%", "%%"), ...others);
