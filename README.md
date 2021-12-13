@@ -4,7 +4,7 @@ A CLI colorizing tool, use it in Deno, Node.js or the browswer console (no npm i
 Built as a fork off of Chalk.js
 
 ```js
-const { console, vibrance } = await import('https://cdn.skypack.dev/vibrance@v0.1.5')
+const { console, vibrance } = (await import('https://cdn.skypack.dev/vibrance@v0.1.13')).default
 
 console.red("Howdy!") // has console.log() and all the other methods (debug/warn/error/group/etc)
 console.blue.underline("Howdy!") 
