@@ -4,15 +4,15 @@
     "description": "Cli colors for deno, built on chalk",
     "version": "0.1.9",
     "main": "dist/node.min.js",
-    "module": "dist/module.min.js",
+    "module": "dist/module.js",
     "source": "main/main.js",
     "exports": {
         "require": "./dist/node.min.js",
         "import": "./dist/module.min.js"
     },
     "scripts": {
-        "build": "npx parcel build --target node --target module --no-optimize",
-        "pub": "npm version patch && npx parcel build --target node --target module && npx uglifyjs-folder ./dist --each --output ./dist/ && npm publish && git add -A && git commit -m 'build and version bump' && git push"
+        "build": "rm -rf ./dist && npx parcel build --target node --target module && npx uglifyjs-folder ./dist --each --output ./dist/",
+        "pub": "npm version patch && npm run build && npm publish && git add -A && git commit -m 'build and version bump' && git push"
     },
     "targets": {
         "node": {
