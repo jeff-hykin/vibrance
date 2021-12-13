@@ -1,8 +1,8 @@
-// const nodeChalk = require("chalk")
+const nodeChalk = require("chalk")
 const es6Chalk = require("../chalk-deno/source/index.js").default
 // because Parcel.js 2 is jank-AF (normally eval wouldn't be needed, and normally I wouldn't have to use globalThis to get it)
-// const isNode = globalThis["eval"]("typeof module === 'object' && module instanceof Object && module.exports instanceof Object")
-const chalk = es6Chalk
+const isNode = globalThis["eval"]("typeof module === 'object' && module instanceof Object && module.exports instanceof Object")
+const chalk = isNode ? nodeChalk : es6Chalk
 
 const realConsole = globalThis.console
 const isBrowserContext = typeof document != 'undefined' && typeof window != 'undefined'
