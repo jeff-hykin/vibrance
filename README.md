@@ -3,6 +3,7 @@
 A CLI colorizing tool, use it in Deno, Node.js or the browswer console (no npm install required!) <br>
 Built as a fork off of Chalk.js
 
+#### Brower or Deno
 ```js
 const { console, vibrance } = (await import('https://cdn.skypack.dev/vibrance@v0.1.13')).default
 
@@ -15,6 +16,19 @@ console.log(vibrance.blue("This will ").bold.magenta("also").blue(" be logged"))
 // alternative way
 vibrance.blue("Howdy! ").green("this will be logged").log() // NOTE: needs log at the end!
 ```
+
+#### Node.js
+
+`npm install vibrance`
+
+```js
+const { console, vibrance } = require("vibrance")
+
+console.red("Howdy!")
+console.blue.underline("Howdy!")
+console.green.bgBlack("Howdy!")
+```
+
 
 ## Demo
 
