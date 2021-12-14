@@ -3171,6 +3171,43 @@ $11c045df1a5b205b$exports = (chalk)=>{
         profileEnd: globalThis.console.profileEnd,
         timeStamp: globalThis.console.timeStamp,
         context: globalThis.console.context,
+        get howdy () {
+            if (!isBrowserContext) {
+                console.dim.blackBright.bgWhite(`  --------------------------------------------------------------------------------  `);
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("                                                                              ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("   __    __                                      __              /\\\`\\         ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("  /\\ \\  /\\ \\                                    /\\ \\             \\ \\ \\        ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("  \\ \\ \\_\`_\\ \\                                   \\ \\ \\             \\ \\ \\       ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("   \\ \\  ___  \\     ,------,   /\\~\\ /\\~\\/\\~\\     ,\\_\\ \\     __  __  \\ \\ \\      ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("    \\ \\ \\_/ \\ \\   /\\ .---, \\  \\ \\ \\\\ \\ \\ \\ \\   / .__, \\   /\\ \\/\\ \\  \\ \\_\\     ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("     \\ \\ \\ \\ \\ \\  \\ \\ \\___\\ \\  \\ \\ \\_/  \\_/ \\ /\\ \\  /\\ \\  \\ \\ \\_\\ \\  \\/./     ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("      \\ \\_\\ \\ \\_\\  \\ \\______/   \\ \\____^____/ \\ \\_____,_\\  \\/\`____ \\  /\\\`\`\`\\  ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("       \\/_/  \\/_/   \`._____/     \\/___//___/   \\/___,_ /    \`/___/\\ \\ \\/___/  ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("                                                                 \\_| \\        ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("                                                                /\\___/        ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("                                                                \\/__/         ").bgWhite(" | "));
+                console.log(vibrance.bgWhite(" | ").bold.white.bgRed("                                                                              ").bgWhite(" | "));
+                console.dim.blackBright.bgWhite(`  --------------------------------------------------------------------------------  `);
+            } else console.log(`%c${"Howdy!"}`, `
+                    display: inline-block;
+                    padding: 2rem;
+                    font-size: 11vmin;
+                    font-family: Helvetica, sans-serif;
+                    color: white;
+                    font-weight: bold;
+                    background-size: cover;
+                    background-size: 40% 120%;
+                    background-color: #782345;
+                    text-align: center;
+                    min-width: 100%;
+                    line-height: calc(10rem + 15vw);
+                    text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+                    background: linear-gradient(135deg, #eceddc 25%, transparent 25%) 50px 0, linear-gradient(225deg, #eceddc 25%, transparent 25%) 50px 0, linear-gradient(315deg, #eceddc 25%, transparent 25%), linear-gradient(45deg, #eceddc 25%, transparent 25%);
+                    background-size: 17px;
+                    background-color: #782345;
+                    border: 2rem solid #7823459F;
+                    `);
+        },
         secretRainbow: (...args)=>{
             if (isBrowserContext) realConsole.log(`%c${args.join("").replace("%", "%%")}`, 'font-weight: bold; font-size: 50px;color: red; text-shadow: 3px 3px 0 rgb(217,31,38) , 6px 6px 0 rgb(226,91,14) , 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)');
             else {
