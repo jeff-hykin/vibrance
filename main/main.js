@@ -156,7 +156,7 @@ module.exports = (chalk)=>{
         }
     }
 
-    class LoggerObject extends LoggerObject {
+    class Console extends LoggerObject {
         constructor() {
             super()
             // 

@@ -2963,7 +2963,7 @@ $b586f51235cdc320$exports = (chalk)=>{
             return this;
         }
     }
-    class LoggerObject extends LoggerObject {
+    class Console extends LoggerObject {
         constructor(){
             super();
             // 

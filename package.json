@@ -3,12 +3,12 @@
   "name": "vibrance",
   "description": "Cli colors for deno, built on chalk",
   "version": "0.1.25",
-  "main": "dist/node.js",
+  "main": "dist/node.min.js",
   "module": "dist/module.js",
   "source": "main/main.js",
   "exports": {
-    "require": "./dist/node.js",
-    "import": "./dist/module.js"
+    "require": "./dist/node.min.js",
+    "import": "./dist/module.min.js"
   },
   "scripts": {
     "build": "rm -rf ./dist && npx parcel build --target node --target module && npx uglifyjs-folder ./dist --each --output ./dist/",
