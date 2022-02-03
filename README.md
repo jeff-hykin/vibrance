@@ -9,7 +9,7 @@ const { console, vibrance } = (await import('https://cdn.skypack.dev/vibrance@v0
 
 console.red("Howdy!") // has console.log() and all the other methods (debug/warn/error/group/etc)
 console.blue.underline("Howdy!") 
-console.green.bgBlack("Howdy!")
+console.green.blackBackground("Howdy!")
 
 // a dont-import-console way of using vibrancy
 console.log(vibrance.blue("This will ").bold.magenta("also").blue(" be logged"))
