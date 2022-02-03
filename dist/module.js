@@ -2963,7 +2963,7 @@ $b586f51235cdc320$exports = (chalk)=>{
             return this;
         }
     }
-    class ConsoleObject extends LoggerObject {
+    class LoggerObject extends LoggerObject {
         constructor(){
             super();
             // 
@@ -3013,217 +3013,217 @@ $b586f51235cdc320$exports = (chalk)=>{
     ;
     let console = {
         get reset () {
-            return new ConsoleObject().reset;
+            return new LoggerObject().reset;
         },
         get bold () {
-            return new ConsoleObject().bold;
+            return new LoggerObject().bold;
         },
         get dim () {
-            return new ConsoleObject().dim;
+            return new LoggerObject().dim;
         },
         get italic () {
-            return new ConsoleObject().italic;
+            return new LoggerObject().italic;
         },
         get underline () {
-            return new ConsoleObject().underline;
+            return new LoggerObject().underline;
         },
         get inverse () {
-            return new ConsoleObject().inverse;
+            return new LoggerObject().inverse;
         },
         get hidden () {
-            return new ConsoleObject().hidden;
+            return new LoggerObject().hidden;
         },
         get strikethrough () {
-            return new ConsoleObject().strikethrough;
+            return new LoggerObject().strikethrough;
         },
         get visible () {
-            return new ConsoleObject().visible;
+            return new LoggerObject().visible;
         },
         get black () {
-            return new ConsoleObject().black;
+            return new LoggerObject().black;
         },
         get red () {
-            return new ConsoleObject().red;
+            return new LoggerObject().red;
         },
         get green () {
-            return new ConsoleObject().green;
+            return new LoggerObject().green;
         },
         get yellow () {
-            return new ConsoleObject().yellow;
+            return new LoggerObject().yellow;
         },
         get blue () {
-            return new ConsoleObject().blue;
+            return new LoggerObject().blue;
         },
         get magenta () {
-            return new ConsoleObject().magenta;
+            return new LoggerObject().magenta;
         },
         get cyan () {
-            return new ConsoleObject().cyan;
+            return new LoggerObject().cyan;
         },
         get white () {
-            return new ConsoleObject().white;
+            return new LoggerObject().white;
         },
         get gray () {
-            return new ConsoleObject().gray;
+            return new LoggerObject().gray;
         },
         get grey () {
-            return new ConsoleObject().grey;
+            return new LoggerObject().grey;
         },
         get blackBright () {
-            return new ConsoleObject().blackBright;
+            return new LoggerObject().blackBright;
         },
         get redBright () {
-            return new ConsoleObject().redBright;
+            return new LoggerObject().redBright;
         },
         get greenBright () {
-            return new ConsoleObject().greenBright;
+            return new LoggerObject().greenBright;
         },
         get yellowBright () {
-            return new ConsoleObject().yellowBright;
+            return new LoggerObject().yellowBright;
         },
         get blueBright () {
-            return new ConsoleObject().blueBright;
+            return new LoggerObject().blueBright;
         },
         get magentaBright () {
-            return new ConsoleObject().magentaBright;
+            return new LoggerObject().magentaBright;
         },
         get cyanBright () {
-            return new ConsoleObject().cyanBright;
+            return new LoggerObject().cyanBright;
         },
         get whiteBright () {
-            return new ConsoleObject().whiteBright;
+            return new LoggerObject().whiteBright;
         },
         get lightBlack () {
-            return new ConsoleObject().blackBright;
+            return new LoggerObject().blackBright;
         },
         get lightRed () {
-            return new ConsoleObject().redBright;
+            return new LoggerObject().redBright;
         },
         get lightGreen () {
-            return new ConsoleObject().greenBright;
+            return new LoggerObject().greenBright;
         },
         get lightYellow () {
-            return new ConsoleObject().yellowBright;
+            return new LoggerObject().yellowBright;
         },
         get lightBlue () {
-            return new ConsoleObject().blueBright;
+            return new LoggerObject().blueBright;
         },
         get lightMagenta () {
-            return new ConsoleObject().magentaBright;
+            return new LoggerObject().magentaBright;
         },
         get lightCyan () {
-            return new ConsoleObject().cyanBright;
+            return new LoggerObject().cyanBright;
         },
         get lightWhite () {
-            return new ConsoleObject().whiteBright;
+            return new LoggerObject().whiteBright;
         },
         get bgBlack () {
-            return new ConsoleObject().bgBlack;
+            return new LoggerObject().bgBlack;
         },
         get bgRed () {
-            return new ConsoleObject().bgRed;
+            return new LoggerObject().bgRed;
         },
         get bgGreen () {
-            return new ConsoleObject().bgGreen;
+            return new LoggerObject().bgGreen;
         },
         get bgYellow () {
-            return new ConsoleObject().bgYellow;
+            return new LoggerObject().bgYellow;
         },
         get bgBlue () {
-            return new ConsoleObject().bgBlue;
+            return new LoggerObject().bgBlue;
         },
         get bgMagenta () {
-            return new ConsoleObject().bgMagenta;
+            return new LoggerObject().bgMagenta;
         },
         get bgCyan () {
-            return new ConsoleObject().bgCyan;
+            return new LoggerObject().bgCyan;
         },
         get bgWhite () {
-            return new ConsoleObject().bgWhite;
+            return new LoggerObject().bgWhite;
         },
         get bgBlackBright () {
-            return new ConsoleObject().bgBlackBright;
+            return new LoggerObject().bgBlackBright;
         },
         get bgGray () {
-            return new ConsoleObject().bgGray;
+            return new LoggerObject().bgGray;
         },
         get bgGrey () {
-            return new ConsoleObject().bgGrey;
+            return new LoggerObject().bgGrey;
         },
         get bgRedBright () {
-            return new ConsoleObject().bgRedBright;
+            return new LoggerObject().bgRedBright;
         },
         get bgGreenBright () {
-            return new ConsoleObject().bgGreenBright;
+            return new LoggerObject().bgGreenBright;
         },
         get bgYellowBright () {
-            return new ConsoleObject().bgYellowBright;
+            return new LoggerObject().bgYellowBright;
         },
         get bgBlueBright () {
-            return new ConsoleObject().bgBlueBright;
+            return new LoggerObject().bgBlueBright;
         },
         get bgMagentaBright () {
-            return new ConsoleObject().bgMagentaBright;
+            return new LoggerObject().bgMagentaBright;
         },
         get bgCyanBright () {
-            return new ConsoleObject().bgCyanBright;
+            return new LoggerObject().bgCyanBright;
         },
         get bgWhiteBright () {
-            return new ConsoleObject().bgWhiteBright;
+            return new LoggerObject().bgWhiteBright;
         },
         get blackBackground () {
-            return new ConsoleObject().bgBlack;
+            return new LoggerObject().bgBlack;
         },
         get redBackground () {
-            return new ConsoleObject().bgRed;
+            return new LoggerObject().bgRed;
         },
         get greenBackground () {
-            return new ConsoleObject().bgGreen;
+            return new LoggerObject().bgGreen;
         },
         get yellowBackground () {
-            return new ConsoleObject().bgYellow;
+            return new LoggerObject().bgYellow;
         },
         get blueBackground () {
-            return new ConsoleObject().bgBlue;
+            return new LoggerObject().bgBlue;
         },
         get magentaBackground () {
-            return new ConsoleObject().bgMagenta;
+            return new LoggerObject().bgMagenta;
         },
         get cyanBackground () {
-            return new ConsoleObject().bgCyan;
+            return new LoggerObject().bgCyan;
         },
         get whiteBackground () {
-            return new ConsoleObject().bgWhite;
+            return new LoggerObject().bgWhite;
         },
         get grayBackground () {
-            return new ConsoleObject().bgGray;
+            return new LoggerObject().bgGray;
         },
         get greyBackground () {
-            return new ConsoleObject().bgGrey;
+            return new LoggerObject().bgGrey;
         },
         get lightBlackBackground () {
-            return new ConsoleObject().bgBlackBright;
+            return new LoggerObject().bgBlackBright;
         },
         get lightRedBackground () {
-            return new ConsoleObject().bgRedBright;
+            return new LoggerObject().bgRedBright;
         },
         get lightGreenBackground () {
-            return new ConsoleObject().bgGreenBright;
+            return new LoggerObject().bgGreenBright;
         },
         get lightYellowBackground () {
-            return new ConsoleObject().bgYellowBright;
+            return new LoggerObject().bgYellowBright;
         },
         get lightBlueBackground () {
-            return new ConsoleObject().bgBlueBright;
+            return new LoggerObject().bgBlueBright;
         },
         get lightMagentaBackground () {
-            return new ConsoleObject().bgMagentaBright;
+            return new LoggerObject().bgMagentaBright;
         },
         get lightCyanBackground () {
-            return new ConsoleObject().bgCyanBright;
+            return new LoggerObject().bgCyanBright;
         },
         get lightWhiteBackground () {
-            return new ConsoleObject().bgWhiteBright;
+            return new LoggerObject().bgWhiteBright;
         },
         log: globalThis.console.log,
         warn: globalThis.console.warn,
@@ -3365,14 +3365,14 @@ $b586f51235cdc320$exports = (chalk)=>{
         get white () {
             return new LoggerObject().white;
         },
-        get blackBright () {
-            return new LoggerObject().blackBright;
-        },
         get gray () {
             return new LoggerObject().gray;
         },
         get grey () {
             return new LoggerObject().grey;
+        },
+        get blackBright () {
+            return new LoggerObject().blackBright;
         },
         get redBright () {
             return new LoggerObject().redBright;
@@ -3393,6 +3393,30 @@ $b586f51235cdc320$exports = (chalk)=>{
             return new LoggerObject().cyanBright;
         },
         get whiteBright () {
+            return new LoggerObject().whiteBright;
+        },
+        get lightBlack () {
+            return new LoggerObject().blackBright;
+        },
+        get lightRed () {
+            return new LoggerObject().redBright;
+        },
+        get lightGreen () {
+            return new LoggerObject().greenBright;
+        },
+        get lightYellow () {
+            return new LoggerObject().yellowBright;
+        },
+        get lightBlue () {
+            return new LoggerObject().blueBright;
+        },
+        get lightMagenta () {
+            return new LoggerObject().magentaBright;
+        },
+        get lightCyan () {
+            return new LoggerObject().cyanBright;
+        },
+        get lightWhite () {
             return new LoggerObject().whiteBright;
         },
         get bgBlack () {
@@ -3447,6 +3471,60 @@ $b586f51235cdc320$exports = (chalk)=>{
             return new LoggerObject().bgCyanBright;
         },
         get bgWhiteBright () {
+            return new LoggerObject().bgWhiteBright;
+        },
+        get blackBackground () {
+            return new LoggerObject().bgBlack;
+        },
+        get redBackground () {
+            return new LoggerObject().bgRed;
+        },
+        get greenBackground () {
+            return new LoggerObject().bgGreen;
+        },
+        get yellowBackground () {
+            return new LoggerObject().bgYellow;
+        },
+        get blueBackground () {
+            return new LoggerObject().bgBlue;
+        },
+        get magentaBackground () {
+            return new LoggerObject().bgMagenta;
+        },
+        get cyanBackground () {
+            return new LoggerObject().bgCyan;
+        },
+        get whiteBackground () {
+            return new LoggerObject().bgWhite;
+        },
+        get grayBackground () {
+            return new LoggerObject().bgGray;
+        },
+        get greyBackground () {
+            return new LoggerObject().bgGrey;
+        },
+        get lightBlackBackground () {
+            return new LoggerObject().bgBlackBright;
+        },
+        get lightRedBackground () {
+            return new LoggerObject().bgRedBright;
+        },
+        get lightGreenBackground () {
+            return new LoggerObject().bgGreenBright;
+        },
+        get lightYellowBackground () {
+            return new LoggerObject().bgYellowBright;
+        },
+        get lightBlueBackground () {
+            return new LoggerObject().bgBlueBright;
+        },
+        get lightMagentaBackground () {
+            return new LoggerObject().bgMagentaBright;
+        },
+        get lightCyanBackground () {
+            return new LoggerObject().bgCyanBright;
+        },
+        get lightWhiteBackground () {
             return new LoggerObject().bgWhiteBright;
         },
         console: console
