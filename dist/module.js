@@ -1,5 +1,3 @@
-const { debugValue } = await import("https://deno.land/x/sprinter@0.2.2/dapper-debugger.js")
-
 function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
 }
@@ -2686,7 +2684,6 @@ $b586f51235cdc320$exports = (chalk)=>{
                 while(this.attributeBuffer.length > 0)styler = styler[this.attributeBuffer.shift()];
                 const string = styler(...args);
                 this.stringBuffer.push(string);
-                console.debug(`this is:`,this)
                 return this;
             };
             const originalThing = ifStyleCalledAsMethod;
@@ -2803,7 +2800,6 @@ $b586f51235cdc320$exports = (chalk)=>{
         get white() {
             this.attributeBuffer.push("white");
             this.styleString += "; color:#c7cbcd;";
-            console.debug(`this.proxyiedReturn is:`, debugValue(this.proxyiedReturn))
             return this.proxyiedReturn;
         }
         get blackBright() {
@@ -2979,7 +2975,7 @@ $b586f51235cdc320$exports = (chalk)=>{
                 const string = styler(...args);
                 this.stringBuffer.push(string);
                 this.log();
-                return;
+                return this;
             };
             const originalThing = ifStyleCalledAsMethod;
             const proxySymbol = Symbol.for('Proxy');
@@ -3386,10 +3382,6 @@ $b586f51235cdc320$exports = (chalk)=>{
 // use es chalk
 $c3df393698e4c016$exports = $b586f51235cdc320$exports($c3df393698e4c016$require$es6Chalk);
 
-const {console} = $c3df393698e4c016$exports
-console.bgBlack.white("    running: ").blue("hi")
 
 export {$c3df393698e4c016$exports as default};
-;
-
 //# sourceMappingURL=module.js.map
