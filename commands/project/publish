@@ -5,8 +5,8 @@ then
     root="$PWD"
 fi
 
-npm version patch \
-    && "$root/commands/project/build" \
+"$root/commands/project/build" \
+    && npm version patch \
     && npm publish --access=public --no-git-checks \
     && git push &>/dev/null \
     && git add -A \
