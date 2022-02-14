@@ -2,7 +2,7 @@
   "license": "MIT",
   "name": "vibrance",
   "description": "Cli colors for deno, built on chalk",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "main": "dist/node.min.js",
   "module": "dist/module.js",
   "source": "main/main.js",
