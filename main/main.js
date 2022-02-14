@@ -170,7 +170,7 @@ module.exports = (chalk)=>{
                 const string = styler(...args)
                 this.stringBuffer.push(string)
                 this.log()
-                return
+                return this
             }
             const originalThing = ifStyleCalledAsMethod
             const proxySymbol = Symbol.for('Proxy')

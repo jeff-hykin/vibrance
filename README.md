@@ -10,11 +10,12 @@ const { console, vibrance } = (await import('https://cdn.skypack.dev/vibrance@v0
 console.red("Howdy!") // has console.log() and all the other methods (debug/warn/error/group/etc)
 console.blue.underline("Howdy!") 
 console.green.bgBlack("Howdy!")
+// NOTE!: this doesnt work: console.green("Hello").blue(" world")
+// alternative way
+vibrance.blue("Howdy! ").green("this will be logged").log() // NOTE: needs log at the end!
 
 // a dont-import-console way of using vibrancy
 console.log(vibrance.blue("This will ").bold.magenta("also").blue(" be logged"))
-// alternative way
-vibrance.blue("Howdy! ").green("this will be logged").log() // NOTE: needs log at the end!
 ```
 
 #### Node.js
