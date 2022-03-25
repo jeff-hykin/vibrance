@@ -343,6 +343,10 @@ module.exports = (chalk)=>{
     }
 
     const vibrance = {
+        clearColorsFrom(string) {
+            // https://stackoverflow.com/questions/17998978/removing-colors-from-output
+            return string.replace(/[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, "")
+        },
         get reset           () { return (new LoggerObject()).reset },
         get bold            () { return (new LoggerObject()).bold },
         get dim             () { return (new LoggerObject()).dim },
